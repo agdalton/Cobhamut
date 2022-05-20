@@ -60,8 +60,8 @@ module.exports = {
 						.setDescription(
 							'What kind of intervention are you seeking?'
 						)
-						.addChoice('Good', 'good')
-						.addChoice('Bad', 'bad')
+						.addChoice('good', 'good')
+						.addChoice('bad', 'bad')
 						.setRequired(true)
 				)
 		)

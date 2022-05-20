@@ -12,7 +12,7 @@ const fs = require('fs')
 // globals
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] })
 const globals = {}
-globals['last8BallQuestion'] = { interaction, question }
+globals['last8BallQuestion'] = { interaction: '', question: '' }
 globals['jobs'] = jobs()
 globals['lunar_white'] = '#E3DEE7'
 globals['lunar_purple'] = '#9c59b6'

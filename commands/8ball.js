@@ -8,7 +8,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders')
 
 module.exports = {
-	guildId: '',
+	guildId: '681503253623734292',
 	callback: async (client, interaction, globals) => {
 		const command = interaction.options.getSubcommand()
 		const data = {

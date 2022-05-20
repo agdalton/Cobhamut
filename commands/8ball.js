@@ -10,8 +10,11 @@ module.exports = {
 	callback: async (client, interaction, globals) => {
 		const command = interaction.options.getSubcommand()
 		const data = {
-			username: interaction.member.user.username,
-			nick: interaction.member.nick,
+			clientID: client.user.id,
+			clientUsername: client.user.username,
+			clientAvatar: client.user.avatar,
+			memberUsername: interaction.member.user.username,
+			memberNick: interaction.member.nick,
 			baseImageURL: 'htps://cdn.discordapp.com',
 		}
 

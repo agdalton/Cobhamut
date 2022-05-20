@@ -4,14 +4,15 @@ const interaction_reply = require('../../../.util/command-utils/interaction-repl
 const get_answer = require('../../../.util/command-utils/get-magic-answer.js')
 
 module.exports = async (interaction, data, globals) => {
+	const { last8BallQuestion, legend27 } = globals
 	const {
 		clientID,
 		clientUsername,
 		clientAvatar,
-		last8BallQuestion,
-		legend27,
-	} = globals
-	const { username, nick, baseImageURL } = data
+		memberUsername,
+		memberNick,
+		baseImageURL,
+	} = data
 	const intervene = Math.floor(Math.random() * 100) >= 90 ? true : false
 	const interventionType = interaction.options.getString('type')
 	let lastInteraction = last8BallQuestion.interaction
@@ -43,21 +44,22 @@ module.exports = async (interaction, data, globals) => {
 
 	// Find the new answer
 	const rand = Math.floor(Math.random() * 10)
-	const answer = (interventionType == 'good') ? get_answer(rand) : get_answer(rand + 10)
+	const answer =
+		interventionType == 'good' ? get_answer(rand) : get_answer(rand + 10)
 
 	// Setup intervention embed
 	const embed = new MessageEmbed()
 		.setColor(legend27)
 		.setAuthor({
 			name: clientUsername,
-			iconURL: `${baseImageURL}/avatars/${clientID}/${clientAvatar}.png`
-        })
+			iconURL: `${baseImageURL}/avatars/${clientID}/${clientAvatar}.png`,
+		})
 		.addField('Question', lastQuestion)
 		.addField('Answer', answer)
 		.setFooter({
-			text: (nick ? nick : username) + ' used Divine Intervention!',
-			iconURL: 'https://emoji.gg/assets/emoji/7763_dogerime.png'
-        })
+			text: (memberNick ? memberNick : memberUsername) + ' used Divine Intervention!',
+			iconURL: 'https://emoji.gg/assets/emoji/7763_dogerime.png',
+		})
 
 	interaction_reply(lastInteraction, null, [embed], null, false, true)
 	interaction_reply(
@@ -68,5 +70,5 @@ module.exports = async (interaction, data, globals) => {
 		false,
 		false
 	)
-    return
+	return
 }

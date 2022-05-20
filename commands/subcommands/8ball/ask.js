@@ -4,8 +4,8 @@ const interaction_reply = require('../../../.util/command-utils/interaction-repl
 const get_answer = require('../../../.util/command-utils/get-magic-answer.js')
 
 module.exports = async (interaction, data, globals) => {
-	const { baseImageURL } = data
-	const { clientID, clientUsername, clientAvatar, lunar_purple } = globals
+	const { clientID, clientUsername, clientAvatar, baseImageURL } = data
+	const { lunar_purple } = globals
 
 	const question = interaction.options.getString('question')
 

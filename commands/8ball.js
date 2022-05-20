@@ -5,6 +5,8 @@
     and returns that answer in a MessageEmbed.
 
 */
+const { SlashCommandBuilder } = require('@discordjs/builders')
+
 module.exports = {
 	guildId: '',
 	callback: async (client, interaction, globals) => {

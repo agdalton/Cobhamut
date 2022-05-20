@@ -8,7 +8,7 @@ const get_jobs = require('../.util/command-utils/get-jobs.js')
 
 module.exports = {
 	name: 'static',
-	guildId: '681503253623734292',
+	guildId: '',
 	callback: async (djs_client, interaction, globals) => {
 		// dictionary
 		const command = interaction.options.getSubcommand()

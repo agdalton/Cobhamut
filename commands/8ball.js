@@ -9,30 +9,16 @@ const requestAPI = require('request')
 
 module.exports = {
 	guildId: '',
-	callback: async (
-		DiscordJS,
-		client,
-		interaction,
-		command,
-		commandArgs,
-		recentCommands
-	) => {
-		const username = interaction.member.user.username
-		const nick = interaction.member.nick || ''
-		const baseImageURL = 'https://cdn.discordapp.com'
+	callback: async (client, interaction, globals) => {
+		const data = {
+			username: interaction.member.user.username,
+			nick: interaction.member.nick,
+			baseImageURL: 'htps://cdn.discordapp.com'
+		}
 
 		// process /8ball ask
 		if (command === 'ask') {
-			const embed = new DiscordJS.MessageEmbed()
-				.setColor('#9c59b6')
-				.setAuthor(
-					client.user.username,
-					`${baseImageURL}/avatars/${client.user.id}/${client.user.avatar}.png`
-				)
-			embed.addField('Question', commandArgs.question)
-			embed.addField('Answer', getMagicAnswer(Math.floor(Math.random() * 20)))
-
-			reply(DiscordJS, client, interaction, embed)
+			
 		}
 
 		// process /8ball intervene
@@ -45,7 +31,8 @@ module.exports = {
 				// find last question asked
 				if (command.command === 'ask') {
 					lastInteractionId = command.lastInteractionId || ''
-					lastInteractionToken = command.lastInteractionToken || ''
+					lastInteractionToken =
+						command.lastInteractionToken || ''
 					lastQuestion = command.lastArgs.question || ''
 				}
 			}
@@ -65,17 +52,22 @@ module.exports = {
 					if (commandArgs.type === 'good') {
 						embed.addField(
 							'Answer',
-							getMagicAnswer(Math.floor(Math.random() * 10))
+							getMagicAnswer(
+								Math.floor(Math.random() * 10)
+							)
 						)
 					} else if (commandArgs.type === 'bad') {
 						embed.addField(
 							'Answer',
-							getMagicAnswer(Math.floor(Math.random() * 10) + 10)
+							getMagicAnswer(
+								Math.floor(Math.random() * 10) + 10
+							)
 						)
 					}
 
 					embed.setFooter(
-						(nick ? nick : username) + ' used Divine Intervention!',
+						(nick ? nick : username) +
+							' used Divine Intervention!',
 						'https://emoji.gg/assets/emoji/7763_dogerime.png'
 					)
 					const data = await createAPIMessage(
@@ -102,7 +94,12 @@ module.exports = {
 								'There was an error running this command.'
 							)
 						} else {
-							reply(DiscordJS, client, interaction, outcomeMessage)
+							reply(
+								DiscordJS,
+								client,
+								interaction,
+								outcomeMessage
+							)
 							new DiscordJS.WebhookClient(
 								client.user.id,
 								lastInteractionToken
@@ -113,7 +110,12 @@ module.exports = {
 					reply(DiscordJS, client, interaction, outcomeMessage)
 				}
 			} else {
-				reply(DiscordJS, client, interaction, 'No question has been asked.')
+				reply(
+					DiscordJS,
+					client,
+					interaction,
+					'No question has been asked.'
+				)
 			}
 		}
 
@@ -144,7 +146,8 @@ module.exports = {
 				options: [
 					{
 						name: 'type',
-						description: 'What kind of intervention are you seeking?',
+						description:
+							'What kind of intervention are you seeking?',
 						required: true,
 						type: 3, // string
 						choices: [
@@ -170,7 +173,12 @@ const reply = async (DiscordJS, client, interaction, response) => {
 	}
 	// check embed
 	if (typeof response === 'object') {
-		data = await createAPIMessage(DiscordJS, client, interaction, response)
+		data = await createAPIMessage(
+			DiscordJS,
+			client,
+			interaction,
+			response
+		)
 	}
 	// send the reply
 	client.api.interactions(interaction.id, interaction.token).callback.post({

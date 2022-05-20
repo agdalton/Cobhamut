@@ -1,16 +1,19 @@
 /*
-Cobhamut
-Does stuff
+Luna bot
+Final Fantasy 14 Static Tracker
 */
 
 // requirements
 const { Client, Intents } = require('discord.js')
+const jobs = require('./.util/command-utils/get-jobs.js')
 const path = require('path')
 const fs = require('fs')
 
 // globals
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] })
 const globals = {}
+globals['jobs'] = jobs()
+globals['lunar_white'] = '#E3DEE7'
 
 // methods
 const getApp = (guildId) => {
@@ -23,7 +26,7 @@ const getApp = (guildId) => {
 
 // when the bot is ready
 client.on('ready', async () => {
-	console.log('Cobhamut is online!')
+	console.log('Luna is online!')
 	client.user.setActivity('In Pandæmonium')
 	console.log()
 	// require base command file
@@ -79,4 +82,4 @@ client.on('ready', async () => {
 	console.log(guildCommands)
 })
 
-client.login(process.env.COBHAMUT_TOKEN)
+client.login(process.env.LUNA_TOKEN)

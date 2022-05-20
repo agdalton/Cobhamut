@@ -66,8 +66,8 @@ module.exports = {
 						)
 						.setRequired(true)
 						.addChoices([
-							["Good", "good"],
-							["Bad", "bad"]
+							["good", "good"],
+							["gad", "bad"]
 						])
 				)
 		)

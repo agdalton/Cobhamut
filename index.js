@@ -75,7 +75,7 @@ client.on('ready', async () => {
 		}
 	}
 
-	readSelectMenus('select-menus')
+	readSelectMenus('./.util/select-menus')
 	// command DELETE
 	//await getApp().commands('892920713571356752').delete()
 

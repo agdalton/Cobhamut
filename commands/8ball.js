@@ -52,6 +52,7 @@ module.exports = {
 			['Good', 'good'],
 			['Bad', 'bad'],
 		]
+		
 		data.addSubcommand((subcommand) =>
 			subcommand
 				.setName('intervene')

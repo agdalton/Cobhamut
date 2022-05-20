@@ -48,10 +48,9 @@ module.exports = {
 		)
 
 		// Intervene subcommand
-		const choices = [
-			['Good', 'good'],
-			['Bad', 'bad'],
-		]
+		let choices = []
+		choices.push(['Good', 'good'])
+		choices.push(['Bad', 'bad'])
 
 		data.addSubcommand((subcommand) =>
 			subcommand
@@ -66,6 +65,7 @@ module.exports = {
 							'What kind of intervention are you seeking?'
 						)
 						.setRequired(true)
+						.addChoices(choices)
 				)
 		)
 

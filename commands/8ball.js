@@ -52,7 +52,7 @@ module.exports = {
 			['Good', 'good'],
 			['Bad', 'bad'],
 		]
-		
+
 		data.addSubcommand((subcommand) =>
 			subcommand
 				.setName('intervene')
@@ -65,7 +65,6 @@ module.exports = {
 						.setDescription(
 							'What kind of intervention are you seeking?'
 						)
-						.addChoices(choices)
 						.setRequired(true)
 				)
 		)

@@ -12,9 +12,6 @@ const fs = require('fs')
 // globals
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] })
 const globals = {}
-globals['clientID'] = client.user.id
-globals['clientUsername'] = client.user.username
-globals['clientAvatar'] = client.user.avatar
 globals['last8BallQuestion'] = { interaction, question }
 globals['jobs'] = jobs()
 globals['lunar_white'] = '#E3DEE7'

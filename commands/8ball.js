@@ -49,8 +49,8 @@ module.exports = {
 
 		// Intervene subcommand
 		let choices = []
-		choices.push(['Good', 'good'])
-		choices.push(['Bad', 'bad'])
+		choices.push({ name: 'Good', value: 'good' })
+		choices.push({ name: 'Bad', value: 'bad' })
 
 		data.addSubcommand((subcommand) =>
 			subcommand

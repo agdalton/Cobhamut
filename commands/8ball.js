@@ -50,7 +50,7 @@ module.exports = {
 		// Intervene subcommand
 		const choices = [
 			['Good', 'good'],
-			['Bad', 'bad']
+			['Bad', 'bad'],
 		]
 		data.addSubcommand((subcommand) =>
 			subcommand

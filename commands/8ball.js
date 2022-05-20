@@ -48,6 +48,10 @@ module.exports = {
 		)
 
 		// Intervene subcommand
+		const choices = [
+			['Good', 'good'],
+			['Bad', 'bad']
+		]
 		data.addSubcommand((subcommand) =>
 			subcommand
 				.setName('intervene')
@@ -60,8 +64,7 @@ module.exports = {
 						.setDescription(
 							'What kind of intervention are you seeking?'
 						)
-						.addChoice('good', 'good')
-						.addChoice('bad', 'bad')
+						.addChoices(choices)
 						.setRequired(true)
 				)
 		)

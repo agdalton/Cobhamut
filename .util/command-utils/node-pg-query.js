@@ -1,7 +1,7 @@
 /*
 Reusable utility for querying the PostgreSQL database on Heroku
 */
-const { Pool } = require('pg')
+//const { Pool } = require('pg')
 
 module.exports = async (query, values) => {
 	// setup postgres connection

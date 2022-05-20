@@ -56,7 +56,7 @@ client.on('ready', async () => {
 	readCommands('commands')
 	// require base select menu file
 	const baseSelectMenuFile = 'select-menu-base.js'
-	const selectMenuBase = require(`./select-menus/${baseSelectMenuFile}`)
+	const selectMenuBase = require(`./.util/select-menus/${baseSelectMenuFile}`)
 	// build function to real all files in the select-menus directory
 	const readSelectMenus = (dir) => {
 		const files = fs.readdirSync(path.join(__dirname, dir))

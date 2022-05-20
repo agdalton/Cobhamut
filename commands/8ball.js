@@ -65,5 +65,7 @@ module.exports = {
 						.setRequired(true)
 				)
 		)
+
+		return data.toJSON()
 	}),
 }

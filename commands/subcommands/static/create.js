@@ -28,7 +28,7 @@ module.exports = async (interaction, data, globals) => {
 				'The maximum number of statics has already been created in this server.'
 			)
 			embed.setColor('RED')
-			interaction_reply(interaction, null, [embed], null, true)
+			interaction_reply(interaction, null, [embed], null, true, false)
 			// close interaction
 			return
 		}
@@ -39,7 +39,7 @@ module.exports = async (interaction, data, globals) => {
 					'A static with this name already exists in this server.'
 				)
 				embed.setColor('RED')
-				interaction_reply(interaction, null, [embed], null, true)
+				interaction_reply(interaction, null, [embed], null, true, false)
 				// close interaction
 				return
 			}
@@ -84,6 +84,6 @@ module.exports = async (interaction, data, globals) => {
 		}
 	}
 	// send the reply
-	interaction_reply(interaction, null, [embed], null, true)
+	interaction_reply(interaction, null, [embed], null, true, false)
 	return
 }

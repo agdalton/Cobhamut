@@ -15,10 +15,11 @@ const globals = {}
 globals['clientID'] = client.user.id
 globals['clientUsername'] = client.user.username
 globals['clientAvatar'] = client.user.avatar
-globals['recentCommands'] = new Object()
+globals['last8BallQuestion'] = { interaction, question }
 globals['jobs'] = jobs()
 globals['lunar_white'] = '#E3DEE7'
 globals['lunar_purple'] = '#9c59b6'
+globals['legend27'] = '#f1c40f'
 
 // methods
 const getApp = (guildId) => {
@@ -45,7 +46,10 @@ client.on('ready', async () => {
 			const stat = fs.lstatSync(path.join(__dirname, dir, file))
 			if (stat.isDirectory()) {
 				continue
-			} else if (file !== baseCommandFile && path.extname(file) === '.js') {
+			} else if (
+				file !== baseCommandFile &&
+				path.extname(file) === '.js'
+			) {
 				const command = require(path.join(__dirname, dir, file))
 				commandBase(client, command, globals)
 			}
@@ -64,7 +68,10 @@ client.on('ready', async () => {
 			const stat = fs.lstatSync(path.join(__dirname, dir, file))
 			if (stat.isDirectory()) {
 				continue
-			} else if (file !== baseSelectMenuFile && path.extname(file) === '.js') {
+			} else if (
+				file !== baseSelectMenuFile &&
+				path.extname(file) === '.js'
+			) {
 				const selectMenu = require(path.join(__dirname, dir, file))
 				selectMenuBase(client, selectMenu, globals)
 			}

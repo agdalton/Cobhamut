@@ -39,5 +39,5 @@ module.exports = async (interaction, data, globals) => {
 			.addOptions(static_choices)
 	)
 	// send the reply
-	await interaction_reply(interaction, null, [embed], [select_menu], true)
+	await interaction_reply(interaction, null, [embed], [select_menu], true, false)
 }

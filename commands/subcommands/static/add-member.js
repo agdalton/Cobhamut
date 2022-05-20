@@ -37,5 +37,5 @@ module.exports = async (interaction, data, globals) => {
 			.addOptions(static_choices)
 	)
 
-	interactionReply(interaction, null, [embed], [select_menu], true)
+	interactionReply(interaction, null, [embed], [select_menu], true, false)
 }

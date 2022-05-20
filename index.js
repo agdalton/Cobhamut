@@ -77,7 +77,7 @@ client.on('ready', async () => {
 
 	readSelectMenus('./.util/select-menus')
 	// command DELETE
-	//await getApp().commands('892920713571356752').delete()
+	await getApp().commands('977312385515782154').delete()
 
 	// Log all commands
 	const globalCommands = await getApp().commands.get()

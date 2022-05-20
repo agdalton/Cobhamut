@@ -19,7 +19,8 @@ module.exports = {
 			memberNick: interaction.member.nick,
 			baseImageURL: 'htps://cdn.discordapp.com',
 		}
-
+		console.log(interaction.commandName)
+		console.log(command)
 		require(`./subcommands/${interaction.commandName}/${command}.js`)(
 			interaction,
 			data,

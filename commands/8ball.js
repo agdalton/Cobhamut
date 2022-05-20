@@ -10,15 +10,21 @@ const requestAPI = require('request')
 module.exports = {
 	guildId: '',
 	callback: async (client, interaction, globals) => {
+		const command = interaction.options.getSubcommand()
 		const data = {
 			username: interaction.member.user.username,
 			nick: interaction.member.nick,
-			baseImageURL: 'htps://cdn.discordapp.com'
+			baseImageURL: 'htps://cdn.discordapp.com',
 		}
+
+		require(`./subcommands/${interaction.commandName}/${command}.js`)(
+			interaction,
+			data,
+			globals
+		)
 
 		// process /8ball ask
 		if (command === 'ask') {
-			
 		}
 
 		// process /8ball intervene
@@ -121,74 +127,61 @@ module.exports = {
 
 		return
 	},
-	data: {
-		name: '8ball',
-		description: 'Ask a question or seek Divine Intervention!',
-		options: [
-			{
-				name: 'ask',
-				description: 'Ask the Magic 8 ball',
-				type: 1, // subcommand
-				options: [
-					{
-						name: 'question',
-						description: 'What do you seek an answer to?',
-						type: 3, // String
-						required: true,
-					},
-				],
-			},
-			{
-				name: 'intervene',
-				description:
-					'Seek divine intervention and ask the Magic 8 ball to change the outcome of the last question',
-				type: 1, // subcommand
-				options: [
-					{
-						name: 'type',
-						description:
-							'What kind of intervention are you seeking?',
-						required: true,
-						type: 3, // string
-						choices: [
-							{
-								name: 'Good',
-								value: 'good',
-							},
-							{
-								name: 'Bad',
-								value: 'bad',
-							},
-						],
-					},
-				],
-			},
-		],
-	},
+	data: (() => {
+		// Primary command settings
+		const data = new SlashCommandBuilder()
+		data.setName('8ball')
+		data.setDescription('Ask a question or seek Divine Intervention!')
+
+		// Ask subcommand
+		data.addSubcommand((subcommand) =>
+			subcommand
+				.setName('ask')
+				.setDescription('Ask the Magic 8 ball')
+				.addStringOption((option) =>
+					option
+						.setName('question')
+						.setDescription('What do you seek an answer to?')
+						.setRequired(true)
+				)
+		)
+
+		// Intervene subcommand
+		data.addSubcommand((subcommand) =>
+			subcommand
+				.setName('intervene')
+				.setDescription(
+					'Seek divine intervention and ask the Magic 8 ball to change the outcome of the last question'
+				)
+				.addStringOption((option) =>
+					option
+						.setName('type')
+						.setDescription(
+							'What kind of intervention are you seeking?'
+						)
+						.addChoice('Good', 'good')
+						.addChoice('Bad', 'bad')
+						.setRequired(true)
+				)
+		)
+	}),
 }
 /* --- --- module methods --- --- */
-const reply = async (DiscordJS, client, interaction, response) => {
-	let data = {
-		content: response,
+const updateRecents = (interaction, command, commandArgs, recentCommands) => {
+	for (const command of recentCommands) {
+		if (command === recentCommands.command) {
+			recentCommands.lastInteractionId = interaction.id
+			recentCommands.lastInteractionToken = interaction.token
+			recentCommands.lastArgs = commandArgs
+			return
+		}
 	}
-	// check embed
-	if (typeof response === 'object') {
-		data = await createAPIMessage(
-			DiscordJS,
-			client,
-			interaction,
-			response
-		)
-	}
-	// send the reply
-	client.api.interactions(interaction.id, interaction.token).callback.post({
-		data: {
-			type: 4,
-			data,
-		},
+	recentCommands.push({
+		command: command,
+		lastInteractionId: interaction.id,
+		lastInteractionToken: interaction.token,
+		lastArgs: commandArgs,
 	})
-
-	return
 }
 
 const createAPIMessage = async (DiscordJS, client, interaction, content) => {
@@ -201,31 +194,4 @@ const createAPIMessage = async (DiscordJS, client, interaction, content) => {
 		.resolveFiles()
 
 	return { ...data, files }
-}
-
-const getMagicAnswer = (index) => {
-	const possibleAnswers = [
-		'It is certain.',
-		'It is decidedly so.',
-		'Without a doubt.',
-		'Yes definitely.',
-		'You may rely on it.',
-		'As I see it, yes.',
-		'Most likely.',
-		'Outlook good.',
-		'Yes.',
-		'Signs point to yes.',
-		'Reply hazy, try again.',
-		'Ask again later.',
-		'Better not tell you now.',
-		'Cannot predict now.',
-		'Concentrate and ask again.',
-		"Don't count on it.",
-		'My reply is no.',
-		'My sources say no.',
-		'Outlook not so good.',
-		'Very doubtful.',
-	]
-
-	return possibleAnswers[index]
 }

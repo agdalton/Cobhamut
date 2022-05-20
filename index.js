@@ -12,8 +12,13 @@ const fs = require('fs')
 // globals
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] })
 const globals = {}
+globals['clientID'] = client.user.id
+globals['clientUsername'] = client.user.username
+globals['clientAvatar'] = client.user.avatar
+globals['recentCommands'] = new Object()
 globals['jobs'] = jobs()
 globals['lunar_white'] = '#E3DEE7'
+globals['lunar_purple'] = '#9c59b6'
 
 // methods
 const getApp = (guildId) => {
@@ -82,4 +87,4 @@ client.on('ready', async () => {
 	console.log(guildCommands)
 })
 
-client.login(process.env.LUNA_TOKEN)
+client.login(process.env.COBHAMUT_TOKEN)

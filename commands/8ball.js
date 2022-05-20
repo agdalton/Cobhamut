@@ -67,5 +67,5 @@ module.exports = {
 		)
 
 		return data.toJSON()
-	}),
+	})(),
 }

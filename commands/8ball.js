@@ -49,10 +49,6 @@ module.exports = {
 		)
 
 		// Intervene subcommand
-		let choices = []
-		choices.push(['Good', 'good'])
-		choices.push(['Bad', 'bad'])
-
 		data.addSubcommand((subcommand) =>
 			subcommand
 				.setName('intervene')

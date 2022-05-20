@@ -30,7 +30,7 @@ const getApp = (guildId) => {
 // when the bot is ready
 client.on('ready', async () => {
 	console.log('Cobhamut is online!')
-	client.user.setActivity('In Pandæmonium')
+	client.user.setActivity('Akh Corn')
 	console.log()
 	// require base command file
 	const baseCommandFile = 'command-base.js'

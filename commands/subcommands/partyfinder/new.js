@@ -45,7 +45,6 @@ module.exports = async (interaction, data, globals) => {
 		.setTitle('New Partyfinder')
 
 	const modalRow1 = new MessageActionRow().addComponents(description)
-	const modalRow2 = new MessageActionRow().addComponents(partySize)
 	const modalRow3 = new MessageActionRow().addComponents(date)
 	const modalRow4 = new MessageActionRow().addComponents(time, timezone)
 

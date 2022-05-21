@@ -74,8 +74,7 @@ module.exports = async (interaction, data, globals) => {
     modal.addComponents(modalRow1, modalRow2, modalRow3)
 
 	// Send the modal
-	//await interaction.showModal(modal)
-    interactionReply(interaction, null, null, [modal], false, false)
+	await interaction.showModal(modal)
     return
 }
 // Module methods //

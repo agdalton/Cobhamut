@@ -1,6 +1,6 @@
 /*
-Luna bot
-Final Fantasy 14 Static Tracker
+Cobhamut
+Does stuff
 */
 
 // requirements

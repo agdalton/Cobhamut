@@ -29,7 +29,7 @@ module.exports = async (interaction, data, globals) => {
 	const size = new TextInputComponent()
 		.setCustomId('pfSize')
 		.setLabel('Party size')
-		.setValue(interaction.options.getStringOption('size'))
+		.setValue(interaction.options.getString('size'))
         .setRequired(true)
 	const date = new TextInputComponent()
 		.setCustomId('pfDate')

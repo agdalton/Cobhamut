@@ -58,6 +58,8 @@ getTimezones = (moment) => {
 	const tzAmerica = moment.tz.zonesForCountry('US')
 	const options = []
 	for (let i = 0; i < tzAmerica.length; i++) {
+        if (tzAmerica[i].split('/').length > 2) continue
+
 		const option = new Object()
 		option['label'] = tzAmerica[i]
 		option['value'] = tzAmerica[i]

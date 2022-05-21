@@ -28,7 +28,7 @@ module.exports = async (interaction, data, globals) => {
 		.setStyle('SHORT')
 	const partySize = new MessageSelectMenu()
 		.setCustomId('pfPartySize')
-		.setOptions([
+		.setOptions(
 			{
 				label: '4 players',
 				description: 'Light party',
@@ -44,7 +44,7 @@ module.exports = async (interaction, data, globals) => {
 				description: 'Alliance',
 				value: '24',
 			},
-		])
+		)
 	const date = new TextInputComponent()
 		.setCustomId('pfDate')
 		.setLabel('Date')
@@ -85,5 +85,6 @@ getTimezones = (moment) => {
 		option['value'] = tzAmerica[i]
 		options.push(option)
 	}
+    console.log(options.length)
 	return options
 }

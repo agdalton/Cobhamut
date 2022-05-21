@@ -15,7 +15,7 @@ module.exports = async (interaction, data, globals) => {
 			name: clientUsername,
 			iconURL: `${baseImageURL}/avatars/${clientID}/${clientAvatar}.png`,
 		})
-		.setThumbnail('https://imgur.com/cmRBCbp')
+		.setThumbnail('https://imgur.com/a/cmRBCbp')
 		.addField('Question', question)
 		.addField('Answer', get_answer(Math.floor(Math.random() * 20)))
 

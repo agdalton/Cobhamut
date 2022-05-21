@@ -26,25 +26,6 @@ module.exports = async (interaction, data, globals) => {
 		.setPlaceholder("What's the PF for?")
 		.setRequired(true)
 		.setStyle('SHORT')
-	const partySize = new MessageSelectMenu()
-		.setCustomId('pfPartySize')
-		.setOptions(
-			{
-				label: '4 players',
-				description: 'Light party',
-				value: '4',
-			},
-			{
-				label: '8 players',
-				description: 'Full party',
-				value: '8',
-			},
-			{
-				label: '24 players',
-				description: 'Alliance',
-				value: '24',
-			}
-		)
 	const date = new TextInputComponent()
 		.setCustomId('pfDate')
 		.setLabel('Date')
@@ -81,7 +62,6 @@ getTimezones = (moment) => {
 	for (let i = 0; i < tzAmerica.length; i++) {
 		const option = new Object()
 		option['label'] = tzAmerica[i]
-		option['description'] = ''
 		option['value'] = tzAmerica[i]
 		options.push(option)
 	}

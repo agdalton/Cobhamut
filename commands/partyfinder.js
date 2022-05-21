@@ -21,8 +21,8 @@ module.exports = {
 			data,
 			globals
 		)
-        
-        return
+
+		return
 	},
 	data: (() => {
 		// Primary command settings
@@ -36,6 +36,19 @@ module.exports = {
 				.setName('new')
 				.setDescription(
 					'Create a new party finder for a FF14 group'
+				)
+				.addStringOption((option) =>
+					option
+						.setName('Party size')
+						.setDescription(
+							'The number of players in the party'
+						)
+						.addChoices(
+							{ name: '4 Players', value: '4' },
+							{ name: '8 Players', value: '8' },
+							{ name: '24 Players', value: '24' }
+						)
+                        .setRequired(true)
 				)
 		)
 

@@ -56,20 +56,7 @@ module.exports = async (interaction, data, globals) => {
 		.setStyle('SHORT')
 	const timezone = new MessageSelectMenu()
 		.setCustomId('pfTimezone')
-		.setOptions(
-			((moment_timezone) => {
-				const tzAmerica = moment_timezone.tz.zonesForCountry('US')
-				const options = []
-				for (let i = 0; i < tzAmerica.length; i++) {
-					const option = new Object()
-					option['label'] = tzAmerica[i]
-					option['description'] = ''
-					option['value'] = tzAmerica[i]
-					options.push(option)
-				}
-				return options
-			})()
-		)
+		.setOptions(getTimezones(moment_timezone))
 	// Modal config
 	const modal = new Modal()
 		.setCustomId('pfModal')
@@ -88,3 +75,16 @@ module.exports = async (interaction, data, globals) => {
 	// Send the modal
 	await interaction.showModal(modal)
 }
+// Module methods //
+getTimezones = (moment) => {
+    const tzAmerica = moment.tz.zonesForCountry('US')
+    const options = []
+    for (let i = 0; i < tzAmerica.length; i++) {
+        const option = new Object()
+        option['label'] = tzAmerica[i]
+        option['description'] = ''
+        option['value'] = tzAmerica[i]
+        options.push(option)
+    }
+    return options
+})(

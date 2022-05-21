@@ -20,8 +20,7 @@ module.exports = {
 			memberNick: interaction.member.nick,
 			baseImageURL: 'https://cdn.discordapp.com',
 		}
-		console.log(interaction.commandName)
-		console.log(command)
+
 		require(`./subcommands/${interaction.commandName}/${command}.js`)(
 			interaction,
 			data,

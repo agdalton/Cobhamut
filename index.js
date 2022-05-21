@@ -33,6 +33,7 @@ client.on('ready', async () => {
 	console.log('Cobhamut is online!')
 	client.user.setActivity('Akh Corn')
 	console.log()
+	// LOAD COMMANDS //
 	// require base command file
 	const baseCommandFile = 'command-base.js'
 	const commandBase = require(`./commands/${baseCommandFile}`)
@@ -55,10 +56,11 @@ client.on('ready', async () => {
 	}
 
 	readCommands('commands')
+	// LOAD SELECT MENUS //
 	// require base select menu file
 	const baseSelectMenuFile = 'select-menu-base.js'
 	const selectMenuBase = require(`./.util/select-menus/${baseSelectMenuFile}`)
-	// build function to real all files in the select-menus directory
+	// build function to read all files in the select-menus directory
 	const readSelectMenus = (dir) => {
 		const files = fs.readdirSync(path.join(__dirname, dir))
 
@@ -72,6 +74,28 @@ client.on('ready', async () => {
 			) {
 				const selectMenu = require(path.join(__dirname, dir, file))
 				selectMenuBase(client, selectMenu, globals)
+			}
+		}
+	}
+
+	// LOAD MODALS //
+	// require base modal file
+	const baseModalFile = 'modal-base.js'
+	const modalBase = require(`./.util/modals/${baseModalFile}`)
+	// build function to read all files in the modals directory
+	const readModals = (dir) => {
+		const files = fs.readdirSync(path.join(__dirname, dir))
+
+		for (const file of files) {
+			const stat = fs.lstatSync(path.join(__dirname, dir, file))
+			if (stat.isDirectory()) {
+				continue
+			} else if (
+				file !== baseModalFile &&
+				path.extname(file) === '.js'
+			) {
+				const modal = require(path.join(__dirname, dir, file))
+				modalBase(client, modal, globals)
 			}
 		}
 	}

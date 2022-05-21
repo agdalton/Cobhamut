@@ -21,6 +21,7 @@ module.exports = async (interaction, data, globals) => {
 	// Return if no previous question has been recorded
 	if (!lastInteraction || !lastQuestion) {
 		interaction_reply(
+            interaction,
 			'No question has been asked.',
 			null,
 			null,
@@ -33,6 +34,7 @@ module.exports = async (interaction, data, globals) => {
 	// Return 90% of the time
 	if (!intervene) {
 		interaction_reply(
+            interaction,
 			'I see no better outcome.',
 			null,
 			null,

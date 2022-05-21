@@ -9,13 +9,6 @@ module.exports = async (
 	ephemeral,
 	edit
 ) => {
-
-	await interaction.reply({
-		content: content,
-		embeds: embeds,
-		components: components,
-		ephemeral: ephemeral,
-	})
 	if (!edit) {
 		await interaction.reply({
 			content: content,

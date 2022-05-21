@@ -17,6 +17,7 @@ module.exports = async (client, command, globals) => {
 
 	// wait for an interaction
 	client.on('interactionCreate', (interaction) => {
+		console.log(interaction)
 		// process command callback
 		if (interaction.isCommand() && name === interaction.commandName)
 			callback(client, interaction, globals)

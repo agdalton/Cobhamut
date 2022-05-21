@@ -21,6 +21,8 @@ module.exports = {
 			data,
 			globals
 		)
+        
+        return
 	},
 	data: (() => {
 		// Primary command settings

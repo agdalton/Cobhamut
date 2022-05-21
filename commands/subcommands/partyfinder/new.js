@@ -6,6 +6,7 @@ const {
 	TextInputComponent,
 } = require('discord.js')
 const moment_timezone = require('moment-timezone')
+const interactionReply = require('../../../.util/command-utils/interaction-reply')
 
 module.exports = async (interaction, data, globals) => {
 	const {
@@ -73,7 +74,9 @@ module.exports = async (interaction, data, globals) => {
     modal.addComponents(modalRow1, modalRow2, modalRow3)
 
 	// Send the modal
-	await interaction.showModal(modal)
+	//await interaction.showModal(modal)
+    interactionReply(interaction, null, null, [modal], false, false)
+    return
 }
 // Module methods //
 getTimezones = (moment) => {
@@ -87,4 +90,4 @@ getTimezones = (moment) => {
         options.push(option)
     }
     return options
-})(
+}

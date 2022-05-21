@@ -43,7 +43,7 @@ module.exports = async (interaction, data, globals) => {
 				label: '24 players',
 				description: 'Alliance',
 				value: '24',
-			},
+			}
 		)
 	const date = new TextInputComponent()
 		.setCustomId('pfDate')
@@ -66,7 +66,7 @@ module.exports = async (interaction, data, globals) => {
 	const modalRow1 = new MessageActionRow().addComponents(description)
 	const modalRow2 = new MessageActionRow().addComponents(partySize)
 	const modalRow3 = new MessageActionRow().addComponents(date)
-    const modalRow4 = new MessageActionRow().addComponents(time, timezone)
+	const modalRow4 = new MessageActionRow().addComponents(time, timezone)
 
 	modal.addComponents(modalRow1, modalRow2, modalRow3, modalRow4)
 
@@ -85,6 +85,6 @@ getTimezones = (moment) => {
 		option['value'] = tzAmerica[i]
 		options.push(option)
 	}
-    console.log(options.length)
+	console.log(options.length)
 	return options
 }

@@ -56,6 +56,7 @@ module.exports = async (interaction, data, globals) => {
 			name: clientUsername,
 			iconURL: `${baseImageURL}/avatars/${clientID}/${clientAvatar}.png`,
 		})
+        .setThumbnail('https://i.imgur.com/cmRBCbp.png')
 		.addField('Question', lastQuestion)
 		.addField('Answer', answer)
 		.setFooter({

@@ -45,10 +45,9 @@ module.exports = async (interaction, data, globals) => {
 		.setTitle('New Partyfinder')
 
 	const modalRow1 = new MessageActionRow().addComponents(description)
-	const modalRow2 = new MessageActionRow().addComponents(date)
-	const modalRow3 = new MessageActionRow().addComponents(time, timezone)
+	const modalRow2 = new MessageActionRow().addComponents(date, time, timezone)
 
-	modal.addComponents(modalRow1, modalRow2, modalRow3)
+	modal.addComponents(modalRow1, modalRow2)
 
 	// Send the modal
 	await interaction.showModal(modal)
@@ -65,5 +64,6 @@ getTimezones = (moment) => {
 		options.push(option)
 	}
 	console.log(options.length)
+    console.log(options)
 	return options
 }

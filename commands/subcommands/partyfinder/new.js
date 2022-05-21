@@ -26,6 +26,11 @@ module.exports = async (interaction, data, globals) => {
 		.setPlaceholder("What's the PF for?")
 		.setRequired(true)
 		.setStyle('SHORT')
+	/*const size = new TextInputComponent()
+		.setCustomId('pfSize')
+		.setLabel('Party size')
+		.setValue(interaction.options.getStringOption('size'))
+        .*/
 	const date = new TextInputComponent()
 		.setCustomId('pfDate')
 		.setLabel('Date')
@@ -50,7 +55,7 @@ module.exports = async (interaction, data, globals) => {
 	const modalRow1 = new MessageActionRow().addComponents(description)
 	const modalRow2 = new MessageActionRow().addComponents(date)
 	const modalRow3 = new MessageActionRow().addComponents(time)
-    const modalRow4 = new MessageActionRow().addComponents(timezone)
+	const modalRow4 = new MessageActionRow().addComponents(timezone)
 
 	modal.addComponents(modalRow1, modalRow2, modalRow3, modalRow4)
 

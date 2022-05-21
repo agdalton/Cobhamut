@@ -65,28 +65,25 @@ module.exports = async (interaction, data, globals) => {
 
 	const modalRow1 = new MessageActionRow().addComponents(description)
 	const modalRow2 = new MessageActionRow().addComponents(partySize)
-	const modalRow3 = new MessageActionRow().addComponents(
-		date,
-		time,
-		timezone
-	)
+	const modalRow3 = new MessageActionRow().addComponents(date)
+    const modalRow4 = new MessageActionRow().addComponents(time, timezone)
 
-    modal.addComponents(modalRow1, modalRow2, modalRow3)
+	modal.addComponents(modalRow1, modalRow2, modalRow3, modalRow4)
 
 	// Send the modal
 	await interaction.showModal(modal)
-    return
+	return
 }
 // Module methods //
 getTimezones = (moment) => {
-    const tzAmerica = moment.tz.zonesForCountry('US')
-    const options = []
-    for (let i = 0; i < tzAmerica.length; i++) {
-        const option = new Object()
-        option['label'] = tzAmerica[i]
-        option['description'] = ''
-        option['value'] = tzAmerica[i]
-        options.push(option)
-    }
-    return options
+	const tzAmerica = moment.tz.zonesForCountry('US')
+	const options = []
+	for (let i = 0; i < tzAmerica.length; i++) {
+		const option = new Object()
+		option['label'] = tzAmerica[i]
+		option['description'] = ''
+		option['value'] = tzAmerica[i]
+		options.push(option)
+	}
+	return options
 }

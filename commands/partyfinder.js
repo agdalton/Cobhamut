@@ -39,7 +39,7 @@ module.exports = {
 				)
 				.addStringOption((option) =>
 					option
-						.setName('Party&nbsp;size')
+						.setName('PartySize')
 						.setDescription(
 							'The number of players in the party'
 						)

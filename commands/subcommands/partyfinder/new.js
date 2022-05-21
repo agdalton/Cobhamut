@@ -27,7 +27,6 @@ module.exports = async (interaction, data, globals) => {
 		.setStyle('SHORT')
 	const partySize = new MessageSelectMenu()
 		.setCustomId('pfPartySize')
-		.setRequired(true)
 		.setOptions([
 			{
 				label: '4 players',
@@ -83,7 +82,7 @@ module.exports = async (interaction, data, globals) => {
 		time,
 		timezone
 	)
-    
+
     modal.addComponents(modalRow1, modalRow2, modalRow3)
 
 	// Send the modal

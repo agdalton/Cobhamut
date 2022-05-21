@@ -18,7 +18,7 @@ module.exports = {
 			clientAvatar: client.user.avatar,
 			memberUsername: interaction.member.user.username,
 			memberNick: interaction.member.nick,
-			baseImageURL: 'htps://cdn.discordapp.com',
+			baseImageURL: 'https://cdn.discordapp.com',
 		}
 		console.log(interaction.commandName)
 		console.log(command)

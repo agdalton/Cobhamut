@@ -56,6 +56,7 @@ module.exports = {
 
 		interaction_reply(interaction, null, [embed], null, false, false)
 		const response = interaction.fetchReply()
+		console.log(response)
 		response
 			.react('<:tank:977771775960174652>')
 			.then(() => response.react('<:healer:977771776253775932>'))

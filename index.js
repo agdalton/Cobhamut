@@ -15,6 +15,7 @@ const globals = {}
 globals['last8BallQuestion'] = { interaction: '', question: '' }
 globals['jobs'] = jobs()
 globals['error_red'] = '#a62828'
+globals['green'] = '#4be34b'
 globals['lunar_white'] = '#E3DEE7'
 globals['lunar_purple'] = '#9c59b6'
 globals['legend27'] = '#f1c40f'

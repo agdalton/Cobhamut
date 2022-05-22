@@ -79,9 +79,9 @@ module.exports = {
 		// Add date, time, and timezone if filled out
 		const pfDT = DateTime.fromISO(dataDTTZ.pfDT)
 		const pfDate = pfDT
-			.toLocaleString('DATE_MED_WITH_WEEKDAY')
+			.toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY)
 			.substring(0, 6) // drop year from date since it's always current year
-		const pfTime = pfDT.toLocaleString('TIME_WITH_SHORT_OFFSET')
+		const pfTime = pfDT.toLocaleString(DateTime.TIME_WITH_SHORT_OFFSET)
 		embed.addField('When', `${pfDate} @ ${pfTime}`)
 
 		// Figure out how many tanks, healers, and dps are required

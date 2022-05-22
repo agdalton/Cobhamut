@@ -1,24 +1,7 @@
 // New subcommand for partyfinder
-const {
-	MessageActionRow,
-	MessageSelectMenu,
-	Modal,
-	TextInputComponent,
-} = require('discord.js')
-const moment_timezone = require('moment-timezone')
-const interactionReply = require('../../../.util/command-utils/interaction-reply')
+const { MessageActionRow, Modal, TextInputComponent } = require('discord.js')
 
 module.exports = async (interaction, data, globals) => {
-	const {
-		clientId,
-		clientUsername,
-		clientAvatar,
-		memberUsername,
-		memberNick,
-		baseImageURL,
-	} = data
-	const { lunar_white } = globals
-
 	// Input components
 	const description = new TextInputComponent()
 		.setCustomId('pfDescription')
@@ -30,8 +13,8 @@ module.exports = async (interaction, data, globals) => {
 		.setCustomId('pfSize')
 		.setLabel('Party size')
 		.setValue(interaction.options.getString('size'))
-        .setStyle('SHORT')
-        .setRequired(true)
+		.setStyle('SHORT')
+		.setRequired(true)
 	const date = new TextInputComponent()
 		.setCustomId('pfDate')
 		.setLabel('Date')
@@ -54,7 +37,7 @@ module.exports = async (interaction, data, globals) => {
 		.setTitle('New Partyfinder')
 
 	const modalRow1 = new MessageActionRow().addComponents(description)
-    const modalRow2 = new MessageActionRow().addComponents(size)
+	const modalRow2 = new MessageActionRow().addComponents(size)
 	const modalRow3 = new MessageActionRow().addComponents(date)
 	const modalRow4 = new MessageActionRow().addComponents(time)
 	const modalRow5 = new MessageActionRow().addComponents(timezone)

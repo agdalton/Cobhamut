@@ -7,15 +7,8 @@ module.exports = {
 	guildId: '',
 	callback: async (client, interaction, globals) => {
 		const command = interaction.options.getSubcommand()
-		const data = {
-			clientID: client.user.id,
-			clientUsername: client.user.username,
-			clientAvatar: client.user.avatar,
-			memberUsername: interaction.member.user.username,
-			memberNick: interaction.member.nick,
-			baseImageURL: 'https://cdn.discordapp.com',
-		}
-
+		const data = {}
+		
 		require(`./subcommands/${interaction.commandName}/${command}.js`)(
 			interaction,
 			data,

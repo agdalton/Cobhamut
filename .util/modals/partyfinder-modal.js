@@ -78,7 +78,7 @@ module.exports = {
 
 		// Add date, time, and timezone if filled out
 		console.log(dataDTTZ.pfDT)
-		const pfDT = DateTime.fromISO(dataDTTZ.pfDT, { setZone: true }).setLocale('en-US')
+		const pfDT = DateTime.fromObject(dataDTTZ.pfDT)
 		const pfDate = pfDT
 			.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)
 			.substring(0, pfDate.length - 6) // drop year from date since it's always current year

@@ -83,7 +83,7 @@ module.exports = (date, time, timezone) => {
 				{ zone: longTz }
 			)
 
-			obj.pfDT = pfDT.toISO()
+			obj.pfDT = pfDT.toObject()
 
 			// Set an error if Luxon determines the DateTime is invalid
 			if (!pfDT.isValid) {

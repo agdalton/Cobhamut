@@ -81,9 +81,8 @@ module.exports = {
 		const pfDT = DateTime.fromObject(dataDTTZ.pfDT)
 		const pfDate = pfDT
 			.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)
-			.then(() => pfDate.substring(0, pfDate.length - 6)) // drop year from date since it's always current year
 		const pfTime = pfDT.toLocaleString(DateTime.TIME_WITH_SHORT_OFFSET)
-		embed.addField('When', `${pfDate} @ ${pfTime}`)
+		embed.addField('When', `${pfDate.substring(0, pfDate.length - 6)} @ ${pfTime}`)
 
 		// Figure out how many tanks, healers, and dps are required
 		const partyComp = getPartyComp(size)

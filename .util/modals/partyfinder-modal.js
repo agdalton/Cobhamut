@@ -41,9 +41,9 @@ module.exports = {
 
 		// Figure out how many tanks, healers, and dps are required
 		const partyComp = getPartyComp(size)
-		embed.addField(`Tanks 0/${comp.tanks}`, '-', true)
-		embed.addField(`Healers 0/${comp.healers}`, '-', true)
-		embed.addField(`Damage 0/${comp.dps}`, '-', true)
+		embed.addField(`Tanks 0/${partyComp.tanks}`, '-', true)
+		embed.addField(`Healers 0/${partyComp.healers}`, '-', true)
+		embed.addField(`Damage 0/${partyComp.dps}`, '-', true)
 
 		interaction_reply(interaction, null, [embed], null, false, false)
 		return

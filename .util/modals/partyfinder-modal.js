@@ -1,6 +1,6 @@
 // Respond to the partyfinder modal and schedule the partyfinder
 const { MessageEmbed } = require('discord.js')
-const interaction_reply = require('../../../.util/command-utils/interaction-reply.js')
+const interaction_reply = require('../command-utils/interaction-reply.js')
 
 module.exports = {
 	name: 'pfNewModal',
@@ -37,13 +37,39 @@ module.exports = {
 				}`,
 			})
 			.setTitle(description)
-			.addField(
-				'Time',
-				`${day} ${month} ${dayOfMonth}, ${year} @ ${time} ${timezone}`,
-				false
-			)
+			.setThumbnail('https://xivapi.com/i/061000/061536_hr1.png')
 
+		// Figure out how many tanks, healers, and dps are required
+		const partyComp = getPartyComp(size)
+		embed.addField(`Tanks 0/${comp.tanks}`, '-', true)
+		embed.addField(`Healers 0/${comp.healers}`, '-', true)
+		embed.addField(`Damage 0/${comp.dps}`, '-', true)
+
+		interaction_reply(interaction, null, [embed], null, false, false)
 		return
 	},
 }
 // Module methods //
+getPartyComp = (size) => {
+	const comp = new Object()
+
+	switch (size) {
+		case '4':
+			comp.tanks = 1
+			comp.healers = 1
+			comp.dps = 2
+			break
+		case '8':
+			comp.tanks = 2
+			comp.healers = 2
+			comp.dps = 4
+			break
+		case '24':
+			comp.tanks = 3
+			comp.healers = 6
+			comp.dps = 15
+			break
+	}
+
+	return comp
+}

@@ -10,20 +10,18 @@ module.exports = async (
 	edit
 ) => {
 	if (!edit) {
-		await interaction.reply({
+		return await interaction.reply({
 			content: content,
 			embeds: embeds,
 			components: components,
 			ephemeral: ephemeral,
 		})
 	} else {
-		await interaction.editReply({
+		return await interaction.editReply({
 			content: content,
 			embeds: embeds,
 			components: components,
 			ephemeral: ephemeral,
 		})
 	}
-
-	return
 }

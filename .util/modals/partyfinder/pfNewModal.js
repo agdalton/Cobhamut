@@ -1,9 +1,10 @@
 // Respond to the partyfinder modal and schedule the partyfinder
 const { MessageEmbed } = require('discord.js')
 const { DateTime } = require('luxon')
-const checkDTTZ = require('../../command-utils/partyfinder/validate-dttz.js')
-const getPartyComp = require('../../command-utils/partyfinder/get-party-comp.js')
-const interaction_reply = require('../../command-utils/interaction-reply.js')
+const validateDTTZ = require('../../command-utils/partyfinder/validateDTTZ.js')
+const validateInputs = require('../../command-utils/partyfinder/validateInputs.js')
+const getPartyComp = require('../../command-utils/partyfinder/getPartyComp.js')
+const reply = require('../../command-utils/interactionReply.js')
 
 module.exports = {
 	name: 'pfNewModal',
@@ -29,7 +30,7 @@ module.exports = {
 
 		// --- Validate Party size, date, time, timezone --- //
 		const partyComp = getPartyComp(size)
-		const dataDTTZ = checkDTTZ(date, time, timezone)
+		const dataDTTZ = validateDTTZ(date, time, timezone)
 		if (!validateInputs(interaction, partyComp, dataDTTZ)) return
 
 		// Setup embed for response
@@ -82,7 +83,7 @@ module.exports = {
 		)
 		embed.addField(`<:fill:977774943154618368> Fill`, '-', true)
 
-		interaction_reply(interaction, null, [embed], null, false, false)
+		reply(interaction, null, [embed], null, false, false)
 
 		// Add reactions for role selection
 		const response = await interaction.fetchReply()

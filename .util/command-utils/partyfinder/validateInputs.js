@@ -1,5 +1,5 @@
 // validate inputs for partyfinder command
-const interaction_reply = require('../interaction-reply.js')
+const reply = require('../interactionReply.js')
 
 module.exports = (interaction, partyComp, dataDTTZ) => {
 	if (partyComp.hasOwnProperty('err') || !dataDTTZ.isValid) {
@@ -32,7 +32,7 @@ module.exports = (interaction, partyComp, dataDTTZ) => {
 			}
 		}
 
-		interaction_reply(interaction, null, [errEmbed], null, true, false)
+		reply(interaction, null, [errEmbed], null, true, false)
 
 		return false
 	}

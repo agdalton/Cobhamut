@@ -1,7 +1,7 @@
 // Ask the Magic 8 ball a question and receive a random answer
 const { MessageEmbed } = require('discord.js')
-const interaction_reply = require('../../../.util/command-utils/interaction-reply.js')
-const get_answer = require('../../../.util/command-utils/8ball/get-magic-answer.js')
+const reply = require('../../../.util/command-utils/interactionReply.js')
+const getAnswer = require('../../../.util/command-utils/8ball/getAnswer.js')
 
 module.exports = async (interaction, data, globals) => {
 	const { clientID, clientUsername, clientAvatar, baseImageURL } = data
@@ -17,9 +17,9 @@ module.exports = async (interaction, data, globals) => {
 		})
 		.setThumbnail('https://i.imgur.com/cmRBCbp.png')
 		.addField('Question', question)
-		.addField('Answer', get_answer(Math.floor(Math.random() * 20)))
+		.addField('Answer', getAnswer(Math.floor(Math.random() * 20)))
 
-	interaction_reply(interaction, null, [embed], null, false, false)
+		reply(interaction, null, [embed], null, false, false)
 
 	// Record the question asked for future intervention
 	globals.last8BallQuestion.interaction = interaction

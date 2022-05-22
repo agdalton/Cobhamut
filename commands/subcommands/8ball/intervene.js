@@ -1,7 +1,7 @@
 // Don't like what the Magic 8 ball answered? Try and get a more favorable answer!
 const { MessageEmbed } = require('discord.js')
-const interaction_reply = require('../../../.util/command-utils/interaction-reply.js')
-const get_answer = require('../../../.util/command-utils/8ball/get-magic-answer.js')
+const reply = require('../../../.util/command-utils/interactionReply.js')
+const getAnswer = require('../../../.util/command-utils/8ball/getAnswer.js')
 
 module.exports = async (interaction, data, globals) => {
 	const { last8BallQuestion, legend27 } = globals
@@ -20,8 +20,8 @@ module.exports = async (interaction, data, globals) => {
 
 	// Return if no previous question has been recorded
 	if (!lastInteraction || !lastQuestion) {
-		interaction_reply(
-            interaction,
+		reply(
+			interaction,
 			'No question has been asked.',
 			null,
 			null,
@@ -33,8 +33,8 @@ module.exports = async (interaction, data, globals) => {
 
 	// Return 90% of the time
 	if (!intervene) {
-		interaction_reply(
-            interaction,
+		reply(
+			interaction,
 			'I see no better outcome.',
 			null,
 			null,
@@ -47,7 +47,7 @@ module.exports = async (interaction, data, globals) => {
 	// Find the new answer
 	const rand = Math.floor(Math.random() * 10)
 	const answer =
-		interventionType == 'good' ? get_answer(rand) : get_answer(rand + 10)
+		interventionType == 'good' ? getAnswer(rand) : getAnswer(rand + 10)
 
 	// Setup intervention embed
 	const embed = new MessageEmbed()
@@ -56,22 +56,17 @@ module.exports = async (interaction, data, globals) => {
 			name: clientUsername,
 			iconURL: `${baseImageURL}/avatars/${clientID}/${clientAvatar}.png`,
 		})
-        .setThumbnail('https://i.imgur.com/cmRBCbp.png')
+		.setThumbnail('https://i.imgur.com/cmRBCbp.png')
 		.addField('Question', lastQuestion)
 		.addField('Answer', answer)
 		.setFooter({
-			text: (memberNick ? memberNick : memberUsername) + ' used Divine Intervention!',
+			text:
+				(memberNick ? memberNick : memberUsername) +
+				' used Divine Intervention!',
 			iconURL: 'https://emoji.gg/assets/emoji/7763_dogerime.png',
 		})
 
-	interaction_reply(lastInteraction, null, [embed], null, false, true)
-	interaction_reply(
-		interaction,
-		'I have granted your wish!',
-		null,
-		null,
-		false,
-		false
-	)
+	reply(lastInteraction, null, [embed], null, false, true)
+	reply(interaction, 'I have granted your wish!', null, null, false, false)
 	return
 }

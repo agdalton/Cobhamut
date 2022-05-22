@@ -70,6 +70,7 @@ module.exports = (date, time, timezone) => {
 			const hour = parseInt(arrTime[0]) // HH:mm index 0 of split is HH
 			const minute = parseInt(arrTime[1]) // HH:mm index 1 of split is mm
 			// Add 12 hours to account for 24hr clock used by Luxon
+            console.log(meridiem)
 			if (meridiem === 'pm') hour += 12
 			// Get the current year
 			const nowDT = DateTime.now()

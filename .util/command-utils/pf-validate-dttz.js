@@ -24,7 +24,7 @@ module.exports = (date, time, timezone) => {
 			obj.isValid = false
 			obj.err.push({
 				field: 'Date',
-				message: 'Invalid date submitted. Use MM/dd.\nFor example, if submitting a partyfinder for May 9th, use 5/9.',
+				message: 'Invalid date submitted. Use MM/dd.\nFor example, if submitting a partyfinder for May 9th, use 5/9. Date must be within 30 days from today.',
 			})
 		}
 

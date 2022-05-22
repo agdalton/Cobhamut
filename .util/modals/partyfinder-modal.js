@@ -40,6 +40,7 @@ module.exports = {
 		embed.addField(`<:tank:977771775960174652> Tanks 0/${partyComp.tanks}`, '-', true)
 		embed.addField(`<:healer:977771776253775932> Healers 0/${partyComp.healers}`, '-', true)
 		embed.addField(`<:melee:977771775859494942> Damage 0/${partyComp.dps}`, '-', true)
+		embed.addField(`<:fill:977774943154618368> Fill`, '-', true)
 
 		interaction_reply(interaction, null, [embed], null, false, false)
 		return

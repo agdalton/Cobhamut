@@ -1,9 +1,9 @@
 // Respond to the partyfinder modal and schedule the partyfinder
 const { MessageEmbed } = require('discord.js')
 const { DateTime } = require('luxon')
-const checkDTTZ = require('../command-utils/partyfinder/validate-dttz.js')
-const getPartyComp = require('../command-utils/partyfinder/get-party-comp.js')
-const interaction_reply = require('../command-utils/interaction-reply.js')
+const checkDTTZ = require('../../command-utils/partyfinder/validate-dttz.js')
+const getPartyComp = require('../../command-utils/partyfinder/get-party-comp.js')
+const interaction_reply = require('../../command-utils/interaction-reply.js')
 
 module.exports = {
 	name: 'pfNewModal',

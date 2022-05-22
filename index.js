@@ -66,7 +66,7 @@ client.on('ready', async () => {
 		for (const file of files) {
 			const stat = fs.lstatSync(path.join(__dirname, dir, file))
 			if (stat.isDirectory()) {
-				continue
+				readSelectMenus(path.join(dir, file))
 			} else if (
 				file !== baseSelectMenuFile &&
 				path.extname(file) === '.js'
@@ -90,7 +90,7 @@ client.on('ready', async () => {
 		for (const file of files) {
 			const stat = fs.lstatSync(path.join(__dirname, dir, file))
 			if (stat.isDirectory()) {
-				continue
+				readModals(path.join(dir, file))
 			} else if (
 				file !== baseModalFile &&
 				path.extname(file) === '.js'

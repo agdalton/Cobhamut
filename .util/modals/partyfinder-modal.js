@@ -6,7 +6,7 @@ module.exports = {
 	name: 'pfNewModal',
 	callback: async (client, interaction, globals) => {
 		// Destruct globals
-		const { lunar_white } = globals
+		const { lunar_purple } = globals
 
 		// Setup client and member vars
 		const clientID = client.user.id
@@ -26,11 +26,7 @@ module.exports = {
 
 		// Setup embed for response
 		const embed = new MessageEmbed()
-			.setColor(lunar_white)
-			.setAuthor({
-				name: clientUsername,
-				iconURL: `${baseImageURL}/avatars/${clientID}/${clientAvatar}.png`,
-			})
+			.setColor(lunar_purple)
 			.setFooter({
 				text: `Created by ${
 					memberNick ? memberNick : memberUsername

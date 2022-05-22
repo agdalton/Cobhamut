@@ -58,10 +58,10 @@ module.exports = {
 			dataDTTZ,
 			description,
 			partyComp,
-			null, // Array[] number of tanks
-			null, // Array[] number of healers
-			null, // Array[] number of DPS
-			null // Array[] number of fill
+			null, // Array[] list of tanks
+			null, // Array[] list of healers
+			null, // Array[] list of DPS
+			null // Array[] list of fill
 		)
 
 		reply(interaction, null, [embed], null, false, false)

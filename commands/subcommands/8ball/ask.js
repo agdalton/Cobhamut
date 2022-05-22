@@ -5,7 +5,7 @@ const getAnswer = require('../../../.util/command-utils/8ball/getAnswer.js')
 
 module.exports = async (interaction, data, globals) => {
 	const { clientID, clientUsername, clientAvatar } = data
-	const { baseImageURL } = global
+	const { baseImageURL } = globals
 	const { purple } = globals.colors
 
 	const question = interaction.options.getString('question')

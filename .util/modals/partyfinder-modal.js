@@ -78,9 +78,10 @@ module.exports = {
 
 		// Add date, time, and timezone if filled out
 		console.log(dataDTTZ.pfDT)
-		const pfDT = DateTime.fromISO(dataDTTZ.pfDT)
-		const pfDate = pfDT.toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY)
-		//.substring(0, 6) // drop year from date since it's always current year
+		const pfDT = DateTime.fromISO(dataDTTZ.pfDT, { setZone: true })
+		const pfDate = pfDT
+			.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)
+			.substring(0, 6) // drop year from date since it's always current year
 		const pfTime = pfDT.toLocaleString(DateTime.TIME_WITH_SHORT_OFFSET)
 		embed.addField('When', `${pfDate} @ ${pfTime}`)
 

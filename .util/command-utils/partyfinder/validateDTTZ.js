@@ -96,16 +96,22 @@ module.exports = (date, time, timezone) => {
 			} else {
 				// Enforce a 30 day maximum
 				const daysFromNow30 = nowDT.plus({ days: 30 })
-				if (daysFromNow30 < pfDT) {
+				if (pfDT <= nowDT) {
+					obj.isValid = false
+					obj.err.push({
+						field: 'Date',
+						message: "Cobhamut can only schedule future partyfinders! Use a date that's up to 30 days into the future.",
+					})
+				} else if (daysFromNow30 < pfDT) {
 					obj.isValid = false
 					obj.err.push({
 						field: 'Date',
 						message: 'Cobhamut can only schedule up to 30 days in advance.',
 					})
 				} else {
-                    obj.pfDT.dtObj = dtObj
-                    obj.pfDT.dtZone = dtZone
-                }
+					obj.pfDT.dtObj = dtObj
+					obj.pfDT.dtZone = dtZone
+				}
 			}
 
 			// Last check so we can flag that all 3 are good

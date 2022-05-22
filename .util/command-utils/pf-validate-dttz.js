@@ -35,7 +35,7 @@ module.exports = (date, time, timezone) => {
 		}
 
 		// Validate timezone
-		const longTz = '' // Required for Luxon
+		let longTz = '' // Required for Luxon
 		switch (timezone) {
 			case 'EST':
 			case 'EDT':

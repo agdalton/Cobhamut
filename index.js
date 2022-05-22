@@ -35,7 +35,7 @@ client.on('ready', async () => {
 	console.log()
 	// LOAD COMMANDS //
 	// require base command file
-	const baseCommandFile = 'command-base.js'
+	const baseCommandFile = 'commandBase.js'
 	const commandBase = require(`./commands/${baseCommandFile}`)
 	// build function to read all files in the commands directory
 	const readCommands = (dir) => {
@@ -58,7 +58,7 @@ client.on('ready', async () => {
 	readCommands('commands')
 	// LOAD SELECT MENUS //
 	// require base select menu file
-	const baseSelectMenuFile = 'select-menu-base.js'
+	const baseSelectMenuFile = 'selectMenuBase.js'
 	const selectMenuBase = require(`./.util/select-menus/${baseSelectMenuFile}`)
 	// build function to read all files in the select-menus directory
 	const readSelectMenus = (dir) => {
@@ -82,7 +82,7 @@ client.on('ready', async () => {
 
 	// LOAD MODALS //
 	// require base modal file
-	const baseModalFile = 'modal-base.js'
+	const baseModalFile = 'modalBase.js'
 	const modalBase = require(`./.util/modals/${baseModalFile}`)
 	// build function to read all files in the modals directory
 	const readModals = (dir) => {

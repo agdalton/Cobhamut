@@ -1,7 +1,7 @@
 // Ask the Magic 8 ball a question and receive a random answer
 const { MessageEmbed } = require('discord.js')
 const interaction_reply = require('../../../.util/command-utils/interaction-reply.js')
-const get_answer = require('../../../.util/command-utils/get-magic-answer.js')
+const get_answer = require('../../../.util/command-utils/8ball/get-magic-answer.js')
 
 module.exports = async (interaction, data, globals) => {
 	const { clientID, clientUsername, clientAvatar, baseImageURL } = data

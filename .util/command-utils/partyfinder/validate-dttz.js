@@ -40,7 +40,7 @@ module.exports = (date, time, timezone) => {
 
 		// Validate timezone
 		let longTz = '' // Required for Luxon
-		switch (timezone) {
+		switch (timezone.toUpperCase()) {
 			case 'EST':
 			case 'EDT':
 			case 'ET':

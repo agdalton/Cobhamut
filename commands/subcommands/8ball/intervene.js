@@ -1,7 +1,7 @@
 // Don't like what the Magic 8 ball answered? Try and get a more favorable answer!
 const { MessageEmbed } = require('discord.js')
 const interaction_reply = require('../../../.util/command-utils/interaction-reply.js')
-const get_answer = require('../../../.util/command-utils/get-magic-answer.js')
+const get_answer = require('../../../.util/command-utils/8ball/get-magic-answer.js')
 
 module.exports = async (interaction, data, globals) => {
 	const { last8BallQuestion, legend27 } = globals

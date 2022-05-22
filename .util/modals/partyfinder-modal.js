@@ -1,7 +1,8 @@
 // Respond to the partyfinder modal and schedule the partyfinder
 const { MessageEmbed } = require('discord.js')
 const { DateTime } = require('luxon')
-const checkDTTZ = require('../command-utils/pf-validate-dttz.js')
+const checkDTTZ = require('../command-utils/partyfinder/validate-dttz.js')
+const getPartyComp = require('../command-utils/partyfinder/get-party-comp.js')
 const interaction_reply = require('../command-utils/interaction-reply.js')
 
 module.exports = {
@@ -23,54 +24,13 @@ module.exports = {
 		const description = fields.getTextInputValue('pfDescription')
 		const size = fields.getTextInputValue('pfSize')
 		const date = fields.getTextInputValue('pfDate') ?? undefined
-		const time =
-			fields.getTextInputValue('pfTime').toUpperCase() ?? undefined
-		const timezone =
-			fields.getTextInputValue('pfTimezone').toUpperCase() ?? undefined
+		const time = fields.getTextInputValue('pfTime') ?? undefined
+		const timezone = fields.getTextInputValue('pfTimezone') ?? undefined
 
 		// --- Validate Party size, date, time, timezone --- //
 		const partyComp = getPartyComp(size)
 		const dataDTTZ = checkDTTZ(date, time, timezone)
-		if (partyComp.hasOwnProperty('err') || !dataDTTZ.isValid) {
-			const errEmbed = new MessageEmbed()
-				.setTitle('An error ocurred')
-				.setDescription(
-					'Cobhamut encountered an error while processing your Partyfinder command. See below for details.'
-				)
-				.setColor(error_red)
-				.setAuthor({
-					name: clientUsername,
-					iconURL: `${baseImageURL}/avatars/${clientID}/${clientAvatar}.png`,
-				})
-				.setThumbnail(
-					'https://cdn1.iconfinder.com/data/icons/basic-ui-elements-color-round/3/61-512.png'
-				)
-			// If invalid Party size
-			if (partyComp.hasOwnProperty('err')) {
-				const compErr = partyComp.err
-				errEmbed.addField(compErr.field, compErr.message)
-			}
-			// If date, time, timezone submitted is invalid
-			if (!dataDTTZ.isValid) {
-				// Add the errors to the embed
-				for (let iErr = 0; iErr < dataDTTZ.err.length; iErr++) {
-					errEmbed.addField(
-						dataDTTZ.err[iErr].field,
-						dataDTTZ.err[iErr].message
-					)
-				}
-			}
-
-			interaction_reply(
-				interaction,
-				null,
-				[errEmbed],
-				null,
-				true,
-				false
-			)
-			return
-		}
+		if (!validateInputs(interaction, partyComp, dataDTTZ)) return
 
 		// Setup embed for response
 		const embed = new MessageEmbed()
@@ -140,33 +100,4 @@ module.exports = {
 
 		return
 	},
-}
-// Module methods //
-getPartyComp = (size) => {
-	const comp = new Object()
-
-	switch (size) {
-		case '4':
-			comp.tanks = 1
-			comp.healers = 1
-			comp.dps = 2
-			break
-		case '8':
-			comp.tanks = 2
-			comp.healers = 2
-			comp.dps = 4
-			break
-		case '24':
-			comp.tanks = 3
-			comp.healers = 6
-			comp.dps = 15
-			break
-		default:
-			comp.err = {
-				field: 'Party size',
-				message: 'Invalid Pary size specified. Accepted values are 4, 8, 24.',
-			}
-	}
-
-	return comp
 }

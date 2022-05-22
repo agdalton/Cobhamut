@@ -10,8 +10,10 @@ module.exports = async (interaction, data, globals) => {
 		clientID,
 		clientUsername,
 		clientAvatar,
+		memberID,
 		memberUsername,
 		memberNick,
+		memberAvatar,
 	} = data
 	const intervene = Math.floor(Math.random() * 100) >= 90 ? true : false
 	const interventionType = interaction.options.getString('type')
@@ -63,7 +65,7 @@ module.exports = async (interaction, data, globals) => {
 			text:
 				(memberNick ? memberNick : memberUsername) +
 				' used Divine Intervention!',
-			iconURL: 'https://emoji.gg/assets/emoji/7763_dogerime.png',
+			iconURL: `${baseImageURL}/avatars/${memberID}/${memberAvatar}`,
 		})
 
 	reply(lastInteraction, null, [embed], null, false, true)

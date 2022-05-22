@@ -16,8 +16,10 @@ module.exports = {
 			clientID: client.user.id,
 			clientUsername: client.user.username,
 			clientAvatar: client.user.avatar,
+			memberID: interaction.member.user.id,
 			memberUsername: interaction.member.user.username,
 			memberNick: interaction.member.nick,
+			memberAvatar: interaction.member.user.avatar,
 		}
 
 		require(`./subcommands/${interaction.commandName}/${command}.js`)(

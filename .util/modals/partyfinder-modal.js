@@ -55,8 +55,9 @@ module.exports = {
 		embed.addField(`<:fill:977774943154618368> Fill`, '-', true)
 
 		interaction_reply(interaction, null, [embed], null, false, false)
+
+		// Add reactions for role selection
 		const response = await interaction.fetchReply()
-		console.log(response)
 		response
 			.react('<:tank:977771775960174652>')
 			.then(() => response.react('<:healer:977771776253775932>'))

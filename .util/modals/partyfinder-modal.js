@@ -54,15 +54,8 @@ module.exports = {
 		)
 		embed.addField(`<:fill:977774943154618368> Fill`, '-', true)
 
-		const response = await interaction_reply(
-			interaction,
-			null,
-			[embed],
-			null,
-			false,
-			false
-		)
-		
+		interaction_reply(interaction, null, [embed], null, false, false)
+		const response = interaction.fetchReply()
 		response
 			.react('<:tank:977771775960174652>')
 			.then(() => response.react('<:healer:977771776253775932>'))

@@ -1,6 +1,5 @@
 // Partyfinder command for creating and scheduling parties in FF14 for things like raids!
 const { SlashCommandBuilder } = require('@discordjs/builders')
-const partyfinder_modal = require('../.util/modals/partyfinder-modal.js')
 
 module.exports = {
 	name: 'partyfinder',

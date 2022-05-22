@@ -24,7 +24,7 @@ module.exports = (date, time, timezone) => {
 			obj.isValid = false
 			obj.err.push({
 				field: 'Date',
-				message: 'Invalid date submitted. Use MM/dd.\nFor example, if submitting a partyfinder for May 9th, use 5/9. Date must be within 30 days from today.',
+				message: 'Invalid date submitted. Use MM/dd.\nFor example, if submitting a party finder for May 9th, use 5/9. Date must be within 30 days from today.',
 			})
 		}
 
@@ -34,7 +34,7 @@ module.exports = (date, time, timezone) => {
 			obj.isValid = false
 			obj.err.push({
 				field: 'Time',
-				message: 'Invalid time submitted. Use HH:mmAM/PM.\nFor example, if submitting a partyfinder for 8:30 PM, use 8:30PM.',
+				message: 'Invalid time submitted. Use HH:mmAM/PM.\nFor example, if submitting a party finder for 8:30 PM, use 8:30PM.',
 			})
 		}
 
@@ -100,7 +100,7 @@ module.exports = (date, time, timezone) => {
 					obj.isValid = false
 					obj.err.push({
 						field: 'Date',
-						message: "Cobhamut can only schedule future partyfinders! Use a date that's up to 30 days into the future.",
+						message: "Cobhamut can only schedule future party finders! Use a date that's up to 30 days into the future.",
 					})
 				} else if (daysFromNow30 < pfDT) {
 					obj.isValid = false

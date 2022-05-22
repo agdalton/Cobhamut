@@ -11,7 +11,7 @@ module.exports = (interaction, clientData, globals, partyComp, dataDTTZ) => {
 		const errEmbed = new MessageEmbed()
 			.setTitle('An error ocurred')
 			.setDescription(
-				'Cobhamut encountered an error while processing your Partyfinder command. See below for details.'
+				'Cobhamut encountered an error while processing /partyfinder. See below for details.'
 			)
 			.setColor(error)
 			.setAuthor({

@@ -31,6 +31,7 @@ module.exports = {
 				text: `Created by ${
 					memberNick ? memberNick : memberUsername
 				}`,
+				iconURL: `${baseImageURL}/avatars/${interaction.member.user.id}/${interaction.member.user.avatar}.png`,
 			})
 			.setTitle(description)
 			.setThumbnail('https://xivapi.com/i/061000/061536_hr1.png')

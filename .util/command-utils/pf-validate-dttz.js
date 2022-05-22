@@ -4,7 +4,10 @@ const { DateTime } = require('luxon')
 module.exports = (date, time, timezone) => {
 	const obj = {
 		isValid: true,
-		pfDT: '',
+		pfDT: {
+			dtObj: new Object(),
+			dtZone: new Object(),
+		},
 		err: [],
 	}
 
@@ -72,21 +75,18 @@ module.exports = (date, time, timezone) => {
 			const nowDT = DateTime.now()
 			const currentYear = nowDT.year
 			// Begin constructing a Luxon DateTime for the partyfinder
-			const pfDT = DateTime.fromObject(
-				{
-					year: currentYear,
-					month: parseInt(date.split('/')[0]), // MM/dd index 0 of split is MM
-					day: parseInt(date.split('/')[1]), // MM/dd index 1 of split is dd
-					hour: hour,
-					minute: minute,
-				},
-				{ zone: longTz }
-			)
+			const dtObj = {
+				year: currentYear,
+				month: parseInt(date.split('/')[0]), // MM/dd index 0 of split is MM
+				day: parseInt(date.split('/')[1]), // MM/dd index 1 of split is dd
+				hour: hour,
+				minute: minute,
+			}
+			const dtZone = { zone: longTz }
+			const pfDT = DateTime.fromObject(dtObj, dtZone)
 
-			obj.pfDT = pfDT.toISO({
-				includeOffset: true,
-				includePrefix: true,
-			})
+			obj.pfDT.dtObj = dtObj
+			obj.pfDT.dtZone = dtZone
 
 			// Set an error if Luxon determines the DateTime is invalid
 			if (!pfDT.isValid) {

@@ -77,10 +77,10 @@ module.exports = {
 			.setThumbnail('https://xivapi.com/i/061000/061536_hr1.png')
 
 		// Add date, time, and timezone if filled out
-		console.log(dataDTTZ.pfDT)
-		const pfDT = DateTime.fromISO(dataDTTZ.pfDT, {
-			setZone: true,
-		}).setLocale('en-US')
+		const pfDT = DateTime.fromObject(
+			dataDTTZ.pfDT.dtObj,
+			dataDTTZ.pfDT.dtZone
+		)
 		const pfDate = pfDT.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)
 		const pfTime = pfDT.toLocaleString(DateTime.TIME_SIMPLE)
 		const tzName = pfDT.offsetNameShort

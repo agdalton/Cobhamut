@@ -60,7 +60,7 @@ module.exports = (date, time, timezone) => {
 				obj.isValid = false
 				obj.err.push({
 					field: 'Timezone',
-					message: 'Invalid timezone submitted.\nFor US/Pacific: PST, PDT, PT\nFor US/Central: CST, CDT, CT\nFor US/Eastern: EST, EDT, or ET\nNo other timezones are currently supported.',
+					message: 'Invalid timezone submitted.\nFor US/Pacific: PST, PDT, PT\nFor US/Central: CST, CDT, CT\nFor US/Eastern: EST, EDT, ET\nNo other timezones are currently supported.',
 				})
 		}
 

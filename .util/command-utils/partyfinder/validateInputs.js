@@ -1,5 +1,6 @@
 // validate inputs for partyfinder command
 const reply = require('../interactionReply.js')
+const { MessageEmbed } = require('discord.js')
 
 module.exports = (interaction, partyComp, dataDTTZ) => {
 	if (partyComp.hasOwnProperty('err') || !dataDTTZ.isValid) {

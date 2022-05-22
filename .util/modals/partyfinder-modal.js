@@ -77,10 +77,10 @@ module.exports = {
 			.setThumbnail('https://xivapi.com/i/061000/061536_hr1.png')
 
 		// Add date, time, and timezone if filled out
+		console.log(dataDTTZ.pfDT)
 		const pfDT = DateTime.fromISO(dataDTTZ.pfDT)
-		const pfDate = pfDT
-			.toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY)
-			.substring(0, 6) // drop year from date since it's always current year
+		const pfDate = pfDT.toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY)
+		//.substring(0, 6) // drop year from date since it's always current year
 		const pfTime = pfDT.toLocaleString(DateTime.TIME_WITH_SHORT_OFFSET)
 		embed.addField('When', `${pfDate} @ ${pfTime}`)
 

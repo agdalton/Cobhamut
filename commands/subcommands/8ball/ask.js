@@ -5,12 +5,13 @@ const getAnswer = require('../../../.util/command-utils/8ball/getAnswer.js')
 
 module.exports = async (interaction, data, globals) => {
 	const { clientID, clientUsername, clientAvatar } = data
-	const { baseImageURL, lunar_purple } = globals
+	const { baseImageURL } = global
+	const { purple } = globals.colors
 
 	const question = interaction.options.getString('question')
 
 	const embed = new MessageEmbed()
-		.setColor(lunar_purple)
+		.setColor(purple)
 		.setAuthor({
 			name: clientUsername,
 			iconURL: `${baseImageURL}/avatars/${clientID}/${clientAvatar}.png`,

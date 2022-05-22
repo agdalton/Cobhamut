@@ -13,11 +13,13 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] })
 const globals = {}
 globals['baseImageURL'] = 'https://cdn.discordapp.com'
 globals['last8BallQuestion'] = { interaction: '', question: '' }
-globals['error_red'] = '#a62828'
-globals['green'] = '#4be34b'
-globals['lunar_white'] = '#E3DEE7'
-globals['lunar_purple'] = '#9c59b6'
-globals['legend27'] = '#f1c40f'
+globals['colors'] = {
+	error: '#a62828',
+	green: '#4be34b',
+	white: '#e3dee7',
+	purple: '#9c59b6',
+	gold: '#f1c40f',
+}
 
 // methods
 const getApp = (guildId) => {

@@ -10,7 +10,8 @@ module.exports = {
 	name: 'pfNewModal',
 	callback: async (client, interaction, globals) => {
 		// Destruct globals
-		const { baseImageURL, green, error_red, lunar_purple } = globals
+		const { baseImageURL } = globals
+		const { purple } = globals.colors
 
 		// Setup client and member vars
 		const clientData = {
@@ -37,7 +38,7 @@ module.exports = {
 
 		// Setup embed for response
 		const embed = new MessageEmbed()
-			.setColor(lunar_purple)
+			.setColor(purple)
 			.setFooter({
 				text: `Created by ${
 					memberNick ? memberNick : memberUsername

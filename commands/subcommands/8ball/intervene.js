@@ -4,7 +4,8 @@ const reply = require('../../../.util/command-utils/interactionReply.js')
 const getAnswer = require('../../../.util/command-utils/8ball/getAnswer.js')
 
 module.exports = async (interaction, data, globals) => {
-	const { last8BallQuestion, legend27, baseImageURL } = globals
+	const { last8BallQuestion, baseImageURL } = globals
+	const { gold } = globals.colors
 	const {
 		clientID,
 		clientUsername,
@@ -50,7 +51,7 @@ module.exports = async (interaction, data, globals) => {
 
 	// Setup intervention embed
 	const embed = new MessageEmbed()
-		.setColor(legend27)
+		.setColor(gold)
 		.setAuthor({
 			name: clientUsername,
 			iconURL: `${baseImageURL}/avatars/${clientID}/${clientAvatar}.png`,

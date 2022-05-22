@@ -3,7 +3,8 @@ const reply = require('../interactionReply.js')
 const { MessageEmbed } = require('discord.js')
 
 module.exports = (interaction, clientData, globals, partyComp, dataDTTZ) => {
-	const { baseImageURL, error_red } = globals
+	const { baseImageURL } = globals
+	const { error } = globals.colors
 	const { clientID, clientUsername, clientAvatar } = clientData
 	
 	if (partyComp.hasOwnProperty('err') || !dataDTTZ.isValid) {
@@ -12,7 +13,7 @@ module.exports = (interaction, clientData, globals, partyComp, dataDTTZ) => {
 			.setDescription(
 				'Cobhamut encountered an error while processing your Partyfinder command. See below for details.'
 			)
-			.setColor(error_red)
+			.setColor(error)
 			.setAuthor({
 				name: clientUsername,
 				iconURL: `${baseImageURL}/avatars/${clientID}/${clientAvatar}.png`,

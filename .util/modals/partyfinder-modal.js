@@ -78,12 +78,16 @@ module.exports = {
 
 		// Add date, time, and timezone if filled out
 		console.log(dataDTTZ.pfDT)
-		const pfDT = DateTime.fromObject(dataDTTZ.pfDT).setLocale('en-US')
-		const pfDate = pfDT
-			.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)
+		const pfDT = DateTime.fromISO(dataDTTZ.pfDT, {
+			setZone: true,
+		}).setLocale('en-US')
+		const pfDate = pfDT.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)
 		const pfTime = pfDT.toLocaleString(DateTime.TIME_SIMPLE)
 		const tzName = pfDT.offsetNameShort
-		embed.addField('When', `${pfDate.substring(0, pfDate.length - 6)} @ ${pfTime} ${tzName}`)
+		embed.addField(
+			'When',
+			`${pfDate.substring(0, pfDate.length - 6)} @ ${pfTime} ${tzName}`
+		)
 
 		// Figure out how many tanks, healers, and dps are required
 		const partyComp = getPartyComp(size)

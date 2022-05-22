@@ -78,6 +78,8 @@ client.on('ready', async () => {
 		}
 	}
 
+	readSelectMenus('./.util/select-menus')
+
 	// LOAD MODALS //
 	// require base modal file
 	const baseModalFile = 'modal-base.js'
@@ -100,7 +102,8 @@ client.on('ready', async () => {
 		}
 	}
 
-	readSelectMenus('./.util/select-menus')
+	readModals('./.util/modals')
+
 	// command DELETE
 	//await getApp('681503253623734292').commands('977336279651999784').delete()
 

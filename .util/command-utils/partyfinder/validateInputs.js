@@ -18,9 +18,9 @@ module.exports = (interaction, memberData, globals, partyComp, dataDTTZ) => {
 				'https://cdn1.iconfinder.com/data/icons/basic-ui-elements-color-round/3/61-512.png'
 			)
 			.setFooter({
-				text: `Created by ${
+				text: `${
 					memberNick ? memberNick : memberUsername
-				}`,
+				} user /partyfinder`,
 				iconURL: `${baseImageURL}/avatars/${memberID}/${memberAvatar}.png`,
 			})
 		// If invalid Party size

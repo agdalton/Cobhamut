@@ -31,6 +31,19 @@ module.exports = {
 				name: clientUsername,
 				iconURL: `${baseImageURL}/avatars/${clientID}/${clientAvatar}.png`,
 			})
+			.setFooter({
+				text: `Created by ${
+					memberNick ? memberNick : memberUsername
+				}`,
+			})
+			.setTitle(description)
+			.addField(
+				'Time',
+				`${day} ${month} ${dayOfMonth}, ${year} @ ${time} ${timezone}`,
+				false
+			)
+
+		return
 	},
 }
 // Module methods //

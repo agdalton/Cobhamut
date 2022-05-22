@@ -3,7 +3,6 @@ const { MessageEmbed } = require('discord.js')
 const { DateTime } = require('luxon')
 
 module.exports = (
-	clientData,
 	memberData,
 	globals,
 	dataDTTZ,
@@ -14,7 +13,6 @@ module.exports = (
 	playersD,
 	playersF
 ) => {
-	const { clientID, clientUsername, clientAvatar } = clientData
 	const { memberID, memberNick, memberUsername, memberAvatar } = memberData
 	const { baseImageURL } = globals
 	const { purple } = globals.colors

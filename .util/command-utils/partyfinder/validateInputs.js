@@ -2,11 +2,11 @@
 const reply = require('../interactionReply.js')
 const { MessageEmbed } = require('discord.js')
 
-module.exports = (interaction, clientData, globals, partyComp, dataDTTZ) => {
+module.exports = (interaction, memberData, globals, partyComp, dataDTTZ) => {
+	const { memberID, memberUsername, memberNick, memberAvatar } = memberData
 	const { baseImageURL } = globals
 	const { error } = globals.colors
-	const { clientID, clientUsername, clientAvatar } = clientData
-	
+
 	if (partyComp.hasOwnProperty('err') || !dataDTTZ.isValid) {
 		const errEmbed = new MessageEmbed()
 			.setTitle('An error ocurred')
@@ -14,13 +14,15 @@ module.exports = (interaction, clientData, globals, partyComp, dataDTTZ) => {
 				'Cobhamut encountered an error while processing /partyfinder. See below for details.'
 			)
 			.setColor(error)
-			.setAuthor({
-				name: clientUsername,
-				iconURL: `${baseImageURL}/avatars/${clientID}/${clientAvatar}.png`,
-			})
 			.setThumbnail(
 				'https://cdn1.iconfinder.com/data/icons/basic-ui-elements-color-round/3/61-512.png'
 			)
+			.setFooter({
+				text: `Created by ${
+					memberNick ? memberNick : memberUsername
+				}`,
+				iconURL: `${baseImageURL}/avatars/${memberID}/${memberAvatar}.png`,
+			})
 		// If invalid Party size
 		if (partyComp.hasOwnProperty('err')) {
 			const compErr = partyComp.err

@@ -43,7 +43,7 @@ module.exports = {
 		if (
 			!validateInputs(
 				interaction,
-				clientData,
+				memberData,
 				globals,
 				partyComp,
 				dataDTTZ
@@ -52,7 +52,6 @@ module.exports = {
 			return
 
 		const embed = createPFEmbed(
-			clientData,
 			memberData,
 			globals,
 			dataDTTZ,

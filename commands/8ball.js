@@ -11,7 +11,6 @@ module.exports = {
 	name: '8ball',
 	guildId: '',
 	callback: async (client, interaction, globals) => {
-		console.log(interaction.member)
 		const command = interaction.options.getSubcommand()
 		const data = {
 			memberID: interaction.member.user.id,

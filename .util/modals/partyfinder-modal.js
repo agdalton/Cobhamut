@@ -28,23 +28,30 @@ module.exports = {
 		const timezone =
 			fields.getTextInputValue('pfTimezone').toUpperCase() ?? undefined
 
-		// Validate date, time, timezone
+		// --- Validate Party size, date, time, timezone --- //
+		const partyComp = getPartyComp(size)
 		const dataDTTZ = checkDTTZ(date, time, timezone)
+		// Setup err embed
+		const errEmbed = new MessageEmbed()
+			.setTitle('An error ocurred')
+			.setDescription(
+				'Cobhamut encountered an error while processing your Partyfinder command. See below for details.'
+			)
+			.setColor(error_red)
+			.setAuthor({
+				name: clientUsername,
+				iconURL: `${baseImageURL}/avatars/${clientID}/${clientAvatar}.png`,
+			})
+			.setThumbnail(
+				'https://cdn1.iconfinder.com/data/icons/basic-ui-elements-color-round/3/61-512.png'
+			)
+		// If invalid Party size
+		if (partyComp.hasOwnProperty('err')) {
+			const compErr = partyComp.err
+			errEmbed.addField(compErr.field, compErr.message)
+		}
+		// If date, time, timezone submitted is invalid
 		if (!dataDTTZ.isValid) {
-			const errEmbed = new MessageEmbed()
-				.setTitle('An error ocurred')
-				.setDescription(
-					'Cobhamut encountered an error while processing your Partyfinder command. See below for details.'
-				)
-				.setColor(error_red)
-				.setAuthor({
-					name: clientUsername,
-					iconURL: `${baseImageURL}/avatars/${clientID}/${clientAvatar}.png`,
-				})
-				.setThumbnail(
-					'https://cdn1.iconfinder.com/data/icons/basic-ui-elements-color-round/3/61-512.png'
-				)
-
 			// Add the errors to the embed
 			for (let iErr = 0; iErr < dataDTTZ.err.length; iErr++) {
 				errEmbed.addField(
@@ -77,20 +84,26 @@ module.exports = {
 			.setThumbnail('https://xivapi.com/i/061000/061536_hr1.png')
 
 		// Add date, time, and timezone if filled out
-		const pfDT = DateTime.fromObject(
-			dataDTTZ.pfDT.dtObj,
-			dataDTTZ.pfDT.dtZone
-		)
-		const pfDate = pfDT.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)
-		const pfTime = pfDT.toLocaleString(DateTime.TIME_SIMPLE)
-		const tzName = pfDT.offsetNameShort
-		embed.addField(
-			'When',
-			`${pfDate.substring(0, pfDate.length - 6)} @ ${pfTime} ${tzName}`
-		)
+		if (dataDTTZ.dttz) {
+			const pfDT = DateTime.fromObject(
+				dataDTTZ.pfDT.dtObj,
+				dataDTTZ.pfDT.dtZone
+			)
+			const pfDate = pfDT.toLocaleString(
+				DateTime.DATE_MED_WITH_WEEKDAY
+			)
+			const pfTime = pfDT.toLocaleString(DateTime.TIME_SIMPLE)
+			const tzName = pfDT.offsetNameShort
+			embed.addField(
+				'When',
+				`${pfDate.substring(
+					0,
+					pfDate.length - 6
+				)} @ ${pfTime} ${tzName}`
+			)
+		}
 
 		// Figure out how many tanks, healers, and dps are required
-		const partyComp = getPartyComp(size)
 		embed.addField(
 			`<:tank:977771775960174652> Tanks 0/${partyComp.tanks}`,
 			'-',
@@ -147,6 +160,11 @@ getPartyComp = (size) => {
 			comp.healers = 6
 			comp.dps = 15
 			break
+		default:
+			comp.err = {
+				field: 'Party size',
+				message: 'Invalid Pary size specified. Accepted values are 4, 8, 24.',
+			}
 	}
 
 	return comp

@@ -4,6 +4,7 @@ const { DateTime } = require('luxon')
 module.exports = (date, time, timezone) => {
 	const obj = {
 		isValid: true,
+		dttz: false,
 		pfDT: {
 			dtObj: new Object(),
 			dtZone: new Object(),
@@ -85,9 +86,6 @@ module.exports = (date, time, timezone) => {
 			const dtZone = { zone: longTz }
 			const pfDT = DateTime.fromObject(dtObj, dtZone)
 
-			obj.pfDT.dtObj = dtObj
-			obj.pfDT.dtZone = dtZone
-
 			// Set an error if Luxon determines the DateTime is invalid
 			if (!pfDT.isValid) {
 				obj.isValid = false
@@ -104,8 +102,14 @@ module.exports = (date, time, timezone) => {
 						field: 'Date',
 						message: 'Cobhamut can only schedule up to 30 days in advance.',
 					})
-				}
+				} else {
+                    obj.pfDT.dtObj = dtObj
+                    obj.pfDT.dtZone = dtZone
+                }
 			}
+
+			// Last check so we can flag that all 3 are good
+			if (obj.isValid) obj.dttz = true
 		}
 	} else {
 		// if one of them have data, but the others don't - return an error

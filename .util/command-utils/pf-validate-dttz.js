@@ -83,7 +83,7 @@ module.exports = (date, time, timezone) => {
 				{ zone: longTz }
 			)
 
-			obj.pfDT = pfDT.toObject()
+			obj.pfDT = pfDT.toObject({ includeConfig: true })
 
 			// Set an error if Luxon determines the DateTime is invalid
 			if (!pfDT.isValid) {
@@ -95,13 +95,13 @@ module.exports = (date, time, timezone) => {
 			} else {
 				// Enforce a 30 day maximum
 				const daysFromNow30 = nowDT.plus({ days: 30 })
-                if (daysFromNow30 < pfDT) {
-                    obj.isValid = false
-                    obj.err.push({
-                        field: 'Date',
-                        message: 'Cobhamut can only schedule up to 30 days in advance.'
-                    })
-                }
+				if (daysFromNow30 < pfDT) {
+					obj.isValid = false
+					obj.err.push({
+						field: 'Date',
+						message: 'Cobhamut can only schedule up to 30 days in advance.',
+					})
+				}
 			}
 		}
 	} else {

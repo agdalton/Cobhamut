@@ -37,12 +37,44 @@ module.exports = {
 
 		// Figure out how many tanks, healers, and dps are required
 		const partyComp = getPartyComp(size)
-		embed.addField(`<:tank:977771775960174652> Tanks 0/${partyComp.tanks}`, '-', true)
-		embed.addField(`<:healer:977771776253775932> Healers 0/${partyComp.healers}`, '-', true)
-		embed.addField(`<:melee:977771775859494942> Damage 0/${partyComp.dps}`, '-', true)
+		embed.addField(
+			`<:tank:977771775960174652> Tanks 0/${partyComp.tanks}`,
+			'-',
+			true
+		)
+		embed.addField(
+			`<:healer:977771776253775932> Healers 0/${partyComp.healers}`,
+			'-',
+			true
+		)
+		embed.addField(
+			`<:melee:977771775859494942> Damage 0/${partyComp.dps}`,
+			'-',
+			true
+		)
 		embed.addField(`<:fill:977774943154618368> Fill`, '-', true)
 
-		interaction_reply(interaction, null, [embed], null, false, false)
+		const response = await interaction_reply(
+			interaction,
+			null,
+			[embed],
+			null,
+			false,
+			false
+		)
+		
+		response
+			.react('<:tank:977771775960174652>')
+			.then(() => response.react('<:healer:977771776253775932>'))
+			.then(() => response.react('<:melee:977771775859494942>'))
+			.then(() => response.react('<:fill:977774943154618368>'))
+			.catch((error) =>
+				console.log(
+					'An error ocurred while reacting to the /partyfinder new embed response :: ' +
+						error
+				)
+			)
+
 		return
 	},
 }

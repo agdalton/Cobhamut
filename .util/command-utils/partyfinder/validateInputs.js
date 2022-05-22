@@ -2,7 +2,7 @@
 const reply = require('../interactionReply.js')
 const { MessageEmbed } = require('discord.js')
 
-module.exports = (interaction, partyComp, dataDTTZ) => {
+module.exports = (interaction, error_red, partyComp, dataDTTZ) => {
 	if (partyComp.hasOwnProperty('err') || !dataDTTZ.isValid) {
 		const errEmbed = new MessageEmbed()
 			.setTitle('An error ocurred')

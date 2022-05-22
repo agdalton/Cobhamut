@@ -31,7 +31,7 @@ module.exports = {
 		// --- Validate Party size, date, time, timezone --- //
 		const partyComp = getPartyComp(size)
 		const dataDTTZ = validateDTTZ(date, time, timezone)
-		if (!validateInputs(interaction, partyComp, dataDTTZ)) return
+		if (!validateInputs(interaction, error_red, partyComp, dataDTTZ)) return
 
 		// Setup embed for response
 		const embed = new MessageEmbed()

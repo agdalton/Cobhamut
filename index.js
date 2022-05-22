@@ -5,7 +5,6 @@ Does stuff
 
 // requirements
 const { Client, Intents } = require('discord.js')
-const jobs = require('./.util/command-utils/get-jobs.js')
 const path = require('path')
 const fs = require('fs')
 
@@ -13,7 +12,6 @@ const fs = require('fs')
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] })
 const globals = {}
 globals['last8BallQuestion'] = { interaction: '', question: '' }
-globals['jobs'] = jobs()
 globals['error_red'] = '#a62828'
 globals['green'] = '#4be34b'
 globals['lunar_white'] = '#E3DEE7'

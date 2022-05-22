@@ -46,20 +46,20 @@ module.exports = (
 
 	// Figure out how many tanks, healers, and dps are required
 	embed.addField(
-		`<:tank:977771775960174652> Tanks 0/${partyComp.tanks}`,
-		playersT,
+		`<:tank:977771775960174652> Tanks ${playersT.length || '-'}/${partyComp.tanks}`,
+		playersT.join(),
 		true
 	)
 	embed.addField(
-		`<:healer:977771776253775932> Healers 0/${partyComp.healers}`,
-		playersH,
+		`<:healer:977771776253775932> Healers ${playersH.length || '-'}/${partyComp.healers}`,
+		playersH.join(),
 		true
 	)
 	embed.addField(
-		`<:melee:977771775859494942> Damage 0/${partyComp.dps}`,
-		playersD,
+		`<:melee:977771775859494942> Damage ${playersD.length || '-'}/${partyComp.dps}`,
+		playersD.join(),
 		true
 	)
-	embed.addField(`<:fill:977774943154618368> Fill`, playersF, true)
+	embed.addField(`<:fill:977774943154618368> Fill ${playersF.length || '-'}/\u221e`, playersF.join(), true)
 	return embed
 }

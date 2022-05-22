@@ -5,6 +5,7 @@ const validateDTTZ = require('../../command-utils/partyfinder/validateDTTZ.js')
 const validateInputs = require('../../command-utils/partyfinder/validateInputs.js')
 const getPartyComp = require('../../command-utils/partyfinder/getPartyComp.js')
 const reply = require('../../command-utils/interactionReply.js')
+const createPFEmbed = require('../../command-utils/partyfinder/createPFEmbed.js')
 
 module.exports = {
 	name: 'pfNewModal',
@@ -13,15 +14,20 @@ module.exports = {
 		const { baseImageURL } = globals
 		const { purple } = globals.colors
 
-		// Setup client and member vars
+		// Setup client data to pass as necessary
 		const clientData = {
 			clientID: client.user.id,
 			clientUsername: client.user.username,
 			clientAvatar: client.user.avatar,
 		}
 
-		const memberUsername = interaction.member.user.username
-		const memberNick = interaction.member.nick
+		// Setup member data to pass as necessary
+		const memberData = {
+			memberID: interaction.member.user.id,
+			memberUsername: interaction.member.user.username,
+			memberNick: interaction.member.nick,
+			memberAvatar: interaction.member.user.avatar,
+		}
 
 		// Get modal inputs
 		const { fields } = interaction
@@ -34,57 +40,29 @@ module.exports = {
 		// --- Validate Party size, date, time, timezone --- //
 		const partyComp = getPartyComp(size)
 		const dataDTTZ = validateDTTZ(date, time, timezone)
-		if (!validateInputs(interaction, clientData, globals, partyComp, dataDTTZ)) return
-
-		// Setup embed for response
-		const embed = new MessageEmbed()
-			.setColor(purple)
-			.setFooter({
-				text: `Created by ${
-					memberNick ? memberNick : memberUsername
-				}`,
-				iconURL: `${baseImageURL}/avatars/${interaction.member.user.id}/${interaction.member.user.avatar}.png`,
-			})
-			.setTitle(description)
-			.setThumbnail('https://xivapi.com/i/061000/061536_hr1.png')
-
-		// Add date, time, and timezone if filled out
-		if (dataDTTZ.dttz) {
-			const pfDT = DateTime.fromObject(
-				dataDTTZ.pfDT.dtObj,
-				dataDTTZ.pfDT.dtZone
+		if (
+			!validateInputs(
+				interaction,
+				clientData,
+				globals,
+				partyComp,
+				dataDTTZ
 			)
-			const pfDate = pfDT.toLocaleString(
-				DateTime.DATE_MED_WITH_WEEKDAY
-			)
-			const pfTime = pfDT.toLocaleString(DateTime.TIME_SIMPLE)
-			const tzName = pfDT.offsetNameShort
-			embed.addField(
-				'When',
-				`${pfDate.substring(
-					0,
-					pfDate.length - 6
-				)} @ ${pfTime} ${tzName}`
-			)
-		}
+		)
+			return
 
-		// Figure out how many tanks, healers, and dps are required
-		embed.addField(
-			`<:tank:977771775960174652> Tanks 0/${partyComp.tanks}`,
+		const embed = createPFEmbed(
+			clientData,
+			memberData,
+			globals,
+			dataDTTZ,
+			description,
+			partyComp,
 			'-',
-			true
-		)
-		embed.addField(
-			`<:healer:977771776253775932> Healers 0/${partyComp.healers}`,
 			'-',
-			true
-		)
-		embed.addField(
-			`<:melee:977771775859494942> Damage 0/${partyComp.dps}`,
 			'-',
-			true
+			'-'
 		)
-		embed.addField(`<:fill:977774943154618368> Fill`, '-', true)
 
 		reply(interaction, null, [embed], null, false, false)
 

@@ -4,14 +4,13 @@ const reply = require('../../../.util/command-utils/interactionReply.js')
 const getAnswer = require('../../../.util/command-utils/8ball/getAnswer.js')
 
 module.exports = async (interaction, data, globals) => {
-	const { last8BallQuestion, legend27 } = globals
+	const { last8BallQuestion, legend27, baseImageURL } = globals
 	const {
 		clientID,
 		clientUsername,
 		clientAvatar,
 		memberUsername,
 		memberNick,
-		baseImageURL,
 	} = data
 	const intervene = Math.floor(Math.random() * 100) >= 90 ? true : false
 	const interventionType = interaction.options.getString('type')

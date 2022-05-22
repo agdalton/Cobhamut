@@ -11,6 +11,7 @@ const fs = require('fs')
 // globals
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] })
 const globals = {}
+globals['baseImageURL'] = 'https://cdn.discordapp.com'
 globals['last8BallQuestion'] = { interaction: '', question: '' }
 globals['error_red'] = '#a62828'
 globals['green'] = '#4be34b'

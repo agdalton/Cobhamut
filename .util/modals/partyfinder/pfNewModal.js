@@ -10,15 +10,17 @@ module.exports = {
 	name: 'pfNewModal',
 	callback: async (client, interaction, globals) => {
 		// Destruct globals
-		const { green, error_red, lunar_purple } = globals
+		const { baseImageURL, green, error_red, lunar_purple } = globals
 
 		// Setup client and member vars
-		const clientID = client.user.id
-		const clientUsername = client.user.username
-		const clientAvatar = client.user.avatar
+		const clientData = {
+			clientID: client.user.id,
+			clientUsername: client.user.username,
+			clientAvatar: client.user.avatar,
+		}
+
 		const memberUsername = interaction.member.user.username
 		const memberNick = interaction.member.nick
-		const baseImageURL = 'https://cdn.discordapp.com'
 
 		// Get modal inputs
 		const { fields } = interaction
@@ -31,7 +33,7 @@ module.exports = {
 		// --- Validate Party size, date, time, timezone --- //
 		const partyComp = getPartyComp(size)
 		const dataDTTZ = validateDTTZ(date, time, timezone)
-		if (!validateInputs(interaction, error_red, partyComp, dataDTTZ)) return
+		if (!validateInputs(interaction, clientData, globals, partyComp, dataDTTZ)) return
 
 		// Setup embed for response
 		const embed = new MessageEmbed()

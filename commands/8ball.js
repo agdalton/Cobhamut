@@ -18,7 +18,6 @@ module.exports = {
 			clientAvatar: client.user.avatar,
 			memberUsername: interaction.member.user.username,
 			memberNick: interaction.member.nick,
-			baseImageURL: 'https://cdn.discordapp.com',
 		}
 
 		require(`./subcommands/${interaction.commandName}/${command}.js`)(

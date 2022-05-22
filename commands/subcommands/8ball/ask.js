@@ -4,8 +4,8 @@ const reply = require('../../../.util/command-utils/interactionReply.js')
 const getAnswer = require('../../../.util/command-utils/8ball/getAnswer.js')
 
 module.exports = async (interaction, data, globals) => {
-	const { clientID, clientUsername, clientAvatar, baseImageURL } = data
-	const { lunar_purple } = globals
+	const { clientID, clientUsername, clientAvatar } = data
+	const { baseImageURL, lunar_purple } = globals
 
 	const question = interaction.options.getString('question')
 

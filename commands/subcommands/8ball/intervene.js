@@ -6,15 +6,7 @@ const getAnswer = require('../../../.util/command-utils/8ball/getAnswer.js')
 module.exports = async (interaction, data, globals) => {
 	const { last8BallQuestion, baseImageURL } = globals
 	const { gold } = globals.colors
-	const {
-		clientID,
-		clientUsername,
-		clientAvatar,
-		memberID,
-		memberUsername,
-		memberNick,
-		memberAvatar,
-	} = data
+	const { memberID, memberUsername, memberNick, memberAvatar } = data
 	const intervene = Math.floor(Math.random() * 100) >= 90 ? true : false
 	const interventionType = interaction.options.getString('type')
 	let lastInteraction = last8BallQuestion.interaction
@@ -54,10 +46,6 @@ module.exports = async (interaction, data, globals) => {
 	// Setup intervention embed
 	const embed = new MessageEmbed()
 		.setColor(gold)
-		.setAuthor({
-			name: clientUsername,
-			iconURL: `${baseImageURL}/avatars/${clientID}/${clientAvatar}.png`,
-		})
 		.setThumbnail('https://i.imgur.com/cmRBCbp.png')
 		.addField('Question', lastQuestion)
 		.addField('Answer', answer)

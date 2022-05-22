@@ -16,7 +16,7 @@ module.exports = {
 		const data = {
 			memberID: interaction.member.user.id,
 			memberUsername: interaction.member.user.username,
-			memberNick: interaction.member.nick,
+			memberNick: interaction.member.nickname,
 			memberAvatar: interaction.member.user.avatar,
 		}
 

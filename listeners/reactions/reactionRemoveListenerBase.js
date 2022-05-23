@@ -2,8 +2,9 @@
 
 module.exports = async (client, reactionListener, globals) => {
 	let { applicableEmoji, callback } = reactionListener
-	console.log('Remove fired!')
 	client.on('messageReactionRemove', (reaction, user) => {
+		console.log('Remove fired!')
+
 		if (applicableEmoji.includes(reaction._emoji.id))
 			callback(reaction, user, true, globals)
 

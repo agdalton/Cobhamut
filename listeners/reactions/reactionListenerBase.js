@@ -11,7 +11,7 @@ module.exports = async (client, reactionListener, globals) => {
 					callback(reaction, user, false, globals)
 
 				return
-			}),
+			})(),
 		},
 		{
 			event: 'messageReactionRemove',
@@ -21,7 +21,7 @@ module.exports = async (client, reactionListener, globals) => {
 					callback(reaction, user, true, globals)
 
 				return
-			}),
+			})(),
 		}
 	)
     /*

@@ -11,7 +11,7 @@ module.exports = {
 	callback: async (reaction, user, remove, globals) => {
 		// Check if we should actually be here
 		if (
-			reaction.message.hasOwnProperty('interaction') &&
+			reaction.message.interaction.hasOwnProperty('commandName') &&
 			reaction.message.interaction.commandName !== 'partyfinder'
 		)
 			return

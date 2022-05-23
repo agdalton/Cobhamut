@@ -116,8 +116,10 @@ client.on('ready', async () => {
 
 	// LOAD REACTION LISTENERS //
 	// require base listener file
-	const baseReactionListenerFile = 'reactionListenerBase.js'
-	const reactionListenerBase = require(`./listeners/reactions/${baseReactionListenerFile}`)
+	const baseReactionAddListenerFile = 'reactionAddListenerBase.js'
+	const baseReactionRemoveListenerFile = 'reactionRemoveListenerBase.js'
+	const reactionAddListenerBase = require(`./listeners/reactions/${baseReactionAddListenerFile}`)
+	const reactionRemoveListenerBase = require(`./listeners/reactions/${baseReactionRemoveListenerFile}`)
 	// build function to read all files in the modals directory
 	const readReactionListeners = (dir) => {
 		const files = fs.readdirSync(path.join(__dirname, dir))
@@ -127,11 +129,21 @@ client.on('ready', async () => {
 			if (stat.isDirectory()) {
 				readReactionListeners(path.join(dir, file))
 			} else if (
-				file !== baseReactionListenerFile &&
+				file !== baseReactionAddListenerFile &&
+				file !== baseReactionRemoveListenerFile &&
 				path.extname(file) === '.js'
 			) {
-				const reactionListener = require(path.join(__dirname, dir, file))
-				reactionListenerBase(client, reactionListener, globals)
+				const reactionListener = require(path.join(
+					__dirname,
+					dir,
+					file
+				))
+				reactionAddListenerBase(client, reactionListener, globals)
+				reactionRemoveListenerBase(
+					client,
+					reactionListener,
+					globals
+				)
 			}
 		}
 	}

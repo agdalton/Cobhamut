@@ -10,7 +10,14 @@ const path = require('path')
 const fs = require('fs')
 
 // globals
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] })
+const client = new Client({
+	intents: [
+		Intents.FLAGS.GUILDS,
+		Intents.FLAGS.GUILD_MESSAGES,
+		Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+	],
+	partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
+})
 const globals = {}
 globals['baseImageURL'] = 'https://cdn.discordapp.com'
 globals['last8BallQuestion'] = { interaction: '', question: '' }
@@ -106,6 +113,30 @@ client.on('ready', async () => {
 	}
 
 	readModals('./.util/modals')
+
+	// LOAD REACTION LISTENERS //
+	// require base listener file
+	const baseReactionListenerFile = 'reactionListenerBase.js'
+	const reactionListenerBase = require(`./listeners/reactions/${baseReactionListenerFile}`)
+	// build function to read all files in the modals directory
+	const readReactionListeners = (dir) => {
+		const files = fs.readdirSync(path.join(__dirname, dir))
+
+		for (const file of files) {
+			const stat = fs.lstatSync(path.join(__dirname, dir, file))
+			if (stat.isDirectory()) {
+				readReactionListeners(path.join(dir, file))
+			} else if (
+				file !== baseModalFile &&
+				path.extname(file) === '.js'
+			) {
+				const reactionListener = require(path.join(__dirname, dir, file))
+				reactionListenerBase(client, reactionListener, globals)
+			}
+		}
+	}
+
+	readReactionListeners('./listeners/reactions')
 
 	// Connect to MongoDB
 	const connectionStates = {

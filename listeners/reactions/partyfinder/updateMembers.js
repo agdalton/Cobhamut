@@ -28,7 +28,6 @@ module.exports = {
 		}
 		console.log(`Remove: ${remove}`)
 		console.log()
-		console.log()
 		console.log(`REACTION\n--------\n`)
 		console.log(reaction)
 		console.log()

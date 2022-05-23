@@ -79,7 +79,7 @@ module.exports = {
 						error
 				)
 			)
-
+		console.log(interaction)
 		// Create collection for MongoDB and save it
 		await new partyfinderSchema({
 			date: dataDTTZ.pfDT.dtISO,
@@ -93,7 +93,7 @@ module.exports = {
 				timezone: timezone,
 			}),
 			dataPartyComp: JSON.stringify(partyComp),
-			dataUserRSVP: '-',
+			dataUserRSVP: '',
 			guildID: String.toString(interaction.guild_id),
 			channelID: String.toString(interaction.channel_id),
 			originalResponse: JSON.stringify(await interaction.fetchReply()),

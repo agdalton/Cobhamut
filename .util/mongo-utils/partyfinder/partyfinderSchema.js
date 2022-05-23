@@ -14,7 +14,10 @@ const partyfinderSchema = new mongoose.Schema({
 	dataCreator: reqString,
 	dataSubmission: reqString,
 	dataPartyComp: reqString,
-	dataUserRSVP: reqString,
+	dataUserRSVP: {
+		type: String,
+		required: false,
+	},
 	guildID: reqString,
 	channelID: reqString,
 	originalResponse: reqString,

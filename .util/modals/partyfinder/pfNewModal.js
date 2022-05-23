@@ -79,7 +79,7 @@ module.exports = {
 						error
 				)
 			)
-		console.log(interaction)
+
 		// Create collection for MongoDB and save it
 		await new partyfinderSchema({
 			date: dataDTTZ.pfDT.dtISO,

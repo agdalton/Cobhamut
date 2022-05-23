@@ -94,8 +94,8 @@ module.exports = {
 			}),
 			dataPartyComp: JSON.stringify(partyComp),
 			dataUserRSVP: '',
-			guildID: String.toString(interaction.guild_id),
-			channelID: String.toString(interaction.channel_id),
+			guildID: interaction.guildId,
+			channelID: interaction.channelId,
 			originalResponse: JSON.stringify(await interaction.fetchReply()),
 		}).save()
 

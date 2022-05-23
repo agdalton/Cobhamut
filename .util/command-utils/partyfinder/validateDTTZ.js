@@ -112,6 +112,7 @@ module.exports = (date, time, timezone) => {
 					obj.pfDT.dtObj = dtObj
 					obj.pfDT.dtZone = dtZone
 					obj.pfDT.dtISO = pfDT.toISO({ includeOffset: true })
+					console.log(pfDT.toISO())
 				}
 			}
 

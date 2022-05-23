@@ -123,6 +123,7 @@ client.on('ready', async () => {
 	const { connection } = mongoose
 	const state = connectionStates[connection.readyState] || 'Unknown'
 	console.log(`MongoDB ${state}`)
+	console.log()
 
 	// command DELETE
 	//await getApp('681503253623734292').commands('977336279651999784').delete()

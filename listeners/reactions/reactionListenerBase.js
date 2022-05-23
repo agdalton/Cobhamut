@@ -16,7 +16,7 @@ module.exports = async (client, reactionListener, globals) => {
 		return
 	})
 
-	Client.on('messageReactionRemove', (reaction, user) => {
+	client.on('messageReactionRemove', (reaction, user) => {
 		if (
 			applicableMessages.includes(reaction.message.id) &&
 			applicableEmoji.includes(reaction._emoji.id)

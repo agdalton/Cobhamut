@@ -138,12 +138,12 @@ client.on('ready', async () => {
 					dir,
 					file
 				))
-				reactionAddListenerBase(client, reactionListener, globals)
 				reactionRemoveListenerBase(
 					client,
 					reactionListener,
 					globals
 				)
+				reactionAddListenerBase(client, reactionListener, globals)
 			}
 		}
 	}

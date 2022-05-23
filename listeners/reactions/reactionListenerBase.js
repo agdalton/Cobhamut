@@ -3,10 +3,11 @@
 module.exports = async (client, reactionListener, globals) => {
 	let { applicableMessages, applicableEmoji, callback } = reactionListener
 	let message = ''
-
+	console.log(applicableMessages)
+	console.log(typeof applicableMessages)
 	client.on('messageReactionAdd', (reaction, user) => {
 		if (
-			applicableMessages.join().includes(reaction.message.id) &&
+			//applicableMessages.join().includes(reaction.message.id) &&
 			applicableEmoji.includes(reaction._emoji.id)
 		)
 			callback(message, reaction, user, false, globals)

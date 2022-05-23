@@ -2,16 +2,6 @@
 const partyfinderSchema = require('../../../.util/mongo-utils/partyfinder/partyfinderSchema')
 
 module.exports = {
-	applicableMessages: (async () => {
-		const mongoDoc = await partyfinderSchema.find()
-		const messages = []
-
-		for (const doc of mongoDoc) {
-			messages.push(doc.originalResponseID)
-		}
-		console.log(messages)
-		return messages
-	})(),
 	applicableEmoji: [
 		'977771775960174652',
 		'977771776253775932',
@@ -19,8 +9,17 @@ module.exports = {
 		'977774943154618368',
 	],
 	callback: async (reaction, user, remove, globals) => {
+        // Check if we should actually be here
+		if (reaction.message.interaction.commandName !== 'partyfinder') return
+		if (
+			!partyfinderSchema.find({
+				originalResponseID: reaction.message.id,
+			})
+		)
+			return
 		if (reaction.count === 1) return
 
+        //
 		const dataUserRSVP = {
 			tanks: new Object(),
 			healers: new Object(),

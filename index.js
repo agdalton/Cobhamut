@@ -127,7 +127,7 @@ client.on('ready', async () => {
 			if (stat.isDirectory()) {
 				readReactionListeners(path.join(dir, file))
 			} else if (
-				file !== baseModalFile &&
+				file !== baseReactionListenerFile &&
 				path.extname(file) === '.js'
 			) {
 				const reactionListener = require(path.join(__dirname, dir, file))

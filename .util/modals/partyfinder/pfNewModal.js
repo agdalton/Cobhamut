@@ -97,8 +97,8 @@ module.exports = {
 			channelID: interaction.channel_id,
 			originalResponse: JSON.stringify(await interaction.fetchReply())
 
-		})
-		
+		}).save()
+
 		return
 	},
 }

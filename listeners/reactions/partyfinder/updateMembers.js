@@ -9,7 +9,7 @@ module.exports = {
 		'977774943154618368',
 	],
 	init: async (client) => {
-		const docs = partyfinderSchema.find()
+		const docs = await partyfinderSchema.find()
 
 		for (const doc of docs) {
 			const channel = client.channels.get(doc.channelID)

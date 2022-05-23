@@ -10,7 +10,10 @@ module.exports = {
 	],
 	callback: async (reaction, user, remove, globals) => {
 		// Check if we should actually be here
-		if ((reaction.message.interaction.commandName ?? '') !== 'partyfinder')
+		if (
+			(reaction.message.interaction.commandName ?? '') !==
+			'partyfinder'
+		)
 			return
 		if (
 			!partyfinderSchema.find({
@@ -18,7 +21,7 @@ module.exports = {
 			})
 		)
 			return
-		//if (reaction.count === 1) return
+		if (reaction.count === 1 && remove === false) return
 
 		//
 		const dataUserRSVP = {

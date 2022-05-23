@@ -4,7 +4,7 @@ module.exports = async (client, reactionListener, globals) => {
 	let { applicableEmoji, callback } = reactionListener
 	let message = ''
 
-	client.on('messageReactionRemove', (reaction, user) => {
+	client.on('messageReactionRemove', async (reaction, user) => {
 		console.log('Remove fired!')
 		try {
 			message = await reaction.fetch()

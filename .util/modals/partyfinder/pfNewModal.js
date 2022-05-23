@@ -80,6 +80,7 @@ module.exports = {
 				)
 			)
 
+		// Create collection for MongoDB and save it
 		await new partyfinderSchema({
 			date: dataDTTZ.pfDT.dtISO,
 			dataDTTZ: JSON.stringify(dataDTTZ),
@@ -92,11 +93,10 @@ module.exports = {
 				timezone: timezone,
 			}),
 			dataPartyComp: JSON.stringify(partyComp),
-			dataUserRSVP: '',
-			guildID: interaction.guild_id,
-			channelID: interaction.channel_id,
-			originalResponse: JSON.stringify(await interaction.fetchReply())
-
+			dataUserRSVP: '-',
+			guildID: String.toString(interaction.guild_id),
+			channelID: String.toString(interaction.channel_id),
+			originalResponse: JSON.stringify(await interaction.fetchReply()),
 		}).save()
 
 		return

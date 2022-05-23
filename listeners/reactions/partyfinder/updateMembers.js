@@ -12,10 +12,10 @@ module.exports = {
 		const docs = await partyfinderSchema.find()
 
 		for (const doc of docs) {
-			const channel = client.channels.fetch(doc.channelID)
+			const channel = await client.channels.fetch(doc.channelID)
 			const message = doc.originalResponseID
 
-			await channel.fetchMessage(message)
+			await client.message.fetch(message)
 			if (channel.messages.has(message)) console.log('Message Cached!')
 		}
 	},

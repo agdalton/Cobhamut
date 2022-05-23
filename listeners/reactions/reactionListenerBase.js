@@ -2,7 +2,6 @@
 
 module.exports = async (client, reactionListener, globals) => {
 	let { applicableEmoji, callback } = reactionListener
-    let message = ''
 	client.on('messageReactionAdd', async (reaction, user) => {
         message = await reaction.fetch()
 		if (applicableEmoji.includes(reaction._emoji.id))

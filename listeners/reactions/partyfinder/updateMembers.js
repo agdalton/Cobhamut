@@ -9,7 +9,7 @@ module.exports = {
 		for (const doc of mongoDoc) {
 			messages.push(doc.originalResponseID)
 		}
-        console.log(messages)
+        console.log(typeof messages)
         return messages
 	})(),
 	applicableEmoji: [

@@ -1,7 +1,7 @@
 // Reaction listener <-- executes when an interaction is messageReactionAdd
 
 module.exports = async (client, reactionListener, globals) => {
-    const { applicableMessages, callback } = reactionListener
+    let { applicableMessages, callback } = reactionListener
 	client.on('messageReactionAdd', async (reaction, user) => {
         if (reaction.partial) {
             try {

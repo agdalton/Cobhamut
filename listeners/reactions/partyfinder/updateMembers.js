@@ -10,5 +10,7 @@ module.exports = {
 			fill: new Object(),
 		}
 		console.log(message)
+
+        return
 	},
 }

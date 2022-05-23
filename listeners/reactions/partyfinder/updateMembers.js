@@ -2,22 +2,29 @@
 
 module.exports = {
 	applicableMessages: [],
-	callback: async (message, reaction, user, globals) => {
+	applicableEmoji: [
+		'977771775960174652',
+		'977771776253775932',
+		'977771775859494942',
+		'977774943154618368',
+	],
+	callback: async (reaction, user, remove, globals) => {
 		const dataUserRSVP = {
 			tanks: new Object(),
 			healers: new Object(),
 			damage: new Object(),
 			fill: new Object(),
 		}
-        console.log()
+		console.log(`Remove: ${remove}`)
+		console.log()
 		console.log(`MESSAGE\n--------\n`)
-        console.log(message)
-        console.log()
-        console.log(`REACTION\n--------\n`)
-        console.log(reaction)
-        console.log()
-        console.log(`USER\n--------\n${user}`)
+		console.log(message)
+		console.log()
+		console.log(`REACTION\n--------\n`)
+		console.log(reaction)
+		console.log()
+		console.log(`USER\n--------\n${user}`)
 
-        return
+		return
 	},
 }

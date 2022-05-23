@@ -3,13 +3,13 @@ const partyfinderSchema = require('../../../.util/mongo-utils/partyfinder/partyf
 
 module.exports = {
 	applicableMessages: (async () => {
-        const mongoDoc = await partyfinderSchema.find()
-        const messages = []
+		const mongoDoc = await partyfinderSchema.find()
+		const messages = []
 
-        for (const doc of mongoDoc) {
-            messages.push(doc.originalResponseID)
-        }
-    })(),
+		for (const doc of mongoDoc) {
+			messages.push(doc.originalResponseID)
+		}
+	})(),
 	applicableEmoji: [
 		'977771775960174652',
 		'977771776253775932',

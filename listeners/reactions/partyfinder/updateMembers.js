@@ -2,7 +2,7 @@
 const partyfinderSchema = require('../../../.util/mongo-utils/partyfinder/partyfinderSchema')
 
 module.exports = {
-	applicableMessages: (() => {
+	applicableMessages: (async () => {
         const mongoDoc = await partyfinderSchema.find()
         const messages = []
 

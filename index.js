@@ -5,6 +5,7 @@ Does stuff
 
 // requirements
 const { Client, Intents } = require('discord.js')
+const { default: mongoose, Connection, mongo } = require('mongoose')
 const path = require('path')
 const fs = require('fs')
 
@@ -105,6 +106,24 @@ client.on('ready', async () => {
 	}
 
 	readModals('./.util/modals')
+
+	// Connect to MongoDB
+	const connectionStates = {
+		0: 'Disconnected',
+		1: 'Connected',
+		2: 'Connecting',
+		3: 'Disconnecting',
+	}
+
+	await mongoose.connect(process.env.MONGO_URI, {
+		useNewUrlParser: true,
+		useFindAndModify: false,
+		useUnifiedTopology: true,
+	})
+
+	const { connection } = mongoose
+	const state = connectionStates[connection.readyState] || 'Unknown'
+	console.log(`MongoDB ${state}`)
 
 	// command DELETE
 	//await getApp('681503253623734292').commands('977336279651999784').delete()

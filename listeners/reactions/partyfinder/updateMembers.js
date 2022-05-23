@@ -10,7 +10,7 @@ module.exports = {
 	],
 	callback: async (reaction, user, remove, globals) => {
         // Check if we should actually be here
-		//if (reaction.message.interaction.commandName !== 'partyfinder') return
+		if (reaction.message.interaction.commandName !== 'partyfinder') return
 		if (
 			!partyfinderSchema.find({
 				originalResponseID: reaction.message.id,

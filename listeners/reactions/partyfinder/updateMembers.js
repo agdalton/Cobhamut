@@ -2,7 +2,7 @@
 
 module.exports = {
     applicableMessages: [],
-    callback: async (client, message, globals) => {
+    callback: async (message, reaction, user, globals) => {
         console.log(message)
     }
 }

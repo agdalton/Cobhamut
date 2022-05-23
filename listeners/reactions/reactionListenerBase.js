@@ -6,7 +6,7 @@ module.exports = async (client, reactionListener, globals) => {
 
 	client.on('messageReactionAdd', (reaction, user) => {
 		if (
-			applicableMessages.includes(reaction.message.id) &&
+			applicableMessages.join().includes(reaction.message.id) &&
 			applicableEmoji.includes(reaction._emoji.id)
 		)
 			callback(message, reaction, user, false, globals)

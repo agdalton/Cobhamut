@@ -9,8 +9,8 @@ module.exports = {
 		for (const doc of mongoDoc) {
 			messages.push(doc.originalResponseID)
 		}
-        console.log(typeof messages)
-        return messages
+		console.log(messages)
+		return messages
 	})(),
 	applicableEmoji: [
 		'977771775960174652',
@@ -19,6 +19,8 @@ module.exports = {
 		'977774943154618368',
 	],
 	callback: async (reaction, user, remove, globals) => {
+		if (reaction.count === 1) return
+
 		const dataUserRSVP = {
 			tanks: new Object(),
 			healers: new Object(),

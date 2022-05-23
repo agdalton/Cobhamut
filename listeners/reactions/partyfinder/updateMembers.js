@@ -9,7 +9,9 @@ module.exports = {
 			damage: new Object(),
 			fill: new Object(),
 		}
-		console.log(message)
+		console.log(`MESSAGE\n--------\n${message}`)
+        console.log(`REACTION\n--------\n${reaction}`)
+        console.log(`USER\n--------\n${user}`)
 
         return
 	},

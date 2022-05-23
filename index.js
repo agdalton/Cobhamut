@@ -43,6 +43,7 @@ client.on('ready', async () => {
 	console.log('Cobhamut is online!')
 	client.user.setActivity('Akh Corn')
 	console.log()
+	
 	// LOAD COMMANDS //
 	// require base command file
 	const baseCommandFile = 'commandBase.js'
@@ -144,6 +145,33 @@ client.on('ready', async () => {
 
 	readReactionListeners('./listeners/reactions')
 
+	// LOAD MESSAGEDELETE LISTENERS //
+	// require base listener file
+	const baseDeletedMessagesListenerFile = 'deletedMessagesListenerBase.js'
+	const deletedMessagesListenerBase = require(`./listeners/reactions/${baseDeletedMessagesListenerFile}`)
+	// build function to read all files in the modals directory
+	const readDeletedMessagesListeners = (dir) => {
+		const files = fs.readdirSync(path.join(__dirname, dir))
+
+		for (const file of files) {
+			const stat = fs.lstatSync(path.join(__dirname, dir, file))
+			if (stat.isDirectory()) {
+				readDeletedMessagesListeners(path.join(dir, file))
+			} else if (
+				file !== baseDeletedMessagesListenerFile &&
+				path.extname(file) === '.js'
+			) {
+				const deletedMessagesListener = require(path.join(
+					__dirname,
+					dir,
+					file
+				))
+				deletedMessagesListenerBase(client, deletedMessagesListener, globals)
+			}
+		}
+	}
+
+	readDeletedMessagesListeners('./listeners/deletedMessages')
 	// Connect to MongoDB
 	const connectionStates = {
 		0: 'Disconnected',

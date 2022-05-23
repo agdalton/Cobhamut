@@ -15,7 +15,7 @@ module.exports = {
 			const channel = await client.channels.fetch(doc.channelID)
 			const message = doc.originalResponseID
 
-			await client.message.fetch(message)
+			await client.messages.fetch(message)
 			if (channel.messages.has(message)) console.log('Message Cached!')
 		}
 	},

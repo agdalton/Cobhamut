@@ -21,6 +21,7 @@ const partyfinderSchema = new mongoose.Schema({
 	guildID: reqString,
 	channelID: reqString,
 	originalResponse: reqString,
+	originalResponseID: reqString,
 })
 
 const collectionName = 'cobhamut-partyfinders'

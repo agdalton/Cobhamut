@@ -1,7 +1,15 @@
 // Update the members of a partyfinder
+const partyfinderSchema = require('../../../.util/mongo-utils/partyfinder/partyfinderSchema')
 
 module.exports = {
-	applicableMessages: [],
+	applicableMessages: (() => {
+        const mongoDoc = await partyfinderSchema.find()
+        const messages = []
+
+        for (const doc of mongoDoc) {
+            messages.push(doc.originalResponseID)
+        }
+    })(),
 	applicableEmoji: [
 		'977771775960174652',
 		'977771776253775932',

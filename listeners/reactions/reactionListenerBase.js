@@ -1,7 +1,5 @@
 // Reaction listener <-- executes when an interaction is messageReactionAdd
 
-const { Client } = require('discord.js')
-
 module.exports = async (client, reactionListener, globals) => {
 	let { applicableMessages, applicableEmoji, callback } = reactionListener
 	let message = ''

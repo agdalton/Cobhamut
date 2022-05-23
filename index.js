@@ -43,7 +43,7 @@ client.on('ready', async () => {
 	console.log('Cobhamut is online!')
 	client.user.setActivity('Akh Corn')
 	console.log()
-	
+
 	// LOAD COMMANDS //
 	// require base command file
 	const baseCommandFile = 'commandBase.js'
@@ -148,7 +148,7 @@ client.on('ready', async () => {
 	// LOAD MESSAGEDELETE LISTENERS //
 	// require base listener file
 	const baseDeletedMessagesListenerFile = 'deletedMessagesListenerBase.js'
-	const deletedMessagesListenerBase = require(`./listeners/reactions/${baseDeletedMessagesListenerFile}`)
+	const deletedMessagesListenerBase = require(`./listeners/deletedMessages/${baseDeletedMessagesListenerFile}`)
 	// build function to read all files in the modals directory
 	const readDeletedMessagesListeners = (dir) => {
 		const files = fs.readdirSync(path.join(__dirname, dir))

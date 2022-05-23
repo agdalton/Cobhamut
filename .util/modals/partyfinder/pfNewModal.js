@@ -94,10 +94,16 @@ module.exports = {
 				timezone: timezone,
 			}),
 			dataPartyComp: JSON.stringify(partyComp),
-			dataUserRSVP: '',
+			dataUserRSVP: JSON.stringify({
+				tanks: [],
+				healers: [],
+				damage: [],
+				fill: [],
+			}),
+			dataTotalRSVP: 0,
+			pfFull: false,
 			guildID: interaction.guildId,
 			channelID: interaction.channelId,
-			originalResponse: JSON.stringify(interactionResponse),
 			originalResponseID: interactionResponse.id,
 		}).save()
 

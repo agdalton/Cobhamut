@@ -27,25 +27,44 @@ module.exports = {
 		)
 			return
 
+		// Find the document in MongoDB that we'll need to edit
 		const doc = await partyfinderSchema.findOne({
 			originalResponseID: reaction.message.id,
 		})
+
 		if (!doc) return
+        if (doc.pfFull) return
 		if (reaction.count === 1 && remove === false) return
 
-		//
-		const dataUserRSVP = {
-			tanks: new Object(),
-			healers: new Object(),
-			damage: new Object(),
-			fill: new Object(),
+		// Grab the data from MongoDB
+		const dataDTTZ = JSON.parse(doc.dataDTTZ)
+		const dataCreator = JSON.parse(doc.dataCreator)
+		const dataSubmission = JSON.parse(doc.dataSubmission)
+		const dataPartyComp = JSON.parse(doc.dataPartyComp)
+		const dataUserRSVP = JSON.parse(doc.dataUserRSVP)
+        const dataTotalRSVP = doc.dataTotalRSVP
+		const guildID = doc.guildID
+		const channelID = doc.channelID
+		const originalResponseID = doc.originalResponseID
+		const emoji = reaction._emoji.id
+
+		// Determine what role the user selected
+		let role = ''
+		switch (emoji) {
+			// Tank
+			case '977771775960174652':
+				role = 'tanks'
+				break
+			case '977771776253775932':
+				role = 'healers'
+				break
+			case '977771775859494942':
+				role = 'dps'
+				break
+			case '977774943154618368':
+				role = 'fill'
+				break
 		}
-		console.log(`Remove: ${remove}`)
-		console.log()
-		console.log(`REACTION\n--------\n`)
-		console.log(reaction)
-		console.log()
-		console.log(`USER\n--------\n${user}`)
 
 		return
 	},

@@ -18,9 +18,16 @@ const partyfinderSchema = new mongoose.Schema({
 		type: String,
 		required: false,
 	},
+	dataTotalRSVP: {
+		type: Number,
+		required: true
+	},
+	pfFull: {
+		type: Boolean,
+		required: true
+	}
 	guildID: reqString,
 	channelID: reqString,
-	originalResponse: reqString,
 	originalResponseID: reqString,
 })
 

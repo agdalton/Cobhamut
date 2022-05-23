@@ -18,7 +18,7 @@ module.exports = {
 			})
 		)
 			return
-		if (reaction.count === 1) return
+		//if (reaction.count === 1) return
 
 		//
 		const dataUserRSVP = {

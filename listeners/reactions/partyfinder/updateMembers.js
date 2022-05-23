@@ -20,18 +20,18 @@ module.exports = {
 		}
 	},
 	callback: async (reaction, user, remove, globals) => {
-		// Check if we should actually be here
+		// Check incoming message was created by the partyfinder command
 		if (
 			reaction.message.interaction.hasOwnProperty('commandName') &&
 			reaction.message.interaction.commandName !== 'partyfinder'
 		)
 			return
-		if (
-			!partyfinderSchema.find({
-				originalResponseID: reaction.message.id,
-			})
-		)
-			return
+
+		const doc = await partyfinderSchema.findOne({
+			originalResponseID: reaction.message.id,
+		})
+        console.log(doc)
+		if (!doc) return
 		if (reaction.count === 1 && remove === false) return
 
 		//

@@ -10,9 +10,11 @@ module.exports = {
 			fill: new Object(),
 		}
         console.log()
-		console.log(`MESSAGE\n--------\n${message}`)
+		console.log(`MESSAGE\n--------\n`)
+        console.log(message)
         console.log()
-        console.log(`REACTION\n--------\n${reaction}`)
+        console.log(`REACTION\n--------\n`)
+        console.log(reaction)
         console.log()
         console.log(`USER\n--------\n${user}`)
 

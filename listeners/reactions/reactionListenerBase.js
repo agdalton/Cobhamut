@@ -2,7 +2,7 @@
 
 module.exports = async (client, reactionListener, globals) => {
     const { applicableMessages, callback } = reactionListener
-	client.on('messageReactionAdd', (reaction, user) => {
+	client.on('messageReactionAdd', async (reaction, user) => {
         if (reaction.partial) {
             try {
                 const message = await reaction.fetch()

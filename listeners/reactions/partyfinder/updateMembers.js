@@ -9,8 +9,9 @@ module.exports = {
 		'977774943154618368',
 	],
 	callback: async (reaction, user, remove, globals) => {
-        // Check if we should actually be here
-		if ((reaction.message.interaction.commandNam ?? '') !== 'partyfinder') return
+		// Check if we should actually be here
+		if ((reaction.message.interaction.commandName ?? '') !== 'partyfinder')
+			return
 		if (
 			!partyfinderSchema.find({
 				originalResponseID: reaction.message.id,
@@ -19,7 +20,7 @@ module.exports = {
 			return
 		if (reaction.count === 1) return
 
-        //
+		//
 		const dataUserRSVP = {
 			tanks: new Object(),
 			healers: new Object(),

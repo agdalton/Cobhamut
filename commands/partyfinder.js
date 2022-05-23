@@ -4,10 +4,11 @@ const { SlashCommandBuilder } = require('@discordjs/builders')
 module.exports = {
 	name: 'partyfinder',
 	guildId: '',
+	init: () => {},
 	callback: async (client, interaction, globals) => {
 		const command = interaction.options.getSubcommand()
 		const data = {}
-		
+
 		require(`./subcommands/${interaction.commandName}/${command}.js`)(
 			interaction,
 			data,
@@ -35,7 +36,7 @@ module.exports = {
 						.setDescription(
 							'The number of players in the party'
 						)
-                        .setRequired(true)
+						.setRequired(true)
 						.addChoices(
 							{ name: '4 Players', value: '4' },
 							{ name: '8 Players', value: '8' },

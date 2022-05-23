@@ -6,6 +6,7 @@ const validateInputs = require('../../command-utils/partyfinder/validateInputs.j
 const getPartyComp = require('../../command-utils/partyfinder/getPartyComp.js')
 const reply = require('../../command-utils/interactionReply.js')
 const createPFEmbed = require('../../command-utils/partyfinder/createPFEmbed.js')
+const partyfinderSchema = require('../../mongo-utils/partyfinder/partyfinderSchema.js')
 
 module.exports = {
 	name: 'pfNewModal',
@@ -79,6 +80,25 @@ module.exports = {
 				)
 			)
 
+		await new partyfinderSchema({
+			date: dataDTTZ.pfDT.dtISO,
+			dataDTTZ: JSON.stringify(dataDTTZ),
+			dataCreator: JSON.stringify(memberData),
+			dataSubmission: JSON.stringify({
+				description: description,
+				size: size,
+				date: date,
+				time: time,
+				timezone: timezone,
+			}),
+			dataPartyComp: JSON.stringify(partyComp),
+			dataUserRSVP: '',
+			guildID: interaction.guild_id,
+			channelID: interaction.channel_id,
+			originalResponse: JSON.stringify(await interaction.fetchReply())
+
+		})
+		
 		return
 	},
 }

@@ -4,7 +4,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders')
 module.exports = {
 	name: 'partyfinder',
 	guildId: '',
-	init: () => {
+	init: (client) => {
 		console.log('IS THIS ON?')
 	},
 	callback: async (client, interaction, globals) => {

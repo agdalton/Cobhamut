@@ -8,6 +8,17 @@ module.exports = {
 		'977771775859494942',
 		'977774943154618368',
 	],
+	init: async (client) => {
+		const docs = partyfinderSchema.find()
+
+		for (const doc of docs) {
+			const channel = client.channels.get(doc.channelID)
+			const message = doc.originalResponseID
+
+			await channel.fetchMessage(message)
+			if (channel.messages.has(message)) console.log('Message Cached!')
+		}
+	},
 	callback: async (reaction, user, remove, globals) => {
 		// Check if we should actually be here
 		if (

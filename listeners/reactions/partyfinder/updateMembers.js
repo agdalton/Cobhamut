@@ -9,6 +9,8 @@ module.exports = {
 		for (const doc of mongoDoc) {
 			messages.push(doc.originalResponseID)
 		}
+
+        return messages
 	})(),
 	applicableEmoji: [
 		'977771775960174652',

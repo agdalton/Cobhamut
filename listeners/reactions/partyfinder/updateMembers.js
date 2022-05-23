@@ -12,7 +12,7 @@ module.exports = {
 		const docs = await partyfinderSchema.find()
 
 		for (const doc of docs) {
-			const channel = client.channels.get(doc.channelID)
+			const channel = client.channels.fetch(doc.channelID)
 			const message = doc.originalResponseID
 
 			await channel.fetchMessage(message)

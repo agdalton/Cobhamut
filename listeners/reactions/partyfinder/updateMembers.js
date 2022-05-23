@@ -30,7 +30,6 @@ module.exports = {
 		const doc = await partyfinderSchema.findOne({
 			originalResponseID: reaction.message.id,
 		})
-        console.log(doc)
 		if (!doc) return
 		if (reaction.count === 1 && remove === false) return
 

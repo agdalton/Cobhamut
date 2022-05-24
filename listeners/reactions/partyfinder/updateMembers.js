@@ -81,9 +81,8 @@ module.exports = {
 		} else if (remove) {
 			for (let iRole = 0; iRole < dataUserRSVP[role].length; iRole++) {
 				if (dataUserRSVP[role][iRole] === user.toString()) {
-					dataUserRSVP[role][iRole].splice(i, 1)
+					dataUserRSVP[role][iRole].splice(iRole, 1)
 					dataTotalRSVP = dataTotalRSVP--
-					break
 				}
 			}
 		}

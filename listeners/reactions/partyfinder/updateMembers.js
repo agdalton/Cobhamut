@@ -22,8 +22,8 @@ module.exports = {
 				await channel.messages.fetch(message)
 				console.log('Message Cached!')
 			} catch (e) {
-				console.error('Error trying to cache message : ', e)
-				partyfinderSchema.deleteOne({ _id: doc.id })
+				console.log('Error trying to cache message : Removing from MongoDB')
+				partyfinderSchema.deleteOne({ _id: doc._id })
 			}
 		}
 	},

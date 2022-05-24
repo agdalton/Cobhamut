@@ -160,7 +160,8 @@ module.exports = {
 					)
 				)
 				// Send the DM
-				await user.send({
+				const dmChannel = await user.createDM()
+				await dmChannel.send({
 					embeds: [updatedEmbed],
 					allowedMentions: { parse: true },
 				})

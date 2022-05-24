@@ -108,6 +108,7 @@ module.exports = {
 			dataDTTZ,
 			dataSubmission.description,
 			dataPartyComp,
+			pfFull,
 			dataUserRSVP.tanks,
 			dataUserRSVP.healers,
 			dataUserRSVP.damage,

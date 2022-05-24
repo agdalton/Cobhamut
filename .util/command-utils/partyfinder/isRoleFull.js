@@ -8,5 +8,6 @@ module.exports = (role, dataUserRSVP, dataPartyComp, dataTotalRSVP) => {
 
 	if (numRole === limit) answer = true
 
+	console.log(answer)
 	return answer
 }

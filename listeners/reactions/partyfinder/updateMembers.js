@@ -29,7 +29,7 @@ module.exports = {
 			}
 		}
 	},
-	callback: async (reaction, user, remove, globals) => {
+	callback: async (client, reaction, user, remove, globals) => {
 		// Check incoming message was created by the partyfinder command
 		if (
 			reaction.message.interaction.hasOwnProperty('commandName') &&
@@ -147,16 +147,25 @@ module.exports = {
 
 		// DM all RSVP'd users if the partyfinder is full now
 		//if (pfFull()) {
-			for (const keyRole in dataUserRSVP) {
-				for (
-					let iRole = 0;
-					iRole < dataUserRSVP[keyRole].length;
-					iRole++
-				) {
-				const user = dataUserRSVP[keyRole][iRole].substring(2, dataUserRSVP[keyRole][iRole].length - 1)
-				console.log(user)
-				}
+		for (const keyRole in dataUserRSVP) {
+			for (
+				let iRole = 0;
+				iRole < dataUserRSVP[keyRole].length;
+				iRole++
+			) {
+				const user = client.users.fetch(
+					dataUserRSVP[keyRole][iRole].substring(
+						2,
+						dataUserRSVP[keyRole][iRole].length - 1
+					)
+				)
+				// Send the DM
+				user.send({
+					embeds: [updatedEmbed],
+					allowedMentions: { parse: true },
+				})
 			}
+		}
 		//}
 
 		return

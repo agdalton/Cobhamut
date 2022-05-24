@@ -11,7 +11,7 @@ module.exports = async (client, reactionListener, globals) => {
 		}
 
 		if (applicableEmoji.includes(reaction._emoji.id))
-			callback(fullReaction, user, false, globals)
+			callback(client, fullReaction, user, false, globals)
 
 		return
 	})
@@ -24,7 +24,7 @@ module.exports = async (client, reactionListener, globals) => {
 		}
 
 		if (applicableEmoji.includes(reaction._emoji.id))
-			callback(fullReaction, user, true, globals)
+			callback(client, fullReaction, user, true, globals)
 
 		return
 	})

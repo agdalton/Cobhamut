@@ -124,7 +124,7 @@ module.exports = {
 
 		// Fetch the full message
 		const message = await reaction.message.fetch()
-		console.log(message.reactions)
+		console.log(message.reactions.reactions)
 		const updatedEmbed = createPFEmbed(
 			dataCreator,
 			globals,

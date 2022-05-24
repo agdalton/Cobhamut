@@ -146,7 +146,7 @@ module.exports = {
 		})
 
 		// DM all RSVP'd users if the partyfinder is full now
-		//if (pfFull()) {
+		if (pfFull()) {
 		for (const keyRole in dataUserRSVP) {
 			for (
 				let iRole = 0;
@@ -166,7 +166,7 @@ module.exports = {
 				})
 			}
 		}
-		//}
+		}
 
 		return
 	},

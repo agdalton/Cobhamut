@@ -18,8 +18,13 @@ module.exports = {
 			const channel = await client.channels.fetch(doc.channelID)
 			const message = doc.originalResponseID
 
-			await channel.messages.fetch(message)
-			console.log('Message Cached!')
+			try {
+				await channel.messages.fetch(message)
+				console.log('Message Cached!')
+			} catch (e) {
+				console.error('Error trying to cache message : ', e)
+				partyfinderSchema.findOneAndDelete({ id: doc.id })
+			}
 		}
 	},
 	callback: async (reaction, user, remove, globals) => {
@@ -86,7 +91,7 @@ module.exports = {
 				}
 			}
 		}
-		
+
 		// Update MongoDB
 		doc.dataUserRSVP = JSON.stringify(dataUserRSVP)
 		doc.dataTotalRSVP = dataTotalRSVP

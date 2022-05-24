@@ -153,15 +153,14 @@ module.exports = {
 				iRole < dataUserRSVP[keyRole].length;
 				iRole++
 			) {
-				const user = client.users.fetch(
+				const user = await client.users.fetch(
 					dataUserRSVP[keyRole][iRole].substring(
 						2,
 						dataUserRSVP[keyRole][iRole].length - 1
 					)
 				)
 				// Send the DM
-				const dmChannel = await user.createDM()
-				await dmChannel.send({
+				await user.send({
 					embeds: [updatedEmbed],
 					allowedMentions: { parse: true },
 				})

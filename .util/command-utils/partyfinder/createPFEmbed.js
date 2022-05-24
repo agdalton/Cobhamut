@@ -1,6 +1,7 @@
 // Function for setting creating the embed used for tracking a party finder
 const { MessageEmbed } = require('discord.js')
 const { DateTime } = require('luxon')
+const getRoleList = require('./getRoleList')
 
 module.exports = (
 	memberData,
@@ -47,28 +48,28 @@ module.exports = (
 		`<:tank:977771775960174652> Tanks ${
 			playersT ? playersT.length : '0'
 		}/${partyComp.tanks}`,
-		playersT ? playersT.join().replace(',', '\n') : '-',
+		getRoleList(playersT),
 		true
 	)
 	embed.addField(
 		`<:healer:977771776253775932> Healers ${
 			playersH ? playersH.length : '0'
 		}/${partyComp.healers}`,
-		playersH ? playersH.join().replace(',', '\n') : '-',
+		getRoleList(playersH),
 		true
 	)
 	embed.addField(
 		`<:melee:977771775859494942> Damage ${
 			playersD ? playersD.length : '0'
-		}/${partyComp.dps}`,
-		playersD ? playersD.join().replace(',', '\n') : '-',
+		}/${partyComp.damage}`,
+		getRoleList(playersD),
 		true
 	)
 	embed.addField(
 		`<:fill:977774943154618368> Fill ${
 			playersF ? playersF.length : '-'
 		}/\u221e`,
-		playersF ? playersF.join().replace(',', '\n') : '-',
+		getRoleList(playersF),
 		true
 	)
 	return embed

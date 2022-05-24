@@ -103,7 +103,7 @@ module.exports = {
 
 		console.log(updatedEmbed)
 
-		message.edit(
+		await message.edit(
 			null,
 			[updatedEmbed],
 			{ parse: true },

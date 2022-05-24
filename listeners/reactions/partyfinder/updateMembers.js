@@ -106,7 +106,9 @@ module.exports = {
 			// If the role is not full, add the user to the role
 			dataUserRSVP[role].push(user.toString())
 			dataTotalRSVP += 1
-			if (dataTotalRSVP === dataSubmission.size) pfFull = true
+			if (dataTotalRSVP === dataSubmission.size) {
+				pfFull = true
+			}
 		} else if (remove) {
 			for (let iRole = 0; iRole < dataUserRSVP[role].length; iRole++) {
 				if (dataUserRSVP[role][iRole] === user.toString()) {
@@ -142,6 +144,20 @@ module.exports = {
 			embeds: [updatedEmbed],
 			allowedMentions: { parse: true },
 		})
+
+		// DM all RSVP'd users if the partyfinder is full now
+		//if (pfFull()) {
+			for (const keyRole in dataUserRSVP) {
+				for (
+					let iRole = 0;
+					iRole < dataUserRSVP[keyRole].length;
+					iRole++
+				) {
+				const user = dataUserRSVP[keyRole][iRole].substring(2, dataUserRSVP[keyRole][iRole].length - 1)
+				console.log(user)
+				}
+			}
+		//}
 
 		return
 	},

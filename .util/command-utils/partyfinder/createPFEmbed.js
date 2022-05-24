@@ -29,6 +29,8 @@ module.exports = (
 		.setTitle(title)
 		.setThumbnail('https://xivapi.com/i/061000/061536_hr1.png')
 
+	if (full) embed.setDescription('Your group is full and scheduled!')
+
 	// Add date, time, and timezone if all 3 are filled out
 	if (dataDTTZ.dttz) {
 		const pfDT = DateTime.fromObject(
@@ -65,6 +67,6 @@ module.exports = (
 		getRoleList(playersF),
 		true
 	)
-	
+
 	return embed
 }

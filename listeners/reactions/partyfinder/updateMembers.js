@@ -76,13 +76,13 @@ module.exports = {
 
 			// If the role is not full, add the user to the role
 			dataUserRSVP[role].push(user.toString())
-			dataTotalRSVP = dataTotalRSVP++
+			dataTotalRSVP += 1
 			if (dataTotalRSVP === dataSubmission.size) pfFull = true
 		} else if (remove) {
 			for (let iRole = 0; iRole < dataUserRSVP[role].length; iRole++) {
 				if (dataUserRSVP[role][iRole] === user.toString()) {
-					dataUserRSVP[role][iRole].splice(iRole, 1)
-					dataTotalRSVP = dataTotalRSVP--
+					dataUserRSVP[role].splice(iRole, 1)
+					dataTotalRSVP -= 1
 				}
 			}
 		}

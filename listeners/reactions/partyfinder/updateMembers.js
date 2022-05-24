@@ -94,7 +94,7 @@ module.exports = {
 			for (const keyRole in dataUserRSVP) {
 				for (
 					let iRole = 0;
-					iRole < dataUserRSVP[keyRole];
+					iRole < dataUserRSVP[keyRole].length;
 					iRole++
 				) {
 					if (dataUserRSVP[keyRole][iRole] === user.toString()) {

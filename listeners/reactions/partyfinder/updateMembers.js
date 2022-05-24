@@ -75,7 +75,7 @@ module.exports = {
 				role = 'fill'
 				break
 		}
-		
+
 		// Return if the selected role is full and it's not a remove
 		if (!remove) {
 			if (
@@ -89,6 +89,20 @@ module.exports = {
 			)
 				return
 
+			// If they aread RSVP'd remove them from that role
+			for (const keyRole of dataUserRSVP) {
+				for (
+					let iRole = 0;
+					iRole < dataUserRSVP[keyRole];
+					iRole++
+				) {
+					if (dataUserRSVP[keyRole][iRole] === user.toString()) {
+						dataUserRSVP[keyRole].splice(iRole, 1)
+						dataTotalRSVP -= 1
+					}
+				}
+			}
+			
 			// If the role is not full, add the user to the role
 			dataUserRSVP[role].push(user.toString())
 			dataTotalRSVP += 1

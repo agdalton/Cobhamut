@@ -23,7 +23,7 @@ module.exports = {
 				console.log('Message Cached!')
 			} catch (e) {
 				console.log('Error trying to cache message : Removing from MongoDB')
-				partyfinderSchema.deleteOne({ _id: doc._id })
+				await partyfinderSchema.deleteOne({ _id: doc._id })
 			}
 		}
 	},

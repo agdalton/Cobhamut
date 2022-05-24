@@ -23,7 +23,7 @@ module.exports = {
 				console.log('Message Cached!')
 			} catch (e) {
 				console.error('Error trying to cache message : ', e)
-				partyfinderSchema.findOneAndDelete({ id: doc.id })
+				partyfinderSchema.deleteOne({ _id: doc.id })
 			}
 		}
 	},

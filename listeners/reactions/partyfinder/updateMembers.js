@@ -87,6 +87,12 @@ module.exports = {
 				}
 			}
 		}
+		
+		// Update MongoDB
+		doc.dataUserRSVP = JSON.stringify(dataUserRSVP)
+		doc.dataTotalRSVP = dataTotalRSVP
+		doc.pfFull = pfFull
+		await doc.save()
 
 		// Fetch the full message
 		const message = await reaction.message.fetch()
@@ -102,6 +108,7 @@ module.exports = {
 			dataUserRSVP.fill
 		)
 
+		// Update the message to reflect the added/removed user
 		await message.edit({
 			embeds: [updatedEmbed],
 			allowedMentions: { parse: true },

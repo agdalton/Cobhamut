@@ -75,11 +75,11 @@ module.exports = {
 				return
 
 			// If the role is not full, add the user to the role
-			dataUserRSVP[role].push(user.id)
+			dataUserRSVP[role].push(user.toString())
 			dataTotalRSVP = dataTotalRSVP++
 		} else if (remove) {
 			for (let iRole = 0; iRole < dataUserRSVP[role].length; iRole++) {
-				if (dataUserRSVP[role][iRole] === user.id) {
+				if (dataUserRSVP[role][iRole] === user.toString()) {
 					dataUserRSVP[role][iRole].splice(i, 1)
 					dataTotalRSVP = dataTotalRSVP--
 					break
@@ -103,15 +103,10 @@ module.exports = {
 
 		console.log(updatedEmbed)
 
-		await message.edit(
-			null,
-			[updatedEmbed],
-			{ parse: true },
-			null,
-			null,
-			null,
-			null
-		)
+		await message.edit({
+			embeds: [updatedEmbed],
+			allowedMentions: { parse: true },
+		})
 
 		return
 	},

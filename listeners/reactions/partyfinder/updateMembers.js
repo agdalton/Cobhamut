@@ -89,7 +89,7 @@ module.exports = {
 			)
 				return
 
-			// If they aread RSVP'd remove them from that role
+			// If they already RSVP'd remove them from that role
 			for (const keyRole of dataUserRSVP) {
 				for (
 					let iRole = 0;
@@ -102,7 +102,7 @@ module.exports = {
 					}
 				}
 			}
-			
+
 			// If the role is not full, add the user to the role
 			dataUserRSVP[role].push(user.toString())
 			dataTotalRSVP += 1

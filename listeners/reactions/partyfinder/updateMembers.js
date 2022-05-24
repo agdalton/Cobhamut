@@ -78,7 +78,7 @@ module.exports = {
 		console.log(role)
 		// Return if the selected role is full and it's not a remove
 		if (!remove) {
-			if (isRoleFull(role, dataUserRSVP, dataPartyComp, dataTotalRSVP))
+			if (isRoleFull(role, dataUserRSVP, dataPartyComp, dataSubmission.size, dataTotalRSVP))
 				return
 
 			// If the role is not full, add the user to the role

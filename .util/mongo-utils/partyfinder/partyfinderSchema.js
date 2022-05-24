@@ -25,7 +25,7 @@ const partyfinderSchema = new mongoose.Schema({
 	pfFull: {
 		type: Boolean,
 		required: true
-	}
+	},
 	guildID: reqString,
 	channelID: reqString,
 	originalResponseID: reqString,

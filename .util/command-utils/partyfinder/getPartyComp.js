@@ -6,17 +6,17 @@ module.exports = (size) => {
 		case '4':
 			comp.tanks = 1
 			comp.healers = 1
-			comp.dps = 2
+			comp.damage = 2
 			break
 		case '8':
 			comp.tanks = 2
 			comp.healers = 2
-			comp.dps = 4
+			comp.damage = 4
 			break
 		case '24':
 			comp.tanks = 3
 			comp.healers = 6
-			comp.dps = 15
+			comp.damage = 15
 			break
 		default:
 			comp.err = {

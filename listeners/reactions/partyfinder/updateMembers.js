@@ -1,4 +1,6 @@
 // Update the members of a partyfinder
+const createPFEmbed = require('../../../.util/command-utils/partyfinder/createPFEmbed')
+const isRoleFull = require('../../../.util/command-utils/partyfinder/isRoleFull')
 const partyfinderSchema = require('../../../.util/mongo-utils/partyfinder/partyfinderSchema')
 
 module.exports = {
@@ -9,6 +11,7 @@ module.exports = {
 		'977774943154618368',
 	],
 	init: async (client) => {
+		// Find exisiting messages that we need to cache upon restart so that reaction tracking works
 		const docs = await partyfinderSchema.find()
 
 		for (const doc of docs) {
@@ -26,6 +29,7 @@ module.exports = {
 			reaction.message.interaction.commandName !== 'partyfinder'
 		)
 			return
+		if (reaction.count === 1 && remove === false) return
 
 		// Find the document in MongoDB that we'll need to edit
 		const doc = await partyfinderSchema.findOne({
@@ -33,16 +37,15 @@ module.exports = {
 		})
 
 		if (!doc) return
-        if (doc.pfFull) return
-		if (reaction.count === 1 && remove === false) return
+		if (doc.pfFull) return
 
 		// Grab the data from MongoDB
 		const dataDTTZ = JSON.parse(doc.dataDTTZ)
 		const dataCreator = JSON.parse(doc.dataCreator)
 		const dataSubmission = JSON.parse(doc.dataSubmission)
 		const dataPartyComp = JSON.parse(doc.dataPartyComp)
-		const dataUserRSVP = JSON.parse(doc.dataUserRSVP)
-        const dataTotalRSVP = doc.dataTotalRSVP
+		let dataUserRSVP = JSON.parse(doc.dataUserRSVP)
+		let dataTotalRSVP = doc.dataTotalRSVP
 		const guildID = doc.guildID
 		const channelID = doc.channelID
 		const originalResponseID = doc.originalResponseID
@@ -59,12 +62,54 @@ module.exports = {
 				role = 'healers'
 				break
 			case '977771775859494942':
-				role = 'dps'
+				role = 'damage'
 				break
 			case '977774943154618368':
 				role = 'fill'
 				break
 		}
+
+		// Return if the selected role is full and it's not a remove
+		if (!remove) {
+			if (isRoleFull(role, dataUserRSVP, dataPartyComp, dataTotalRSVP))
+				return
+
+			// If the role is
+			dataUserRSVP[role].push(user.id)
+			dataTotalRSVP = dataTotalRSVP++
+		} else if (remove) {
+			for (let iRole = 0; iRole < dataUserRSVP[role].length; iRole++) {
+				if (dataUserRSVP[role][iRole] === user.id) {
+					dataUserRSVP[role][iRole].splice(i, 1)
+					dataTotalRSVP = dataTotalRSVP--
+					break
+				}
+			}
+		}
+
+		// Fetch the full message
+		const message = await reaction.message.fetch()
+		const updatedEmbed = createPFEmbed(
+			dataCreator,
+			globals,
+			dataDTTZ,
+			dataSubmission.description,
+			dataPartyComp,
+			dataUserRSVP.tanks.join().replace(',', '\n'),
+			dataUserRSVP.healers.join().replace(',', '\n'),
+			dataUserRSVP.damage.join().replace(',', '\n'),
+			dataUserRSVP.fill.join().replace(',', '\n')
+		)
+		
+		message.edit(
+			null,
+			[updatedEmbed],
+			{ parse: true },
+			null,
+			null,
+			null,
+			null
+		)
 
 		return
 	},

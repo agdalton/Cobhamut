@@ -2,16 +2,16 @@
 
 module.exports = async (client, reactionListener, globals) => {
 	let { applicableEmoji, callback } = reactionListener
-	let message = ''
+	let fullReaction = ''
 	client.on('messageReactionAdd', async (reaction, user) => {
 		try {
-			message = await reaction.fetch()
+			fullReaction = await reaction.fetch()
 		} catch (e) {
 			console.log('There was an error fetching the message')
 		}
 
 		if (applicableEmoji.includes(reaction._emoji.id))
-			callback(message, user, false, globals)
+			callback(fullReaction, user, false, globals)
 
 		return
 	})
@@ -19,13 +19,13 @@ module.exports = async (client, reactionListener, globals) => {
 	client.on('messageReactionRemove', async (reaction, user) => {
 		console.log('Remove fired!')
 		try {
-			message = await reaction.fetch()
+			fullReaction = await reaction.fetch()
 		} catch (e) {
 			console.log('There was an error fetching the message')
 		}
 
 		if (applicableEmoji.includes(reaction._emoji.id))
-			callback(message, user, true, globals)
+			callback(fullReaction, user, true, globals)
 
 		return
 	})

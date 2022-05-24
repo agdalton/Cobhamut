@@ -160,7 +160,7 @@ module.exports = {
 					)
 				)
 				// Send the DM
-				user.send({
+				await user.send({
 					embeds: [updatedEmbed],
 					allowedMentions: { parse: true },
 				})

@@ -17,7 +17,6 @@ module.exports = async (client, reactionListener, globals) => {
 	})
 
 	client.on('messageReactionRemove', async (reaction, user) => {
-		console.log('Remove fired!')
 		try {
 			fullReaction = await reaction.fetch()
 		} catch (e) {

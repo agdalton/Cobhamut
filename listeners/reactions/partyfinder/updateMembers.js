@@ -46,6 +46,7 @@ module.exports = {
 		const dataPartyComp = JSON.parse(doc.dataPartyComp)
 		let dataUserRSVP = JSON.parse(doc.dataUserRSVP)
 		let dataTotalRSVP = doc.dataTotalRSVP
+		let pfFull = doc.pfFull
 		const guildID = doc.guildID
 		const channelID = doc.channelID
 		const originalResponseID = doc.originalResponseID
@@ -54,7 +55,6 @@ module.exports = {
 		// Determine what role the user selected
 		let role = ''
 		switch (emoji) {
-			// Tank
 			case '977771775960174652':
 				role = 'tanks'
 				break
@@ -77,6 +77,7 @@ module.exports = {
 			// If the role is not full, add the user to the role
 			dataUserRSVP[role].push(user.toString())
 			dataTotalRSVP = dataTotalRSVP++
+			if (dataTotalRSVP === dataSubmission.size) pfFull = true
 		} else if (remove) {
 			for (let iRole = 0; iRole < dataUserRSVP[role].length; iRole++) {
 				if (dataUserRSVP[role][iRole] === user.toString()) {
@@ -100,8 +101,6 @@ module.exports = {
 			dataUserRSVP.damage,
 			dataUserRSVP.fill
 		)
-
-		console.log(updatedEmbed)
 
 		await message.edit({
 			embeds: [updatedEmbed],

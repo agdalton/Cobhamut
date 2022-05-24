@@ -90,6 +90,7 @@ module.exports = {
 				return
 
 			// If they already RSVP'd remove them from that role
+			console.log(dataUserRSVP)
 			for (const keyRole of dataUserRSVP) {
 				for (
 					let iRole = 0;

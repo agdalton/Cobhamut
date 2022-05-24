@@ -95,12 +95,12 @@ module.exports = {
 			dataDTTZ,
 			dataSubmission.description,
 			dataPartyComp,
-			dataUserRSVP.tanks.join().replace(',', '\n'),
-			dataUserRSVP.healers.join().replace(',', '\n'),
-			dataUserRSVP.damage.join().replace(',', '\n'),
-			dataUserRSVP.fill.join().replace(',', '\n')
+			dataUserRSVP.tanks,
+			dataUserRSVP.healers,
+			dataUserRSVP.damage,
+			dataUserRSVP.fill
 		)
-		
+
 		message.edit(
 			null,
 			[updatedEmbed],

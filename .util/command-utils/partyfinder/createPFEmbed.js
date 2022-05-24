@@ -47,28 +47,28 @@ module.exports = (
 		`<:tank:977771775960174652> Tanks ${
 			playersT ? playersT.length : '0'
 		}/${partyComp.tanks}`,
-		playersT ? playersT.join() : '-',
+		playersT ? playersT.join().replace(',', '\n') : '-',
 		true
 	)
 	embed.addField(
 		`<:healer:977771776253775932> Healers ${
 			playersH ? playersH.length : '0'
 		}/${partyComp.healers}`,
-		playersH ? playersH.join() : '-',
+		playersH ? playersH.join().replace(',', '\n') : '-',
 		true
 	)
 	embed.addField(
 		`<:melee:977771775859494942> Damage ${
 			playersD ? playersD.length : '0'
 		}/${partyComp.dps}`,
-		playersD ? playersD.join() : '-',
+		playersD ? playersD.join().replace(',', '\n') : '-',
 		true
 	)
 	embed.addField(
 		`<:fill:977774943154618368> Fill ${
 			playersF ? playersF.length : '-'
 		}/\u221e`,
-		playersF ? playersF.join() : '-',
+		playersF ? playersF.join().replace(',', '\n') : '-',
 		true
 	)
 	return embed

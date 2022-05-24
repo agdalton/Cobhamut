@@ -74,7 +74,7 @@ module.exports = {
 			if (isRoleFull(role, dataUserRSVP, dataPartyComp, dataTotalRSVP))
 				return
 
-			// If the role is
+			// If the role is not full, add the user to the role
 			dataUserRSVP[role].push(user.id)
 			dataTotalRSVP = dataTotalRSVP++
 		} else if (remove) {
@@ -100,6 +100,8 @@ module.exports = {
 			dataUserRSVP.damage,
 			dataUserRSVP.fill
 		)
+
+		console.log(updatedEmbed)
 
 		message.edit(
 			null,

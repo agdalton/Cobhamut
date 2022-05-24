@@ -58,6 +58,7 @@ module.exports = {
 			dataDTTZ,
 			description,
 			partyComp,
+			false, // PF Full
 			[], // Array[] list of tanks
 			[], // Array[] list of healers
 			[], // Array[] list of DPS

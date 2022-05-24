@@ -9,6 +9,7 @@ module.exports = (
 	dataDTTZ,
 	title,
 	partyComp,
+	full,
 	playersT,
 	playersH,
 	playersD,
@@ -16,11 +17,11 @@ module.exports = (
 ) => {
 	const { memberID, memberNick, memberUsername, memberAvatar } = memberData
 	const { baseImageURL } = globals
-	const { purple } = globals.colors
+	const { purple, green } = globals.colors
 
 	// Setup embed for response
 	const embed = new MessageEmbed()
-		.setColor(purple)
+		.setColor(full ? green : purple)
 		.setFooter({
 			text: `Created by ${memberNick ? memberNick : memberUsername}`,
 			iconURL: `${baseImageURL}/avatars/${memberID}/${memberAvatar}.png`,

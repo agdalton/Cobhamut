@@ -22,7 +22,9 @@ module.exports = {
 				await channel.messages.fetch(message)
 				console.log('Message Cached!')
 			} catch (e) {
-				console.log('Error trying to cache message : Removing from MongoDB')
+				console.log(
+					'Error trying to cache message : Removing from MongoDB'
+				)
 				await partyfinderSchema.deleteOne({ _id: doc._id })
 			}
 		}
@@ -73,7 +75,7 @@ module.exports = {
 				role = 'fill'
 				break
 		}
-
+		console.log(role)
 		// Return if the selected role is full and it's not a remove
 		if (!remove) {
 			if (isRoleFull(role, dataUserRSVP, dataPartyComp, dataTotalRSVP))

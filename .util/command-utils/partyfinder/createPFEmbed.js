@@ -6,10 +6,11 @@ const getRoleList = require('./getRoleList')
 module.exports = (
 	memberData,
 	globals,
+	color,
 	dataDTTZ,
 	title,
+	description,
 	partyComp,
-	full,
 	playersT,
 	playersH,
 	playersD,
@@ -21,7 +22,7 @@ module.exports = (
 
 	// Setup embed for response
 	const embed = new MessageEmbed()
-		.setColor(full ? green : purple)
+		.setColor(color)
 		.setFooter({
 			text: `Created by ${memberNick ? memberNick : memberUsername}`,
 			iconURL: `${baseImageURL}/avatars/${memberID}/${memberAvatar}.png`,
@@ -29,7 +30,7 @@ module.exports = (
 		.setTitle(title)
 		.setThumbnail('https://xivapi.com/i/061000/061536_hr1.png')
 
-	if (full) embed.setDescription('Your group is full and scheduled!')
+	embed.setDescription(description)
 
 	// Add date, time, and timezone if all 3 are filled out
 	if (dataDTTZ.dttz) {

@@ -55,10 +55,11 @@ module.exports = {
 		const embed = createPFEmbed(
 			memberData,
 			globals,
+			purple,
 			dataDTTZ,
-			description,
+			description, // Embed title
+			null, // Embed description
 			partyComp,
-			false, // PF Full
 			[], // Array[] list of tanks
 			[], // Array[] list of healers
 			[], // Array[] list of DPS
@@ -84,7 +85,7 @@ module.exports = {
 		// Create collection for MongoDB and save it
 		const interactionResponse = await interaction.fetchReply()
 		await new partyfinderSchema({
-			date: dataDTTZ.pfDT.dtISO,
+			date: dataDTTZ.pfDT.dtEpoch,
 			dataDTTZ: JSON.stringify(dataDTTZ),
 			dataCreator: JSON.stringify(memberData),
 			dataSubmission: JSON.stringify({

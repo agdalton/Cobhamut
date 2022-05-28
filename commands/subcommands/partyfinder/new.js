@@ -33,7 +33,7 @@ module.exports = async (interaction, data, globals) => {
 
 	// Modal config
 	const modal = new Modal()
-		.setCustomId('pfNewModal')
+		.setCustomId('pfNewModal') // ../.././.util/modals/partyfinder/pfNewModal.js
 		.setTitle('New Party finder')
 
 	const modalRow1 = new MessageActionRow().addComponents(description)

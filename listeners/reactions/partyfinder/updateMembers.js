@@ -10,13 +10,13 @@ module.exports = {
 		'977771775859494942',
 		'977774943154618368',
 	],
-	init: async (client) => {
-		// Find exisiting messages that we need to cache upon restart so that reaction tracking works
-		const docs = await partyfinderSchema.find()
+	init: async (client, globals) => {
+		// Find exisiting partyfinders that we need to cache upon restart so that reaction tracking works
+		const partyFinders = await partyfinderSchema.find()
 
-		for (const doc of docs) {
-			const channel = await client.channels.fetch(doc.channelID)
-			const message = doc.originalResponseID
+		for (const party of partyFinders) {
+			const channel = await client.channels.fetch(party.channelID)
+			const message = party.originalResponseID
 
 			try {
 				await channel.messages.fetch(message)
@@ -25,7 +25,7 @@ module.exports = {
 				console.log(
 					'Error trying to cache message : Removing from MongoDB'
 				)
-				await partyfinderSchema.deleteOne({ _id: doc._id })
+				await partyfinderSchema.deleteOne({ _id: party._id })
 			}
 		}
 	},
@@ -38,25 +38,23 @@ module.exports = {
 			return
 		if (reaction.count === 1 && remove === false) return
 
-		// Find the document in MongoDB that we'll need to edit
-		const doc = await partyfinderSchema.findOne({
+		// Find the party in MongoDB that we'll need to edit
+		const party = await partyfinderSchema.findOne({
 			originalResponseID: reaction.message.id,
 		})
 
-		if (!doc) return
-		if (doc.pfFull) return
+		if (!party) return
+		if (party.pfFull) return
 
 		// Grab the data from MongoDB
-		const dataDTTZ = JSON.parse(doc.dataDTTZ)
-		const dataCreator = JSON.parse(doc.dataCreator)
-		const dataSubmission = JSON.parse(doc.dataSubmission)
-		const dataPartyComp = JSON.parse(doc.dataPartyComp)
-		let dataUserRSVP = JSON.parse(doc.dataUserRSVP)
-		let dataTotalRSVP = parseInt(doc.dataTotalRSVP)
-		let pfFull = doc.pfFull
-		const guildID = doc.guildID
-		const channelID = doc.channelID
-		const originalResponseID = doc.originalResponseID
+		const dataDTTZ = JSON.parse(party.dataDTTZ)
+		const dataCreator = JSON.parse(party.dataCreator)
+		const dataSubmission = JSON.parse(party.dataSubmission)
+		const dataPartyComp = JSON.parse(party.dataPartyComp)
+		let dataUserRSVP = JSON.parse(party.dataUserRSVP)
+		let dataTotalRSVP = parseInt(party.dataTotalRSVP)
+		let pfFull = party.pfFull
+		const { guildID, channelID, originalResponseID } = party
 		const emoji = reaction._emoji.id
 
 		// Determine what role the user selected
@@ -119,20 +117,21 @@ module.exports = {
 		}
 
 		// Update MongoDB
-		doc.dataUserRSVP = JSON.stringify(dataUserRSVP)
-		doc.dataTotalRSVP = dataTotalRSVP
-		doc.pfFull = pfFull
-		await doc.save()
+		party.dataUserRSVP = JSON.stringify(dataUserRSVP)
+		party.dataTotalRSVP = dataTotalRSVP
+		party.pfFull = pfFull
+		await party.save()
 
 		// Fetch the full message
 		const message = await reaction.message.fetch()
 		const updatedEmbed = createPFEmbed(
 			dataCreator,
 			globals,
+			pfFull ? green : purple,
 			dataDTTZ,
 			dataSubmission.description,
+			pfFull ? 'Your party is full and has been scheduled!' : null,
 			dataPartyComp,
-			pfFull,
 			dataUserRSVP.tanks,
 			dataUserRSVP.healers,
 			dataUserRSVP.damage,
@@ -147,25 +146,25 @@ module.exports = {
 
 		// DM all RSVP'd users if the partyfinder is full now
 		if (pfFull()) {
-		for (const keyRole in dataUserRSVP) {
-			for (
-				let iRole = 0;
-				iRole < dataUserRSVP[keyRole].length;
-				iRole++
-			) {
-				const user = await client.users.fetch(
-					dataUserRSVP[keyRole][iRole].substring(
-						2,
-						dataUserRSVP[keyRole][iRole].length - 1
+			for (const keyRole in dataUserRSVP) {
+				for (
+					let iRole = 0;
+					iRole < dataUserRSVP[keyRole].length;
+					iRole++
+				) {
+					const user = await client.users.fetch(
+						dataUserRSVP[keyRole][iRole].substring(
+							2,
+							dataUserRSVP[keyRole][iRole].length - 1
+						)
 					)
-				)
-				// Send the DM
-				await user.send({
-					embeds: [updatedEmbed],
-					allowedMentions: { parse: true },
-				})
+					// Send the DM
+					await user.send({
+						embeds: [updatedEmbed],
+						allowedMentions: { parse: true },
+					})
+				}
 			}
-		}
 		}
 
 		return

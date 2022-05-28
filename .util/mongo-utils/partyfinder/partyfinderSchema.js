@@ -7,7 +7,7 @@ const reqString = {
 
 const partyfinderSchema = new mongoose.Schema({
 	date: {
-		type: Date,
+		type: Number,
 		required: true,
 	},
 	dataDTTZ: reqString,

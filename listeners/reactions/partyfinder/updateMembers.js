@@ -130,7 +130,7 @@ module.exports = {
 			pfFull ? green : purple,
 			dataDTTZ,
 			dataSubmission.description,
-			pfFull ? 'Your party is full and has been scheduled!' : null,
+			pfFull ? 'Your party is full and has been scheduled!' : '',
 			dataPartyComp,
 			dataUserRSVP.tanks,
 			dataUserRSVP.healers,

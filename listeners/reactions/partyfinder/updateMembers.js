@@ -46,6 +46,9 @@ module.exports = {
 		if (!party) return
 		if (party.pfFull) return
 
+		// Grab globals
+		const { green, purple } = globals.colors
+		
 		// Grab the data from MongoDB
 		const dataDTTZ = JSON.parse(party.dataDTTZ)
 		const dataCreator = JSON.parse(party.dataCreator)

@@ -58,7 +58,7 @@ module.exports = {
 			purple,
 			dataDTTZ,
 			description, // Embed title
-			null, // Embed description
+			'', // Embed description
 			partyComp,
 			[], // Array[] list of tanks
 			[], // Array[] list of healers

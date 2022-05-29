@@ -18,8 +18,9 @@ module.exports = {
 					{ date: { $lte: Date.now() } }, // in the past or now
 				],
 			})
-			console.log(Date.now())
+
 			for (const party of partyFinders) {
+				console.log('PARTY')
 				const dataDTTZ = JSON.parse(party.dataDTTZ)
 				const dataCreator = JSON.parse(party.dataCreator)
 				const dataSubmission = JSON.parse(party.dataSubmission)

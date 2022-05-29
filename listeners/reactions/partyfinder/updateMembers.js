@@ -107,7 +107,7 @@ module.exports = {
 			// If the role is not full, add the user to the role
 			dataUserRSVP[role].push(user.toString())
 			dataTotalRSVP += 1
-			if (dataTotalRSVP === dataSubmission.size) {
+			if (dataTotalRSVP == dataSubmission.size) {
 				pfFull = true
 			}
 		} else if (remove) {

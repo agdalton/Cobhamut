@@ -34,6 +34,10 @@ module.exports = {
 				globals
 			)
 
+			await partyfinderSchema.deleteMany({
+				date: { $lte: Date.now() },
+			})
+
 			// Check every second
 			setTimeout(checkForParties, 1000 * 1)
 		}

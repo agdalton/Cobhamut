@@ -29,7 +29,7 @@ module.exports = async (interaction, data, globals) => {
 	const mentionRole = new TextInputComponent()
 		.setCustomId('pfMentionRole')
 		.setLabel('Ping role')
-		.setValue(interaction.options.getRole('ping').toString())
+		.setValue(interaction.options.getRole('ping').toString() ?? '')
 		.setPlaceholder('Discord role snowflake')
 		.setStyle('SHORT')
 

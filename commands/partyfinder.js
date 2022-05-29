@@ -73,7 +73,6 @@ module.exports = {
 				await channel.send({
 					content: userList.join().replace(',', ' '),
 					embeds: [embed],
-					allowedMentions: { parse: true },
 				})
 
 				for (const iUser = 0; iUser < userList.length; iUser++) {

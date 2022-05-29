@@ -83,8 +83,7 @@ module.exports = {
 				description: description,
 				size: size,
 				date: date,
-				time: time,
-				timezone: timezone,
+				timeTZ: timeTZ,
 			}),
 			dataPartyComp: JSON.stringify(partyComp),
 			dataUserRSVP: JSON.stringify({

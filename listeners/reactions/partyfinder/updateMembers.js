@@ -167,7 +167,7 @@ module.exports = {
 					await user.send({
 						content: mentionRole ? mentionRole : '',
 						embeds: [updatedEmbed],
-						allowedMentions: { parse: true },
+						//allowedMentions: { parse: true },
 					})
 				}
 			}

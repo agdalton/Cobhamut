@@ -111,7 +111,7 @@ module.exports = (date, time, timezone) => {
 				} else {
 					obj.pfDT.dtObj = dtObj
 					obj.pfDT.dtZone = dtZone
-					obj.pfDT.dtEpoch = pfDT.toSeconds()
+					obj.pfDT.dtISO = pfDT.toISO()
 				}
 			}
 

@@ -85,7 +85,7 @@ module.exports = {
 		// Create collection for MongoDB and save it
 		const interactionResponse = await interaction.fetchReply()
 		await new partyfinderSchema({
-			date: dataDTTZ.pfDT.dtEpoch,
+			date: dataDTTZ.pfDT.dtISO,
 			dataDTTZ: JSON.stringify(dataDTTZ),
 			dataCreator: JSON.stringify(memberData),
 			dataSubmission: JSON.stringify({

@@ -99,6 +99,8 @@ module.exports = {
 			// Check every second since we're working with Epoch time
 			setTimeout(checkForParties, 1000 * 1)
 		}
+
+		checkForParties()
 	},
 	callback: async (client, interaction, globals) => {
 		const command = interaction.options.getSubcommand()

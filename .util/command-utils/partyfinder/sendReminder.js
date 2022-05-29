@@ -6,7 +6,7 @@ module.exports = async (client, partyfinders, description, globals) => {
 
 	// Loop through all the incoming partyfinders
 	for (const party of partyfinders) {
-		let embedDesc = ''
+		let embedDesc = description
 		const dataDTTZ = JSON.parse(party.dataDTTZ)
 		const dataCreator = JSON.parse(party.dataCreator)
 		const dataSubmission = JSON.parse(party.dataSubmission)

@@ -15,7 +15,7 @@ module.exports = {
 				date: {
 					$dateAdd: {
 						startDate: Date.now(),
-						unit: minute,
+						unit: 'minute',
 						amount: 30,
 					},
 				}, // 30 minutes from now

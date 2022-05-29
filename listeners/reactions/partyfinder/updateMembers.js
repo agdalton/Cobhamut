@@ -146,7 +146,7 @@ module.exports = {
 		await message.edit({
 			content: mentionRole ? mentionRole : '',
 			embeds: [updatedEmbed],
-			//allowedMentions: { parse: true },
+			allowedMentions: { parse: ['roles','users'] },
 		})
 
 		// DM all RSVP'd users if the partyfinder is full now
@@ -167,7 +167,7 @@ module.exports = {
 					await user.send({
 						content: mentionRole ? mentionRole : '',
 						embeds: [updatedEmbed],
-						//allowedMentions: { parse: true },
+						allowedMentions: { parse: true },
 					})
 				}
 			}

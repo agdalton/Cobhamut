@@ -10,9 +10,9 @@ module.exports = {
 	init: (client, globals) => {
 		// Check every second for scheduled partyfinders
 		const checkForParties = async () => {
-			// Lookup in MongoDB <-- Mongo can compare ISO dates to Epoch
+			// Lookup in MongoDB
 			// Find parties starting in less than 30 minutes that haven't had a reminder sent
-			const dt30MinFromNow = DateTime.now()
+			const dt30MinFromNow = DateTime.now() // <-- Luxon DateTime because Date.now() math didn't play nice with MongoDB query
 				.plus({ minutes: 30 })
 				.toUTC()
 				.toISO({ includeOffset: true })

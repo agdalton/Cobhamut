@@ -49,11 +49,12 @@ module.exports = {
 		// If the party can't be found in MongoDB, return
 		if (!party) return
 
+		// If the reaction was ❌ then delete the partyfinder <-- above the return for party full to allow cancelations
+		
+
 		// If the party is full, return
 		if (party.pfFull) return
 
-		// If the reaction was ❌ then delete the partyfinder
-		
 		// Grab globals
 		const { green, purple } = globals.colors
 

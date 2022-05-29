@@ -75,7 +75,7 @@ module.exports = {
 					embeds: [embed],
 				})
 
-				for (const iUser = 0; iUser < userList.length; iUser++) {
+				for (let iUser = 0; iUser < userList.length; iUser++) {
 					// Fetch the user from the client <-- remove the <: at the start and > at the end
 					const user = await client.users.fetch(
 						userList[iUser].substring(

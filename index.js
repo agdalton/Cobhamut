@@ -61,7 +61,7 @@ client.on('ready', async () => {
 				path.extname(file) === '.js'
 			) {
 				const command = require(path.join(__dirname, dir, file))
-				command.init(client)
+				command.init(client, globals)
 				commandBase(client, command, globals)
 			}
 		}
@@ -137,7 +137,7 @@ client.on('ready', async () => {
 					dir,
 					file
 				))
-				reactionListener.init(client)
+				reactionListener.init(client, globals)
 				reactionListenerBase(client, reactionListener, globals)
 			}
 		}

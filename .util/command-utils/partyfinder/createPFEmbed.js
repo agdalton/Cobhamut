@@ -18,7 +18,6 @@ module.exports = (
 ) => {
 	const { memberID, memberNick, memberUsername, memberAvatar } = memberData
 	const { baseImageURL } = globals
-	const { purple, green } = globals.colors
 
 	// Setup embed for response
 	const embed = new MessageEmbed()

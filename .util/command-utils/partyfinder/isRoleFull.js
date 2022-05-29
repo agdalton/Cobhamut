@@ -7,8 +7,8 @@ module.exports = (
 	dataTotalRSVP
 ) => {
 	// If fill was selected, compare to total number of RSVP
-	const numRole = role === 'fill' ? dataTotalRSVP : dataUserRSVP[role]
-	const limit = role === 'fill' ? partySize : dataPartyComp[role]
+	const numRole = role === 'fill' ? dataTotalRSVP : dataUserRSVP[role].length
+	const limit = role === 'fill' ? partySize : dataPartyComp[role].length
 	let answer = false
 
 	if (numRole === limit) answer = true

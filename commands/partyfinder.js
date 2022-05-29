@@ -12,7 +12,13 @@ module.exports = {
 			// Lookup in MongoDB <-- Mongo can compare ISO dates to Epoch
 			// Find parties starting in 30 minutes and send the reminder
 			let partyfinders = await partyfinderSchema.find({
-				date: Date.now() + 60 * 30, // 30 minutes from now
+				date: {
+					$dateAdd: {
+						startDate: Date.now(),
+						unit: minute,
+						amount: 30,
+					},
+				}, // 30 minutes from now
 			})
 
 			sendReminder(

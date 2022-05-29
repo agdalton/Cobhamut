@@ -4,8 +4,9 @@ const createPFEmbed = require('../../command-utils/partyfinder/createPFEmbed.js'
 module.exports = async (client, partyfinders, description, globals) => {
 	const { green, red } = globals.colors
 
-    // Loop through all the incoming partyfinders
+	// Loop through all the incoming partyfinders
 	for (const party of partyfinders) {
+		let embedDesc = ''
 		const dataDTTZ = JSON.parse(party.dataDTTZ)
 		const dataCreator = JSON.parse(party.dataCreator)
 		const dataSubmission = JSON.parse(party.dataSubmission)
@@ -23,7 +24,7 @@ module.exports = async (client, partyfinders, description, globals) => {
 
 		// If the party is not full, concat the description to indicate that
 		if (!pfFull)
-			description =
+			embedDesc =
 				description.substring(0, description.length - 1) +
 				', but is NOT FULL!'
 
@@ -34,7 +35,7 @@ module.exports = async (client, partyfinders, description, globals) => {
 			pfFull ? green : red, // If not full, make the embed red
 			dataDTTZ,
 			dataSubmission.description,
-			description,
+			embedDesc,
 			dataPartyComp,
 			dataUserRSVP.tanks,
 			dataUserRSVP.healers,

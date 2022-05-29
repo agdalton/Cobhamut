@@ -12,7 +12,10 @@ module.exports = {
 		const checkForParties = async () => {
 			// Lookup in MongoDB <-- Mongo can compare ISO dates to Epoch
 			// Find parties starting in less than 30 minutes that haven't had a reminder sent
-			const dt30MinFromNow = DateTime.now().plus({ minutes: 30 }).toUnixInteger()
+			const dt30MinFromNow = DateTime.now()
+				.plus({ minutes: 30 })
+				.toUTC()
+				.toISO({ includeOffset: true })
 			let partyfinders = await partyfinderSchema.find({
 				$and: [
 					{ date: { $lte: dt30MinFromNow } }, // 30 minutes from  now in Epoch seconds

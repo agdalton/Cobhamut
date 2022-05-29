@@ -8,6 +8,7 @@ module.exports = {
 	name: 'partyfinder',
 	guildId: '',
 	init: (client, globals) => {
+		const { green, red } = globals.colors
 		// Check every second for scheduled partyfinders
 		const checkForParties = async () => {
 			// Lookup in MongoDB <-- Date is stored in Epoch seconds, so compare it to now

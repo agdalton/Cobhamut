@@ -34,6 +34,7 @@ module.exports = {
 				globals
 			)
 
+			// Delete the parties that are starting now <-- prevent the great akh corning
 			await partyfinderSchema.deleteMany({
 				date: { $lte: Date.now() },
 			})

@@ -37,6 +37,8 @@ module.exports = {
 			reaction.message.interaction.commandName !== 'partyfinder'
 		)
 			return
+
+		// return when the first reactions are auto added by Cobhamut
 		if (reaction.count === 1 && remove === false) return
 
 		// Find the party in MongoDB that we'll need to edit
@@ -44,9 +46,14 @@ module.exports = {
 			originalResponseID: reaction.message.id,
 		})
 
+		// If the party can't be found in MongoDB, return
 		if (!party) return
+
+		// If the party is full, return
 		if (party.pfFull) return
 
+		// If the reaction was ❌ then delete the partyfinder
+		
 		// Grab globals
 		const { green, purple } = globals.colors
 
@@ -146,7 +153,7 @@ module.exports = {
 		await message.edit({
 			content: mentionRole ? mentionRole : '',
 			embeds: [updatedEmbed],
-			allowedMentions: { parse: ['roles','users'] },
+			allowedMentions: { parse: ['roles', 'users'] },
 		})
 
 		// DM all RSVP'd users if the partyfinder is full now

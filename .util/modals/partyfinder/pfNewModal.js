@@ -66,6 +66,7 @@ module.exports = {
 			.then(() => response.react('<:healer:977771776253775932>'))
 			.then(() => response.react('<:melee:977771775859494942>'))
 			.then(() => response.react('<:fill:977774943154618368>'))
+			.then(() => response.react('❌'))
 			.catch((error) =>
 				console.log(
 					'An error ocurred while reacting to the /partyfinder new embed response :: ' +

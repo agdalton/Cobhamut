@@ -71,7 +71,7 @@ module.exports = {
 
 				// Message the channel and mention the users
 				await channel.send({
-					content: userList.join().replace(',', ' '),
+					content: userList.join(),
 					embeds: [embed],
 				})
 

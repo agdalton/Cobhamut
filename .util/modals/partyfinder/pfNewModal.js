@@ -20,6 +20,8 @@ module.exports = {
 			memberAvatar: interaction.member.user.avatar,
 		}
 
+		console.log(interaction.id)
+
 		// Get modal inputs
 		const { fields } = interaction
 		const description = fields.getTextInputValue('pfDescription')

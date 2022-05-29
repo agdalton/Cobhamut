@@ -17,12 +17,6 @@ module.exports = async (interaction, data, globals) => {
 		.setPlaceholder('8')
 		.setStyle('SHORT')
 		.setRequired(true)
-	const mentionRole = new TextInputComponent()
-		.setCustomId('pfMentionRole')
-		.setLabel('Ping role')
-		.setValue(interaction.options.getRole('ping').toString())
-		.setPlaceholder('Discord role snowflake')
-		.setStyle('SHORT')
 	const date = new TextInputComponent()
 		.setCustomId('pfDate')
 		.setLabel('Date')
@@ -33,6 +27,12 @@ module.exports = async (interaction, data, globals) => {
 		.setLabel('Time and Timezone')
 		.setPlaceholder('8:30PM EST')
 		.setStyle('SHORT')
+	const mentionRole = new TextInputComponent()
+		.setCustomId('pfMentionRole')
+		.setLabel('Ping role')
+		.setValue(interaction.options.getRole('ping').toString())
+		.setPlaceholder('Discord role snowflake')
+		.setStyle('SHORT')
 
 	// Modal setup
 	const modal = new Modal()
@@ -42,9 +42,9 @@ module.exports = async (interaction, data, globals) => {
 	// Add all the components to rows <-- one component per row, maximum 5 rows
 	const modalRow1 = new MessageActionRow().addComponents(description)
 	const modalRow2 = new MessageActionRow().addComponents(size)
-	const modalRow3 = new MessageActionRow().addComponents(mentionRole)
-	const modalRow4 = new MessageActionRow().addComponents(date)
-	const modalRow5 = new MessageActionRow().addComponents(timeTZ)
+	const modalRow3 = new MessageActionRow().addComponents(date)
+	const modalRow4 = new MessageActionRow().addComponents(timeTZ)
+	const modalRow5 = new MessageActionRow().addComponents(mentionRole)
 
 	// Add the rows to the modal
 	modal.addComponents(modalRow1, modalRow2, modalRow3, modalRow4, modalRow5)

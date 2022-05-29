@@ -30,7 +30,7 @@ module.exports = {
 			await partyfinderSchema.updateMany(
 				{
 					$and: [
-						{ date: { $lte: Date.now() + 60 * 30 } }, // 30 minutes from now in Epoch seconds
+						{ date: { $lte: minutesFromNow30 } }, // 30 minutes from now in Epoch seconds
 						{ reminderSent: false },
 					],
 				},

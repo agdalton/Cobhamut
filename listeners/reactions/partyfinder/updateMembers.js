@@ -58,7 +58,7 @@ module.exports = {
 		let dataUserRSVP = JSON.parse(party.dataUserRSVP)
 		let dataTotalRSVP = parseInt(party.dataTotalRSVP)
 		let pfFull = party.pfFull
-		const { guildID, channelID, originalResponseID } = party
+		const { mentionRole } = party
 		const emoji = reaction._emoji.id
 
 		// Determine what role the user selected
@@ -144,6 +144,7 @@ module.exports = {
 
 		// Update the message to reflect the added/removed user
 		await message.edit({
+			content: mentionRole ? mentionRole : '',
 			embeds: [updatedEmbed],
 			allowedMentions: { parse: true },
 		})
@@ -164,6 +165,7 @@ module.exports = {
 					)
 					// Send the DM
 					await user.send({
+						content: mentionRole ? mentionRole : '',
 						embeds: [updatedEmbed],
 						allowedMentions: { parse: true },
 					})

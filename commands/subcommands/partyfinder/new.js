@@ -15,20 +15,21 @@ module.exports = async (interaction, data, globals) => {
 		.setValue(interaction.options.getString('size'))
 		.setStyle('SHORT')
 		.setRequired(true)
+	const mentionRole = new TextInputComponent()
+		.setCustomId('pfMentionRole')
+		.setLabel('Ping role')
+		.setValue(
+			interaction.options.getRole('mentionRole').setStyle('SHORT')
+		)
 	const date = new TextInputComponent()
 		.setCustomId('pfDate')
 		.setLabel('Date')
 		.setPlaceholder('What day? (Use M/DD, ex. 5/9)')
 		.setStyle('SHORT')
-	const time = new TextInputComponent()
-		.setCustomId('pfTime')
-		.setLabel('Time')
-		.setPlaceholder('What time? (Use HH:mmAM/PM, ex. 8:30PM)')
-		.setStyle('SHORT')
-	const timezone = new TextInputComponent()
-		.setCustomId('pfTimezone')
-		.setLabel('Timezone')
-		.setPlaceholder('What timezone? (PST, CST, EST are supported)')
+	const timeTZ = new TextInputComponent()
+		.setCustomId('pfTimeTimezone')
+		.setLabel('Time and Timezone')
+		.setPlaceholder('8:30PM EST :: (PST, CST, EST are supported)')
 		.setStyle('SHORT')
 
 	// Modal setup
@@ -39,9 +40,9 @@ module.exports = async (interaction, data, globals) => {
 	// Add all the components to rows <-- one component per row, maximum 5 rows
 	const modalRow1 = new MessageActionRow().addComponents(description)
 	const modalRow2 = new MessageActionRow().addComponents(size)
-	const modalRow3 = new MessageActionRow().addComponents(date)
-	const modalRow4 = new MessageActionRow().addComponents(time)
-	const modalRow5 = new MessageActionRow().addComponents(timezone)
+	const modalRow3 = new MessageActionRow().addComponents(mentionRole)
+	const modalRow4 = new MessageActionRow().addComponents(date)
+	const modalRow5 = new MessageActionRow().addComponents(timeTZ)
 
 	// Add the rows to the modal
 	modal.addComponents(modalRow1, modalRow2, modalRow3, modalRow4, modalRow5)

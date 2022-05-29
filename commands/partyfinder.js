@@ -103,6 +103,13 @@ module.exports = {
 							{ name: '24 Players', value: '24' }
 						)
 				)
+				.addRoleOption((option) =>
+					option
+						.setName('ping')
+						.setDescription(
+							'Mention a role to ping on this partyfinder'
+						)
+				)
 		)
 
 		return data.toJSON()

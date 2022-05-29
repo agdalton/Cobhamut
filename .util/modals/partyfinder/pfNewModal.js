@@ -24,13 +24,14 @@ module.exports = {
 		const { fields } = interaction
 		const description = fields.getTextInputValue('pfDescription').trim()
 		const size = fields.getTextInputValue('pfSize').trim()
+		const mentionRole = fields.getTextInputValue('pfMentionRole').trim() ?? ''
 		const date = fields.getTextInputValue('pfDate').trim() ?? undefined
-		const time = fields.getTextInputValue('pfTime').trim() ?? undefined
-		const timezone = fields.getTextInputValue('pfTimezone').trim() ?? undefined
+		const timeTZ = fields.getTextInputValue('pfTimeTimezone').trim().toUpperCase() ?? undefined
+		//const timezone = fields.getTextInputValue('pfTimezone').trim() ?? undefined
 
 		// --- Validate Party size, date, time, timezone --- //
 		const partyComp = getPartyComp(size)
-		const dataDTTZ = validateDTTZ(date, time, timezone)
+		const dataDTTZ = validateDTTZ(date, timeTZ)
 		if (
 			!validateInputs(
 				interaction,
@@ -56,7 +57,7 @@ module.exports = {
 			[] // Array[] list of fill
 		)
 
-		reply(interaction, null, [embed], null, false, false)
+		reply(interaction, mentionRole, [embed], null, false, false)
 
 		// Add reactions for role selection
 		const response = await interaction.fetchReply()
@@ -97,6 +98,7 @@ module.exports = {
 			guildID: interaction.guildId,
 			channelID: interaction.channelId,
 			originalResponseID: interactionResponse.id,
+			mentionRole: mentionRole,
 			reminderSent: false,
 		}).save()
 

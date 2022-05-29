@@ -19,7 +19,7 @@ module.exports = async (interaction, data, globals) => {
 	const mentionRole = new TextInputComponent()
 		.setCustomId('pfMentionRole')
 		.setLabel('Ping role')
-		.setValue(interaction.options.getRole('mentionRole').toString())
+		.setValue(interaction.options.getRole('ping').toString())
 		.setStyle('SHORT')
 	const date = new TextInputComponent()
 		.setCustomId('pfDate')

@@ -13,10 +13,7 @@ module.exports = {
 		const checkForParties = async () => {
 			// Lookup in MongoDB <-- Date is stored in Epoch seconds, so compare it to now
 			const partyFinders = await partyfinderSchema.find({
-				$or: [
-					{ date: Date.now() + 60 * 30 }, // 30 minutes from now
-					{ date: { $lte: Date.now() } }, // in the past or now
-				],
+				date: { $lte: Date.now() },
 			})
 
 			for (const party of partyFinders) {

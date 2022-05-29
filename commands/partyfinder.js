@@ -1,5 +1,6 @@
 // Partyfinder command for creating and scheduling parties in FF14 for things like raids!
 const { SlashCommandBuilder } = require('@discordjs/builders')
+const { DateTime } = require('luxon')
 const sendReminder = require('../.util/command-utils/partyfinder/sendReminder')
 const partyfinderSchema = require('../.util/mongo-utils/partyfinder/partyfinderSchema')
 
@@ -11,10 +12,10 @@ module.exports = {
 		const checkForParties = async () => {
 			// Lookup in MongoDB <-- Mongo can compare ISO dates to Epoch
 			// Find parties starting in less than 30 minutes that haven't had a reminder sent
-			const minutesFromNow30 = Date.now() + 60 * 30
+			const dt30MinFromNow = DateTime.now().plus({ minutes: 30 }).toUnixInteger()
 			let partyfinders = await partyfinderSchema.find({
 				$and: [
-					{ date: { $lte: minutesFromNow30 } }, // 30 minutes from  now in Epoch seconds
+					{ date: { $lte: dt30MinFromNow } }, // 30 minutes from  now in Epoch seconds
 					{ reminderSent: false },
 				],
 			})
@@ -30,7 +31,7 @@ module.exports = {
 			await partyfinderSchema.updateMany(
 				{
 					$and: [
-						{ date: { $lte: minutesFromNow30 } }, // 30 minutes from now in Epoch seconds
+						{ date: { $lte: dt30MinFromNow } }, // 30 minutes from now in Epoch seconds
 						{ reminderSent: false },
 					],
 				},

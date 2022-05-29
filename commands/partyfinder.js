@@ -20,7 +20,7 @@ module.exports = {
 			})
 
 			for (const party of partyFinders) {
-				console.log('PARTY')
+				console.log(party)
 				const dataDTTZ = JSON.parse(party.dataDTTZ)
 				const dataCreator = JSON.parse(party.dataCreator)
 				const dataSubmission = JSON.parse(party.dataSubmission)

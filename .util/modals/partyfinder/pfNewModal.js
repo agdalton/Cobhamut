@@ -97,6 +97,7 @@ module.exports = {
 			guildID: interaction.guildId,
 			channelID: interaction.channelId,
 			originalResponseID: interactionResponse.id,
+			reminderSent: false,
 		}).save()
 
 		return

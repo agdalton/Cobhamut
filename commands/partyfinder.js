@@ -10,16 +10,30 @@ module.exports = {
 		// Check every second for scheduled partyfinders
 		const checkForParties = async () => {
 			// Lookup in MongoDB <-- Mongo can compare ISO dates to Epoch
-			// Find parties starting in 30 minutes and send the reminder
+			// Find parties starting in less than 30 minutes that haven't had a reminder sent
 			let partyfinders = await partyfinderSchema.find({
-				date: Date.now() + 60 * 30, // 30 minutes from now
+				$and: [
+					{ date: { $lte: Date.now() + 60 * 30 } }, // 30 minutes from  now in Epoch seconds
+					{ reminderSent: false },
+				],
 			})
 
 			sendReminder(
 				client,
 				partyfinders,
-				'Your party is starting in 30 minutes!',
+				'Your party is starting in less than 30 minutes!',
 				globals
+			)
+
+			// Set reminderSent to true in MongoDB <-- prevents an akh corning of reminders
+			await partyfinderSchema.updateMany(
+				{
+					$and: [
+						{ date: { $lte: Date.now() + 60 * 30 } }, // 30 minutes from now in Epoch seconds
+						{ reminderSent: false },
+					],
+				},
+				{ reminderSent: true }
 			)
 
 			// Send reminders for parties starting NOW

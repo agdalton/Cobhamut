@@ -25,6 +25,7 @@ module.exports = {
 				console.log(
 					'Error trying to cache message : Removing from MongoDB'
 				)
+				// If we couldn't cache the message, delete it from MongoDB
 				await partyfinderSchema.deleteOne({ _id: party._id })
 			}
 		}
@@ -48,7 +49,7 @@ module.exports = {
 
 		// Grab globals
 		const { green, purple } = globals.colors
-		
+
 		// Grab the data from MongoDB
 		const dataDTTZ = JSON.parse(party.dataDTTZ)
 		const dataCreator = JSON.parse(party.dataCreator)

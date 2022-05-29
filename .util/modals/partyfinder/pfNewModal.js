@@ -22,11 +22,11 @@ module.exports = {
 
 		// Get modal inputs
 		const { fields } = interaction
-		const description = fields.getTextInputValue('pfDescription')
-		const size = fields.getTextInputValue('pfSize')
-		const date = fields.getTextInputValue('pfDate') ?? undefined
-		const time = fields.getTextInputValue('pfTime') ?? undefined
-		const timezone = fields.getTextInputValue('pfTimezone') ?? undefined
+		const description = fields.getTextInputValue('pfDescription').trim()
+		const size = fields.getTextInputValue('pfSize').trim()
+		const date = fields.getTextInputValue('pfDate').trim() ?? undefined
+		const time = fields.getTextInputValue('pfTime').trim() ?? undefined
+		const timezone = fields.getTextInputValue('pfTimezone').trim() ?? undefined
 
 		// --- Validate Party size, date, time, timezone --- //
 		const partyComp = getPartyComp(size)

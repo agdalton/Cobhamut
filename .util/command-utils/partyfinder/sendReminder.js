@@ -1,5 +1,5 @@
 // Function to send the reminder messages to the channel and DM to users
-const createPFEmbed = require('../.util/command-utils/partyfinder/createPFEmbed')
+const createPFEmbed = require('../../command-utils/partyfinder/createPFEmbed.js')
 
 module.exports = async (client, partyfinders, description, globals) => {
 	const { green, red } = globals.colors

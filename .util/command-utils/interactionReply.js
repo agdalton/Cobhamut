@@ -11,6 +11,7 @@ module.exports = async (
 ) => {
 	if (!edit) {
 		await interaction.reply({
+			allowedMentions: { parse: ['roles','users'] },
 			content: content,
 			embeds: embeds,
 			components: components,
@@ -18,6 +19,7 @@ module.exports = async (
 		})
 	} else {
 		await interaction.editReply({
+			allowedMentions: { parse: ['roles','users'] },
 			content: content,
 			embeds: embeds,
 			components: components,

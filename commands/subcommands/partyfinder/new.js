@@ -2,7 +2,6 @@
 const { MessageActionRow, Modal, TextInputComponent } = require('discord.js')
 
 module.exports = async (interaction, data, globals) => {
-	console.log(interaction.options.getRole('mentionRole'))
 	// Input components for the Modal
 	const description = new TextInputComponent()
 		.setCustomId('pfDescription')

@@ -38,23 +38,13 @@ module.exports = (date, timeTZ) => {
 				field: 'Time and timezone',
 				message: 'Invalid time and timezone submitted. Use HH:mmAM/PM TZ. For example, if submitting a partyfinder for 8:30 PM Eastern, use 8:30PM EST.',
 			})
-		}
-
-		let time = ''
-		let timezone = ''
-
-		try {
-			time = timeTZ.split(' ')[0].trim()
-			timezone = timeTZ.split(' ')[1].trim()
-		} catch (e) {
-			obj.isValid = false
-			obj.err.push({
-				field: 'Time and timezone',
-				message: 'Invalid time and timezone submitted. Use HH:mmAM/PM TZ. For example, if submitting a partyfinder for 8:30 PM Eastern, use 8:30PM EST.',
-			})
 
 			return obj // if we can't split timeTZ on the whitespace, we have to return as none of it can be validated
 		}
+
+		const time = timeTZ.split(' ')[0].trim()
+		const timezone = timeTZ.split(' ')[1].trim()
+
 		// Validate time
 		const timeRgx = /^(1[0-2]|0?[1-9]):([0-5][0-9])([AP]M)$/g // RegEx matching HH:mm <-- leading zeros optional for HH
 		if (!timeRgx.test(time)) {

@@ -21,7 +21,7 @@ module.exports = (interaction, memberData, globals, partyComp, dataDTTZ) => {
 			.setFooter({
 				text: `${
 					memberNick ? memberNick : memberUsername
-				} user /partyfinder`,
+				} used /partyfinder`,
 				iconURL: `${baseImageURL}/avatars/${memberID}/${memberAvatar}.png`,
 			})
 		// If invalid Party size

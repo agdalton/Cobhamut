@@ -165,7 +165,6 @@ module.exports = {
 					)
 					// Send the DM
 					await user.send({
-						content: mentionRole ? mentionRole : '',
 						embeds: [updatedEmbed],
 						allowedMentions: { parse: true },
 					})

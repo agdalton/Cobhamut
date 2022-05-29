@@ -21,6 +21,7 @@ module.exports = async (interaction, data, globals) => {
 				' asked the Magic 8 Ball!',
 			iconURL: `${baseImageURL}/avatars/${memberID}/${memberAvatar}`,
 		})
+		
 	reply(interaction, null, [embed], null, false, false)
 
 	// Record the question asked for future intervention

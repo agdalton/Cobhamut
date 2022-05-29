@@ -13,6 +13,7 @@ module.exports = {
 	init: (client) => {},
 	callback: async (client, interaction, globals) => {
 		const command = interaction.options.getSubcommand()
+		// Setup some member data based on who sent the command for use in the response embed
 		const data = {
 			memberID: interaction.member.user.id,
 			memberUsername: interaction.member.user.username,
@@ -20,6 +21,7 @@ module.exports = {
 			memberAvatar: interaction.member.user.avatar,
 		}
 
+		// Call the file for the subcommand submitted <-- require(filePath)() automatically calls the file's exported function
 		require(`./subcommands/${interaction.commandName}/${command}.js`)(
 			interaction,
 			data,

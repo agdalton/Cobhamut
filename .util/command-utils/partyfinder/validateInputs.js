@@ -7,6 +7,7 @@ module.exports = (interaction, memberData, globals, partyComp, dataDTTZ) => {
 	const { baseImageURL } = globals
 	const { error } = globals.colors
 
+	// If the partyComp has an error or the date, time, timezone inputs return invalid
 	if (partyComp.hasOwnProperty('err') || !dataDTTZ.isValid) {
 		const errEmbed = new MessageEmbed()
 			.setTitle('An error ocurred')
@@ -39,6 +40,7 @@ module.exports = (interaction, memberData, globals, partyComp, dataDTTZ) => {
 			}
 		}
 
+		// Send the errors back to the user ephemerally
 		reply(interaction, null, [errEmbed], null, true, false)
 
 		return false

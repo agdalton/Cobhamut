@@ -34,7 +34,7 @@ module.exports = {
 				globals
 			)
 
-			// Check every second since we're working with Epoch time
+			// Check every second
 			setTimeout(checkForParties, 1000 * 1)
 		}
 
@@ -44,6 +44,7 @@ module.exports = {
 		const command = interaction.options.getSubcommand()
 		const data = {}
 
+		// Call the file for the subcommand submitted <-- require(filePath)() automatically calls the file's exported function
 		require(`./subcommands/${interaction.commandName}/${command}.js`)(
 			interaction,
 			data,

@@ -2,6 +2,7 @@
 const { DateTime } = require('luxon')
 
 module.exports = (date, time, timezone) => {
+	// Setup an object to return with all the info we might need later
 	const obj = {
 		isValid: true,
 		dttz: false,

@@ -7,7 +7,7 @@ module.exports = async (interaction, data, globals) => {
 	const { last8BallQuestion, baseImageURL } = globals
 	const { gold } = globals.colors
 	const { memberID, memberUsername, memberNick, memberAvatar } = data
-	const intervene = Math.floor(Math.random() * 100) >= 90 ? true : false
+	const intervene = Math.floor(Math.random() * 100) >= 90 ? true : false // 90% of the time
 	const interventionType = interaction.options.getString('type')
 	let lastInteraction = last8BallQuestion.interaction
 	let lastQuestion = last8BallQuestion.question
@@ -56,6 +56,7 @@ module.exports = async (interaction, data, globals) => {
 			iconURL: `${baseImageURL}/avatars/${memberID}/${memberAvatar}`,
 		})
 
+	// Edit the original reply with the newly intervened reply and let the person who intervened know it worked
 	reply(lastInteraction, null, [embed], null, false, true)
 	reply(interaction, 'I have granted your wish!', null, null, false, false)
 	return

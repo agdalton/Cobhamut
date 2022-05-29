@@ -1,6 +1,4 @@
 // Respond to the partyfinder modal and schedule the partyfinder
-const { MessageEmbed } = require('discord.js')
-const { DateTime } = require('luxon')
 const validateDTTZ = require('../../command-utils/partyfinder/validateDTTZ.js')
 const validateInputs = require('../../command-utils/partyfinder/validateInputs.js')
 const getPartyComp = require('../../command-utils/partyfinder/getPartyComp.js')
@@ -12,15 +10,7 @@ module.exports = {
 	name: 'pfNewModal',
 	callback: async (client, interaction, globals) => {
 		// Destruct globals
-		const { baseImageURL } = globals
 		const { purple } = globals.colors
-
-		// Setup client data to pass as necessary
-		const clientData = {
-			clientID: client.user.id,
-			clientUsername: client.user.username,
-			clientAvatar: client.user.avatar,
-		}
 
 		// Setup member data to pass as necessary
 		const memberData = {
@@ -82,7 +72,7 @@ module.exports = {
 				)
 			)
 
-		// Create collection for MongoDB and save it
+		// Create document in MongoDB and save it <-- the keys are like column names for the database
 		const interactionResponse = await interaction.fetchReply()
 		await new partyfinderSchema({
 			date: dataDTTZ.pfDT.dtISO,

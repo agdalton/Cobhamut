@@ -4,6 +4,7 @@ const createPFEmbed = require('../../command-utils/partyfinder/createPFEmbed.js'
 module.exports = async (client, partyfinders, description, globals) => {
 	const { green, red } = globals.colors
 
+    // Loop through all the incoming partyfinders
 	for (const party of partyfinders) {
 		const dataDTTZ = JSON.parse(party.dataDTTZ)
 		const dataCreator = JSON.parse(party.dataCreator)

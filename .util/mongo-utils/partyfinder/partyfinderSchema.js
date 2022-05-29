@@ -5,6 +5,7 @@ const reqString = {
 	required: true,
 }
 
+// Create the schema we're going to use in MongoDB <-- These keys are basically column names
 const partyfinderSchema = new mongoose.Schema({
 	date: {
 		type: Date,

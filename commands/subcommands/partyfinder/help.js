@@ -39,7 +39,7 @@ module.exports = async (interaction, data, globals) => {
 				'After submitting the initial command, you will be prompted with the popup shown below. Complete the fields and hit submit:'
 		)
 		.addField(
-			'\u200b',
+			'Popup fields',
 			'>>> **Description**\nType in a brief description of your party.\n\n**Party Size**\nLeave this field alone. It should be automatically filled in with the number of players you chose earlier.\n\n' +
 				"**Date**\nOptionally, you can enter a Date. This should be in M/dd format and the leading zeros are optional. For example, if you'd like to party up on July 12th, you'd type 7/12 *or* 07/12.\n\n" +
 				'**Time and timezone**\nIf you typed in a date, you are **required** to provide a time and timezone. This should be formatted at HH:mmAM/PM TZ. ' +
@@ -53,7 +53,7 @@ module.exports = async (interaction, data, globals) => {
 		)
 		.addField(
 			'Deleting a partyfinder',
-			'To remove a partyfinder, have the person who created it click the ❌. Alternatively, an admin or moderator can delete the signup message (the message with the signup reactions). ' +
+			'To remove a partyfinder, have the person who created it click the ❌.\nAlternatively, an admin or moderator can delete the signup message (the message with the signup reactions).\n' +
 				'Both of these options will prevent anyone who signed up from receiving the DM and mention reminders.'
 		)
 

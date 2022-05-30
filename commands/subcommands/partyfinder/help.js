@@ -34,26 +34,26 @@ module.exports = async (interaction, data, globals) => {
 		)
 		.addField(
 			'Creating a partyfinder',
-			'When using /partyfinder new, you will be prompted with a required choice for the party size. ' +
+			'When using */partyfinder new*, you will be prompted with a required choice for the party size. ' +
 				"Optionally, select the ping option and choose a role to ping so that server members are notified that you're recruiting for your partyfinder. " +
-				'After submitting the initial command, you will be prompted with the popup shown below. Complete the fields and hit submit:'
+				'After submitting the initial command, you will be prompted with the popup shown at the bottom. Complete the fields and hit submit:'
 		)
 		.addField(
 			'Popup fields',
-			'>>> **Description**\nType in a brief description of your party.\n\n**Party Size**\nLeave this field alone. It should be automatically filled in with the number of players you chose earlier.\n\n' +
+			'>>> **Description**\nType in a brief description of your party.\n\n**Party Size**\nDo not change this field. It should be automatically filled in with the number of players you chose earlier.\n\n' +
 				"**Date**\nOptionally, you can enter a Date. This should be in M/dd format and the leading zeros are optional.\n\nFor example, if you'd like to party up on July 12th, you'd type 7/12 *or* 07/12.\n\n" +
 				'**Time and timezone**\nIf you typed in a date, you are **required** to provide a time and timezone. This should be formatted at HH:mmAM/PM TZ.\n\n' +
 				"For example, if your party should start at 8:30 PM Eastern time, you'd type in 8:30PM EST.\n\nCurrently, only PST, CST, and EST are supported. Any abbreviation of these zones is accepted, i.e. CST, CDT, CT.\n\n" +
-				"**Ping role**\nIf you selected a role to ping when submitting the initial command, it's snowflake value will appear here. Do not change this field."
+				"**Ping role**\nDo not change this field. If you selected a role to ping when submitting the initial command, it's snowflake value will appear here."
 		)
 		.addField(
 			'Signing up for a partyfinder',
-			"To signup for a partyfinder simply click on the reaction for the role you'd like to play. If you can play any role, then you can select fill to let the party leader know you're good to play anything.\n\n" +
+			"Click on the reaction for the role you'd like to play. If you can play any role, then you can select fill to let the party leader know you're good to play anything.\n\n" +
 				'<:tank:977771775960174652> Tanks\n<:healer:977771776253775932> Healers\n<:melee:977771775859494942> Damage\n<:fill:977774943154618368> Fill'
 		)
 		.addField(
 			'Deleting a partyfinder',
-			'To remove a partyfinder, have the person who created it click the ❌.\nAlternatively, an admin or moderator can delete the signup message (the message with the signup reactions).\n' +
+			'Have the person who created it click the ❌.\n\nAlternatively, an admin or moderator can delete the signup message (the message with the signup reactions).\n\n' +
 				'Both of these options will prevent anyone who signed up from receiving the DM and mention reminders.'
 		)
 

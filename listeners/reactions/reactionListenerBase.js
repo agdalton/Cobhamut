@@ -10,7 +10,7 @@ module.exports = async (client, reactionListener, globals) => {
 			console.log('There was an error fetching the message')
 		}
 
-		if (applicableEmoji.includes(reaction._emoji.id))
+		//if (applicableEmoji.includes(reaction._emoji.id))
 			callback(client, fullReaction, user, false, globals)
 
 		return

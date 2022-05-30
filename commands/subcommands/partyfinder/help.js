@@ -30,11 +30,11 @@ module.exports = async (interaction, data, globals) => {
 		.setDescription(
 			'The Partyfinder command will allow you to setup parties for Final Fantasy XIV consisting of 4, 8, or 24 players.\n\n' +
 				"Optionally, you can include a date and time for the party to start. If included, the players who signup will be DM'd " +
-				'and also pinged in the channel where the partyfinder was originally created 30 minutes before the start time and again at the start time.'
+				'and pinged, in the channel where the partyfinder was originally created, 30 minutes before the start time and again at the start time.'
 		)
 		.addField(
 			'Creating a partyfinder',
-			'When using */partyfinder new*, you will be prompted with a required choice for the party size.\n\n' +
+			'When using /partyfinder new, you will be prompted with a required choice for party size.\n\n' +
 				"Optional. Select ping and choose a role so that server members are notified that you're recruiting for your partyfinder.\n\n" +
 				'After submitting the initial command, you will be prompted with the popup shown at the bottom. Complete the fields and hit submit:'
 		)

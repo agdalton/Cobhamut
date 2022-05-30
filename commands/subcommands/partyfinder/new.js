@@ -6,6 +6,9 @@ module.exports = async (interaction, data, globals) => {
 	const partySize = interaction.options.getString('size')
 	const pingRole = interaction.options.getString('ping') || ''
 
+	// Set pingRole to string if it's not empty
+	if (pingRole !== '') pingRole.toString()
+
 	// Input components for the Modal
 	const description = new TextInputComponent()
 		.setCustomId('pfDescription')

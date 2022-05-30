@@ -7,7 +7,7 @@ module.exports = async (interaction, data, globals) => {
 	const pingRole = interaction.options.getRole('ping') || ''
 	console.log(pingRole)
 	// Set pingRole to string if it's not empty
-	pingRole.toString()
+	if (pingRole !== '') pingRole = pingRole.toString()
 
 	// Input components for the Modal
 	const description = new TextInputComponent()

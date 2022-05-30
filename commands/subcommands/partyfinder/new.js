@@ -2,6 +2,10 @@
 const { MessageActionRow, Modal, TextInputComponent } = require('discord.js')
 
 module.exports = async (interaction, data, globals) => {
+	// Get size, ping from the interaction
+	const partySize = interaction.options.getString('size')
+	const pingRole = interaction.options.getString('ping') || ''
+
 	// Input components for the Modal
 	const description = new TextInputComponent()
 		.setCustomId('pfDescription')
@@ -12,7 +16,7 @@ module.exports = async (interaction, data, globals) => {
 	const size = new TextInputComponent()
 		.setCustomId('pfSize')
 		.setLabel('Party size')
-		.setValue(interaction.options.getString('size'))
+		.setValue(partySize)
 		.setPlaceholder('8')
 		.setStyle('SHORT')
 		.setRequired(true)
@@ -29,7 +33,7 @@ module.exports = async (interaction, data, globals) => {
 	const mentionRole = new TextInputComponent()
 		.setCustomId('pfMentionRole')
 		.setLabel('Ping role')
-		.setValue(interaction.options.getRole('ping') ?? '')
+		.setValue(pingRole)
 		.setStyle('SHORT')
 
 	// Modal setup

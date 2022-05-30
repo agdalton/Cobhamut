@@ -5,7 +5,7 @@ const { MessageEmbed } = require('discord.js')
 module.exports = (interaction, memberData, globals, partyComp, dataDTTZ) => {
 	const { memberID, memberUsername, memberNick, memberAvatar } = memberData
 	const { baseImageURL } = globals
-	const { red } = globals.colors
+	const { orange } = globals.colors
 
 	// If the partyComp has an error or the date, time, timezone inputs return invalid
 	if (partyComp.hasOwnProperty('err') || !dataDTTZ.isValid) {
@@ -14,7 +14,7 @@ module.exports = (interaction, memberData, globals, partyComp, dataDTTZ) => {
 			.setDescription(
 				'Cobhamut encountered an error while processing /partyfinder. See below for details.'
 			)
-			.setColor(red)
+			.setColor(orange)
 			.setThumbnail(
 				'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/htc/37/warning-sign_26a0.png'
 			)

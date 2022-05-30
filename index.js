@@ -24,6 +24,7 @@ globals['last8BallQuestion'] = { interaction: '', question: '' }
 globals['colors'] = {
 	blue: '#21bbfc',
 	red: '#a62828',
+	orange: '#f7df23',
 	green: '#4be34b',
 	white: '#e3dee7',
 	purple: '#9c59b6',

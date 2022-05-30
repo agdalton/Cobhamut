@@ -5,7 +5,7 @@ module.exports = async (interaction, data, globals) => {
 	// Get size, ping from the interaction
 	const partySize = interaction.options.getString('size')
 	const pingRole = interaction.options.getRole('ping') || ''
-
+console.log(pingRole)
 	// Set pingRole to string if it's not empty
 	if (pingRole !== '') pingRole.toString()
 

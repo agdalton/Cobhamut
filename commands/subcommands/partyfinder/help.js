@@ -17,7 +17,7 @@ module.exports = async (interaction, data, globals) => {
 		.setThumbnail(
 			'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/htc/37/information-source_2139.png'
 		)
-		.setImage('https://i.imgur.com/ul5epXy.png')
+		.setImage('https://i.imgur.com/YmV426L.png')
 		.setColor(blue)
 		.setFooter({
 			text: `${

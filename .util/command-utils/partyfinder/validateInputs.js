@@ -16,7 +16,7 @@ module.exports = (interaction, memberData, globals, partyComp, dataDTTZ) => {
 			)
 			.setColor(error)
 			.setThumbnail(
-				'https://cdn1.iconfinder.com/data/icons/basic-ui-elements-color-round/3/61-512.png'
+				'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/htc/37/warning-sign_26a0.png'
 			)
 			.setFooter({
 				text: `${

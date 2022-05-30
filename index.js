@@ -22,6 +22,7 @@ const globals = {}
 globals['baseImageURL'] = 'https://cdn.discordapp.com'
 globals['last8BallQuestion'] = { interaction: '', question: '' }
 globals['colors'] = {
+	blue: '#21bbfc',
 	red: '#a62828',
 	green: '#4be34b',
 	white: '#e3dee7',

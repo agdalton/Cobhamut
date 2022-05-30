@@ -112,6 +112,13 @@ module.exports = {
 				)
 		)
 
+		// Help subcommand
+		data.addSubcommand((subcommand) =>
+			subcommand
+				.setName('help')
+				.setDescription('How to use /partyfinder new')
+		)
+
 		return data.toJSON()
 	})(),
 }

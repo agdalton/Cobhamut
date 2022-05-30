@@ -89,8 +89,10 @@ module.exports = (date, timeTZ) => {
 			let minute = parseInt(arrTime[1]) // HH:mm index 1 of split is mm
 			// Add 12 hours to account for 24hr clock used by Luxon
 			if (meridiem === 'PM') hour += 12
-			// Get the current year
-			console.log(hour)
+
+			// Fix 12:00AM for 24hr clock
+			if (meridiem === 'AM' && hour === 12) hour = 0
+
 			const nowDT = DateTime.now()
 			const currentYear = nowDT.year
 			// Begin constructing a Luxon DateTime for the partyfinder

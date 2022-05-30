@@ -34,8 +34,8 @@ module.exports = async (interaction, data, globals) => {
 		)
 		.addField(
 			'Creating a partyfinder',
-			'When using */partyfinder new*, you will be prompted with a required choice for the party size. ' +
-				"Optionally, select the ping option and choose a role to ping so that server members are notified that you're recruiting for your partyfinder. " +
+			'When using */partyfinder new*, you will be prompted with a required choice for the party size.\n\n' +
+				"Optionally, select ping and choose a role so that server members are notified that you're recruiting for your partyfinder.\n\n" +
 				'After submitting the initial command, you will be prompted with the popup shown at the bottom. Complete the fields and hit submit:'
 		)
 		.addField(

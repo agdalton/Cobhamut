@@ -70,6 +70,7 @@ client.on('ready', async () => {
 	}
 
 	readCommands('commands')
+	
 	// LOAD SELECT MENUS //
 	// require base select menu file
 	const baseSelectMenuFile = 'selectMenuBase.js'

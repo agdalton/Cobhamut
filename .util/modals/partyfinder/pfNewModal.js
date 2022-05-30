@@ -56,7 +56,7 @@ module.exports = {
 			[] // Array[] list of fill
 		)
 
-		reply(interaction, mentionRole ? mentionRole : null, [embed], null, false, false)
+		reply(interaction, mentionRole ? mentionRole.toString() : null, [embed], null, false, false)
 
 		// Add reactions for role selection
 		const response = await interaction.fetchReply()
@@ -97,7 +97,7 @@ module.exports = {
 			guildID: interaction.guildId,
 			channelID: interaction.channelId,
 			originalResponseID: interactionResponse.id,
-			mentionRole: mentionRole,
+			mentionRole: mentionRole.toString(),
 			reminderSent: false,
 		}).save()
 

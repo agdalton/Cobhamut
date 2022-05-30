@@ -9,6 +9,7 @@ module.exports = {
 		'977771776253775932',
 		'977771775859494942',
 		'977774943154618368',
+		'❌'
 	],
 	init: async (client, globals) => {
 		// Find exisiting partyfinders that we need to cache upon restart so that reaction tracking works

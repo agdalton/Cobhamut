@@ -40,7 +40,7 @@ module.exports = async (interaction, data, globals) => {
 		)
 		.addField(
 			'\u200b',
-			'>>>**Description**\nType in a brief description of your party.\n\n**Party Size**\nLeave this field alone. It should be automatically filled in with the number of players you chose earlier.\n\n' +
+			'>>> **Description**\nType in a brief description of your party.\n\n**Party Size**\nLeave this field alone. It should be automatically filled in with the number of players you chose earlier.\n\n' +
 				"**Date**\nOptionally, you can enter a Date. This should be in M/dd format and the leading zeros are optional. For example, if you'd like to party up on July 12th, you'd type 7/12 *or* 07/12.\n\n" +
 				'**Time and timezone**\nIf you typed in a date, you are **required** to provide a time and timezone. This should be formatted at HH:mmAM/PM TZ. ' +
 				"For example, if your party should start at 8:30 PM Eastern time, you'd type in 8:30PM EST. Currently, only PST, CST, and EST are supported. Any abbreviation of these zones is accepted, i.e. CST, CDT, CT.\n\n" +

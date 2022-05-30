@@ -70,8 +70,8 @@ module.exports = {
 			// return if the person who reacted ❌ did not create the partyfinder
 			if (user.id !== dataCreator.memberID) return
 
-			// Delete the partyfinder
-			await partyfinderSchema.deleteOne({ _id: party._id })
+			// Delete the partyfinder via deleting the original message <-- the deletedMessages listener will remove it from MongoDB
+			await message.delete()
 			return
 		}
 

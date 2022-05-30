@@ -50,7 +50,7 @@ module.exports = {
 		if (!party) return
 
 		// If the reaction was ❌ then delete the partyfinder <-- above the return for party full to allow cancelations
-		console.log(raction._emoji.id)
+		console.log(reaction._emoji.id)
 
 		// If the party is full, return
 		if (party.pfFull) return

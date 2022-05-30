@@ -30,7 +30,10 @@ const partyfinderSchema = new mongoose.Schema({
 	guildID: reqString, // Discord server ID of the server the command was sent from
 	channelID: reqString, // Discord channel ID of the channel the command was sent from
 	originalResponseID: reqString, // Discord Message ID of the message that tracks RSVPs (the message people react to)
-	mentionRole: reqString,
+	mentionRole: { // Discord role snowflake pinged by the partyfinder command in the reply content
+		type: String,
+		required: false,
+	},
 	reminderSent: { type: Boolean, required: true },
 })
 

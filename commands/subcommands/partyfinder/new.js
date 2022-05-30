@@ -4,7 +4,7 @@ const { MessageActionRow, Modal, TextInputComponent } = require('discord.js')
 module.exports = async (interaction, data, globals) => {
 	// Get size, ping from the interaction
 	const partySize = interaction.options.getString('size')
-	const pingRole = interaction.options.getRole('ping') || ''
+	let pingRole = interaction.options.getRole('ping') || ''
 
 	// Set pingRole to string if it's not empty
 	if (pingRole !== '') pingRole = pingRole.toString()

@@ -84,9 +84,11 @@ module.exports = (date, timeTZ) => {
 		if (obj.isValid) {
 			const meridiem = time.substring(time.length - 2) // AM/PM
 			const arrTime = time.slice(0, -2).split(':') // [0] is hour [1] is minutes
+
 			// Convert hours and minutes to integers
 			let hour = parseInt(arrTime[0]) // HH:mm index 0 of split is HH
 			let minute = parseInt(arrTime[1]) // HH:mm index 1 of split is mm
+
 			// Add 12 hours to account for 24hr clock used by Luxon
 			if (meridiem === 'PM') hour += 12
 
@@ -95,6 +97,7 @@ module.exports = (date, timeTZ) => {
 
 			const nowDT = DateTime.now()
 			const currentYear = nowDT.year
+			
 			// Begin constructing a Luxon DateTime for the partyfinder
 			const dtObj = {
 				year: currentYear,
@@ -103,6 +106,7 @@ module.exports = (date, timeTZ) => {
 				hour: hour,
 				minute: minute,
 			}
+
 			const dtZone = { zone: longTz }
 			const pfDT = DateTime.fromObject(dtObj, dtZone)
 

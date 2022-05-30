@@ -9,7 +9,7 @@ module.exports = {
 		'977771776253775932',
 		'977771775859494942',
 		'977774943154618368',
-		'❌'
+		'❌',
 	],
 	init: async (client, globals) => {
 		// Find exisiting partyfinders that we need to cache upon restart so that reaction tracking works
@@ -50,13 +50,6 @@ module.exports = {
 		// If the party can't be found in MongoDB, return
 		if (!party) return
 
-		// If the reaction was ❌ then delete the partyfinder <-- above the return for party full to allow cancelations
-		console.log(reaction)
-		console.log(reaction._emoji)
-
-		// If the party is full, return
-		if (party.pfFull) return
-
 		// Grab globals
 		const { green, purple } = globals.colors
 
@@ -70,6 +63,20 @@ module.exports = {
 		let pfFull = party.pfFull
 		const { mentionRole } = party
 		const emoji = reaction._emoji.id
+		const message = await reaction.message.fetch()
+
+		// If the reaction was ❌ then delete the partyfinder <-- above the return for party full to allow cancelations
+		if (reaction._emoji.name === '❌') {
+			// return if the person who reacted ❌ did not create the partyfinder
+			if (user.id !== dataCreator.memberID) return
+
+			// Delete the partyfinder
+			await partyfinderSchema.deleteOne({ _id: party._id })
+			return
+		}
+
+		// If the party is full, return
+		if (party.pfFull) return
 
 		// Determine what role the user selected
 		let role = ''
@@ -137,7 +144,6 @@ module.exports = {
 		await party.save()
 
 		// Fetch the full message
-		const message = await reaction.message.fetch()
 		const updatedEmbed = createPFEmbed(
 			dataCreator,
 			globals,

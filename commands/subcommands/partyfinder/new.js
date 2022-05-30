@@ -42,7 +42,7 @@ module.exports = async (interaction, data, globals) => {
 	// Modal setup
 	const modal = new Modal()
 		.setCustomId('pfNewModal') // ../.././.util/modals/partyfinder/pfNewModal.js
-		.setTitle('New Party finder')
+		.setTitle('New Partyfinder')
 
 	// Add all the components to rows <-- one component per row, maximum 5 rows
 	const modalRow1 = new MessageActionRow().addComponents(description)

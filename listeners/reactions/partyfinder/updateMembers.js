@@ -50,7 +50,7 @@ module.exports = {
 		if (!party) return
 
 		// If the reaction was ❌ then delete the partyfinder <-- above the return for party full to allow cancelations
-		
+
 
 		// If the party is full, return
 		if (party.pfFull) return
@@ -152,7 +152,7 @@ module.exports = {
 
 		// Update the message to reflect the added/removed user
 		await message.edit({
-			content: mentionRole ? mentionRole : '',
+			content: mentionRole ? mentionRole : null,
 			embeds: [updatedEmbed],
 			allowedMentions: { parse: ['roles', 'users'] },
 		})

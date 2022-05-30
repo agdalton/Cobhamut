@@ -24,10 +24,9 @@ module.exports = {
 		const { fields } = interaction
 		const description = fields.getTextInputValue('pfDescription').trim()
 		const size = fields.getTextInputValue('pfSize').trim()
-		const mentionRole = fields.getTextInputValue('pfMentionRole').trim() ?? ''
+		const mentionRole = fields.getTextInputValue('pfMentionRole').trim() || ''
 		const date = fields.getTextInputValue('pfDate').trim() ?? undefined
-		const timeTZ = fields.getTextInputValue('pfTimeTimezone').trim().toUpperCase() ?? undefined
-		//const timezone = fields.getTextInputValue('pfTimezone').trim() ?? undefined
+		const timeTZ = fields.getTextInputValue('pfTimeTimezone').trim().toUpperCase() || undefined
 
 		// --- Validate Party size, date, time, timezone --- //
 		const partyComp = getPartyComp(size)
@@ -57,7 +56,7 @@ module.exports = {
 			[] // Array[] list of fill
 		)
 
-		reply(interaction, mentionRole, [embed], null, false, false)
+		reply(interaction, mentionRole ? mentionRole : null, [embed], null, false, false)
 
 		// Add reactions for role selection
 		const response = await interaction.fetchReply()

@@ -30,7 +30,6 @@ module.exports = async (interaction, data, globals) => {
 		.setCustomId('pfMentionRole')
 		.setLabel('Ping role')
 		.setValue(interaction.options.getRole('ping') ?? '')
-		.setPlaceholder('Discord role snowflake')
 		.setStyle('SHORT')
 
 	// Modal setup

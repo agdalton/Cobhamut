@@ -36,12 +36,33 @@ module.exports = async (interaction, data, globals) => {
 			'Creating a partyfinder',
 			'When using /partyfinder new, you will be prompted with a required choice for the party size. ' +
 				"Optionally, select the ping option and choose a role to ping so that server members are notified that you're recruiting for your partyfinder. " +
-				'After submitting the initial command, you will be prompted with the modal shown below. Complete the fields and hit submit:\n\n' +
-				'**Description**\nType in a brief description of your party.\n\n**Party Size**\nLeave this field alone. It should be automatically filled in with the number of players you chose earlier.\n\n' +
-				"**Date**\nOptionally, you can enter a Date. This should be in M/dd format and the leading zeros are optional. For example, if you'd like to party up on July 12th, you'd type 7/12 *or* 07/12.\n\n" +
-				'**Time and timezone**\nIf you typed in a date, you are **required** to provide a time and timezone. This should be formatted at HH:mmAM/PM TZ. ' +
-				"For example, if your party should start at 8:30 PM Eastern time, you'd type in 8:30PM EST. Currently, only PST, CST, and EST are supported. Any abbreviation of these zones is accepted, i.e. CST, CDT, CT.\n\n" +
-				"**Ping role**If you selected a role to ping when submitting the initial command, it's snowflake value will appear here. **Do not change this field.**"
+				'After submitting the initial command, you will be prompted with the modal shown below. Complete the fields and hit submit.'
+		)
+		.addField(
+			'Description',
+			'Type in a brief description of your party.',
+			true
+		)
+		.addField(
+			'Party size',
+			'Leave this field alone. It should be automatically filled in with the number of players you chose earlier.',
+			true
+		)
+		.addField(
+			'Date',
+			"Optionally, you can enter a Date. This should be in M/dd format and the leading zeros are optional. For example, if you'd like to party up on July 12th, you'd type 7/12 *or* 07/12.",
+			true
+		)
+		.addField(
+			'Time and timezone',
+			'If you typed in a date, you are **required** to provide a time and timezone. This should be formatted at HH:mmAM/PM TZ. For example, ' +
+				"if your party should start at 8:30 PM Eastern time, you'd type in 8:30PM EST. Currently, only PST, CST, and EST are supported. Any abbreviation of these zones is accepted, i.e. CST, CDT, CT.",
+			true
+		)
+		.addField(
+			'Ping role',
+			"If you selected a role to ping when submitting the initial command, it's snowflake value will appear here. **Do not change this field.**",
+			true
 		)
 		.addField(
 			'Signing up for a partyfinder',

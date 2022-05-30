@@ -28,7 +28,7 @@ module.exports = async (interaction, data, globals) => {
 			iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 		})
 		.setDescription(
-			'The Partyfinder command will allow you to setup parties for Final Fantasy XIV consisting of 4, 8, or 24 players.' +
+			'The Partyfinder command will allow you to setup parties for Final Fantasy XIV consisting of 4, 8, or 24 players. ' +
 				"Optionally, you can include a date and time for the party to start. If included, the players who signup will be DM'd " +
 				'and also mentioned in the channel where the partyfinder was originally created 30 minutes before the start time and at the start time.'
 		)

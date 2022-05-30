@@ -70,7 +70,7 @@ client.on('ready', async () => {
 	}
 
 	readCommands('commands')
-	
+
 	// LOAD SELECT MENUS //
 	// require base select menu file
 	const baseSelectMenuFile = 'selectMenuBase.js'
@@ -123,7 +123,7 @@ client.on('ready', async () => {
 	// require base listener file
 	const baseReactionListenerFile = 'reactionListenerBase.js'
 	const reactionListenerBase = require(`./listeners/reactions/${baseReactionListenerFile}`)
-	// build function to read all files in the modals directory
+	// build function to read all files in the listeners/reactions directory
 	const readReactionListeners = (dir) => {
 		const files = fs.readdirSync(path.join(__dirname, dir))
 
@@ -148,11 +148,11 @@ client.on('ready', async () => {
 
 	readReactionListeners('./listeners/reactions')
 
-	// LOAD MESSAGEDELETE LISTENERS //
+	// LOAD DELETEDMESSAGE LISTENERS //
 	// require base listener file
 	const baseDeletedMessagesListenerFile = 'deletedMessagesListenerBase.js'
 	const deletedMessagesListenerBase = require(`./listeners/deletedMessages/${baseDeletedMessagesListenerFile}`)
-	// build function to read all files in the modals directory
+	// build function to read all files in the listeners/deletedMessages directory
 	const readDeletedMessagesListeners = (dir) => {
 		const files = fs.readdirSync(path.join(__dirname, dir))
 

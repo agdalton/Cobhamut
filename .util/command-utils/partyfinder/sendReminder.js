@@ -52,7 +52,7 @@ module.exports = async (client, partyfinders, description, globals) => {
 
 		// Message the channel and mention the users
 		await channel.send({
-			content: userList.join(),
+			content: userList.join().replaceAll(',', ' '),
 			embeds: [embed],
 		})
 

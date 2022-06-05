@@ -4,6 +4,7 @@ const createPFEmbed = require('../../../.util/command-utils/partyfinder/createPF
 const getPartyComp = require('../../../.util/command-utils/partyfinder/getPartyComp')
 const partyfinderSchema = require('../../../.util/mongo-utils/partyfinder/partyfinderSchema.js')
 const validateDTTZ = require('../../../.util/command-utils/partyfinder/validateDTTZ')
+const validateInputs = require('../../../.util/command-utils/partyfinder/validateInputs.js')
 
 module.exports = async (interaction, data, globals) => {
 	// destruct globals

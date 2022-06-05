@@ -34,7 +34,7 @@ module.exports = {
 			await partyfinderSchema.updateMany(
 				{
 					$and: [
-						{ date: { $lte: dt30MinFromNow } }, // 30 minutes from now in Epoch seconds
+						{ date: { $lte: dt30MinFromNow } },
 						{ reminderSent: false },
 					],
 				},

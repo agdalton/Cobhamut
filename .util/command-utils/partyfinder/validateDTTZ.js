@@ -25,7 +25,7 @@ module.exports = (date, time, ampm, timezone) => {
 			obj.isValid = false
 			obj.err.push({
 				field: 'Date',
-				message: 'Invalid date submitted. Use M/dd.\nFor example, if submitting a partyfinder for May 9th, use 5/9. The date must be within 30 days from today.',
+				message: 'Invalid date submitted. Use M/dd.\nFor example, if submitting a partyfinder for May 9th, type 5/9. The date must be within 30 days from today.',
 			})
 		}
 
@@ -102,7 +102,7 @@ module.exports = (date, time, ampm, timezone) => {
 		obj.isValid = false
 		obj.err.push({
 			field: 'Mandatory',
-			message: 'When using the date, time, and timezone fields all 3 are required.',
+			message: 'When using the date, time, and timezone options, they all are required.',
 		})
 	}
 

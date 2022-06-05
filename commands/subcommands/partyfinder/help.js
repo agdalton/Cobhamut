@@ -43,7 +43,7 @@ module.exports = async (interaction, data, globals) => {
 				"**Ping**\nOptional. Select a discord role that Cobhamut should ping. This will let people know you're recruiting players." +
 				"**Date**\nOptional. This should be in M/dd format and the leading zeros are optional.\n\nFor example, if you'd like to party up on July 12th, you'd type 7/12 *or* 07/12.\n\n" +
 				'**Time**\nOptional. If you typed in a date, you are **required** to provide a time. This should be formatted at HH:mm.\n\n' +
-				'**AMPM**\nOptional. If you typed in a date and time, you are **required** to provided AM or PM. Choose whether the time you entered is in the morning or afternoon.\n\n' +
+				'**AMPM**\nOptional. If you typed in a date and time, you are **required to provided AM or PM. Choose whether the time you entered is in the morning or afternoon.\n\n' +
 				'**Timezone**\n Optional. If you type in a date and time, you are **required** to provide a timezone. Choose between US/Pacific, US/Central, or US/Eastern timezones.'
 		)
 		.addField(

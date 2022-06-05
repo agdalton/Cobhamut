@@ -13,7 +13,7 @@ module.exports = async (interaction, data, globals) => {
 	// Get subcommand optoins
 	const pfDescription = interaction.options.getString('description')
 	const pfSize = interaction.options.getString('size')
-	const pfPingRole = interaction.options.getRole('ping')
+	const pfPingRole = interaction.options.getRole('ping') || undefined
 	const pfDate = interaction.options.getString('date')
 	const pfTime = interaction.options.getString('time')
 	const pfAMPM = interaction.options.getString('ampm')

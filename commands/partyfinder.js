@@ -90,12 +90,12 @@ module.exports = {
 				.setDescription(
 					'Create a new party finder for a FF14 group'
 				)
-				.addStringOption((option) => {
+				.addStringOption((option) =>
 					option
 						.setName('description')
 						.setDescription("What's the partyfinder for?")
 						.setRequired(true)
-				})
+				)
 				.addStringOption((option) =>
 					option
 						.setName('size')
@@ -116,21 +116,21 @@ module.exports = {
 							"Ping a role to let members know you're recruiting"
 						)
 				)
-				.addStringOption((option) => {
+				.addStringOption((option) =>
 					option
 						.setName('date')
 						.setDescription(
 							'Month and day (M/dd) the partyfinder will take place'
 						)
-				})
-				.addStringOption((option) => {
+				)
+				.addStringOption((option) =>
 					option
 						.setName('time')
 						.setDescription(
 							'Time (HH:mm) the partyfinder will take place. REQUIRED IF A DATE IS ENTERED'
 						)
-				})
-				.addStringOption((option) => {
+				)
+				.addStringOption((option) =>
 					option
 						.setName('ampm')
 						.setDescription(
@@ -143,8 +143,8 @@ module.exports = {
 							},
 							{ name: 'PM', value: 'pm' }
 						)
-				})
-				.addStringOption((option) => {
+				)
+				.addStringOption((option) =>
 					option
 						.setName('timezone')
 						.setDescription(
@@ -164,7 +164,7 @@ module.exports = {
 								value: 'eastern',
 							}
 						)
-				})
+				)
 		)
 
 		// Help subcommand

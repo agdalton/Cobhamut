@@ -24,9 +24,14 @@ module.exports = {
 		const { fields } = interaction
 		const description = fields.getTextInputValue('pfDescription').trim()
 		const size = fields.getTextInputValue('pfSize').trim()
-		const mentionRole = fields.getTextInputValue('pfMentionRole').trim() || ''
+		const mentionRole =
+			fields.getTextInputValue('pfMentionRole').trim() || ''
 		const date = fields.getTextInputValue('pfDate').trim() ?? undefined
-		const timeTZ = fields.getTextInputValue('pfTimeTimezone').trim().toUpperCase() || undefined
+		const timeTZ =
+			fields
+				.getTextInputValue('pfTimeTimezone')
+				.trim()
+				.toUpperCase() || undefined
 
 		// --- Validate Party size, date, time, timezone --- //
 		const partyComp = getPartyComp(size)
@@ -56,7 +61,14 @@ module.exports = {
 			[] // Array[] list of fill
 		)
 
-		reply(interaction, mentionRole ? mentionRole : null, [embed], null, false, false)
+		reply(
+			interaction,
+			mentionRole ? mentionRole : null,
+			[embed],
+			null,
+			false,
+			false
+		)
 
 		// Add reactions for role selection
 		const response = await interaction.fetchReply()
@@ -76,7 +88,7 @@ module.exports = {
 		// Create document in MongoDB and save it <-- the keys are like column names for the database
 		const interactionResponse = await interaction.fetchReply()
 		await new partyfinderSchema({
-			date: dataDTTZ.pfDT.dtISO,
+			date: dataDTTZ.dttz ? dataDTTZ.pfDT.dtISO : null,
 			dataDTTZ: JSON.stringify(dataDTTZ),
 			dataCreator: JSON.stringify(memberData),
 			dataSubmission: JSON.stringify({

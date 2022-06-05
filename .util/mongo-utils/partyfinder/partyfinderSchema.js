@@ -9,9 +9,12 @@ const reqString = {
 const partyfinderSchema = new mongoose.Schema({
 	date: {
 		type: Date,
-		required: true,
+		required: false,
 	}, // ISODate of when the party is scheduled to start
-	dataDTTZ: reqString, // JSON.stringify() object containing data about date, time, and timezone for the party
+	dataDTTZ: {
+		type: String,
+		required: false,
+	}, // JSON.stringify() object containing data about date, time, and timezone for the party
 	dataCreator: reqString, // JSON.stringify() object containing data about the user who ran the command creating the partyfinder
 	dataSubmission: reqString, // JSON.stringify() object containing data about the command submission
 	dataPartyComp: reqString, // JSON.stringify() object containing data about the party composition, excluding fill role
@@ -30,7 +33,8 @@ const partyfinderSchema = new mongoose.Schema({
 	guildID: reqString, // Discord server ID of the server the command was sent from
 	channelID: reqString, // Discord channel ID of the channel the command was sent from
 	originalResponseID: reqString, // Discord Message ID of the message that tracks RSVPs (the message people react to)
-	mentionRole: { // Discord role snowflake pinged by the partyfinder command in the reply content
+	mentionRole: {
+		// Discord role snowflake pinged by the partyfinder command in the reply content
 		type: String,
 		required: false,
 	},

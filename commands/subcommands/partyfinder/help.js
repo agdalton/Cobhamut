@@ -34,7 +34,7 @@ module.exports = async (interaction, data, globals) => {
 		)
 		.addField(
 			'Creating a partyfinder',
-			'When using /partyfinder new, you will be prompted with a required choice for party size.\n\n' +
+			'Type /partyfinder into Discord and select /partyfinder create under Cobhamut.\n Required. You will be prompted with a choice for party size.\n\n' +
 				"Optional. Select ping and choose a role so that server members are notified that you're recruiting for your partyfinder.\n\n" +
 				'After submitting the initial command, you will be prompted with the popup shown at the bottom. Complete the fields and hit submit:'
 		)

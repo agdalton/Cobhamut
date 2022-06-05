@@ -34,7 +34,7 @@ module.exports = {
 			await partyfinderSchema.updateMany(
 				{
 					$and: [
-						{ date: { $lte: dt30MinFromNow } }, // 30 minutes from now in Epoch seconds
+						{ date: { $lte: dt30MinFromNow } },
 						{ reminderSent: false },
 					],
 				},
@@ -81,15 +81,21 @@ module.exports = {
 		// Primary command settings
 		const data = new SlashCommandBuilder()
 			.setName('partyfinder')
-			.setDescription('Create or manage a party finder for FF14')
+			.setDescription('Create a new partyfinder for a group in FF14')
 
 		// New subcommand
 		data.addSubcommand((subcommand) =>
 			subcommand
-				.setName('new')
+				.setName('create')
 				.setDescription(
 					'Create a new party finder for a FF14 group'
 				)
+				.addStringOption((option) => {
+					option
+						.setName('description')
+						.setDescription("What's the partyfinder for?")
+						.setRequired(true)
+				})
 				.addStringOption((option) =>
 					option
 						.setName('size')
@@ -107,9 +113,58 @@ module.exports = {
 					option
 						.setName('ping')
 						.setDescription(
-							'Mention a role to ping on this partyfinder'
+							"Ping a role to let members know you're recruiting"
 						)
 				)
+				.addStringOption((option) => {
+					option
+						.setName('date')
+						.setDescription(
+							'Month and day (M/dd) the partyfinder will take place'
+						)
+				})
+				.addStringOption((option) => {
+					option
+						.setName('time')
+						.setDescription(
+							'Time (HH:mm) the partyfinder will take place. REQUIRED IF A DATE IS ENTERED'
+						)
+				})
+				.addStringOption((option) => {
+					option
+						.setName('ampm')
+						.setDescription(
+							'AM or PM. REQUIRED IF A DATE AND TIME IS ENTERED'
+						)
+						.addChoices(
+							{
+								name: 'AM',
+								value: 'am',
+							},
+							{ name: 'PM', value: 'pm' }
+						)
+				})
+				.addStringOption((option) => {
+					option
+						.setName('timezone')
+						.setDescription(
+							'Timezone to use for the partyfinder. REQUIRED IF A DATE AND TIME IS ENTERED'
+						)
+						.addChoices(
+							{
+								name: 'Pacific',
+								value: 'America/Los_Angeles',
+							},
+							{
+								name: 'Central',
+								value: 'America/Chicago',
+							},
+							{
+								name: 'Eastern',
+								value: 'America/New_York',
+							}
+						)
+				})
 		)
 
 		// Help subcommand

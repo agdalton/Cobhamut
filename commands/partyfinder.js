@@ -86,7 +86,7 @@ module.exports = {
 		// New subcommand
 		data.addSubcommand((subcommand) =>
 			subcommand
-				.setName('new')
+				.setName('create')
 				.setDescription(
 					'Create a new party finder for a FF14 group'
 				)

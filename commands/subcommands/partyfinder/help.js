@@ -13,7 +13,7 @@ module.exports = async (interaction, data, globals) => {
 	}
 
 	const embed = new MessageEmbed()
-		.setTitle('How to use Cobhatmut\'s /partyfinder create command')
+		.setTitle("How to use Cobhatmut's /partyfinder create command")
 		.setThumbnail(
 			'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/htc/37/information-source_2139.png'
 		)

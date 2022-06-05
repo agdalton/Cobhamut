@@ -153,15 +153,15 @@ module.exports = {
 						.addChoices(
 							{
 								name: 'Pacific',
-								value: 'America/Los_Angeles',
+								value: 'pacific',
 							},
 							{
 								name: 'Central',
-								value: 'America/Chicago',
+								value: 'central',
 							},
 							{
 								name: 'Eastern',
-								value: 'America/New_York',
+								value: 'eastern',
 							}
 						)
 				)

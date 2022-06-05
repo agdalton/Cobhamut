@@ -70,8 +70,6 @@ module.exports = async (interaction, data, globals) => {
 					error
 			)
 		)
-
-	// If date, time, and timezone are all filled out
 	if (dataDTTZ.dttz) {
 		// Create document in MongoDB and save it <-- the keys are like column names for the database
 		await new partyfinderSchema({
@@ -102,6 +100,6 @@ module.exports = async (interaction, data, globals) => {
 			reminderSent: false,
 		}).save()
 	}
-
+	
 	return
 }

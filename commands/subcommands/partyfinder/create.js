@@ -70,35 +70,36 @@ module.exports = async (interaction, data, globals) => {
 					error
 			)
 		)
-
-	// Create document in MongoDB and save it <-- the keys are like column names for the database
-	await new partyfinderSchema({
-		date: dataDTTZ.pfDT.dtISO,
-		dataDTTZ: JSON.stringify(dataDTTZ),
-		dataCreator: JSON.stringify(memberData),
-		dataSubmission: JSON.stringify({
-			description: pfDescription,
-			size: pfSize,
-			date: pfDate,
-			time: pfTime,
-			ampm: pfAMPM,
-			timezone: pfTimezone,
-		}),
-		dataPartyComp: JSON.stringify(pfComp),
-		dataUserRSVP: JSON.stringify({
-			tanks: [],
-			healers: [],
-			damage: [],
-			fill: [],
-		}),
-		dataTotalRSVP: 0,
-		pfFull: false,
-		guildID: interaction.guildId,
-		channelID: interaction.channelId,
-		originalResponseID: interactionResponse.id,
-		mentionRole: pfPingRole ? pfPingRole.toString() : null,
-		reminderSent: false,
-	}).save()
-
+	if (dataDTTZ.dttz) {
+		// Create document in MongoDB and save it <-- the keys are like column names for the database
+		await new partyfinderSchema({
+			date: dataDTTZ.pfDT.dtISO,
+			dataDTTZ: JSON.stringify(dataDTTZ),
+			dataCreator: JSON.stringify(memberData),
+			dataSubmission: JSON.stringify({
+				description: pfDescription,
+				size: pfSize,
+				date: pfDate,
+				time: pfTime,
+				ampm: pfAMPM,
+				timezone: pfTimezone,
+			}),
+			dataPartyComp: JSON.stringify(pfComp),
+			dataUserRSVP: JSON.stringify({
+				tanks: [],
+				healers: [],
+				damage: [],
+				fill: [],
+			}),
+			dataTotalRSVP: 0,
+			pfFull: false,
+			guildID: interaction.guildId,
+			channelID: interaction.channelId,
+			originalResponseID: interactionResponse.id,
+			mentionRole: pfPingRole ? pfPingRole.toString() : null,
+			reminderSent: false,
+		}).save()
+	}
+	
 	return
 }

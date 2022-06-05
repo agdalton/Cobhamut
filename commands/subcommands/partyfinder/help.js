@@ -48,7 +48,7 @@ module.exports = async (interaction, data, globals) => {
 		)
 		.addField(
 			'Signing up for a partyfinder',
-			"Click on the reaction for the role you'd like to play. If you can play any role, then you can select fill to let the party leader know you're good to play anything.\n\n" +
+			"Click on the reaction for the role you'd like to play. If you can play any role, then you can select <:fill:977774943154618368> to let the party leader know you're good to play anything.\n\n" +
 				'<:tank:977771775960174652> Tanks\n<:healer:977771776253775932> Healers\n<:melee:977771775859494942> Damage\n<:fill:977774943154618368> Fill'
 		)
 		.addField(

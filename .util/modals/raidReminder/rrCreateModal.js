@@ -94,7 +94,7 @@ module.exports = {
         // Respond with success
 		const embed = new MessageEmbed()
 			.setTitle('Raid reminder created successfully!')
-			.setImage('https://xivapi.com/i/060000/060855_hr1.png')
+			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 			.setColor(green)
 			.addField(
 				'Next reminder',

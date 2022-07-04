@@ -22,7 +22,7 @@ module.exports = async (userId) => {
 			value: reminder._id,
 		})
 	}
-
+	console.log(reminderChoices)
 	return new MessageActionRow().addComponents(
 		new MessageSelectMenu()
 			.setCustomId('rrCancelSelectMenu')

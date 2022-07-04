@@ -13,7 +13,7 @@ module.exports = async (interaction, data, globals) => {
 		.setLabel('Message')
 		.setPlaceholder("Don't forget we raid today!")
 		.setRequired(true)
-		.setStyle('PARAGRAPH')
+		.setStyle('SHORT')
 	const days = new TextInputComponent()
 		.setCustomId('rrDays')
 		.setLabel('Raid days')

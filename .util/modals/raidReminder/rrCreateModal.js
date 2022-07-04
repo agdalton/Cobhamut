@@ -1,5 +1,6 @@
 const { data } = require('../../../commands/raidReminder')
 const { DateTime } = require('luxon')
+const { MessageEmbed } = require('discord.js')
 const interactionReply = require('../../command-utils/interactionReply')
 const getNextReminder = require('../../command-utils/raidReminder/getNextReminder')
 const sendInputError = require('../../command-utils/raidReminder/sendInputError')
@@ -11,7 +12,8 @@ module.exports = {
 	name: 'rrCreateModal',
 	callback: async (client, interaction, globals) => {
 		// Destruct globals
-		const { purple } = globals.colors
+		const { baseImageURL } = globals
+		const { green } = globals.colors
 
 		// Setup member data to pass as necessary <-- this is data about the person who sent the command
 		const memberData = {
@@ -65,7 +67,11 @@ module.exports = {
 		}
 
 		// Get the date of the next reminder to be sent
-		const nextReminder = getNextReminder(inputs.days, time, inputs.timezone)
+		const nextReminder = getNextReminder(
+			inputs.days,
+			time,
+			inputs.timezone
+		)
 
 		// Create the reminder in MongoDB
 		await new raidReminderSchema({
@@ -85,17 +91,30 @@ module.exports = {
 			channelID: interaction.channelId, // Discord channel ID of the channel the command was sent from
 		}).save()
 
-		interactionReply(
-			interaction,
-			`Your reminder has been scheduled! The next reminder will be sent on ${nextReminder.toLocaleString(
-				DateTime.DATE_MED_WITH_WEEKDAY
-			)} at ${nextReminder.toLocaleString(DateTime.TIME_SIMPLE)} ${
-				nextReminder.offsetNameShort
-			}`,
-			null,
-			null,
-			true,
-			false
-		)
+        // Respond with success
+		const embed = new MessageEmbed()
+			.setTitle('Raid reminder created successfully!')
+			.setImage('https://xivapi.com/i/060000/060855_hr1.png')
+			.setColor(green)
+			.addField(
+				'Next reminder',
+				`${nextReminder.toLocaleString(
+					DateTime.DATE_MED_WITH_WEEKDAY
+				)} ${nextReminder.toLocaleString(DateTime.TIME_SIMPLE)} ${
+					nextReminder.offsetNameShort
+				}`
+			)
+			.setFooter({
+				text: `${
+					memberData.memberNick
+						? memberData.memberNick
+						: memberData.memberUsername
+				} used /raidreminder`,
+				iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
+			})
+
+		interactionReply(interaction, null, [embed], null, true, false)
+
+		return
 	},
 }

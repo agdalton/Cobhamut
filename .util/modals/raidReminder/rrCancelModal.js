@@ -68,5 +68,6 @@ module.exports = {
 			})
 
 		interactionReply(interaction, null, [embed], null, true, false)
+		return
 	},
 }

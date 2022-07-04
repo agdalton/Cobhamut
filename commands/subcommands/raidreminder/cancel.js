@@ -35,4 +35,5 @@ module.exports = async (interaction, data, globals) => {
 	const remindersMenu = await getUserRemindersMenu(memberData.memberID)
 
 	interactionReply(interaction, null, [embed], [remindersMenu], true, false)
+    return
 }

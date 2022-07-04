@@ -1,4 +1,4 @@
-// New subcommand for partyfinder
+// Create subcommand for partyfinder
 const { MessageActionRow, Modal, TextInputComponent } = require('discord.js')
 
 module.exports = async (interaction, data, globals) => {

@@ -13,7 +13,7 @@ module.exports = {
 	callback: async (client, interaction, globals) => {
 		// Destruct globals
 		const { baseImageURL } = globals
-		const { purple } = globals.colors
+		const { purple, red } = globals.colors
 
 		// Setup member data to pass as necessary <-- this is data about the person who sent the command
 		const memberData = {
@@ -21,6 +21,34 @@ module.exports = {
 			memberUsername: interaction.member.user.username,
 			memberNick: interaction.member.nickname,
 			memberAvatar: interaction.member.user.avatar,
+		}
+
+		// Prevent more than 20 reminders per user
+		const raidReminders = await raidReminderSchema.find({
+			dataCreator: `"memberID":"${memberData.memberID}"`,
+		})
+
+		if (raidReminders.length === 20) {
+			const embed = new MessageEmbed()
+				.setColor(red)
+				.setTitle('Failed to create raid reminder')
+				.setDescription(
+					'You can only create a maximum of 20 raid reminders per person. Please cancel an existing one and try again.'
+				)
+				.setThumbnail(
+					'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/htc/37/warning-sign_26a0.png'
+				)
+				.setFooter({
+					text: `${
+						memberData.memberNick
+							? memberData.memberNick
+							: memberData.memberUsername
+					} used /raidreminder`,
+					iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
+				})
+
+			interactionReply(interaction, null, [embed], null, true, false)
+			return
 		}
 
 		// Get modal inputs
@@ -91,12 +119,12 @@ module.exports = {
 			channelID: interaction.channelId, // Discord channel ID of the channel the command was sent from
 		}).save()
 
-        // Respond with success
+		// Respond with success
 		const embed = new MessageEmbed()
 			.setDescription('Raid reminder created successfully!')
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 			.setColor(purple)
-            .addField('Message', message)
+			.addField('Message', message)
 			.addField(
 				'Next reminder',
 				`${nextReminder.toLocaleString(
@@ -105,7 +133,7 @@ module.exports = {
 					nextReminder.offsetNameShort
 				}`
 			)
-            .addField('Channel', `<#${inputs.channel}>`)
+			.addField('Channel', `<#${inputs.channel}>`)
 			.setFooter({
 				text: `${
 					memberData.memberNick

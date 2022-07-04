@@ -10,7 +10,7 @@ module.exports = {
 		const { orange } = globals.colors
 
 		// Get modal inputs
-        const { fields } = interaction
+		const { fields } = interaction
 		const mongoId = fields.getTextInputValue('rrMongoId').trim()
 		const confirmation = fields.getTextInputValue('rrConfirm').trim()
 
@@ -49,9 +49,31 @@ module.exports = {
 		}
 
 		// Delete the reminder from mongoDB
-		await raidReminderSchema.deleteOne({
-			_id: mongoId,
-		})
+		try {
+			await raidReminderSchema.deleteOne({
+				_id: mongoId,
+			})
+		} catch (e) {
+			embed.setColor(orange)
+				.setTitle('An error occurred')
+				.setDescription(
+					'An error occurred while trying to cancel this reminder. It has **NOT** been canceled.\n\nWhen interacting with the cancelation dialog, **DO NOT change the Reminder ID field**.'
+				)
+				.setThumbnail(
+					'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/htc/37/warning-sign_26a0.png'
+				)
+				.setFooter({
+					text: `${
+						memberData.memberNick
+							? memberData.memberNick
+							: memberData.memberUsername
+					} used /raidreminder cancel`,
+					iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
+				})
+
+			interactionReply(interaction, null, [embed], null, true, false)
+			return
+		}
 
 		// Respond with delete confirmation
 		embed.setTitle('Raid Reminders')

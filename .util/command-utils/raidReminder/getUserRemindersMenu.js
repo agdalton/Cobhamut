@@ -4,7 +4,7 @@ const raidReminderSchema = require('../../mongo-utils/raidReminder/raidReminderS
 module.exports = async (userId) => {
 	// Find all raid reminders scheduled by the user
 	const raidReminders = await raidReminderSchema.find({
-		dataCreator: `"memberID":"${userId}"`,
+		dataCreator: { $regex: `"memberID":"${userId}"` },
 	})
 
 	// Build a list and present it to the user

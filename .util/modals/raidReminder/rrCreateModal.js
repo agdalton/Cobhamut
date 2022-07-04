@@ -105,6 +105,7 @@ module.exports = {
 					nextReminder.offsetNameShort
 				}`
 			)
+            .addField('Channel', `This raid reminder will be sent in <#${inputs.channel}>`)
 			.setFooter({
 				text: `${
 					memberData.memberNick

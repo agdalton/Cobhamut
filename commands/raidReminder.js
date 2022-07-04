@@ -121,7 +121,7 @@ module.exports = {
 				)
 				.addIntegerOption((option) =>
 					option
-						.setName('reminderHours')
+						.setName('reminder_hours')
 						.setDescription(
 							'How long before raid starts should the reminder be sent?'
 						)

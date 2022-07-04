@@ -2,6 +2,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders')
 const { MessageEmbed } = require('discord.js')
 const { DateTime } = require('luxon')
+const raidReminderSchema = require('../../mongo-utils/raidReminder/raidReminderSchema.js')
 
 module.exports = {
 	name: 'raidreminder',

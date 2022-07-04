@@ -44,14 +44,14 @@ module.exports = {
 		// Validate the channel is a real channel
 		try {
 			// Fetch the guild the partyfinder was scheduled in
-			const guild = await client.guilds.fetch(guildID)
+			const guild = await client.guilds.fetch(interaction.guildId)
 			if (!guild) throw new Error() // Skip if the guild can't be fetched
 
 			// Fetch the channel of the guild the partyfinder was scheduled in
-			const channel = await guild.channels.fetch(channelID)
+			const channel = await guild.channels.fetch(inputs.channel)
 			if (!channel) throw new Error() // Skip if the channel can't be fetched (i.e deleted)
 
-            if (channel.type !== 0) throw new Error() // If the selected channel is not a text channel, throw an error
+			if (channel.type !== 0) throw new Error() // If the selected channel is not a text channel, throw an error
 		} catch (e) {
 			inputs.err.push({
 				field: 'Channel',

@@ -2,7 +2,7 @@
 const reply = require('../interactionReply.js')
 const { MessageEmbed } = require('discord.js')
 
-module.exports = (interaction, memberData, globals, dataTTZ) => {
+module.exports = (interaction, memberData, globals, inputs) => {
 	const { memberID, memberUsername, memberNick, memberAvatar } = memberData
 	const { baseImageURL } = globals
 	const { orange } = globals.colors
@@ -24,12 +24,12 @@ module.exports = (interaction, memberData, globals, dataTTZ) => {
 		})
 
 	// If time, timezone submitted is invalid
-	if (!dataTTZ.isValid) {
+	if (!inputs.isValid) {
 		// Add the errors to the embed
-		for (let iErr = 0; iErr < dataTTZ.err.length; iErr++) {
+		for (let iErr = 0; iErr < inputs.err.length; iErr++) {
 			errEmbed.addField(
-				dataTTZ.err[iErr].field,
-				dataTTZ.err[iErr].message
+				inputs.err[iErr].field,
+				inputs.err[iErr].message
 			)
 		}
 	}

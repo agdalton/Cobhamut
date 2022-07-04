@@ -53,6 +53,7 @@ module.exports = {
 
 			if (channel.type !== 0) throw new Error() // If the selected channel is not a text channel, throw an error
 		} catch (e) {
+            inputs.isValid = false
 			inputs.err.push({
 				field: 'Channel',
 				message: "Cobhamut could not validate the channel you selected. Please ensure you're selecting a **text channel** from the pop-up list in Discord and that the selection is NOT a channel category (folder icon)",

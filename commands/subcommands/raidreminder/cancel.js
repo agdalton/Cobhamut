@@ -37,7 +37,7 @@ module.exports = async (interaction, data, globals) => {
 		interaction,
 		null,
 		[embed],
-		getUserRemindersMenu(memberData.memberID),
+		[getUserRemindersMenu(memberData.memberID)],
 		true,
 		false
 	)

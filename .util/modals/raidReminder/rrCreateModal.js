@@ -124,7 +124,7 @@ module.exports = {
 			.setDescription('Raid reminder created successfully!')
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 			.setColor(purple)
-			.addField('Message', message)
+			.addField('Title', title)
 			.addField(
 				'Next reminder',
 				`${nextReminder.toLocaleString(

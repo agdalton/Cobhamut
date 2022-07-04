@@ -10,8 +10,9 @@ module.exports = {
 		const { orange } = globals.colors
 
 		// Get modal inputs
-		const mongoId = interaction.getTextInputValue('rrMongoId').trim()
-		const confirmation = interaction.getTextInputValue('rrConfirm').trim()
+        const { fields } = interaction
+		const mongoId = fields.getTextInputValue('rrMongoId').trim()
+		const confirmation = fields.getTextInputValue('rrConfirm').trim()
 
 		// Get data about the user who submitted the command
 		const memberData = {

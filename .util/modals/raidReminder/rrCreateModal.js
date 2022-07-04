@@ -13,7 +13,7 @@ module.exports = {
 	callback: async (client, interaction, globals) => {
 		// Destruct globals
 		const { baseImageURL } = globals
-		const { green } = globals.colors
+		const { purple } = globals.colors
 
 		// Setup member data to pass as necessary <-- this is data about the person who sent the command
 		const memberData = {
@@ -25,7 +25,7 @@ module.exports = {
 
 		// Get modal inputs
 		const { fields } = interaction
-		const message = fields.getTextInputValue('rrMessage').trim()
+		const title = fields.getTextInputValue('rrTitle').trim()
 		const days = fields.getTextInputValue('rrDays').trim()
 		const time = fields.getTextInputValue('rrTime').trim()
 		const timezone = fields
@@ -95,7 +95,8 @@ module.exports = {
 		const embed = new MessageEmbed()
 			.setTitle('Raid reminder created successfully!')
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
-			.setColor(green)
+			.setColor(purple)
+            .addField('Title', title)
 			.addField(
 				'Next reminder',
 				`${nextReminder.toLocaleString(

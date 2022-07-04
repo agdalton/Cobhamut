@@ -15,7 +15,7 @@ module.exports = async (userId) => {
 		reminderChoices.push({
 			label: reminderData.title,
 			description: 'Test',
-			value: reminder._id,
+			value: reminder._id.toString(),
 		})
 	}
 	console.log('HELLO!' + reminderChoices)

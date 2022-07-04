@@ -5,6 +5,7 @@ module.exports = (days, time, timezone, roleAndChannel) => {
 	const obj = {
 		isValid: true,
 		days: [],
+		timezone: '',
 		role: '',
 		channel: '',
 		err: [],
@@ -105,6 +106,8 @@ module.exports = (days, time, timezone, roleAndChannel) => {
 				message: 'Invalid timezone submitted.\nFor US/Pacific: PST, PDT, PT\nFor US/Central: CST, CDT, CT\nFor US/Eastern: EST, EDT, ET\nNo other timezones are currently supported.',
 			})
 	}
+
+	obj.timezone = longTz
 
 	// Validate Role and Channel
 	try {

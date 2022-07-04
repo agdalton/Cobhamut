@@ -1,8 +1,4 @@
-const {
-	MessageActionRow,
-	MessageEmbed,
-	MessageSelectMenu,
-} = require('discord.js')
+const { MessageActionRow, MessageSelectMenu } = require('discord.js')
 const raidReminderSchema = require('../../mongo-utils/raidReminder/raidReminderSchema.js')
 
 module.exports = async (userId) => {

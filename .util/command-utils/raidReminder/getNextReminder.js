@@ -5,11 +5,26 @@ module.exports = (days, time, timezone) => {
 	// Right now
 	const dtNow = DateTime.now().setZone(timezone, { keepLocalTime: true })
 	const today = dtNow.weekday
+	
+	// Grab 24hr time for Luxon DateTime
+	const meridiem = time.substring(time.length - 2) // AM/PM
+	const arrTime = time.slice(0, -2).split(':') // [0] is hour [1] is minutes
+
+	// Convert hours and minutes to integers
+	let hour = parseInt(arrTime[0]) // HH:mm index 0 of split is HH
+	let minute = parseInt(arrTime[1]) // HH:mm index 1 of split is mm
+
+	// Add 12 hours to account for 24hr clock used by Luxon
+	if (meridiem === 'PM') hour += 12
+
+	// Fix 12:00AM for 24hr clock
+	if (meridiem === 'AM' && hour === 12) hour = 0
+
 	// Time the raid should start, if it were today
 	const nextReminder = DateTime.now()
 		.set({
-			hour: time.split(':')[0],
-			minute: time.split(':')[1],
+			hour: hour,
+			minute: minute,
 		})
 		.setZone(timezone, { keepLocalTime: true })
 

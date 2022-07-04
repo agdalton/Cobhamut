@@ -53,7 +53,7 @@ module.exports = {
 
 		// Get modal inputs
 		const { fields } = interaction
-		const message = fields.getTextInputValue('rrMessage').trim()
+		const title = fields.getTextInputValue('rrTitle').trim()
 		const days = fields.getTextInputValue('rrDays').trim()
 		const time = fields.getTextInputValue('rrTime').trim()
 		const timezone = fields
@@ -108,7 +108,7 @@ module.exports = {
 			mentionRole: inputs.role,
 			dataCreator: JSON.stringify(memberData), // JSON.stringify() object containing data about the user who ran the command creating the raidReminder
 			dataSubmission: JSON.stringify({
-				message: message,
+				title: title,
 				days: inputs.days,
 				time: time,
 				timezone: timezone,

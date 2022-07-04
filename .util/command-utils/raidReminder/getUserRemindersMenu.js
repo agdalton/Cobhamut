@@ -17,7 +17,7 @@ module.exports = async (userId) => {
 		const reminderData = JSON.parse(reminder.dataSubmission)
 
 		reminderChoices.push({
-			label: reminderData.message,
+			label: reminderData.title,
 			description: '',
 			value: reminder._id,
 		})

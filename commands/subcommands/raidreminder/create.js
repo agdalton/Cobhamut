@@ -8,12 +8,12 @@ module.exports = async (interaction, data, globals) => {
 	roleAndChannel.push(interaction.options.getChannel('channel').id)
 
 	// Input components for the Modal
-	const message = new TextInputComponent()
-		.setCustomId('rrMessage')
+	const title = new TextInputComponent()
+		.setCustomId('rrTitle')
 		.setLabel('Message')
 		.setPlaceholder("Don't forget we raid today!")
 		.setRequired(true)
-		.setStyle('PARAGRAPH')
+		.setStyle('SHORT')
 	const days = new TextInputComponent()
 		.setCustomId('rrDays')
 		.setLabel('Raid days')
@@ -45,7 +45,7 @@ module.exports = async (interaction, data, globals) => {
 		.setTitle('New Raid Reminder')
 
 	// Add all the components to rows <-- one component per row, maximum 5 rows
-	const modalRow1 = new MessageActionRow().addComponents(message)
+	const modalRow1 = new MessageActionRow().addComponents(title)
 	const modalRow2 = new MessageActionRow().addComponents(days)
 	const modalRow3 = new MessageActionRow().addComponents(time)
 	const modalRow4 = new MessageActionRow().addComponents(timezone)

@@ -1,4 +1,4 @@
-// Create subcommand for raidReminder
+// Create subcommand for raidreminder
 const { MessageActionRow, Modal, TextInputComponent } = require('discord.js')
 
 module.exports = async (interaction, data, globals) => {

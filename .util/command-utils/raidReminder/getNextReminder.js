@@ -30,7 +30,8 @@ module.exports = (days, time, timezone) => {
 
 	// Check if a reminder should be scheduled for today
 	if (days.includes(dtNow.weekday))
-		if (dtNow < nextReminder) return nextReminder
+		if (dtNow.toUnixInteger() < nextReminder.toUnixInteger())
+			return nextReminder
 
 	// Otherwise find the next day a reminder should be sent
 	for (let i = 0; i < days.length; i++) {

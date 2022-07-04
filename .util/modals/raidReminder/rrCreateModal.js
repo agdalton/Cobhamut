@@ -25,7 +25,7 @@ module.exports = {
 
 		// Get modal inputs
 		const { fields } = interaction
-		const title = fields.getTextInputValue('rrTitle').trim()
+		const message = fields.getTextInputValue('rrMessage').trim()
 		const days = fields.getTextInputValue('rrDays').trim()
 		const time = fields.getTextInputValue('rrTime').trim()
 		const timezone = fields
@@ -96,7 +96,7 @@ module.exports = {
 			.setTitle('Raid reminder created successfully!')
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 			.setColor(purple)
-            .addField('Title', title)
+            .addField('Message', message)
 			.addField(
 				'Next reminder',
 				`${nextReminder.toLocaleString(

@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders')
 const { DateTime } = require('luxon')
 
 module.exports = {
-	name: 'raidReminder',
+	name: 'raidreminder',
 	guildId: '',
 	init: async () => {},
 	callback: async (client, interaction, globals) => {
@@ -21,7 +21,7 @@ module.exports = {
 	},
 	data: (() => {
 		const data = new SlashCommandBuilder()
-			.setName('raidReminder')
+			.setName('raidreminder')
 			.setDescription(
 				'Create or manage a starting soon reminder for your static'
 			)

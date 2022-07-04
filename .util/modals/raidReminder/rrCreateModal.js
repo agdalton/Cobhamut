@@ -65,7 +65,7 @@ module.exports = {
 		}
 
 		// Get the date of the next reminder to be sent
-		const nextReminderObj = getNextReminder(inputs.days, time, timezone)
+		const nextReminderObj = getNextReminder(inputs.days, time, inputs.timezone)
         const nextReminder = DateTime.fromObject(nextReminderObj.rrDtObj, nextReminderObj.rrDtZone)
 
 		// Create the reminder in MongoDB
@@ -91,7 +91,7 @@ module.exports = {
 			`Your reminder has been scheduled! The next reminder will be sent on ${nextReminder.toLocaleString(
 				DateTime.DATE_MED_WITH_WEEKDAY
 			)} at ${nextReminder.toLocaleString(DateTime.TIME_SIMPLE)} ${
-				nextReminder.offsetNameShort
+				nextReminderObj.rrDt.offsetNameShort
 			}`,
 			null,
 			null,

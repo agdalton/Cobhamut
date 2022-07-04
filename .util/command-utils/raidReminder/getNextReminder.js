@@ -29,8 +29,9 @@ module.exports = (days, time, timezone) => {
 		.setZone(timezone, { keepLocalTime: true })
 
 	// Check if a reminder should be scheduled for today
-	if (dtNow < nextReminder) return nextReminder
-	
+	if (days.includes(dtNow.weekday))
+		if (dtNow < nextReminder) return nextReminder
+
 	// Otherwise find the next day a reminder should be sent
 	for (let i = 0; i < days.length; i++) {
 		if (days[i] > today)

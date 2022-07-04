@@ -50,6 +50,14 @@ module.exports = {
 				)
 		)
 
+		data.addSubcommand((subcommand) =>
+			subcommand
+				.setName('cancel')
+				.setDescription(
+					'Cancel an existing raid reminder you created'
+				)
+		)
+
 		return data.toJSON()
 	})(),
 }

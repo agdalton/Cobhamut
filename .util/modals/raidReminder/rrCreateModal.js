@@ -65,8 +65,7 @@ module.exports = {
 		}
 
 		// Get the date of the next reminder to be sent
-		const nextReminderObj = getNextReminder(inputs.days, time, inputs.timezone)
-        const nextReminder = DateTime.fromObject(nextReminderObj.rrDtObj, nextReminderObj.rrDtZone)
+		const nextReminder = getNextReminder(inputs.days, time, inputs.timezone)
 
 		// Create the reminder in MongoDB
 		await new raidReminderSchema({
@@ -91,7 +90,7 @@ module.exports = {
 			`Your reminder has been scheduled! The next reminder will be sent on ${nextReminder.toLocaleString(
 				DateTime.DATE_MED_WITH_WEEKDAY
 			)} at ${nextReminder.toLocaleString(DateTime.TIME_SIMPLE)} ${
-				nextReminderObj.rrDt.offsetNameShort
+				nextReminder.offsetNameShort
 			}`,
 			null,
 			null,

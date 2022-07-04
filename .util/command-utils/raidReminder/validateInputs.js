@@ -108,8 +108,8 @@ module.exports = (days, time, timezone, roleAndChannel) => {
 
 	// Validate Role and Channel
 	try {
-		obj.inputRole = roleAndChannel.split(',')[0]
-		obj.inputChannel = roleAndChannel.split(',')[1]
+		obj.role = roleAndChannel.split(',')[0]
+		obj.channel = roleAndChannel.split(',')[1]
 	} catch (e) {
 		obj.isValid = false
 		obj.err.push({

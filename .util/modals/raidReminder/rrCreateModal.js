@@ -48,7 +48,7 @@ module.exports = {
 		await new raidReminderSchema({
 			nextReminder: nextReminder, // ISODate of when the next reminder should be sent
 			reminderChannel: inputs.channel,
-			mentionRole: inputs.inputRole,
+			mentionRole: inputs.role,
 			dataCreator: JSON.stringify(memberData), // JSON.stringify() object containing data about the user who ran the command creating the raidReminder
 			dataSubmission: JSON.stringify({
 				message: message,
@@ -66,7 +66,7 @@ module.exports = {
 			interaction,
 			`Your reminder has been scheduled! The next reminder will be sent on ${nextReminder.toLocaleString(
 				DateTime.DATE_MED_WITH_WEEKDAY
-			)} at ${nextReminder.toLcaleString(TIME_SIMPLE)} ${
+			)} at ${nextReminder.toLcaleString(DateTime.TIME_SIMPLE)} ${
 				nextReminder.offsetNameShort
 			}`,
 			null,

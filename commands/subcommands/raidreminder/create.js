@@ -5,7 +5,7 @@ module.exports = async (interaction, data, globals) => {
 	// Get size, ping from the interaction
 	const roleAndChannel = []
 	roleAndChannel.push(interaction.options.getRole('role'))
-	roleAndChannel.push(interaction.options.getChannel('channel'))
+	roleAndChannel.push(interaction.options.getChannel('channel').id)
 
 	// Input components for the Modal
 	const message = new TextInputComponent()

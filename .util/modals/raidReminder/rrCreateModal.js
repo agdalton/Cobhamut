@@ -89,7 +89,7 @@ module.exports = {
 			interaction,
 			`Your reminder has been scheduled! The next reminder will be sent on ${nextReminder.toLocaleString(
 				DateTime.DATE_MED_WITH_WEEKDAY
-			)} at ${nextReminder.toLcaleString(DateTime.TIME_SIMPLE)} ${
+			)} at ${nextReminder.toLocaleString(DateTime.TIME_SIMPLE)} ${
 				nextReminder.offsetNameShort
 			}`,
 			null,

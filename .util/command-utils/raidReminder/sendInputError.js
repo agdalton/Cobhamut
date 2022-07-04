@@ -19,7 +19,7 @@ module.exports = (interaction, memberData, globals, inputs) => {
 		.setFooter({
 			text: `${
 				memberNick ? memberNick : memberUsername
-			} used /raidReminder`,
+			} used /raidreminder`,
 			iconURL: `${baseImageURL}/avatars/${memberID}/${memberAvatar}.png`,
 		})
 

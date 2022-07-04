@@ -98,7 +98,8 @@ module.exports = {
 		const nextReminder = getNextReminder(
 			inputs.days,
 			time,
-			inputs.timezone
+			inputs.timezone,
+			inputs.reminderHours
 		)
 
 		// Create the reminder in MongoDB

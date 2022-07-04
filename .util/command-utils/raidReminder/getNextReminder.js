@@ -1,7 +1,7 @@
 // Return the ISO date of the next reminder to be sent
 const { DateTime } = require('luxon')
 
-module.exports = (days, time, timezone) => {
+module.exports = (days, time, timezone, reminderHours) => {
 	// Right now
 	const dtNow = DateTime.now().setZone(timezone, { keepLocalTime: true })
 	const today = dtNow.weekday
@@ -31,12 +31,15 @@ module.exports = (days, time, timezone) => {
 	// Check if a reminder should be scheduled for today
 	if (days.includes(dtNow.weekday))
 		if (dtNow.toUnixInteger() < nextReminder.toUnixInteger())
-			return nextReminder
+			return nextReminder.plus({ hours: -reminderHours })
 
 	// Otherwise find the next day a reminder should be sent
 	for (let i = 0; i < days.length; i++) {
 		if (days[i] > today)
-			return nextReminder.plus({ days: days[i] - today })
+			return nextReminder.plus({
+				hours: -reminderHours,
+				days: days[i] - today,
+			})
 	}
 
 	// Find the next reminder if the next day is a lower index in the week
@@ -52,5 +55,8 @@ module.exports = (days, time, timezone) => {
 	 * that particular day is, so subtracting today's index from 7 and then adding the index for the day
 	 * the next reminder should be sent on will return the correct date.
 	 */
-	return nextReminder.plus({ days: 7 - today + nextDayIndex })
+	return nextReminder.plus({
+		hours: -reminderHours,
+		days: 7 - today + nextDayIndex,
+	})
 }

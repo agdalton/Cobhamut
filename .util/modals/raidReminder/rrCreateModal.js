@@ -1,4 +1,6 @@
 const { data } = require('../../../commands/raidReminder')
+const interactionReply = require('../../command-utils/interactionReply')
+const getNextReminder = require('../../command-utils/raidReminder/getNextReminder')
 const sendInputError = require('../../command-utils/raidReminder/sendInputError')
 const validateInputs = require('../../command-utils/raidReminder/validateInputs')
 const raidReminderSchema = require('../../mongo-utils/raidReminder/raidReminderSchema')
@@ -40,7 +42,7 @@ module.exports = {
 		}
 
 		// Get the date of the next reminder to be sent
-		const nextReminder = ''
+		const nextReminder = getNextReminder(inputs.days, time, timezone)
 
 		// Create the reminder in MongoDB
 		await new raidReminderSchema({
@@ -59,5 +61,18 @@ module.exports = {
 			guildID: interaction.guildId, // Discord server ID of the server the command was sent from
 			channelID: interaction.channelId, // Discord channel ID of the channel the command was sent from
 		}).save()
+
+		interactionReply(
+			interaction,
+			`Your reminder has been scheduled! The next reminder will be sent on ${nextReminder.toLocaleString(
+				DateTime.DATE_MED_WITH_WEEKDAY
+			)} at ${nextReminder.toLcaleString(TIME_SIMPLE)} ${
+				nextReminder.offsetNameShort
+			}`,
+			null,
+			null,
+			true,
+			false
+		)
 	},
 }

@@ -45,10 +45,10 @@ module.exports = {
 			.setTitle('Cancel Raid Reminder')
 
 		// Add all the components to rows <-- one component per row, maximum 5 rows
-		const modalRow1 = new MessageActionRow().addComponents(mongoId)
+		const modalRow1 = new MessageActionRow().addComponents(confirm)
 		const modalRow2 = new MessageActionRow().addComponents(title)
 		const modalRow3 = new MessageActionRow().addComponents(description)
-		const modalRow4 = new MessageActionRow().addComponents(confirm)
+		const modalRow4 = new MessageActionRow().addComponents(mongoId)
 
 		// Add the rows to the modal
 		modal.addComponents(modalRow1, modalRow2, modalRow3, modalRow4)

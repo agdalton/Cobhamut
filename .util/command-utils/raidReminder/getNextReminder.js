@@ -2,10 +2,16 @@
 const { DateTime } = require('luxon')
 
 module.exports = (days, time, timezone) => {
+	const obj = {
+		rrDt: '',
+		rrDtObj: '',
+		rrDtZone: { zone: timezone },
+	}
+
 	// Right now
 	const dtNow = DateTime.now().setZone(timezone, { keepLocalTime: true })
 	const today = dtNow.weekday
-	
+
 	// Grab 24hr time for Luxon DateTime
 	const meridiem = time.substring(time.length - 2) // AM/PM
 	const arrTime = time.slice(0, -2).split(':') // [0] is hour [1] is minutes
@@ -48,8 +54,19 @@ module.exports = (days, time, timezone) => {
 	 * (i.e. today's Saturday, but the next reminder is Tuesday which is earlier in the week)
 	 * we need to find how many days it is until Sunday (Luxon DateTime weekday index 7) and then add
 	 * the necessary number of days to the Luxon DateTime. The day index is the number of days into the week
-     * that particular day is, so subtracting today's index from 7 and then adding the index for the day
-     * the next reminder should be sent on will return the correct date.
+	 * that particular day is, so subtracting today's index from 7 and then adding the index for the day
+	 * the next reminder should be sent on will return the correct date.
 	 */
-	return nextReminder.plus({ days: 7 - today + nextDayIndex })
+	obj.rrDt = nextReminder.plus({ days: 7 - today + nextDayIndex })
+
+	// Same an obj so we can recreate the Luxon DateTime later with the correct timezone
+	obj.rrDtObj = {
+		year: dtNow.year,
+		month: obj.rrDt.month, // MM/dd index 0 of split is MM
+		day: obj.rrDt.day, // MM/dd index 1 of split is dd
+		hour: hour,
+		minute: minute,
+	}
+
+	return obj
 }

@@ -65,11 +65,12 @@ module.exports = {
 		}
 
 		// Get the date of the next reminder to be sent
-		const nextReminder = getNextReminder(inputs.days, time, timezone)
+		const nextReminderObj = getNextReminder(inputs.days, time, timezone)
+        const nextReminder = DateTime.fromObject(nextReminderObj.rrDtObj, nextReminderObj.rrDtZone)
 
 		// Create the reminder in MongoDB
 		await new raidReminderSchema({
-			nextReminder: nextReminder, // ISODate of when the next reminder should be sent
+			nextReminder: nextReminder.toISO(), // ISODate of when the next reminder should be sent
 			reminderChannel: inputs.channel,
 			mentionRole: inputs.role,
 			dataCreator: JSON.stringify(memberData), // JSON.stringify() object containing data about the user who ran the command creating the raidReminder

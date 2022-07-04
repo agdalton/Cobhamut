@@ -96,7 +96,7 @@ module.exports = {
 
 		// Get the date of the next reminder to be sent
 		const nextReminder = getNextReminder(
-			inputs.daysOfWeek,
+			inputs.days,
 			time,
 			inputs.timezone,
 			inputs.reminderHours

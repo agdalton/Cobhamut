@@ -3,14 +3,15 @@ const { MessageActionRow, Modal, TextInputComponent } = require('discord.js')
 
 module.exports = async (interaction, data, globals) => {
 	// Get size, ping from the interaction
-	const roleAndChannel = []
-	roleAndChannel.push(interaction.options.getRole('role'))
-	roleAndChannel.push(interaction.options.getChannel('channel').id)
+	const inputs = []
+	inputs.push(interaction.options.getRole('role'))
+	inputs.push(interaction.options.getChannel('channel').id)
+	inputs.push(interaction.options.getInteger('reminderHours'))
 
 	// Input components for the Modal
 	const title = new TextInputComponent()
 		.setCustomId('rrTitle')
-		.setLabel('Message')
+		.setLabel('Title')
 		.setPlaceholder("Don't forget we raid today!")
 		.setRequired(true)
 		.setStyle('SHORT')
@@ -32,10 +33,10 @@ module.exports = async (interaction, data, globals) => {
 		.setPlaceholder('EST')
 		.setStyle('SHORT')
 		.setRequired(true)
-	const inputRoleAndChannel = new TextInputComponent()
-		.setCustomId('rrRoleAndChannel')
-		.setLabel('Role and Channel')
-		.setValue(roleAndChannel.join())
+	const roleChannelHours = new TextInputComponent()
+		.setCustomId('rrRoleChannelHours')
+		.setLabel('Role, Channel, Hours')
+		.setValue(inputs.join())
 		.setStyle('SHORT')
 		.setRequired(true)
 
@@ -49,7 +50,7 @@ module.exports = async (interaction, data, globals) => {
 	const modalRow2 = new MessageActionRow().addComponents(days)
 	const modalRow3 = new MessageActionRow().addComponents(time)
 	const modalRow4 = new MessageActionRow().addComponents(timezone)
-	const modalRow5 = new MessageActionRow().addComponents(inputRoleAndChannel)
+	const modalRow5 = new MessageActionRow().addComponents(roleChannelHours)
 
 	// Add the rows to the modal
 	modal.addComponents(modalRow1, modalRow2, modalRow3, modalRow4, modalRow5)

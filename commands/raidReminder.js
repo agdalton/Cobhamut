@@ -1,11 +1,82 @@
 // Raid reminder command for configuring scheduled reminders for FF14 statics
 const { SlashCommandBuilder } = require('@discordjs/builders')
+const { MessageEmbed } = require('discord.js')
 const { DateTime } = require('luxon')
 
 module.exports = {
 	name: 'raidreminder',
 	guildId: '',
-	init: async () => {},
+	init: (client, globals) => {
+		// Destruct globals
+		const { baseImageURL } = globals
+		const { purple } = globals.colors
+
+		// Check every second for scheduled partyfinders
+		const checkForReminders = async () => {
+			// Lookup in MongoDB
+			// Send reminders
+			reminders = await raidReminderSchema.find({
+				nextReminder: { $lte: Date.now() }, // In the past or now
+			})
+
+			for (reminder of reminders) {
+				const dataCreator = JSON.parse(reminder.dataCreator)
+				const {
+					title,
+					daysOfWeek,
+					time,
+					timezone,
+					role,
+					channel,
+					reminderHours,
+				} = JSON.parse(reminder.dataSubmission)
+
+				// Fetch the guild the partyfinder was scheduled in
+				const guild = await client.guilds.fetch(reminder.guildId)
+				if (!guild) return // Skip if the guild can't be fetched
+
+				// Fetch the channel of the guild the partyfinder was scheduled in
+				const fetchedChannel = await guild.channels.fetch(channel)
+				if (!fetchedChannel) return // Skip if the channel can't be fetched
+
+				// Build the reminder embed
+				const embed = new MessageEmbed()
+					.setColor(purple)
+					.setTitle(title)
+					.setDescription(`Raid begins in ${reminderHours}!`)
+					.setThumbnail(
+						'https://xivapi.com/i/060000/060855_hr1.png'
+					)
+					.setFooter({
+						text: `${
+							dataCreator.memberNick
+								? dataCreator.memberNick
+								: dataCreator.memberUsername
+						} used /raidreminder`,
+						iconURL: `${baseImageURL}/avatars/${dataCreator.memberID}/${dataCreator.memberAvatar}.png`,
+					})
+
+				// Update the reminder with the new DateTime of the next reminder
+				await raidReminderSchema.updateOne(
+					{
+						_id: reminder._id,
+					},
+					{
+						nextReminder: getNextReminder(
+							daysOfWeek,
+							time,
+							timezone
+						).toISO(),
+					}
+				)
+			}
+
+			// Check every second
+			setTimeout(checkForReminders, 1000 * 1)
+		}
+
+		checkForReminders()
+	},
 	callback: async (client, interaction, globals) => {
 		const command = interaction.options.getSubcommand()
 		const data = {}
@@ -45,6 +116,14 @@ module.exports = {
 						.setName('role')
 						.setDescription(
 							'What role should be pinged for this reminder?'
+						)
+						.setRequired(true)
+				)
+				.addIntegerOption((option) =>
+					option
+						.setName('reminderHours')
+						.setDescription(
+							'How long before raid starts should the reminder be sent?'
 						)
 						.setRequired(true)
 				)

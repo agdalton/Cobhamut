@@ -60,12 +60,12 @@ module.exports = {
 			.getTextInputValue('rrTimezone')
 			.trim()
 			.toUpperCase()
-		const roleAndChannel = fields
-			.getTextInputValue('rrRoleAndChannel')
+		const roleChannelHours = fields
+			.getTextInputValue('rrRoleChannelHours')
 			.trim()
 
 		// Validate time and timezone
-		const inputs = validateInputs(days, time, timezone, roleAndChannel)
+		const inputs = validateInputs(days, time, timezone, roleChannelHours)
 
 		if (!inputs.isValid) {
 			sendInputError(interaction, memberData, globals, inputs)
@@ -115,6 +115,7 @@ module.exports = {
 				timezone: timezone,
 				role: inputs.role,
 				channel: inputs.channel,
+				reminderHours: inputs.reminderHours,
 			}), // JSON.stringify() object containing data about the command submission
 			guildID: interaction.guildId, // Discord server ID of the server the command was sent from
 			channelID: interaction.channelId, // Discord channel ID of the channel the command was sent from

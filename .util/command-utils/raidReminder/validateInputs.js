@@ -1,6 +1,6 @@
 const { DateTime } = require('luxon')
 
-module.exports = (days, time, timezone, roleAndChannel) => {
+module.exports = (days, time, timezone, roleChannelHours) => {
 	// Setup an object to return with all the info we might need later
 	const obj = {
 		isValid: true,
@@ -111,8 +111,9 @@ module.exports = (days, time, timezone, roleAndChannel) => {
 
 	// Validate Role and Channel
 	try {
-		obj.role = roleAndChannel.split(',')[0]
-		obj.channel = roleAndChannel.split(',')[1]
+		obj.role = roleChannelHours.split(',')[0]
+		obj.channel = roleChannelHours.split(',')[1]
+		obj.reminderHours = roleChannelHours.split(',')[2]
 	} catch (e) {
 		obj.isValid = false
 		obj.err.push({

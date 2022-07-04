@@ -20,12 +20,18 @@ module.exports = {
 			.setValue(selectedValue)
 			.setRequired(true)
 			.setStyle('SHORT')
+		const title = new TextInputComponent()
+			.setCustomId('rrTitle')
+			.setLabel('Title')
+			.setValue(reminderData.title)
+			.setStyle('SHORT')
 		const description = new TextInputComponent()
 			.setCustomId('rrDays')
 			.setLabel('Days')
 			.setValue(
 				`${reminderData.days} @ ${reminderData.time} ${reminderData.timezone}`
 			)
+			.setStyle('SHORT')
 		const confirm = new TextInputComponent()
 			.setCustomId('rrConfirm')
 			.setLabel('To proceed type CANCEL')
@@ -40,11 +46,12 @@ module.exports = {
 
 		// Add all the components to rows <-- one component per row, maximum 5 rows
 		const modalRow1 = new MessageActionRow().addComponents(mongoId)
-		const modalRow2 = new MessageActionRow().addComponents(description)
-		const modalRow3 = new MessageActionRow().addComponents(confirm)
+		const modalRow2 = new MessageActionRow().addComponents(title)
+		const modalRow3 = new MessageActionRow().addComponents(description)
+		const modalRow4 = new MessageActionRow().addComponents(confirm)
 
 		// Add the rows to the modal
-		modal.addComponents(modalRow1, modalRow2, modalRow3)
+		modal.addComponents(modalRow1, modalRow2, modalRow3, modalRow4)
 
 		// Send the modal
 		await interaction.showModal(modal)

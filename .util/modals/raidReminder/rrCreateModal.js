@@ -50,13 +50,13 @@ module.exports = {
 			// Fetch the channel of the guild the partyfinder was scheduled in
 			const channel = await guild.channels.fetch(inputs.channel)
 			if (!channel) throw new Error() // Skip if the channel can't be fetched (i.e deleted)
-
+console.log('hi')
 			if (channel.type !== 0) throw new Error() // If the selected channel is not a text channel, throw an error
 		} catch (e) {
             inputs.isValid = false
 			inputs.err.push({
 				field: 'Channel',
-				message: "Cobhamut could not validate the channel you selected. Please ensure you're selecting a **text channel** from the pop-up list in Discord and that the selection is NOT a channel category (folder icon)",
+				message: "Cobhamut could not validate the channel you selected.\n\nPlease ensure you're selecting a **text channel** from the pop-up list in Discord and that the selection is NOT a channel category (folder icon)",
 			})
 
 			sendInputError(interaction, memberData, globals, inputs)

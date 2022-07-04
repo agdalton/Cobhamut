@@ -14,11 +14,11 @@ module.exports = async (userId) => {
 
 		reminderChoices.push({
 			label: reminderData.title,
-			description: 'Test',
+			description: `${reminderData.days} @ ${reminderData.time} ${reminderData.timezone}`,
 			value: reminder._id.toString(),
 		})
 	}
-	console.log('HELLO!' + reminderChoices)
+
 	return new MessageActionRow().addComponents(
 		new MessageSelectMenu()
 			.setCustomId('rrCancelSelectMenu')

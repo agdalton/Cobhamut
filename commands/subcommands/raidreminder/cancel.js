@@ -18,12 +18,11 @@ module.exports = async (interaction, data, globals) => {
 
 	const embed = new MessageEmbed()
 		.setColor(purple)
+		.setTitle('Raid reminders')
 		.setDescription(
 			'Select a reminder from the menu below to view its details and cancel it.'
 		)
-		.setThumbnail(
-			'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/htc/37/warning-sign_26a0.png'
-		)
+		.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 		.setFooter({
 			text: `${
 				memberData.memberNick

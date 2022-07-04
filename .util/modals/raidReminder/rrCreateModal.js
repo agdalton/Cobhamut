@@ -109,7 +109,8 @@ module.exports = {
 			dataCreator: JSON.stringify(memberData), // JSON.stringify() object containing data about the user who ran the command creating the raidReminder
 			dataSubmission: JSON.stringify({
 				title: title,
-				days: inputs.days,
+				days: days,
+				daysOfWeek: inputs.days,
 				time: time,
 				timezone: timezone,
 				role: inputs.role,
@@ -121,7 +122,7 @@ module.exports = {
 
 		// Respond with success
 		const embed = new MessageEmbed()
-		.setTitle('Raid reminders')
+			.setTitle('Raid reminders')
 			.setDescription('Raid reminder created successfully!')
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 			.setColor(purple)

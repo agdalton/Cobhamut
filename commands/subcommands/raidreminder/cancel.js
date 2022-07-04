@@ -33,12 +33,7 @@ module.exports = async (interaction, data, globals) => {
 			iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 		})
 
-	interactionReply(
-		interaction,
-		null,
-		[embed],
-		[getUserRemindersMenu(memberData.memberID)],
-		true,
-		false
-	)
+	const remindersMenu = getUserRemindersMenu(memberData.memberID)
+
+	interactionReply(interaction, null, [embed], [remindersMenu], true, false)
 }

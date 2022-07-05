@@ -51,16 +51,18 @@ module.exports = {
 		}
 
 		// Modify the next reminder in mongoDB
-		const reminder = await raidReminderSchema.findOne({
-			_id: mongoId,
-		})
+        let nextReminder = ''
+        let newNextReminder = ''
+		try {
+			const reminder = await raidReminderSchema.findOne({
+				_id: mongoId,
+			})
 
-		if (reminder) {
 			const { daysOfWeek, time, timezone, reminderHours } = JSON.parse(
 				reminder.dataSubmission
 			)
 			// Get the current next reminder
-			const nextReminder = getNextReminder(
+			nextReminder = getNextReminder(
 				daysOfWeek,
 				time,
 				timezone,
@@ -72,7 +74,7 @@ module.exports = {
 				return value !== nextReminder.weekday
 			})
 
-			const newNextReminder = getNextReminder(
+			newNextReminder = getNextReminder(
 				filteredDays,
 				time,
 				timezone,
@@ -85,7 +87,7 @@ module.exports = {
 				},
 				{ nextReminder: newNextReminder.toISO() }
 			)
-		} else {
+		} catch (e) {
 			embed.setColor(orange)
 				.setTitle('An error occurred')
 				.setDescription(
@@ -115,10 +117,10 @@ module.exports = {
 			)
 			.addField(
 				'Next reminder',
-				`${nextReminder.toLocaleString(
+				`${newNextReminder.toLocaleString(
 					DateTime.DATE_MED_WITH_WEEKDAY
-				)} ${nextReminder.toLocaleString(DateTime.TIME_SIMPLE)} ${
-					nextReminder.offsetNameShort
+				)} ${newNextReminder.toLocaleString(DateTime.TIME_SIMPLE)} ${
+					newNextReminder.offsetNameShort
 				}`
 			)
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')

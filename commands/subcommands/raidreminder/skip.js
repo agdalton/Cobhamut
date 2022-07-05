@@ -3,7 +3,7 @@ const interactionReply = require('../../../.util/command-utils/interactionReply.
 const getUserRemindersMenu = require('../../../.util/command-utils/raidReminder/getUserRemindersMenu.js')
 
 module.exports = async (interaction, data, globals) => {
-    // Destruct globals
+	// Destruct globals
 	const { baseImageURL } = globals
 	const { purple } = globals.colors
 
@@ -31,8 +31,16 @@ module.exports = async (interaction, data, globals) => {
 			iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 		})
 
-	const remindersMenu = await getUserRemindersMenu(memberData.memberID, 'rrSkipSelectMenu')
+	const remindersMenu = await getUserRemindersMenu(
+		memberData.memberID,
+		'rrSkipSelectMenu'
+	)
 
-	interactionReply(interaction, null, [embed], [remindersMenu], true, false)
-    return
+	if (!remindersMenu) {
+		embed.setColor(red).setDescription(
+			'You do not have any active raid reminders'
+		)
+	}
+	interactionReply(interaction, null, [embed], remindersMenu ? [remindersMenu] : null, true, false)
+	return
 }

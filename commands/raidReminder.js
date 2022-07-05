@@ -57,17 +57,24 @@ module.exports = {
 						iconURL: `${baseImageURL}/avatars/${dataCreator.memberID}/${dataCreator.memberAvatar}.png`,
 					})
 
+				// Message the channel with the reminder
+				await channel.send({
+					content: role,
+					embeds: [embed],
+				})
+
 				// Update the reminder with the new DateTime of the next reminder
+				const nextReminder = getNextReminder(
+					daysOfWeek,
+					time,
+					timezone
+				)
 				await raidReminderSchema.updateOne(
 					{
 						_id: reminder._id,
 					},
 					{
-						nextReminder: getNextReminder(
-							daysOfWeek,
-							time,
-							timezone
-						).toISO(),
+						nextReminder: nextReminder.toISO(),
 					}
 				)
 			}

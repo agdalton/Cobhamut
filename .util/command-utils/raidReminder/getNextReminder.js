@@ -5,7 +5,7 @@ module.exports = (days, time, timezone, reminderHours) => {
 	// Right now
 	const dtNow = DateTime.now().setZone(timezone)
 	const today = dtNow.weekday
-	console.log(dtNow.toLocaleString(DateTime.TIME_SIMPLE))
+	console.log(dtNow.toLocaleString(DateTime.DATETIME_HUGE))
 	// Grab 24hr time for Luxon DateTime
 	const meridiem = time.substring(time.length - 2) // AM/PM
 	const arrTime = time.slice(0, -2).split(':') // [0] is hour [1] is minutes

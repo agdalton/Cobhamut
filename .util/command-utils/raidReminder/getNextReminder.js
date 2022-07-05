@@ -21,13 +21,16 @@ module.exports = (days, time, timezone, reminderHours) => {
 	if (meridiem === 'AM' && hour === 12) hour = 0
 
 	// Time the raid should start, if it were today
-	const nextReminder = DateTime.fromObject({
-		year: dtNow.year,
-		month: dtNow.month,
-		day: dtNow.day,
-		hour: hour - reminderHours,
-		minute: minute,
-	}).setZone(timezone, { keepLocalTime: true })
+	const nextReminder = DateTime.fromObject(
+		{
+			year: dtNow.year,
+			month: dtNow.month,
+			day: dtNow.day,
+			hour: hour - reminderHours,
+			minute: minute,
+		},
+		{ zone: timezone }
+	)
 	console.log(nextReminder.toLocaleString(DateTime.DATETIME_HUGE))
 
 	// Check if a reminder should be scheduled for today

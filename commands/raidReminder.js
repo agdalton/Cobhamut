@@ -58,7 +58,7 @@ module.exports = {
 					})
 
 				// Message the channel with the reminder
-				await channel.send({
+				await fetchedChannel.send({
 					content: role,
 					embeds: [embed],
 				})

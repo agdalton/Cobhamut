@@ -23,7 +23,7 @@ module.exports = (days, time, timezone, reminderHours) => {
 	// Time the raid should start, if it were today
 	const nextReminder = DateTime.now()
 		.set({
-			hour: hour,
+			hour: hour - reminderHours,
 			minute: minute,
 		})
 		.setZone(timezone, { keepLocalTime: true })
@@ -35,14 +35,13 @@ module.exports = (days, time, timezone, reminderHours) => {
 			dtNow.toUnixInteger() <
 			nextReminder.plus({ hours: -reminderHours }).toUnixInteger()
 		)
-			return nextReminder.plus({ hours: -reminderHours })
+			return nextReminder
 	}
 
 	// Otherwise find the next day a reminder should be sent
 	for (let i = 0; i < days.length; i++) {
 		if (days[i] > today)
 			return nextReminder.plus({
-				hours: -reminderHours,
 				days: days[i] - today,
 			})
 	}
@@ -61,7 +60,6 @@ module.exports = (days, time, timezone, reminderHours) => {
 	 * the next reminder should be sent on will return the correct date.
 	 */
 	return nextReminder.plus({
-		hours: -reminderHours,
 		days: 7 - today + nextDayIndex,
 	})
 }

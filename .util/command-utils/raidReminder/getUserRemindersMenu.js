@@ -14,7 +14,7 @@ module.exports = async (userId, customId) => {
 
 		reminderChoices.push({
 			label: reminderData.title,
-			description: `${reminderData.days} @ ${reminderData.time} ${reminderData.friendlyTZ}`,
+			description: `${reminderData.days} @ ${reminderData.time} ${reminderData.friendlyTZ} | ${reminderData.reminderHours} hour reminder`,
 			value: reminder._id.toString(),
 		})
 	}

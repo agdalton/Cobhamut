@@ -3,9 +3,9 @@ const { DateTime } = require('luxon')
 
 module.exports = (days, time, timezone, reminderHours) => {
 	// Right now
-	const dtNow = DateTime.utc().setZone(timezone, { keepLocalTime: true })
+	const dtNow = DateTime.now().setZone(timezone, { keepLocalTime: true })
 	const today = dtNow.weekday
-	console.log(dtNow.toLocaleParts() + today)
+	console.log(dtNow.toLocaleParts())
 	// Grab 24hr time for Luxon DateTime
 	const meridiem = time.substring(time.length - 2) // AM/PM
 	const arrTime = time.slice(0, -2).split(':') // [0] is hour [1] is minutes

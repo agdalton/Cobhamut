@@ -76,7 +76,7 @@ module.exports = {
 		}
 
 		// Respond with delete confirmation
-		embed.setTitle('Raid Reminders')
+		embed.setTitle('Cancel a raid reminder')
 			.setColor(purple)
 			.setDescription(
 				'Your raid reminder has been canceled successfully.'

@@ -23,6 +23,9 @@ module.exports = (days, time, timezone, reminderHours) => {
 	// Time the raid should start, if it were today
 	const nextReminder = DateTime.now()
 		.set({
+			year: dtNow.year,
+			month: dtNow.month,
+			day: dtNow.day,
 			hour: hour - reminderHours,
 			minute: minute,
 		})

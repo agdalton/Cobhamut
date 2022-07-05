@@ -42,7 +42,7 @@ module.exports = (days, time, timezone, reminderHours) => {
 		if (days[i] > today)
 			return nextReminder.plus({
 				hours: -reminderHours,
-				days: days[i] - (today + 1),
+				days: days[i] - today,
 			})
 	}
 
@@ -61,6 +61,6 @@ module.exports = (days, time, timezone, reminderHours) => {
 	 */
 	return nextReminder.plus({
 		hours: -reminderHours,
-		days: 7 - today + nextDayIndex + 1,
+		days: 7 - today + nextDayIndex,
 	})
 }

@@ -31,9 +31,9 @@ module.exports = {
 					channel,
 					reminderHours,
 				} = JSON.parse(reminder.dataSubmission)
-console.log(channel)
+
 				// Fetch the guild the partyfinder was scheduled in
-				const guild = await client.guilds.fetch(reminder.guildId)
+				const guild = await client.guilds.fetch(reminder.guildID)
 				if (!guild) return // Skip if the guild can't be fetched
 
 				// Fetch the channel of the guild the partyfinder was scheduled in

@@ -68,7 +68,8 @@ module.exports = {
 				const nextReminder = getNextReminder(
 					daysOfWeek,
 					time,
-					timezone
+					timezone,
+					reminderHours
 				)
 
 				await raidReminderSchema.updateOne(

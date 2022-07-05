@@ -5,6 +5,7 @@ module.exports = (days, time, timezone, roleChannelHours) => {
 	const obj = {
 		isValid: true,
 		days: [],
+		friendlyDays: [],
 		timezone: '',
 		role: '',
 		channel: '',
@@ -18,49 +19,57 @@ module.exports = (days, time, timezone, roleChannelHours) => {
 			throw new Error('There are only seven days in a week.')
 
 		for (let i = 0; i < daysOfWeek.length; i++) {
-			switch (daysOfWeek[i]) {
+			switch (daysOfWeek[i].trim()) {
 				case 'monday':
 				case 'mon':
 				case 'm':
+					days[i] = 'Mon'
 					daysOfWeek[i] = 1
 					break
 				case 'tuesday':
 				case 'tues':
 				case 't':
 				case 'tu':
+					days[i] = 'Tues'
 					daysOfWeek[i] = 2
 					break
 				case 'wednesday':
 				case 'wed':
 				case 'w':
+					days[i] = 'Wed'
 					daysOfWeek[i] = 3
 					break
 				case 'thursday':
 				case 'thurs':
 				case 'th':
 				case 'r':
+					days[i] = 'Thurs'
 					daysOfWeek[i] = 4
 					break
 				case 'friday':
 				case 'fri':
 				case 'f':
+					days[i] = 'Fri'
 					daysOfWeek[i] = 5
 					break
 				case 'saturday':
 				case 'sat':
 				case 's':
+					days[i] = 'Sat'
 					daysOfWeek[i] = 6
 					break
 				case 'sunday':
 				case 'sun':
 				case 'su':
 				case 'u':
+					days[i] = 'Sun'
 					daysOfWeek[i] = 7
 					break
 			}
 		}
 
 		obj.days = daysOfWeek.sort()
+		obj.friendlyDays = days
 	} catch (e) {
 		obj.isValid = false
 		obj.err.push({

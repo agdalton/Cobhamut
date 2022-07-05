@@ -110,7 +110,7 @@ module.exports = {
 			dataCreator: JSON.stringify(memberData), // JSON.stringify() object containing data about the user who ran the command creating the raidReminder
 			dataSubmission: JSON.stringify({
 				title: title,
-				days: days,
+				days: inputs.friendlyDays,
 				daysOfWeek: inputs.days,
 				time: time,
 				friendlyTZ: timezone,

@@ -3,7 +3,7 @@ const { DateTime } = require('luxon')
 
 module.exports = (days, time, timezone, reminderHours) => {
 	// Right now
-	const dtNow = DateTime.now().setZone(timezone, { keepLocalTime: true })
+	const dtNow = DateTime.now().setZone(timezone, { keepLocalTime: false })
 	const today = dtNow.weekday
 	console.log(today)
 	// Grab 24hr time for Luxon DateTime

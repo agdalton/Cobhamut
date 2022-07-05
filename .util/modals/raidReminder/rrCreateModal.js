@@ -113,6 +113,7 @@ module.exports = {
 				days: days,
 				daysOfWeek: inputs.days,
 				time: time,
+				friendlyTZ: timezone,
 				timezone: inputs.timezone,
 				role: inputs.role,
 				channel: inputs.channel,

@@ -23,7 +23,7 @@ module.exports = async (interaction, data, globals) => {
 		.setRequired(true)
 	const time = new TextInputComponent()
 		.setCustomId('rrTime')
-		.setLabel('Time')
+		.setLabel('Raid Start Time')
 		.setPlaceholder('8:30PM')
 		.setStyle('SHORT')
 		.setRequired(true)

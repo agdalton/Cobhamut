@@ -51,11 +51,11 @@ module.exports = {
 		}
 
 		// Modify the next reminder in mongoDB
-		try {
-			const reminder = await raidReminderSchema.findOne({
-				_id: mongoId,
-			})
+		const reminder = await raidReminderSchema.findOne({
+			_id: mongoId,
+		})
 
+		if (reminder) {
 			const { daysOfWeek, time, timezone, reminderHours } = JSON.parse(
 				reminder.dataSubmission
 			)
@@ -85,7 +85,7 @@ module.exports = {
 				},
 				{ nextReminder: newNextReminder.toISO() }
 			)
-		} catch (e) {
+		} else {
 			embed.setColor(orange)
 				.setTitle('An error occurred')
 				.setDescription(

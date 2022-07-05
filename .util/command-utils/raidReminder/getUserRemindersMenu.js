@@ -6,6 +6,7 @@ module.exports = async (userId, customId) => {
 	const raidReminders = await raidReminderSchema.find({
 		dataCreator: { $regex: `"memberID":"${userId}"` },
 	})
+	console.log(raidReminders)
 	if (raidReminders) {
 		// Build a list and present it to the user
 		const reminderChoices = []

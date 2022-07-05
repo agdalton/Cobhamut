@@ -60,7 +60,7 @@ module.exports = (days, time, timezone, roleChannelHours) => {
 			}
 		}
 
-		obj.days = daysOfWeek
+		obj.days = daysOfWeek.sort()
 	} catch (e) {
 		obj.isValid = false
 		obj.err.push({

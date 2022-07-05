@@ -19,42 +19,42 @@ module.exports = (days, time, timezone, roleChannelHours) => {
 
 		for (let i = 0; i < daysOfWeek.length; i++) {
 			switch (daysOfWeek[i]) {
-				case 'sunday':
-				case 'sun':
-				case 'su':
-				case 'u':
-					daysOfWeek[i] = 1
-					break
 				case 'monday':
 				case 'mon':
 				case 'm':
-					daysOfWeek[i] = 2
+					daysOfWeek[i] = 1
 					break
 				case 'tuesday':
 				case 'tues':
 				case 't':
 				case 'tu':
-					daysOfWeek[i] = 3
+					daysOfWeek[i] = 2
 					break
 				case 'wednesday':
 				case 'wed':
 				case 'w':
-					daysOfWeek[i] = 4
+					daysOfWeek[i] = 3
 					break
 				case 'thursday':
 				case 'thurs':
 				case 'th':
 				case 'r':
-					daysOfWeek[i] = 5
+					daysOfWeek[i] = 4
 					break
 				case 'friday':
 				case 'fri':
 				case 'f':
-					daysOfWeek[i] = 6
+					daysOfWeek[i] = 5
 					break
 				case 'saturday':
 				case 'sat':
 				case 's':
+					daysOfWeek[i] = 6
+					break
+				case 'sunday':
+				case 'sun':
+				case 'su':
+				case 'u':
 					daysOfWeek[i] = 7
 					break
 			}

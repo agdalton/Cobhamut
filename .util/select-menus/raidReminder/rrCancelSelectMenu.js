@@ -29,7 +29,7 @@ module.exports = {
 			.setCustomId('rrDays')
 			.setLabel('Raid Schedule')
 			.setValue(
-				`${reminderData.days} @ ${reminderData.time} ${reminderData.friendlyTZ} | ${reminderData.reminderHours} hour reminder`
+				`${reminderData.friendlyDays} @ ${reminderData.time} ${reminderData.friendlyTZ} | ${reminderData.reminderHours} hour reminder`
 			)
 			.setStyle('SHORT')
 		const confirm = new TextInputComponent()

@@ -33,6 +33,13 @@ module.exports = {
 					reminderHours,
 				} = JSON.parse(reminder.dataSubmission)
 
+				// Find the next reminder
+				const nextReminder = getNextReminder(
+					daysOfWeek,
+					time,
+					timezone,
+					reminderHours
+				)
 				// Fetch the guild the partyfinder was scheduled in
 				const guild = await client.guilds.fetch(reminder.guildID)
 				if (!guild) return // Skip if the guild can't be fetched
@@ -45,7 +52,9 @@ module.exports = {
 				const embed = new MessageEmbed()
 					.setColor(purple)
 					.setTitle(title)
-					.setDescription(`Raid begins in ${reminderHours} hour!`)
+					.setDescription(
+						`Raid begins in ${reminderHours} hour!`
+					)
 					.setThumbnail(
 						'https://xivapi.com/i/060000/060855_hr1.png'
 					)
@@ -54,7 +63,11 @@ module.exports = {
 							dataCreator.memberNick
 								? dataCreator.memberNick
 								: dataCreator.memberUsername
-						} used /raidreminder`,
+						} used /raidreminder. Next reminder @ ${nextReminder.toLocaleString(
+							DateTime.DATE_MED_WITH_WEEKDAY
+						)} ${nextReminder.toLocaleString(
+							DateTime.TIME_SIMPLE
+						)} ${nextReminder.offsetNameShort}`,
 						iconURL: `${baseImageURL}/avatars/${dataCreator.memberID}/${dataCreator.memberAvatar}.png`,
 					})
 
@@ -63,14 +76,6 @@ module.exports = {
 					content: role,
 					embeds: [embed],
 				})
-
-				// Update the reminder with the new DateTime of the next reminder
-				const nextReminder = getNextReminder(
-					daysOfWeek,
-					time,
-					timezone,
-					reminderHours
-				)
 
 				await raidReminderSchema.updateOne(
 					{

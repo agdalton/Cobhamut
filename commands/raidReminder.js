@@ -3,6 +3,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders')
 const { MessageEmbed } = require('discord.js')
 const { DateTime } = require('luxon')
 const raidReminderSchema = require('../.util/mongo-utils/raidReminder/raidReminderSchema.js')
+const getNextReminder = require('../.util/command-utils/raidReminder/getNextReminder.js')
 
 module.exports = {
 	name: 'raidreminder',
@@ -44,7 +45,7 @@ module.exports = {
 				const embed = new MessageEmbed()
 					.setColor(purple)
 					.setTitle(title)
-					.setDescription(`Raid begins in ${reminderHours}!`)
+					.setDescription(`Raid begins in ${reminderHours} hour!`)
 					.setThumbnail(
 						'https://xivapi.com/i/060000/060855_hr1.png'
 					)

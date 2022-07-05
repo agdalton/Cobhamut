@@ -37,18 +37,19 @@ module.exports = (days, time, timezone, reminderHours) => {
 	if (days.includes(today)) {
 		if (
 			dtNow.toUnixInteger() <
-			nextReminder.plus({ hours: -reminderHours }).toUnixInteger()
+			nextReminder.minus({ hours: reminderHours }).toUnixInteger()
 		)
-			return nextReminder.plus({ hours: -reminderHours })
+			return nextReminder.minus({ hours: reminderHours })
 	}
 
 	// Otherwise find the next day a reminder should be sent
 	for (let i = 0; i < days.length; i++) {
 		if (days[i] > today)
-			return nextReminder.plus({
-				hours: -reminderHours,
-				days: days[i] - today,
-			})
+			return nextReminder
+				.plus({
+					days: days[i] - today,
+				})
+				.minus({ hours: reminderHours })
 	}
 
 	// Find the next reminder if the next day is a lower index in the week
@@ -64,8 +65,9 @@ module.exports = (days, time, timezone, reminderHours) => {
 	 * that particular day is, so subtracting today's index from 7 and then adding the index for the day
 	 * the next reminder should be sent on will return the correct date.
 	 */
-	return nextReminder.plus({
-		hours: -reminderHours,
-		days: 7 - today + nextDayIndex,
-	})
+	return nextReminder
+		.plus({
+			days: 7 - today + nextDayIndex,
+		})
+		.minus({ hours: reminderHours })
 }

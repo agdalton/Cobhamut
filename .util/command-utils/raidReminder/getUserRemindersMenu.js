@@ -1,7 +1,7 @@
 const { MessageActionRow, MessageSelectMenu } = require('discord.js')
 const raidReminderSchema = require('../../mongo-utils/raidReminder/raidReminderSchema.js')
 
-module.exports = async (userId) => {
+module.exports = async (userId, customId) => {
 	// Find all raid reminders scheduled by the user
 	const raidReminders = await raidReminderSchema.find({
 		dataCreator: { $regex: `"memberID":"${userId}"` },
@@ -21,7 +21,7 @@ module.exports = async (userId) => {
 
 	return new MessageActionRow().addComponents(
 		new MessageSelectMenu()
-			.setCustomId('rrCancelSelectMenu')
+			.setCustomId(customId)
 			.setPlaceholder('Nothing selected')
 			.addOptions(reminderChoices)
 	)

@@ -149,6 +149,14 @@ module.exports = {
 				)
 		)
 
+		data.addSubcommand((subcommand) =>
+			subcommand
+				.setName('skip')
+				.setDescription(
+					'Skip the next reminder for one of your raid reminders'
+				)
+		)
+
 		return data.toJSON()
 	})(),
 }

@@ -2,7 +2,7 @@ const { MessageActionRow, Modal, TextInputComponent } = require('discord.js')
 const raidReminderSchema = require('../../mongo-utils/raidReminder/raidReminderSchema.js')
 
 module.exports = {
-	name: 'rrCancelSelectMenu',
+	name: 'rrSkipSelectMenu',
 	callback: async (client, interaction, globals) => {
 		const selectedValue = interaction.values[0]
 
@@ -34,15 +34,15 @@ module.exports = {
 			.setStyle('SHORT')
 		const confirm = new TextInputComponent()
 			.setCustomId('rrConfirm')
-			.setLabel('To proceed type CANCEL')
-			.setPlaceholder('CANCEL')
+			.setLabel('To proceed type SKIP')
+			.setPlaceholder('SKIP')
 			.setStyle('SHORT')
 			.setRequired(true)
 
 		// Modal setup
 		const modal = new Modal()
-			.setCustomId('rrCancelModal') // ../.././.util/modals/raidReminder/rrCancelModal.js
-			.setTitle('Cancel Raid Reminder')
+			.setCustomId('rrSkipModal') // ../.././.util/modals/raidReminder/rrCancelModal.js
+			.setTitle('Skip Raid Reminder')
 
 		// Add all the components to rows <-- one component per row, maximum 5 rows
 		const modalRow1 = new MessageActionRow().addComponents(title)

@@ -1,10 +1,9 @@
-// Retrieve a list of raid reminders created by the user and present an option to delete a selection
 const { MessageEmbed } = require('discord.js')
 const interactionReply = require('../../../.util/command-utils/interactionReply.js')
 const getUserRemindersMenu = require('../../../.util/command-utils/raidReminder/getUserRemindersMenu.js')
 
 module.exports = async (interaction, data, globals) => {
-	// Destruct globals
+    // Destruct globals
 	const { baseImageURL } = globals
 	const { purple } = globals.colors
 
@@ -18,9 +17,9 @@ module.exports = async (interaction, data, globals) => {
 
 	const embed = new MessageEmbed()
 		.setColor(purple)
-		.setTitle('Cancel a raid reminder')
+		.setTitle('Skip a raid reminder')
 		.setDescription(
-			'Select a reminder from the menu below to view its details and cancel it.'
+			'Select a reminder from the menu below to skip its next occurrence.'
 		)
 		.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 		.setFooter({
@@ -28,11 +27,11 @@ module.exports = async (interaction, data, globals) => {
 				memberData.memberNick
 					? memberData.memberNick
 					: memberData.memberUsername
-			} used /raidreminder cancel`,
+			} used /raidreminder skip`,
 			iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 		})
 
-	const remindersMenu = await getUserRemindersMenu(memberData.memberID, 'rrCancelSelectMenu')
+	const remindersMenu = await getUserRemindersMenu(memberData.memberID, 'rrSkipSelectMenu')
 
 	interactionReply(interaction, null, [embed], [remindersMenu], true, false)
     return

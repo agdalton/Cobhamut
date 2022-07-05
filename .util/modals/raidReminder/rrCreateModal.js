@@ -131,9 +131,9 @@ module.exports = {
 			.addField('Title', title)
 			.addField(
 				'Next reminder',
-				`${nextReminder.toString(
+				`${nextReminder.toLocaleString(
 					DateTime.DATE_MED_WITH_WEEKDAY
-				)} ${nextReminder.toString(DateTime.TIME_SIMPLE)} ${
+				)} ${nextReminder.toLocaleString(DateTime.TIME_SIMPLE)} ${
 					nextReminder.offsetNameShort
 				}`
 			)

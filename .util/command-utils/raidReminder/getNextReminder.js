@@ -5,7 +5,7 @@ module.exports = (days, time, timezone, reminderHours) => {
 	// Right now
 	const dtNow = DateTime.now().setZone(timezone)
 	const today = dtNow.weekday
-	console.log(dtNow.toLocaleString(DateTime.DATETIME_HUGE))
+
 	// Grab 24hr time for Luxon DateTime
 	const meridiem = time.substring(time.length - 2) // AM/PM
 	const arrTime = time.slice(0, -2).split(':') // [0] is hour [1] is minutes
@@ -31,10 +31,9 @@ module.exports = (days, time, timezone, reminderHours) => {
 		},
 		{ zone: timezone }
 	)
-	console.log(nextReminder.toLocaleString(DateTime.DATETIME_HUGE))
 
 	// Check if a reminder should be scheduled for today
-	if (days.includes(today) && dtNow.plus({ hours: reminderHours }).hour !== hour && dtNow.plus({ hours: reminderHours }).minute !== minute ) {
+	if (days.includes(today)) {
 		if (
 			dtNow.toUnixInteger() <
 			nextReminder.minus({ hours: reminderHours }).toUnixInteger()

@@ -15,6 +15,7 @@ module.exports = (days, time, timezone, roleChannelHours) => {
 	// Validate Days
 	try {
 		let daysOfWeek = days.toLowerCase().split(',')
+		let friendlyDays = daysOfWeek
 		if (daysOfWeek.length > 7)
 			throw new Error('There are only seven days in a week.')
 
@@ -23,53 +24,53 @@ module.exports = (days, time, timezone, roleChannelHours) => {
 				case 'monday':
 				case 'mon':
 				case 'm':
-					days[i] = 'Mon'
+					friendlyDays[i] = 'Mon'
 					daysOfWeek[i] = 1
 					break
 				case 'tuesday':
 				case 'tues':
 				case 't':
 				case 'tu':
-					days[i] = 'Tues'
+					friendlyDays[i] = 'Tues'
 					daysOfWeek[i] = 2
 					break
 				case 'wednesday':
 				case 'wed':
 				case 'w':
-					days[i] = 'Wed'
+					friendlyDays[i] = 'Wed'
 					daysOfWeek[i] = 3
 					break
 				case 'thursday':
 				case 'thurs':
 				case 'th':
 				case 'r':
-					days[i] = 'Thurs'
+					friendlyDays[i] = 'Thurs'
 					daysOfWeek[i] = 4
 					break
 				case 'friday':
 				case 'fri':
 				case 'f':
-					days[i] = 'Fri'
+					friendlyDays[i] = 'Fri'
 					daysOfWeek[i] = 5
 					break
 				case 'saturday':
 				case 'sat':
 				case 's':
-					days[i] = 'Sat'
+					friendlyDays[i] = 'Sat'
 					daysOfWeek[i] = 6
 					break
 				case 'sunday':
 				case 'sun':
 				case 'su':
 				case 'u':
-					days[i] = 'Sun'
+					friendlyDays[i] = 'Sun'
 					daysOfWeek[i] = 7
 					break
 			}
 		}
 
 		obj.days = daysOfWeek.sort()
-		obj.friendlyDays = days
+		obj.friendlyDays = friendlyDays
 	} catch (e) {
 		obj.isValid = false
 		obj.err.push({

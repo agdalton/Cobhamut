@@ -7,7 +7,7 @@ module.exports = {
 	callback: async (client, interaction, globals) => {
 		// Destruct globals
 		const { baseImageURL } = globals
-		const { orange } = globals.colors
+		const { orange, purple } = globals.colors
 
 		// Get modal inputs
 		const { fields } = interaction
@@ -77,6 +77,7 @@ module.exports = {
 
 		// Respond with delete confirmation
 		embed.setTitle('Raid Reminders')
+			.setColor(purple)
 			.setDescription(
 				'Your raid reminder has been canceled successfully.'
 			)

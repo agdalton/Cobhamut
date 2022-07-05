@@ -63,11 +63,7 @@ module.exports = {
 							dataCreator.memberNick
 								? dataCreator.memberNick
 								: dataCreator.memberUsername
-						} used /raidreminder - Next reminder @ ${nextReminder.toLocaleString(
-							DateTime.DATE_MED_WITH_WEEKDAY
-						)} ${nextReminder.toLocaleString(
-							DateTime.TIME_SIMPLE
-						)} ${nextReminder.offsetNameShort}`,
+						} used /raidreminder`,
 						iconURL: `${baseImageURL}/avatars/${dataCreator.memberID}/${dataCreator.memberAvatar}.png`,
 					})
 

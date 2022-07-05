@@ -5,7 +5,7 @@ const interactionReply = require('../../command-utils/interactionReply')
 const getNextReminder = require('../../command-utils/raidReminder/getNextReminder.js')
 
 module.exports = {
-	name: 'rrCancelModal',
+	name: 'rrSkipModal',
 	callback: async (client, interaction, globals) => {
 		// Destruct globals
 		const { baseImageURL } = globals

@@ -113,7 +113,7 @@ module.exports = {
 				days: days,
 				daysOfWeek: inputs.days,
 				time: time,
-				timezone: timezone,
+				timezone: inputs.timezone,
 				role: inputs.role,
 				channel: inputs.channel,
 				reminderHours: inputs.reminderHours,

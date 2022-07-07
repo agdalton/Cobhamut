@@ -27,8 +27,8 @@ module.exports = async (
 			throw new Error('There are only seven days in a week.')
 
 		for (let i = 0; i < daysOfWeek.length; i++) {
-			console.log(daysOfWeek[i].trim())
-			switch (daysOfWeek[i].trim()) {
+			console.log(daysOfWeek[i])
+			switch (daysOfWeek[i]) {
 				case 'monday':
 				case 'mon':
 				case 'm':

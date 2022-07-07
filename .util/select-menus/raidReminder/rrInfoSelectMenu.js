@@ -99,7 +99,7 @@ module.exports = {
 					memberData.memberNick
 						? memberData.memberNick
 						: memberData.memberUsername
-				} used /raidreminder cancel`,
+				} used /raidreminder info`,
 				iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 			})
 

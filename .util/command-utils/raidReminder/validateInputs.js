@@ -161,20 +161,22 @@ module.exports = (
 
 		// Validate role and channel are resolvable from the client
 		const guild = client.guilds.fetch(interaction.guildId)
-		if (!guild) throw new Error()
+		if (!guild) throw new Error('Unable to fetch the guild from the client')
 
 		const role = guild.roles.fetch(
 			obj.role.substring(2, obj.role.length - 1)
 		)
-		if (!role) throw new Error()
+		if (!role) throw new Error('Unable to fetch the role from the client')
 
 		const channel = guild.channels.fetch(obj.channel)
-		if (!channel) throw new Error()
+		if (!channel) throw new Error('Unable to fetch the channel from the client')
 	} catch (e) {
 		obj.isValid = false
 		obj.err.push({
 			field: 'Role, Channel, Hours',
-			message: 'An error occurred while processing the Role, Channel, Hours field. When submitting the Raid Reminder form, **DO NOT change the Role, Channel, Hours field**',
+			message:
+				'An error occurred while processing the Role, Channel, Hours field. When submitting the Raid Reminder form, **DO NOT change the Role, Channel, Hours field**' +
+				`\n\nException: ${e.message}`,
 		})
 	}
 

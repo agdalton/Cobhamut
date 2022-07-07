@@ -145,7 +145,7 @@ module.exports = {
 			.addField('Static', inputs.role)
 			.addField(
 				'Raid start time',
-				`${time} ${timezone} | ${inputs.reminderHours} hour reminder`,
+				`${time} ${nextReminder.offsetNameShort} | ${inputs.reminderHours} hour reminder`,
 				true
 			)
 			.addField('Raid days', inputs.friendlyDays.join(', '), true)

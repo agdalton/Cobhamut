@@ -35,7 +35,7 @@ module.exports = async (interaction, data, globals) => {
 	// Return if the user does NOT have the manage server permission
 	if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_GUILD)) {
 		embed.setColor(red).setDescription(
-			'You must have the manage server permissions to run this command.'
+			'You must have the Manage Server permission to run this command.'
 		)
 		interactionReply(interaction, null, [embed], null, false, false)
 	}
@@ -51,19 +51,21 @@ module.exports = async (interaction, data, globals) => {
 	}
 
 	// Iterate through the members, find any raid reminders setup by people no longer in the server and cancel them
-	console.log(guild.members)
+	const query = {
+		$and: [{ guildId: interaction.guildId }],
+	}
+
+	// Add all current members to a NOT query
 	for (const member in guild.members) {
-		const reminders = await raidReminderSchema.find({
-			$and: [
-				{ guildId: interaction.guildId },
-				{
-					dataCreator: {
-						$regex: `"memberID":"${memberData.memberID}"`,
-					},
-				},
-			],
+		query.$and.push({
+			dataCreator: {
+				$not: { $regex: `"memberID":"${member.id}"` },
+			},
 		})
 	}
+
+	await raidReminderSchema.deleteMany(query)
+
 	// Purge embed to allow user selection
 	embed.setColor(purple).setDescription(
 		'Raid reminders created by users who are no longer in the server have been purged.'

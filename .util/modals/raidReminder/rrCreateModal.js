@@ -55,7 +55,7 @@ module.exports = {
 		const { fields } = interaction
 		const title = fields.getTextInputValue('rrTitle').trim()
 		const days = fields.getTextInputValue('rrDays').trim()
-		const time = fields.getTextInputValue('rrTime').trim()
+		const time = fields.getTextInputValue('rrTime').trim().toUpperCase()
 		const timezone = fields
 			.getTextInputValue('rrTimezone')
 			.trim()
@@ -130,6 +130,8 @@ module.exports = {
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 			.setColor(purple)
 			.addField('Title', title)
+			.addField('Static', inputs.role)
+			.addField('Raid start time', `${time} ${friendlyTZ}`)
 			.addField(
 				'Next reminder',
 				`${nextReminder.toLocaleString(

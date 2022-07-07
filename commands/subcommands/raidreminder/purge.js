@@ -64,12 +64,12 @@ module.exports = async (interaction, data, globals) => {
 		})
 	}
 
-	await raidReminderSchema.deleteMany(query)
+	const reminders = await raidReminderSchema.deleteMany(query)
 
 	// Purge embed to allow user selection
 	embed.setColor(purple).setDescription(
 		'Raid reminders created by users who are no longer in the server have been purged.'
-	)
+	).addField('Delete count', reminders.deletedCount)
 
 	interactionReply(interaction, null, [embed], null, false, false)
 	return

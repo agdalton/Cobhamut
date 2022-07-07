@@ -6,7 +6,7 @@ module.exports = async (userId, customId) => {
 	const raidReminders = await raidReminderSchema.find({
 		dataCreator: { $regex: `"memberID":"${userId}"` },
 	})
-	
+
 	// If the user has reminders, build the select menu
 	if (raidReminders.length > 0) {
 		// Build a list and present it to the user
@@ -16,7 +16,11 @@ module.exports = async (userId, customId) => {
 
 			reminderChoices.push({
 				label: reminderData.title,
-				description: `${reminderData.days} @ ${reminderData.time} ${reminderData.friendlyTZ} | ${reminderData.reminderHours} hour reminder`,
+				description: `${reminderData.days.join(', ')} @ ${
+					reminderData.time
+				} ${reminderData.friendlyTZ} | ${
+					reminderData.reminderHours
+				} hour reminder`,
 				value: reminder._id.toString(),
 			})
 		}

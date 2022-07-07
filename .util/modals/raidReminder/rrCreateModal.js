@@ -161,6 +161,7 @@ module.exports = {
 				true
 			)
 			.addField('Channel', `<#${inputs.channel}>`, true)
+			.addField('\u200b', '\u200b', true)
 			.setFooter({
 				text: `${
 					memberData.memberNick

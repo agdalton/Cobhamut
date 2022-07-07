@@ -58,12 +58,18 @@ module.exports = {
 					.setThumbnail(
 						'https://xivapi.com/i/060000/060855_hr1.png'
 					)
+					.addField('Static', `${role}`)
+					.addField('Raid start time', `${time} ${friendlyTZ}`)
 					.setFooter({
 						text: `${
 							dataCreator.memberNick
 								? dataCreator.memberNick
 								: dataCreator.memberUsername
-						} used /raidreminder`,
+						} used /raidreminder\nNext reminder @ ${nextReminder.toLocaleString(
+							DateTime.DATE_MED_WITH_WEEKDAY
+						)} ${nextReminder.toLocaleString(
+							DateTime.TIME_SIMPLE
+						)} ${nextReminder.offsetNameShort}`,
 						iconURL: `${baseImageURL}/avatars/${dataCreator.memberID}/${dataCreator.memberAvatar}.png`,
 					})
 

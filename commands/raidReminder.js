@@ -73,6 +73,7 @@ module.exports = {
 					embeds: [embed],
 				})
 
+				// Update the reminder with the next date a reminder should be sent
 				await raidReminderSchema.updateOne(
 					{
 						_id: reminder._id,

@@ -36,6 +36,7 @@ module.exports = async (interaction, data, globals) => {
 		'rrSkipSelectMenu'
 	)
 
+	console.log(remindersMenu)
 	if (!remindersMenu) {
 		embed.setColor(red).setDescription(
 			'You do not have any active raid reminders'

@@ -2,7 +2,7 @@
 const { MessageActionRow, Modal, TextInputComponent } = require('discord.js')
 
 module.exports = async (interaction, data, globals) => {
-	// Get size, ping from the interaction
+	// Get modal fields from the interaction
 	const inputs = []
 	inputs.push(interaction.options.getRole('role'))
 	inputs.push(interaction.options.getChannel('channel').id)

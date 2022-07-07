@@ -61,14 +61,12 @@ module.exports = {
 		} = JSON.parse(reminder.dataSubmission)
 
 		// Respond with the reminder info
-		const dtNextReminder =
-			DateTime.fromISO(nextReminder).setLocale('en-US').setZone(timezone)
-            console.log(dtNextReminder)
+		const dtNextReminder = DateTime.fromISO(nextReminder)
+			.setLocale('en-US')
+			.setZone(timezone)
 		const nextReminderDate = dtNextReminder.toLocaleString(
 			DateTime.DATE_MED_WITH_WEEKDAY
 		)
-
-        console.log(nextReminderDate)
 
 		embed.setColor(purple)
 			.setDescription(

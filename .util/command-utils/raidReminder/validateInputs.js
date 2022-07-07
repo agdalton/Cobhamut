@@ -16,6 +16,9 @@ module.exports = (days, time, timezone, roleChannelHours) => {
 	try {
 		let daysOfWeek = days.toLowerCase().split(',')
 		let friendlyDays = daysOfWeek
+		console.log(`Days of week: ${daysOfWeek}`)
+		console.log(`Friendly: ${friendlyDays}`)
+
 		if (daysOfWeek.length > 7)
 			throw new Error('There are only seven days in a week.')
 
@@ -68,7 +71,7 @@ module.exports = (days, time, timezone, roleChannelHours) => {
 					break
 			}
 		}
-console.log(friendlyDays)
+
 		obj.days = daysOfWeek.sort()
 		obj.friendlyDays = friendlyDays
 	} catch (e) {

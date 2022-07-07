@@ -60,11 +60,11 @@ module.exports = async (interaction, data, globals) => {
 	members.forEach((member) => {
 		query.$and.push({
 			dataCreator: {
-				$not: { $regex: `"memberID":"${member.id}"` },
+				$not: `/"memberID":"${member.id}"/`,
 			},
 		})
 	})
-    
+
 	console.log(JSON.stringify(query))
 
 	const reminders = await raidReminderSchema.deleteMany(query)

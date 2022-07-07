@@ -30,39 +30,46 @@ module.exports = (
 				case 'monday':
 				case 'mon':
 				case 'm':
+					if (daysOfWeek.includes(1)) daysOfWeek.splice(i, 1) // Prevent duplicates
 					daysOfWeek[i] = 1
 					break
 				case 'tuesday':
 				case 'tues':
 				case 't':
 				case 'tu':
+					if (daysOfWeek.includes(2)) daysOfWeek.splice(i, 1) // Prevent duplicates
 					daysOfWeek[i] = 2
 					break
 				case 'wednesday':
 				case 'wed':
 				case 'w':
+					if (daysOfWeek.includes(3)) daysOfWeek.splice(i, 1) // Prevent duplicates
 					daysOfWeek[i] = 3
 					break
 				case 'thursday':
 				case 'thurs':
 				case 'th':
 				case 'r':
+					if (daysOfWeek.includes(4)) daysOfWeek.splice(i, 1) // Prevent duplicates
 					daysOfWeek[i] = 4
 					break
 				case 'friday':
 				case 'fri':
 				case 'f':
+					if (daysOfWeek.includes(5)) daysOfWeek.splice(i, 1) // Prevent duplicates
 					daysOfWeek[i] = 5
 					break
 				case 'saturday':
 				case 'sat':
 				case 's':
+					if (daysOfWeek.includes(6)) daysOfWeek.splice(i, 1) // Prevent duplicates
 					daysOfWeek[i] = 6
 					break
 				case 'sunday':
 				case 'sun':
 				case 'su':
 				case 'u':
+					if (daysOfWeek.includes(7)) daysOfWeek.splice(i, 1) // Prevent duplicates
 					daysOfWeek[i] = 7
 					break
 				default:

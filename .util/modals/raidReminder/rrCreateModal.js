@@ -131,7 +131,7 @@ module.exports = {
 			.setColor(purple)
 			.addField('Title', title)
 			.addField('Static', inputs.role)
-			.addField('Raid start time', `${time} ${friendlyTZ}`)
+			.addField('Raid start time', `${time} ${timezone}`)
 			.addField(
 				'Next reminder',
 				`${nextReminder

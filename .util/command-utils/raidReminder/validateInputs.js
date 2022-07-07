@@ -22,12 +22,10 @@ module.exports = async (
 	// Validate Days and build an array of day indices and an array of friendly day names in a standard format
 	try {
 		const daysOfWeek = days.toLowerCase().split(',')
-		console.log(daysOfWeek)
 		if (daysOfWeek.length > 7)
 			throw new Error('There are only seven days in a week.')
 
 		for (let i = 0; i < daysOfWeek.length; i++) {
-			console.log(daysOfWeek[i])
 			switch (daysOfWeek[i].trim()) {
 				case 'monday':
 				case 'mon':

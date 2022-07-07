@@ -1,6 +1,13 @@
 const { DateTime } = require('luxon')
 
-module.exports = (days, time, timezone, roleChannelHours) => {
+module.exports = (
+	client,
+	interaction,
+	days,
+	time,
+	timezone,
+	roleChannelHours
+) => {
 	// Setup an object to return with all the info we might need later
 	const obj = {
 		isValid: true,
@@ -144,6 +151,18 @@ module.exports = (days, time, timezone, roleChannelHours) => {
 		obj.role = roleChannelHours.split(',')[0]
 		obj.channel = roleChannelHours.split(',')[1]
 		obj.reminderHours = roleChannelHours.split(',')[2]
+
+		// Validate role and channel are resolvable from the client
+		const guild = client.guilds.fetch(interaction.guildId)
+		if (!guild) throw new Error()
+
+		const role = guild.roles.fetch(
+			obj.role.substring(2, obj.role.length - 1)
+		)
+		if (!role) throw new Error()
+
+		const channel = guild.channels.fetch(obj.channel)
+		if (!channel) throw new Error()
 	} catch (e) {
 		obj.isValid = false
 		obj.err.push({

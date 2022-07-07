@@ -67,7 +67,7 @@ module.exports = {
 			.trim()
 
 		// Validate time and timezone
-		const inputs = validateInputs(days, time, timezone, roleChannelHours)
+		const inputs = validateInputs(client, interaction, days, time, timezone, roleChannelHours)
 
 		if (!inputs.isValid) {
 			sendInputError(interaction, memberData, globals, inputs)

@@ -171,7 +171,7 @@ module.exports = {
 				iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 			})
 
-		interactionReply(interaction, null, [embed], null, true, false)
+		interactionReply(interaction, null, [embed], null, false, false)
 		return
 	},
 }

@@ -29,12 +29,12 @@ module.exports = {
 		const reminder = await raidReminderSchema.findOne({
 			_id: selectedItem,
 		})
+		const nextReminder = reminder.nextReminder
 		const {
-            nextReminder,
 			title,
 			days,
 			time,
-            timezone,
+			timezone,
 			friendlyTZ,
 			role,
 			channel,
@@ -84,13 +84,13 @@ module.exports = {
 				`${nextReminderDate.substring(
 					0,
 					nextReminderDate.length - 6
-				)} ${dtNextReminder.toLocaleString(DateTime.TIME_SIMPLE)} ${
-					friendlyTZ
-				}`,
+				)} ${dtNextReminder.toLocaleString(
+					DateTime.TIME_SIMPLE
+				)} ${friendlyTZ}`,
 				true
 			)
 			.addField('Channel', `<#${channel}>`, true)
-            .addField('\u200b', '\u200b', true)
+			.addField('\u200b', '\u200b', true)
 			.setFooter({
 				text: `${
 					memberData.memberNick

@@ -113,8 +113,8 @@ module.exports = (
 	if (!timeRgx.test(time)) {
 		obj.isValid = false
 		obj.err.push({
-			field: 'Time',
-			message: 'Invalid time submitted. Use HH:mmAM/PM. For example, if your static raids at 8:30 PM, use 8:30PM.',
+			field: 'Raid Start Time',
+			message: 'Invalid time submitted. Use HH:mmAM/PM. For example, if your static starts raid at 8:30 PM, use 8:30PM.',
 		})
 	}
 

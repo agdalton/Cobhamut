@@ -57,15 +57,14 @@ module.exports = async (interaction, data, globals) => {
 
 	// Add all current members to a NOT query
 	const members = await guild.members.list()
-	console.log(members)
-	for (const member in members) {
+	members.forEach((member) => {
 		query.$and.push({
 			dataCreator: {
 				$not: { $regex: `"memberID":"${member.id}"` },
 			},
 		})
-	}
-
+	})
+    
 	console.log(JSON.stringify(query))
 
 	const reminders = await raidReminderSchema.deleteMany(query)

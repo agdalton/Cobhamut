@@ -56,6 +56,7 @@ module.exports = async (interaction, data, globals) => {
 	}
 
 	// Add all current members to a NOT query
+	console.log(guild.members.list())
 	for (const member in guild.members.list()) {
 		query.$and.push({
 			dataCreator: {

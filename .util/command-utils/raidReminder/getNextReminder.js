@@ -45,12 +45,16 @@ module.exports = (days, time, timezone, reminderHours) => {
 
 	// Otherwise find the next day a reminder should be sent
 	for (let i = 0; i < days.length; i++) {
-		if (days[i] > today)
-			return nextReminder
-				.plus({
-					days: days[i] - today,
-				})
-				.minus({ hours: reminderHours })
+		if (days[i] > today) {
+			const expectedReminder = nextReminder
+			.plus({
+				days: days[i] - today,
+			})
+			.minus({ hours: reminderHours })
+
+			if (expectedReminder.weekday === today) continue
+
+			return expectedReminder
 	}
 
 	// Find the next reminder if the next day is a lower index in the week

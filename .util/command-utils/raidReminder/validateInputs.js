@@ -163,9 +163,9 @@ module.exports = async (
 		const guild = await client.guilds.fetch(interaction.guildId)
 		if (!guild)
 			throw new Error('Unable to fetch the guild from the client')
-console.log(obj.role.substring(2, obj.role.length - 1))
+console.log(obj.role.substring(3, obj.role.length - 1))
 		const role = await guild.roles.fetch(
-			obj.role.substring(2, obj.role.length - 1)
+			obj.role.substring(3, obj.role.length - 1)
 		)
 		if (!role) throw new Error('Unable to fetch the role from the client')
 

@@ -138,7 +138,7 @@ module.exports = {
 			})
 			
 		await interaction.update({ components: [] })
-		interactionReply(interaction, null, [embed], null, true, false)
+		await interactionReply(interaction, null, [embed], null, true, false)
 		return
 	},
 }

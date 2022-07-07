@@ -32,8 +32,25 @@ module.exports = async (interaction, data, globals) => {
 			iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 		})
 
-	const remindersMenu = await getUserRemindersMenu(memberData.memberID, 'rrCancelSelectMenu')
+	const remindersMenu = await getUserRemindersMenu(
+		memberData.memberID,
+		'rrSkipSelectMenu'
+	)
 
-	interactionReply(interaction, null, [embed], [remindersMenu], true, false)
-    return
+	// If there are no reminders scheduled by the user change the embed accordingly
+	if (!remindersMenu) {
+		embed.setColor(red).setDescription(
+			'You do not have any active raid reminders'
+		)
+	}
+
+	interactionReply(
+		interaction,
+		null,
+		[embed],
+		remindersMenu ? [remindersMenu] : null,
+		true,
+		false
+	)
+	return
 }

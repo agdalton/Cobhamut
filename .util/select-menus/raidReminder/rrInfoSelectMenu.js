@@ -29,17 +29,6 @@ module.exports = {
 		const reminder = await raidReminderSchema.findOne({
 			_id: selectedItem,
 		})
-		const nextReminder = reminder.nextReminder
-		const {
-			title,
-			days,
-			time,
-			timezone,
-			friendlyTZ,
-			role,
-			channel,
-			reminderHours,
-		} = JSON.parse(reminder.dataSubmission)
 
 		if (reminder.length === 0) {
 			embed.setColor(red)
@@ -59,8 +48,21 @@ module.exports = {
 			return
 		}
 
-		// Respond with delete confirmation
-		const dtNextReminder = DateTime.fromISO(nextReminder)
+		const nextReminder = reminder.nextReminder
+		const {
+			title,
+			days,
+			time,
+			timezone,
+			friendlyTZ,
+			role,
+			channel,
+			reminderHours,
+		} = JSON.parse(reminder.dataSubmission)
+
+		// Respond with the reminder info
+		const dtNextReminder =
+			DateTime.fromISO(nextReminder).setLocale('en-US').setZone(timezone)
 		const nextReminderDate = dtNextReminder.toLocaleString(
 			DateTime.DATE_MED_WITH_WEEKDAY
 		)

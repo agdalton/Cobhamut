@@ -80,6 +80,8 @@ module.exports = (days, time, timezone, reminderHours) => {
 
 			if (dtNow.toUnixInteger() + 1 < expectedReminder.toUnixInteger())
 				return expectedReminder
+			else if (days.length === 1)
+				return expectedReminder.plus({ days: 7 })
 
 			nextDayIndex = today
 		}

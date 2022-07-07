@@ -28,6 +28,7 @@ module.exports = {
 					daysOfWeek,
 					time,
 					timezone,
+					friendlyTZ,
 					role,
 					channel,
 					reminderHours,

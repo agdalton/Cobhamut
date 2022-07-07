@@ -56,7 +56,7 @@ module.exports = async (interaction, data, globals) => {
 	}
 
 	// Add all current members to a NOT query
-	const members = await guild.members.list()
+	const members = await guild.members.fetch()
 	members.forEach((member) => {
 		query.$and.push({
 			dataCreator: {

@@ -56,7 +56,11 @@ module.exports = async (interaction, data, globals) => {
 		const reminders = await raidReminderSchema.find({
 			$and: [
 				{ guildId: interaction.guildId },
-				{ dataCreator: { $regex: `"memberID":"${userId}"` } },
+				{
+					dataCreator: {
+						$regex: `"memberID":"${memberData.memberID}"`,
+					},
+				},
 			],
 		})
 	}

@@ -181,9 +181,9 @@ module.exports = {
 			subcommand
 				.setName('purge')
 				.setDescription(
-					'Admin command. Purge all raid reminders set by users who are no longer in the server. Allow other roles to use this command by overriding it in the server integration settings.'
+					'Admin command (Override in server settings). Purge all reminders by users no longer in this server.'
 				)
-				.setDefaultMemberPermissions('0')
+				.setDefaultMemberPermissions(0)
 		)
 
 		return data.toJSON()

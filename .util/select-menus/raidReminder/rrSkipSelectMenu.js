@@ -58,7 +58,7 @@ module.exports = {
 
 		const reply = await interaction.fetchReply()
 
-		await reply.edit({ components: [] })
+		await reply.delete()
 		return
 	},
 }

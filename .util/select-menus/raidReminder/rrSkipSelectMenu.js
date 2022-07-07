@@ -53,10 +53,6 @@ module.exports = {
 		// Add the rows to the modal
 		modal.addComponents(modalRow1, modalRow2, modalRow3, modalRow4)
 
-		const reply = await interaction.fetchReply()
-
-		await reply.delete()
-		
 		// Send the modal
 		await interaction.showModal(modal)
 

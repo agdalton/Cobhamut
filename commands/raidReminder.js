@@ -181,9 +181,8 @@ module.exports = {
 			subcommand
 				.setName('purge')
 				.setDescription(
-					'Admin command (Override in server settings). Purge all reminders by users no longer in this server.'
+					'Moderator command. Purge all reminders by users no longer in this server.'
 				)
-				.setDefaultMemberPermissions(0)
 		)
 
 		return data.toJSON()

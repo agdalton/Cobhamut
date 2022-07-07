@@ -1,5 +1,5 @@
 // Retrieve a list of raid reminders created by the user and present an option to delete a selection
-const { MessageEmbed } = require('discord.js')
+const { MessageEmbed, Permissions } = require('discord.js')
 const interactionReply = require('../../../.util/command-utils/interactionReply.js')
 const raidReminderSchema = require('../../../.util/mongo-utils/raidReminder/raidReminderSchema.js')
 
@@ -32,18 +32,26 @@ module.exports = async (interaction, data, globals) => {
 			iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 		})
 
+	// Return if the user does NOT have the manage server permission
+	if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_GUILD)) {
+		embed.setColor(red).setDescription(
+			'You must have the manage server permissions to run this command.'
+		)
+		interactionReply(interaction, null, [embed], null, false, false)
+	}
+
 	// Fetch server members
 	const guild = await client.guilds.fetch(interaction.guildId)
 	if (!guild || !guild.members) {
 		embed.setColor(red).setDescription(
 			'Unable to retrieve server members'
 		)
-		interactionReply(interaction, null[embed], null, false, false)
+		interactionReply(interaction, null, [embed], null, false, false)
 		return
 	}
 
 	// Iterate through the members, find any raid reminders setup by people no longer in the server and cancel them
-    console.log(guild.members)
+	console.log(guild.members)
 	for (const member in guild.members) {
 		const reminders = await raidReminderSchema.find({
 			$and: [

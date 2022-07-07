@@ -169,6 +169,14 @@ module.exports = {
 				)
 		)
 
+		data.addSubcommand((subcommand) =>
+			subcommand
+				.setName('info')
+				.setDescription(
+					'Get details about one of your raid reminders'
+				)
+		)
+
 		return data.toJSON()
 	})(),
 }

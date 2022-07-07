@@ -58,6 +58,8 @@ module.exports = (days, time, timezone, roleChannelHours) => {
 				case 'u':
 					daysOfWeek[i] = 7
 					break
+				default:
+					throw new Error()
 			}
 		}
 

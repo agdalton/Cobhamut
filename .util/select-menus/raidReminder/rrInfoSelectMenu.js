@@ -68,6 +68,8 @@ module.exports = {
 			DateTime.DATE_MED_WITH_WEEKDAY
 		)
 
+        console.log(nextReminderDate)
+
 		embed.setColor(purple)
 			.setDescription(
 				'Retrieved the below information about this raid reminder.'

@@ -136,7 +136,8 @@ module.exports = {
 				} used /raidreminder skip`,
 				iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 			})
-
+			
+		await interaction.update({ components: [] })
 		interactionReply(interaction, null, [embed], null, true, false)
 		return
 	},

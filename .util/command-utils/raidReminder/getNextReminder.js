@@ -61,7 +61,18 @@ module.exports = (days, time, timezone, reminderHours) => {
 	// Find the next reminder if the next day is a lower index in the week
 	let nextDayIndex = today
 	for (let i = 0; i < days.length; i++) {
-		if (days[i] < nextDayIndex) nextDayIndex = days[i]
+		if (days[i] < nextDayIndex) {
+			nextDayIndex = days[i]
+			nextReminder
+				.plus({
+					days: 7 - today + nextDayIndex,
+				})
+				.minus({ hours: reminderHours })
+
+			if (expectedReminder.weekday === today) continue
+
+			return expectedReminder
+		}
 	}
 
 	/* Since the next reminder is on a day preceding today in the future
@@ -71,9 +82,5 @@ module.exports = (days, time, timezone, reminderHours) => {
 	 * that particular day is, so subtracting today's index from 7 and then adding the index for the day
 	 * the next reminder should be sent on will return the correct date.
 	 */
-	return nextReminder
-		.plus({
-			days: 7 - today + nextDayIndex,
-		})
-		.minus({ hours: reminderHours })
+	return
 }

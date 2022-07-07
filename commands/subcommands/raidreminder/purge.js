@@ -65,8 +65,6 @@ module.exports = async (interaction, data, globals) => {
 		})
 	})
 
-	console.log(JSON.stringify(query))
-
 	const reminders = await raidReminderSchema.deleteMany(query)
 
 	// Purge embed to allow user selection

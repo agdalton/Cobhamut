@@ -32,7 +32,7 @@ module.exports = async (
 				case 'm':
 					if (daysOfWeek.includes(1)) {
 						daysOfWeek.splice(i, 1) // Prevent duplicates
-						continue
+						break
 					}
 					daysOfWeek[i] = 1
 					break
@@ -42,7 +42,7 @@ module.exports = async (
 				case 'tu':
 					if (daysOfWeek.includes(2)) {
 						daysOfWeek.splice(i, 1) // Prevent duplicates
-						continue
+						break
 					}
 					daysOfWeek[i] = 2
 					break
@@ -51,7 +51,7 @@ module.exports = async (
 				case 'w':
 					if (daysOfWeek.includes(3)) {
 						daysOfWeek.splice(i, 1) // Prevent duplicates
-						continue
+						break
 					}
 					daysOfWeek[i] = 3
 					break
@@ -61,7 +61,7 @@ module.exports = async (
 				case 'r':
 					if (daysOfWeek.includes(4)) {
 						daysOfWeek.splice(i, 1) // Prevent duplicates
-						continue
+						break
 					}
 					daysOfWeek[i] = 4
 					break
@@ -70,7 +70,7 @@ module.exports = async (
 				case 'f':
 					if (daysOfWeek.includes(5)) {
 						daysOfWeek.splice(i, 1) // Prevent duplicates
-						continue
+						break
 					}
 					daysOfWeek[i] = 5
 					break
@@ -79,7 +79,7 @@ module.exports = async (
 				case 's':
 					if (daysOfWeek.includes(6)) {
 						daysOfWeek.splice(i, 1) // Prevent duplicates
-						continue
+						break
 					}
 					daysOfWeek[i] = 6
 					break
@@ -89,7 +89,7 @@ module.exports = async (
 				case 'u':
 					if (daysOfWeek.includes(7)) {
 						daysOfWeek.splice(i, 1) // Prevent duplicates
-						continue
+						break
 					}
 					daysOfWeek[i] = 7
 					break

@@ -1,6 +1,6 @@
 const { DateTime } = require('luxon')
 
-module.exports = (
+module.exports = async (
 	client,
 	interaction,
 	days,
@@ -160,16 +160,18 @@ module.exports = (
 		obj.reminderHours = roleChannelHours.split(',')[2]
 
 		// Validate role and channel are resolvable from the client
-		const guild = client.guilds.fetch(interaction.guildId)
-		if (!guild) throw new Error('Unable to fetch the guild from the client')
+		const guild = await client.guilds.fetch(interaction.guildId)
+		if (!guild)
+			throw new Error('Unable to fetch the guild from the client')
 
-		const role = guild.roles.fetch(
+		const role = await guild.roles.fetch(
 			obj.role.substring(2, obj.role.length - 1)
 		)
 		if (!role) throw new Error('Unable to fetch the role from the client')
 
-		const channel = guild.channels.fetch(obj.channel)
-		if (!channel) throw new Error('Unable to fetch the channel from the client')
+		const channel = await guild.channels.fetch(obj.channel)
+		if (!channel)
+			throw new Error('Unable to fetch the channel from the client')
 	} catch (e) {
 		obj.isValid = false
 		obj.err.push({

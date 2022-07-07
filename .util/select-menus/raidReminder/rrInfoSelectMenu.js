@@ -30,6 +30,7 @@ module.exports = {
 			_id: selectedItem,
 		})
 		const {
+            nextReminder,
 			title,
 			days,
 			time,
@@ -59,13 +60,8 @@ module.exports = {
 		}
 
 		// Respond with delete confirmation
-		const nextReminder = getNextReminder(
-			days,
-			time,
-			timezone,
-			reminderHours
-		)
-		const nextReminderDate = nextReminder.toLocaleString(
+		const dtNextReminder = DateTime.fromISO(nextReminder)
+		const nextReminderDate = dtNextReminder.toLocaleString(
 			DateTime.DATE_MED_WITH_WEEKDAY
 		)
 
@@ -88,8 +84,8 @@ module.exports = {
 				`${nextReminderDate.substring(
 					0,
 					nextReminderDate.length - 6
-				)} ${nextReminder.toLocaleString(DateTime.TIME_SIMPLE)} ${
-					nextReminder.offsetNameShort
+				)} ${dtNextReminder.toLocaleString(DateTime.TIME_SIMPLE)} ${
+					friendlyTZ
 				}`,
 				true
 			)

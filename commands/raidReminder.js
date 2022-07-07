@@ -54,13 +54,14 @@ module.exports = {
 					DateTime.DATE_MED_WITH_WEEKDAY
 				)
 
-				const embedDescription = reminderHours > 1 ? `${reminderHours} hours!` : `${reminderHours} hour!`
+				const embedDescription =
+					reminderHours > 1
+						? `${reminderHours} hours!`
+						: `${reminderHours} hour!`
 				const embed = new MessageEmbed()
 					.setColor(purple)
 					.setTitle(title)
-					.setDescription(
-						`Raid begins in ${embedDescription}`
-					)
+					.setDescription(`Raid begins in ${embedDescription}`)
 					.setThumbnail(
 						'https://xivapi.com/i/060000/060855_hr1.png'
 					)
@@ -152,6 +153,24 @@ module.exports = {
 							'How many hours before raid starts should the reminder be sent?'
 						)
 						.setRequired(true)
+						.addChoices(
+							{
+								name: '1 hour reminder',
+								value: 1,
+							},
+							{
+								name: '2 hour reminder',
+								value: 2,
+							},
+							{
+								name: '3 hour reminder',
+								value: 3,
+							},
+							{
+								name: '6 hour reminder',
+								value: 6,
+							}
+						)
 				)
 		)
 

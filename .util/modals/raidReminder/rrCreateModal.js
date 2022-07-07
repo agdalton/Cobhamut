@@ -148,7 +148,7 @@ module.exports = {
 				`${time} ${timezone} | ${inputs.reminderHours} hour reminder`,
 				true
 			)
-			.addField('Raid days', inputs.friendlyDays.join(), true)
+			.addField('Raid days', inputs.friendlyDays.join(', '), true)
 			.addField('\u200b', '\u200b', true)
 			.addField(
 				'Next reminder',

@@ -103,7 +103,7 @@ module.exports = {
 	},
 	callback: async (client, interaction, globals) => {
 		const command = interaction.options.getSubcommand()
-		const data = {}
+		const data = { client: client }
 
 		// Call the file for the subcommand submitted <-- require(filePath)() automatically calls the file's exported function
 		require(`./subcommands/${interaction.commandName}/${command}.js`)(
@@ -175,6 +175,15 @@ module.exports = {
 				.setDescription(
 					'Get details about one of your raid reminders'
 				)
+		)
+
+		data.addSubcommand((subcommand) =>
+			subcommand
+				.setName('purge')
+				.setDescription(
+					'Admin command. Purge all raid reminders set by users who are no longer in the server. Allow other roles to use this command by overriding it in the server integration settings.'
+				)
+				.setDefaultMemberPermissions(0)
 		)
 
 		return data.toJSON()

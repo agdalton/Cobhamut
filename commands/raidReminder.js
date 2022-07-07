@@ -53,11 +53,13 @@ module.exports = {
 				const nextReminderDate = nextReminder.toLocaleString(
 					DateTime.DATE_MED_WITH_WEEKDAY
 				)
+
+				const embedDescription = reminderHours > 1 ? `${reminderHours} hours!` : `${reminderHours} hour!`
 				const embed = new MessageEmbed()
 					.setColor(purple)
 					.setTitle(title)
 					.setDescription(
-						`Raid begins in ${reminderHours} hour!`
+						`Raid begins in ${embedDescription}`
 					)
 					.setThumbnail(
 						'https://xivapi.com/i/060000/060855_hr1.png'

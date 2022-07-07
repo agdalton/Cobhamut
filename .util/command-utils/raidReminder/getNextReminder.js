@@ -35,7 +35,7 @@ module.exports = (days, time, timezone, reminderHours) => {
 	// Check if a reminder should be scheduled for today
 	if (days.includes(today)) {
 		if (
-			dtNow.toUnixInteger() <
+			dtNow.toUnixInteger() + 1 <
 			nextReminder.minus({ hours: reminderHours }).toUnixInteger()
 		)
 			return nextReminder.minus({ hours: reminderHours })

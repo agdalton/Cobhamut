@@ -147,7 +147,7 @@ module.exports = {
 					option
 						.setName('reminder_hours')
 						.setDescription(
-							'How long before raid starts should the reminder be sent?'
+							'How many hours before raid starts should the reminder be sent?'
 						)
 						.setRequired(true)
 				)

@@ -23,46 +23,39 @@ module.exports = (days, time, timezone, roleChannelHours) => {
 				case 'monday':
 				case 'mon':
 				case 'm':
-					friendlyDays[i] = 'Mon'
 					daysOfWeek[i] = 1
 					break
 				case 'tuesday':
 				case 'tues':
 				case 't':
 				case 'tu':
-					friendlyDays[i] = 'Tues'
 					daysOfWeek[i] = 2
 					break
 				case 'wednesday':
 				case 'wed':
 				case 'w':
-					friendlyDays[i] = 'Wed'
 					daysOfWeek[i] = 3
 					break
 				case 'thursday':
 				case 'thurs':
 				case 'th':
 				case 'r':
-					friendlyDays[i] = 'Thurs'
 					daysOfWeek[i] = 4
 					break
 				case 'friday':
 				case 'fri':
 				case 'f':
-					friendlyDays[i] = 'Fri'
 					daysOfWeek[i] = 5
 					break
 				case 'saturday':
 				case 'sat':
 				case 's':
-					friendlyDays[i] = 'Sat'
 					daysOfWeek[i] = 6
 					break
 				case 'sunday':
 				case 'sun':
 				case 'su':
 				case 'u':
-					friendlyDays[i] = 'Sun'
 					daysOfWeek[i] = 7
 					break
 			}
@@ -96,7 +89,6 @@ module.exports = (days, time, timezone, roleChannelHours) => {
 					break
 			}
 		}
-
 	} catch (e) {
 		obj.isValid = false
 		obj.err.push({

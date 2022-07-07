@@ -32,6 +32,7 @@ module.exports = {
 			title,
 			days,
 			time,
+            timezone,
 			friendlyTZ,
 			role,
 			channel,

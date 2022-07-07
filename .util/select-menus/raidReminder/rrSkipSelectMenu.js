@@ -54,7 +54,7 @@ module.exports = {
 		modal.addComponents(modalRow1, modalRow2, modalRow3, modalRow4)
 
 		// Send the modal
-		await interaction.deleteReply()
+		await interaction.update({ components: [] })
 		await interaction.showModal(modal)
 		return
 	},

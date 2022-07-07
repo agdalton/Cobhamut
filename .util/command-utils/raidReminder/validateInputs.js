@@ -163,7 +163,7 @@ module.exports = async (
 		const guild = await client.guilds.fetch(interaction.guildId)
 		if (!guild)
 			throw new Error('Unable to fetch the guild from the client')
-
+console.log(obj.role.substring(2, obj.role.length - 1))
 		const role = await guild.roles.fetch(
 			obj.role.substring(2, obj.role.length - 1)
 		)
@@ -176,9 +176,7 @@ module.exports = async (
 		obj.isValid = false
 		obj.err.push({
 			field: 'Role, Channel, Hours',
-			message:
-				'An error occurred while processing the Role, Channel, Hours field. When submitting the Raid Reminder form, **DO NOT change the Role, Channel, Hours field**' +
-				`\n\nException: ${e.message}`,
+			message: 'An error occurred while processing the Role, Channel, Hours field. When submitting the Raid Reminder form, **DO NOT change the Role, Channel, Hours field**',
 		})
 	}
 

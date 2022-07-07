@@ -63,6 +63,7 @@ module.exports = {
 		// Respond with the reminder info
 		const dtNextReminder =
 			DateTime.fromISO(nextReminder).setLocale('en-US').setZone(timezone)
+            console.log(dtNextReminder)
 		const nextReminderDate = dtNextReminder.toLocaleString(
 			DateTime.DATE_MED_WITH_WEEKDAY
 		)

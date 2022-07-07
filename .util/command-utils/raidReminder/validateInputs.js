@@ -68,7 +68,7 @@ module.exports = (days, time, timezone, roleChannelHours) => {
 					break
 			}
 		}
-
+console.log(friendlyDays)
 		obj.days = daysOfWeek.sort()
 		obj.friendlyDays = friendlyDays
 	} catch (e) {

@@ -48,7 +48,7 @@ module.exports = {
 			return
 		}
 
-		const nextReminder = reminder.nextReminder
+		const nextReminder = reminder.nextReminder.toISOString()
 		const {
 			title,
 			days,

@@ -110,7 +110,7 @@ module.exports = (
 		obj.err.push({
 			field: 'Days',
 			message:
-				'Invalid list of days submitted. Use a comma-delimited list. For example, if your static raids on the weekends, use Sat,Sun.\n\n' +
+				'Invalid list of days submitted. Use a comma-delimited list of up to 7 days. For example, if your static raids on the weekends, use Sat,Sun.\n\n' +
 				'>>> **Supported abbreviations:**\nSunday: Sun, SU, U\nMonday: Mon, M\nTuesday: Tues, TU, T\nWednesday: Wed, W\nThursday: Thurs, TH, R\nFriday: Fri, F\nSaturday: Sat, S',
 		})
 	}

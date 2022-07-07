@@ -16,6 +16,7 @@ module.exports = async (interaction, data, globals) => {
 		memberAvatar: interaction.member.user.avatar,
 	}
 
+	// Cancel embed to allow user selection
 	const embed = new MessageEmbed()
 		.setColor(purple)
 		.setTitle('Cancel a raid reminder')

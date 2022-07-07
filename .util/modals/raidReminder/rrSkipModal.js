@@ -27,7 +27,7 @@ module.exports = {
 		// Create embed reply
 		const embed = new MessageEmbed()
 
-		// Return if the user didn't correctly type CANCEL
+		// Return if the user didn't correctly type SKIP
 		if (confirmation !== 'SKIP') {
 			embed.setColor(orange)
 				.setTitle('An error occurred')
@@ -51,8 +51,8 @@ module.exports = {
 		}
 
 		// Modify the next reminder in mongoDB
-        let nextReminder = ''
-        let newNextReminder = ''
+		let nextReminder = ''
+		let newNextReminder = ''
 		try {
 			const reminder = await raidReminderSchema.findOne({
 				_id: mongoId,
@@ -110,6 +110,9 @@ module.exports = {
 		}
 
 		// Respond with skip confirmation
+		const nextReminderDate = newNextReminder.toLocaleString(
+			DateTime.DATE_MED_WITH_WEEKDAY
+		)
 		embed.setTitle('Skip a raid reminder')
 			.setColor(purple)
 			.setDescription(
@@ -117,11 +120,12 @@ module.exports = {
 			)
 			.addField(
 				'Next reminder',
-				`${newNextReminder.toLocaleString(
-					DateTime.DATE_MED_WITH_WEEKDAY
-				)} ${newNextReminder.toLocaleString(DateTime.TIME_SIMPLE)} ${
-					newNextReminder.offsetNameShort
-				}`
+				`${nextReminderDate.substring(
+					0,
+					nextReminderDate.length - 6
+				)} ${newNextReminder.toLocaleString(
+					DateTime.TIME_SIMPLE
+				)} ${newNextReminder.offsetNameShort}`
 			)
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 			.setFooter({

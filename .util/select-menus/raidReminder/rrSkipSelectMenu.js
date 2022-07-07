@@ -41,7 +41,7 @@ module.exports = {
 
 		// Modal setup
 		const modal = new Modal()
-			.setCustomId('rrSkipModal') // ../.././.util/modals/raidReminder/rrCancelModal.js
+			.setCustomId('rrSkipModal') // ../.././.util/modals/raidReminder/rrSkipModal.js
 			.setTitle('Skip Raid Reminder')
 
 		// Add all the components to rows <-- one component per row, maximum 5 rows

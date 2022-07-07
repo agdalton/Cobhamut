@@ -13,7 +13,7 @@ module.exports = {
 		const { baseImageURL } = globals
 		const { purple } = globals.colors
 
-		// Check every second for scheduled partyfinders
+		// Check every second for scheduled raid reminders
 		const checkForReminders = async () => {
 			// Lookup in MongoDB
 			// Send reminders
@@ -40,11 +40,11 @@ module.exports = {
 					timezone,
 					reminderHours
 				)
-				// Fetch the guild the partyfinder was scheduled in
+				// Fetch the guild the raid reminder was scheduled in
 				const guild = await client.guilds.fetch(reminder.guildID)
 				if (!guild) return // Skip if the guild can't be fetched
 
-				// Fetch the channel of the guild the partyfinder was scheduled in
+				// Fetch the chosen channel of the guild the raid reminder was scheduled in
 				const fetchedChannel = await guild.channels.fetch(channel)
 				if (!fetchedChannel) return // Skip if the channel can't be fetched
 

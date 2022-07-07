@@ -12,7 +12,7 @@ module.exports = (days, time, timezone, roleChannelHours) => {
 		err: [],
 	}
 
-	// Validate Days
+	// Validate Days and build an array of day indices and an array of friendly day names in a standard format
 	try {
 		let daysOfWeek = days.toLowerCase().split(',')
 		let friendlyDays = daysOfWeek
@@ -127,8 +127,8 @@ module.exports = (days, time, timezone, roleChannelHours) => {
 	} catch (e) {
 		obj.isValid = false
 		obj.err.push({
-			field: 'Role and Channel',
-			message: 'An error occurred while processing the role and channel field. When submitting the Raid Reminder form, **DO NOT change the Role and Channel field**',
+			field: 'Role, Channel, Hours',
+			message: 'An error occurred while processing the Role, Channel, Hours field. When submitting the Raid Reminder form, **DO NOT change the Role, Channel, Hours field**',
 		})
 	}
 

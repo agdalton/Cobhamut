@@ -23,7 +23,9 @@ module.exports = {
 			memberAvatar: interaction.member.user.avatar,
 		}
 
-		// Prevent more than 20 reminders per user
+		/* Prevent more than 20 reminders per user <--- Restriction on max select menu length.
+		 * Required since I use select menus for the cancel and skip commands
+		 */
 		const raidReminders = await raidReminderSchema.find({
 			dataCreator: `"memberID":"${memberData.memberID}"`,
 		})

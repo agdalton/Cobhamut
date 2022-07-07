@@ -15,6 +15,7 @@ module.exports = async (interaction, data, globals) => {
 		memberAvatar: interaction.member.user.avatar,
 	}
 
+	// Skip embed to allow for user selection
 	const embed = new MessageEmbed()
 		.setColor(purple)
 		.setTitle('Skip a raid reminder')

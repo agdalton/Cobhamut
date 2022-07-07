@@ -15,10 +15,6 @@ module.exports = (days, time, timezone, roleChannelHours) => {
 	// Validate Days and build an array of day indices and an array of friendly day names in a standard format
 	try {
 		let daysOfWeek = days.toLowerCase().split(',')
-		let friendlyDays = daysOfWeek
-		console.log(`Days of week: ${daysOfWeek}`)
-		console.log(`Friendly: ${friendlyDays}`)
-
 		if (daysOfWeek.length > 7)
 			throw new Error('There are only seven days in a week.')
 
@@ -73,7 +69,34 @@ module.exports = (days, time, timezone, roleChannelHours) => {
 		}
 
 		obj.days = daysOfWeek.sort()
-		obj.friendlyDays = friendlyDays
+
+		// Setup array with friendly day abbreviations
+		for (let i = 0; i < obj.days.length; i++) {
+			switch (obj.days[i]) {
+				case 1:
+					obj.friendlyDays.push('Mon')
+					break
+				case 2:
+					obj.friendlyDays.push('Tues')
+					break
+				case 3:
+					obj.friendlyDays.push('Wed')
+					break
+				case 4:
+					obj.friendlyDays.push('Thurs')
+					break
+				case 5:
+					obj.friendlyDays.push('Fri')
+					break
+				case 6:
+					obj.friendlyDays.push('Sat')
+					break
+				case 7:
+					obj.friendlyDays.push('Sun')
+					break
+			}
+		}
+
 	} catch (e) {
 		obj.isValid = false
 		obj.err.push({

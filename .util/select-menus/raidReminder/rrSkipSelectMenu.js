@@ -56,7 +56,7 @@ module.exports = {
 		// Send the modal
 		await interaction.showModal(modal)
 
-		const reply = interaction.fetchReply()
+		const reply = await interaction.fetchReply()
 
 		await reply.edit({ components: [] })
 		return

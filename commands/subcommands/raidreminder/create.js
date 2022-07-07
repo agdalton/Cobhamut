@@ -6,7 +6,7 @@ module.exports = async (interaction, data, globals) => {
 	const inputs = []
 	inputs.push(interaction.options.getRole('role'))
 	inputs.push(interaction.options.getChannel('channel').id)
-	inputs.push(interaction.options.getInteger('reminder_hours'))
+	inputs.push(interaction.options.getInteger('reminder'))
 
 	// Input components for the Modal
 	const title = new TextInputComponent()

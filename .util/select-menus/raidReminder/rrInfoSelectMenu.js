@@ -40,11 +40,11 @@ module.exports = {
 						memberData.memberNick
 							? memberData.memberNick
 							: memberData.memberUsername
-					} used /raidreminder cancel`,
+					} used /raidreminder info`,
 					iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 				})
 
-			interactionReply(interaction, null, [embed], null, true, false)
+			await interaction.update({ embeds: [embed], components: [] })
 			return
 		}
 
@@ -103,7 +103,7 @@ module.exports = {
 				iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 			})
 
-		interactionReply(interaction, null, [embed], null, true, false)
+		await interaction.update({ embeds: [embed], components: [] })
 		return
 	},
 }

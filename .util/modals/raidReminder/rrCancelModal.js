@@ -91,7 +91,7 @@ module.exports = {
 				iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 			})
 
-		interactionReply(interaction, null, [embed], null, true, false)
+		await interaction.update({ embeds: [embed], components: [] })
 		return
 	},
 }

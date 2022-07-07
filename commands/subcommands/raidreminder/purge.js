@@ -60,7 +60,7 @@ module.exports = async (interaction, data, globals) => {
 	members.forEach((member) => {
 		query.$and.push({
 			dataCreator: {
-				$not: `/"memberID":"${member.id}"/`,
+				$not: { $regex: `"memberID":"${member.id}"` },
 			},
 		})
 	})

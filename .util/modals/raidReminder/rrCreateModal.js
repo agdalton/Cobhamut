@@ -122,7 +122,7 @@ module.exports = {
 				days: inputs.friendlyDays,
 				daysOfWeek: inputs.days,
 				time: time,
-				friendlyTZ: timezone,
+				friendlyTZ: nextReminder.offsetNameShort,
 				timezone: inputs.timezone,
 				role: inputs.role,
 				channel: inputs.channel,

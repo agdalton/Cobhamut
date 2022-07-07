@@ -51,7 +51,7 @@ module.exports = (days, time, timezone, reminderHours) => {
 					days: days[i] - today,
 				})
 				.minus({ hours: reminderHours })
-				
+
 			if (dtNow.toUnixInteger() + 1 < expectedReminder.toUnixInteger())
 				return expectedReminder
 		}
@@ -68,17 +68,19 @@ module.exports = (days, time, timezone, reminderHours) => {
 	 */
 	let nextDayIndex = today
 	for (let i = 0; i < days.length; i++) {
-		if (days[i] < today) nextDayIndex = days[i]
-		const expectedReminder = nextReminder
-			.plus({
-				days: 7 - today + nextDayIndex,
-			})
-			.minus({ hours: reminderHours })
+		if (days[i] < today) {
+			nextDayIndex = days[i]
+			const expectedReminder = nextReminder
+				.plus({
+					days: 7 - today + nextDayIndex,
+				})
+				.minus({ hours: reminderHours })
 
-		if (dtNow.toUnixInteger() + 1 < expectedReminder.toUnixInteger())
-			return expectedReminder
+			if (dtNow.toUnixInteger() + 1 < expectedReminder.toUnixInteger())
+				return expectedReminder
 
-		nextDayIndex = today
+			nextDayIndex = today
+		}
 	}
 
 	return

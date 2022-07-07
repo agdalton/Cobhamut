@@ -67,7 +67,14 @@ module.exports = {
 			.trim()
 
 		// Validate time and timezone
-		const inputs = await validateInputs(client, interaction, days, time, timezone, roleChannelHours)
+		const inputs = await validateInputs(
+			client,
+			interaction,
+			days,
+			time,
+			timezone,
+			roleChannelHours
+		)
 
 		if (!inputs.isValid) {
 			sendInputError(interaction, memberData, globals, inputs)
@@ -136,8 +143,13 @@ module.exports = {
 			.setColor(purple)
 			.addField('Title', title)
 			.addField('Static', inputs.role)
-			.addField('Raid start time', `${time} ${timezone} | ${inputs.reminderHours} hour reminder`)
-			.addField('Raid days', inputs.friendlyDays.join())
+			.addField(
+				'Raid start time',
+				`${time} ${timezone} | ${inputs.reminderHours} hour reminder`,
+				true
+			)
+			.addField('Raid days', inputs.friendlyDays.join(), true)
+			.addField('\u200b', '\u200b', true)
 			.addField(
 				'Next reminder',
 				`${nextReminderDate.substring(
@@ -145,9 +157,10 @@ module.exports = {
 					nextReminderDate.length - 6
 				)} ${nextReminder.toLocaleString(DateTime.TIME_SIMPLE)} ${
 					nextReminder.offsetNameShort
-				}`
+				}`,
+				true
 			)
-			.addField('Channel', `<#${inputs.channel}>`)
+			.addField('Channel', `<#${inputs.channel}>`, true)
 			.setFooter({
 				text: `${
 					memberData.memberNick

@@ -44,6 +44,7 @@ module.exports = {
 					iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 				})
 
+			// Update the original message (the one with the select menu) so the menu disappears and is updated with the error
 			await interaction.update({ embeds: [embed], components: [] })
 			return
 		}
@@ -103,6 +104,7 @@ module.exports = {
 				iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 			})
 
+		// Update the original message (the one with the select menu) so the menu disappears and is updated with the new reply with the info
 		await interaction.update({ embeds: [embed], components: [] })
 		return
 	},

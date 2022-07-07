@@ -56,7 +56,7 @@ module.exports = async (interaction, data, globals) => {
 	}
 
 	// Add all current members to a NOT query
-	for (const member in guild.members) {
+	for (const member in guild.members.list()) {
 		query.$and.push({
 			dataCreator: {
 				$not: { $regex: `"memberID":"${member.id}"` },

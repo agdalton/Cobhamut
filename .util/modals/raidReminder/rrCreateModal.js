@@ -124,6 +124,9 @@ module.exports = {
 		}).save()
 
 		// Respond with success
+		const nextReminderDate = nextReminder.toLocaleString(
+			DateTime.DATE_MED_WITH_WEEKDAY
+		)
 		const embed = new MessageEmbed()
 			.setTitle('Create a raid reminder')
 			.setDescription('Raid reminder created successfully!')
@@ -134,14 +137,12 @@ module.exports = {
 			.addField('Raid start time', `${time} ${timezone}`)
 			.addField(
 				'Next reminder',
-				`${nextReminder
-					.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)
-					.substring(
-						0,
-						pfDate.length - 6
-					)} ${nextReminder.toLocaleString(
-					DateTime.TIME_SIMPLE
-				)} ${nextReminder.offsetNameShort}`
+				`${nextReminderDate.substring(
+					0,
+					nextReminderDate.length - 6
+				)} ${nextReminder.toLocaleString(DateTime.TIME_SIMPLE)} ${
+					nextReminder.offsetNameShort
+				}`
 			)
 			.addField('Channel', `<#${inputs.channel}>`)
 			.setFooter({

@@ -49,6 +49,9 @@ module.exports = {
 				if (!fetchedChannel) return // Skip if the channel can't be fetched
 
 				// Build the reminder embed
+				const nextReminderDate = nextReminder.toLocaleString(
+					DateTime.DATE_MED_WITH_WEEKDAY
+				)
 				const embed = new MessageEmbed()
 					.setColor(purple)
 					.setTitle(title)
@@ -65,14 +68,10 @@ module.exports = {
 							dataCreator.memberNick
 								? dataCreator.memberNick
 								: dataCreator.memberUsername
-						} used /raidreminder\nNext reminder @ ${nextReminder
-							.toLocaleString(
-								DateTime.DATE_MED_WITH_WEEKDAY
-							)
-							.substring(
-								0,
-								pfDate.length - 6
-							)} ${nextReminder.toLocaleString(
+						} used /raidreminder\nNext reminder @ ${nextReminderDate.substring(
+							0,
+							nextReminderDate.length - 6
+						)} ${nextReminder.toLocaleString(
 							DateTime.TIME_SIMPLE
 						)} ${nextReminder.offsetNameShort}`,
 						iconURL: `${baseImageURL}/avatars/${dataCreator.memberID}/${dataCreator.memberAvatar}.png`,

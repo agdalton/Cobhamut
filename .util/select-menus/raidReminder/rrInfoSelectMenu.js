@@ -80,7 +80,7 @@ module.exports = {
 				`${time} ${friendlyTZ} | ${reminderHours} hour reminder`,
 				true
 			)
-			.addField('Raid days', days.join(), true)
+			.addField('Raid days', days.join(', '), true)
 			.addField('\u200b', '\u200b', true)
 			.addField(
 				'Next reminder',

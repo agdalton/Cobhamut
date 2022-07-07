@@ -59,7 +59,7 @@ module.exports = (days, time, timezone, reminderHours) => {
 	}
 
 	// Find the next reminder if the next day is a lower index in the week
-	
+
 	/* Since the next reminder is on a day preceding today in the future
 	 * (i.e. today's Saturday, but the next reminder is Tuesday which is earlier in the week)
 	 * we need to find how many days it is until Sunday (Luxon DateTime weekday index 7) and then add
@@ -69,7 +69,7 @@ module.exports = (days, time, timezone, reminderHours) => {
 	 */
 	let nextDayIndex = today
 	for (let i = 0; i < days.length; i++) {
-		if (days[i] < nextDayIndex) nextDayIndex = days[i]
+		if (days[i] < today) nextDayIndex = days[i]
 		const expectedReminder = nextReminder
 			.plus({
 				days: 7 - today + nextDayIndex,
@@ -78,6 +78,8 @@ module.exports = (days, time, timezone, reminderHours) => {
 
 		if (dtNow.toUnixInteger() + 1 < expectedReminder.toUnixInteger())
 			return expectedReminder
+
+		nextDayIndex = today
 	}
 
 	return

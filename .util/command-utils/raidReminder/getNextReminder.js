@@ -40,7 +40,7 @@ module.exports = (days, time, timezone, reminderHours) => {
 			nextReminder.minus({ hours: reminderHours }).toUnixInteger()
 		)
 			return nextReminder.minus({ hours: reminderHours })
-		else return nextReminder.plus({ days: 7 })
+		else if (days.length === 1) return nextReminder.plus({ days: 7 })
 	}
 
 	// Otherwise find the next day a reminder should be sent

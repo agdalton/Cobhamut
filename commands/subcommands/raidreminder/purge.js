@@ -71,7 +71,7 @@ module.exports = async (interaction, data, globals) => {
 	// Purge embed to allow user selection
 	embed.setColor(purple).setDescription(
 		'Raid reminders created by users who are no longer in the server have been purged.'
-	).addField('Delete count', reminders.deletedCount)
+	).addField('Delete count', reminders.deletedCount.toString())
 
 	interactionReply(interaction, null, [embed], null, false, false)
 	return

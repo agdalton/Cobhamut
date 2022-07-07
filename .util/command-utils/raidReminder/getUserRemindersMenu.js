@@ -7,7 +7,7 @@ module.exports = async (userId, customId) => {
 		dataCreator: { $regex: `"memberID":"${userId}"` },
 	})
 	console.log(raidReminders)
-	if (raidReminders) {
+	if (raidReminders.length > 0) {
 		// Build a list and present it to the user
 		const reminderChoices = []
 		for (const reminder of raidReminders) {

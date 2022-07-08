@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js')
+const { DateTime } = require('luxon')
 const raidReminderSchema = require('../../mongo-utils/raidReminder/raidReminderSchema.js')
-const interactionReply = require('../../command-utils/interactionReply')
 
 module.exports = {
 	name: 'rrCancelModal',
@@ -53,25 +53,15 @@ module.exports = {
 			_id: mongoId,
 		})
 
-		const nextReminder = reminder.nextReminder.toISOString()
 		const {
 			title,
 			days,
 			time,
-			timezone,
 			friendlyTZ,
 			role,
 			channel,
 			reminderHours,
 		} = JSON.parse(reminder.dataSubmission)
-
-		// Get when the next reminder would've been
-		const dtNextReminder = DateTime.fromISO(nextReminder)
-			.setLocale('en-US')
-			.setZone(timezone)
-		const nextReminderDate = dtNextReminder.toLocaleString(
-			DateTime.DATE_MED_WITH_WEEKDAY
-		)
 
 		// Delete the reminder from mongoDB
 		try {
@@ -116,16 +106,7 @@ module.exports = {
 			)
 			.addField('Raid days', days.join(', '), true)
 			.addField('\u200b', '\u200b', true)
-			.addField(
-				'Next reminder',
-				`${nextReminderDate.substring(
-					0,
-					nextReminderDate.length - 6
-				)} ${dtNextReminder.toLocaleString(
-					DateTime.TIME_SIMPLE
-				)} ${friendlyTZ}`,
-				true
-			)
+			.addField('Next reminder', '-', true)
 			.addField('Channel', `<#${channel}>`, true)
 			.addField('\u200b', '\u200b', true)
 			.setFooter({

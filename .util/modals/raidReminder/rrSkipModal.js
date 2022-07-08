@@ -1,7 +1,6 @@
 const { MessageEmbed } = require('discord.js')
 const { DateTime } = require('luxon')
 const raidReminderSchema = require('../../mongo-utils/raidReminder/raidReminderSchema.js')
-const interactionReply = require('../../command-utils/interactionReply')
 const getNextReminder = require('../../command-utils/raidReminder/getNextReminder.js')
 
 module.exports = {

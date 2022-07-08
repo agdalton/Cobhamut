@@ -206,6 +206,21 @@ module.exports = {
 				)
 		)
 
+		data.addSubcommand((subcommand) =>
+			subcommand
+				.setTitle('mod-cancel')
+				.setDescription(
+					'Moderator command. Cancel any reminder set by a member of the server.'
+				)
+				.addUserOption((option) =>
+					option
+						.setName('user')
+						.setDescription(
+							'Select a user to cancel one of their raid reminders'
+						)
+				)
+		)
+
 		return data.toJSON()
 	})(),
 }

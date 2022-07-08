@@ -38,6 +38,7 @@ module.exports = async (interaction, data, globals) => {
 			'You must have the Manage Server permission to run this command.'
 		)
 		interactionReply(interaction, null, [embed], null, false, false)
+		return
 	}
 
 	// Fetch server members

@@ -130,19 +130,19 @@ module.exports = {
 				.setDescription(
 					'Create a new raid reminder for your static'
 				)
-				.addChannelOption((option) =>
-					option
-						.setName('channel')
-						.setDescription(
-							'What channel should the reminder be sent in?'
-						)
-						.setRequired(true)
-				)
 				.addRoleOption((option) =>
 					option
 						.setName('role')
 						.setDescription(
 							'What role should be pinged for this reminder?'
+						)
+						.setRequired(true)
+				)
+				.addChannelOption((option) =>
+					option
+						.setName('channel')
+						.setDescription(
+							'What channel should the reminder be sent in?'
 						)
 						.setRequired(true)
 				)

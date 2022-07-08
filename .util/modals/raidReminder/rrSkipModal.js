@@ -149,7 +149,8 @@ module.exports = {
 					nextReminderDate.length - 6
 				)} ${newNextReminder.toLocaleString(
 					DateTime.TIME_SIMPLE
-				)} ${newNextReminder.offsetNameShort}`
+				)} ${newNextReminder.offsetNameShort}`,
+				true
 			)
 			.addField('Channel', `<#${channel}>`, true)
 			.addField('\u200b', '\u200b', true)

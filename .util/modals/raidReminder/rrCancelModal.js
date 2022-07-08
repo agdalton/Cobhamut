@@ -48,6 +48,31 @@ module.exports = {
 			return
 		}
 
+		// Find the reminder to get the data
+		const reminder = await raidReminderSchema.findOne({
+			_id: mongoId,
+		})
+
+		const nextReminder = reminder.nextReminder.toISOString()
+		const {
+			title,
+			days,
+			time,
+			timezone,
+			friendlyTZ,
+			role,
+			channel,
+			reminderHours,
+		} = JSON.parse(reminder.dataSubmission)
+
+		// Get when the next reminder would've been
+		const dtNextReminder = DateTime.fromISO(nextReminder)
+			.setLocale('en-US')
+			.setZone(timezone)
+		const nextReminderDate = dtNextReminder.toLocaleString(
+			DateTime.DATE_MED_WITH_WEEKDAY
+		)
+
 		// Delete the reminder from mongoDB
 		try {
 			await raidReminderSchema.deleteOne({
@@ -82,6 +107,27 @@ module.exports = {
 				'Your raid reminder has been canceled successfully.'
 			)
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
+			.addField('Title', title)
+			.addField('Static', role)
+			.addField(
+				'Raid start time',
+				`${time} ${friendlyTZ} | ${reminderHours} hour reminder`,
+				true
+			)
+			.addField('Raid days', days.join(', '), true)
+			.addField('\u200b', '\u200b', true)
+			.addField(
+				'Next reminder',
+				`${nextReminderDate.substring(
+					0,
+					nextReminderDate.length - 6
+				)} ${dtNextReminder.toLocaleString(
+					DateTime.TIME_SIMPLE
+				)} ${friendlyTZ}`,
+				true
+			)
+			.addField('Channel', `<#${channel}>`, true)
+			.addField('\u200b', '\u200b', true)
 			.setFooter({
 				text: `${
 					memberData.memberNick
@@ -90,7 +136,8 @@ module.exports = {
 				} used /raidreminder cancel`,
 				iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 			})
-		// Update the original message (the one with the select menu) so the menu disappears and is updated with the cancel confirmation
+
+		// Update the original message (the one with the select menu) so the menu disappears
 		await interaction.update({ components: [] })
 		// Follow up with the cancel confirmation
 		await interaction.followUp({ embeds: [embed], ephemeral: false })

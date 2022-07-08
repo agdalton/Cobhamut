@@ -109,15 +109,40 @@ module.exports = {
 			return
 		}
 
-		// Respond with skip confirmation
+		// Respond with skip confirmation <-- Find the reminder again since it was last retrieved in a try/catch and we know it exists at this point
+		const reminder = await raidReminderSchema.findOne({
+			_id: mongoId,
+		})
+
+		const {
+			title,
+			days,
+			time,
+			friendlyTZ,
+			role,
+			channel,
+			reminderHours,
+		} = JSON.parse(reminder.dataSubmission)
+
 		const nextReminderDate = newNextReminder.toLocaleString(
 			DateTime.DATE_MED_WITH_WEEKDAY
 		)
+
 		embed.setTitle('Skip a raid reminder')
 			.setColor(purple)
 			.setDescription(
 				'Your raid reminder has been skipped successfully. The next reminder is listed below.'
 			)
+			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
+			.addField('Title', title)
+			.addField('Static', role)
+			.addField(
+				'Raid start time',
+				`${time} ${friendlyTZ} | ${reminderHours} hour reminder`,
+				true
+			)
+			.addField('Raid days', days.join(', '), true)
+			.addField('\u200b', '\u200b', true)
 			.addField(
 				'Next reminder',
 				`${nextReminderDate.substring(
@@ -127,7 +152,8 @@ module.exports = {
 					DateTime.TIME_SIMPLE
 				)} ${newNextReminder.offsetNameShort}`
 			)
-			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
+			.addField('Channel', `<#${channel}>`, true)
+			.addField('\u200b', '\u200b', true)
 			.setFooter({
 				text: `${
 					memberData.memberNick
@@ -136,8 +162,11 @@ module.exports = {
 				} used /raidreminder skip`,
 				iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 			})
-		// Update the original message (the one with the select menu) so the menu disappears and is updated with the skip confirmation
-		await interaction.update({ embeds: [embed], components: [] })
+
+		// Update the original message (the one with the select menu) so the menu disappears
+		await interaction.update({ components: [] })
+		// Follow up with the skip confirmation
+		await interaction.followUp({ embeds: [embed], ephemeral: false })
 		return
 	},
 }

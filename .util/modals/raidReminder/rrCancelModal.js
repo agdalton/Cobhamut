@@ -91,7 +91,11 @@ module.exports = {
 				iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 			})
 		// Update the original message (the one with the select menu) so the menu disappears and is updated with the cancel confirmation
-		await interaction.update({ embeds: [embed], components: [] })
+		await interaction.update({
+			embeds: [embed],
+			components: [],
+			ephemeral: false,
+		})
 		return
 	},
 }

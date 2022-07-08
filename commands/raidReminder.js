@@ -208,7 +208,7 @@ module.exports = {
 
 		data.addSubcommand((subcommand) =>
 			subcommand
-				.setTitle('mod-cancel')
+				.setName('mod-cancel')
 				.setDescription(
 					'Moderator command. Cancel any reminder set by a member of the server.'
 				)

@@ -42,7 +42,8 @@ module.exports = (days, time, timezone, reminderHours) => {
 			return nextReminder.minus({ hours: reminderHours })
 	}
 
-	if (days.length === 1) return nextReminder.plus({ days: 7 })
+	if (days.length === 1)
+		return nextReminder.plus({ days: 7 }).minus({ hours: reminderHours })
 
 	// Otherwise find the next day a reminder should be sent
 	for (let i = 0; i < days.length; i++) {

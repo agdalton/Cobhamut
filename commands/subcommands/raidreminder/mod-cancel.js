@@ -28,7 +28,7 @@ module.exports = async (interaction, data, globals) => {
 				memberData.memberNick
 					? memberData.memberNick
 					: memberData.memberUsername
-			} used /raidreminder purge`,
+			} used /raidreminder mod-cancel`,
 			iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 		})
 
@@ -67,5 +67,6 @@ module.exports = async (interaction, data, globals) => {
 		true,
 		false
 	)
+    
 	return
 }

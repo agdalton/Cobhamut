@@ -1,5 +1,5 @@
 // Retrieve a list of raid reminders created by the input user and present an option to delete a selection
-const { MessageEmbed } = require('discord.js')
+const { MessageEmbed, Permissions } = require('discord.js')
 const interactionReply = require('../../../.util/command-utils/interactionReply.js')
 const getUserRemindersMenu = require('../../../.util/command-utils/raidReminder/getUserRemindersMenu.js')
 

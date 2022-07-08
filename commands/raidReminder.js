@@ -218,6 +218,7 @@ module.exports = {
 						.setDescription(
 							'Select a user to cancel one of their raid reminders'
 						)
+						.setRequired(true)
 				)
 		)
 

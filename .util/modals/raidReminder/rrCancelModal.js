@@ -94,7 +94,7 @@ module.exports = {
 		embed.setTitle('Cancel a raid reminder')
 			.setColor(purple)
 			.setDescription(
-				'Your raid reminder has been canceled successfully.'
+				'This raid reminder has been canceled successfully.'
 			)
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 			.addField('Title', title)

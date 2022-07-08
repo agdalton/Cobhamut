@@ -130,7 +130,7 @@ module.exports = {
 		embed.setTitle('Skip a raid reminder')
 			.setColor(purple)
 			.setDescription(
-				'Your raid reminder has been skipped successfully. The next reminder is listed below.'
+				'This raid reminder has been skipped successfully. The next reminder is listed below.'
 			)
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 			.addField('Title', title)

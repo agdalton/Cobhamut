@@ -40,8 +40,9 @@ module.exports = (days, time, timezone, reminderHours) => {
 			nextReminder.minus({ hours: reminderHours }).toUnixInteger()
 		)
 			return nextReminder.minus({ hours: reminderHours })
-		else if (days.length === 1) return nextReminder.plus({ days: 7 })
 	}
+
+	if (days.length === 1) return nextReminder.plus({ days: 7 })
 
 	// Otherwise find the next day a reminder should be sent
 	for (let i = 0; i < days.length; i++) {
@@ -54,8 +55,6 @@ module.exports = (days, time, timezone, reminderHours) => {
 
 			if (dtNow.toUnixInteger() + 1 < expectedReminder.toUnixInteger())
 				return expectedReminder
-			else if (days.length === 1)
-				return expectedReminder.plus({ days: 7 })
 		}
 	}
 
@@ -80,8 +79,6 @@ module.exports = (days, time, timezone, reminderHours) => {
 
 			if (dtNow.toUnixInteger() + 1 < expectedReminder.toUnixInteger())
 				return expectedReminder
-			else if (days.length === 1)
-				return expectedReminder.plus({ days: 7 })
 
 			nextDayIndex = today
 		}

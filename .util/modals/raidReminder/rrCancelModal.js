@@ -55,6 +55,7 @@ module.exports = {
 
 		const {
 			title,
+			message,
 			days,
 			time,
 			friendlyTZ,

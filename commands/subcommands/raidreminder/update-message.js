@@ -35,7 +35,7 @@ module.exports = async (interaction, data, globals) => {
 
 	const remindersMenu = await getUserRemindersMenu(
 		memberData.memberID,
-		'rrUpdateMessageSelectMenu'
+		'rrUpdateMessageSelectMenu', true
 	)
 
 	// If there are no reminders scheduled by the user change the embed accordingly
@@ -50,7 +50,7 @@ module.exports = async (interaction, data, globals) => {
 		null,
 		[embed],
 		remindersMenu
-			? [remindersMenu.components[0].setMaxValues(remindersMenu.components[0].options.length)]
+			? [remindersMenu]
 			: null,
 		true,
 		false

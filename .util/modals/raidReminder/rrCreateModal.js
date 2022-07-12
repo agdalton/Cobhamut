@@ -117,7 +117,7 @@ module.exports = {
 			mentionRole: inputs.role,
 			dataCreator: JSON.stringify(memberData), // JSON.stringify() object containing data about the user who ran the command creating the raidReminder
 			dataSubmission: JSON.stringify({
-				title: inputs.title,
+				title: title,
 				message: message,
 				days: inputs.friendlyDays,
 				daysOfWeek: inputs.days,

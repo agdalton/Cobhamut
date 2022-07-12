@@ -50,7 +50,7 @@ module.exports = async (interaction, data, globals) => {
 		null,
 		[embed],
 		remindersMenu
-			? [remindersMenu]
+			? [remindersMenu.components[0].setMaxValues(remindersMenu.components[0].options.length)]
 			: null,
 		true,
 		false

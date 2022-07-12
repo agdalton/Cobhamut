@@ -43,7 +43,7 @@ module.exports = {
 			reminderData.message = message
 
 			updatedReminders.push(
-				`**${reminderData.title}\n${reminderData.days.join(
+				`**${reminderData.title}**\n${reminderData.days.join(
 					', '
 				)} @ ${reminderData.time} ${reminderData.friendlyTZ} | ${
 					reminderData.reminderHours
@@ -75,7 +75,7 @@ module.exports = {
 				.setThumbnail(
 					'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/htc/37/warning-sign_26a0.png'
 				)
-				.addField('Reminders NOT updated', err.join('\n\n'))
+				.addField('Reminders NOT updated', `>>> ${err.join('\n\n')}`)
 				.setFooter({
 					text: `${
 						memberData.memberNick

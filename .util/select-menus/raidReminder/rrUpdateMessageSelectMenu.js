@@ -6,13 +6,6 @@ module.exports = {
 	callback: async (client, interaction, globals) => {
 		const selectedValue = interaction.values.join()
 
-		// Get reminder data
-		const reminder = await raidReminderSchema.findOne({
-			_id: selectedValue,
-		})
-
-		const reminderData = JSON.parse(reminder.dataSubmission)
-
 		// Input components for the Modal
 		const mongoId = new TextInputComponent()
 			.setCustomId('rrMongoId')
@@ -23,7 +16,6 @@ module.exports = {
 		const message = new TextInputComponent()
 			.setCustomId('rrMessage')
 			.setLabel('Message')
-			.setValue(reminderData.message)
 			.setStyle('PARAGRAPH')
 			.setMaxLength(1024)
 

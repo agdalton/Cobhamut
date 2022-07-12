@@ -35,7 +35,7 @@ module.exports = async (interaction, data, globals) => {
 
 	const remindersMenu = await getUserRemindersMenu(
 		memberData.memberID,
-		'rrUpdateSelectMenu'
+		'rrUpdateMessageSelectMenu'
 	)
 
 	// If there are no reminders scheduled by the user change the embed accordingly

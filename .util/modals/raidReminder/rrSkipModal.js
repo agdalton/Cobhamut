@@ -74,11 +74,13 @@ module.exports = {
 			})
 
 			newNextReminder = getNextReminder(
-				filteredDays,
+				daysOfWeek.length > 1 ? filteredDays : daysOfWeek,
 				time,
 				timezone,
 				reminderHours
 			)
+
+			if (daysOfWeek.length === 1) newNextReminder.plus({ days: 7 })
 
 			await raidReminderSchema.updateOne(
 				{

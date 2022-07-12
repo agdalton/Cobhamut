@@ -8,7 +8,7 @@ module.exports = {
 
 		// Input components for the Modal
 		const mongoId = new TextInputComponent()
-			.setCustomId('rrMongoId')
+			.setCustomId('rrMongoIds')
 			.setLabel('Reminder IDs')
 			.setValue(selectedValue)
 			.setRequired(true)

@@ -10,7 +10,7 @@ module.exports = {
 
 		// Get modal inputs
 		const { fields } = interaction
-		const mongoIds = fields.getTextInputValue('rrMongoId').split(',')
+		const mongoIds = fields.getTextInputValue('rrMongoIds').split(',')
 		const message = fields.getTextInputValue('rrMessage').trim()
 
 		// Get data about the user who submitted the command

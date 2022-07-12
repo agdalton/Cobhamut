@@ -57,7 +57,7 @@ module.exports = {
 						memberData.memberNick
 							? memberData.memberNick
 							: memberData.memberUsername
-					} used /raidreminder cancel`,
+					} used /raidreminder update-message`,
 					iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 				})
 			// Update the original message (the one with the select menu) so the menu disappears and is updated with the error
@@ -90,7 +90,7 @@ module.exports = {
 					memberData.memberNick
 						? memberData.memberNick
 						: memberData.memberUsername
-				} used /raidreminder cancel`,
+				} used /raidreminder update-message`,
 				iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 			})
 

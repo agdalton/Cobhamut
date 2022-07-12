@@ -29,7 +29,7 @@ module.exports = async (interaction, data, globals) => {
 				memberData.memberNick
 					? memberData.memberNick
 					: memberData.memberUsername
-			} used /raidreminder cancel`,
+			} used /raidreminder update-message`,
 			iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 		})
 
@@ -51,7 +51,7 @@ module.exports = async (interaction, data, globals) => {
 		null,
 		[embed],
 		remindersMenu
-			? [remindersMenu.components[0].setMinValues(1).setMaxValues(20)]
+			? [remindersMenu]
 			: null,
 		true,
 		false

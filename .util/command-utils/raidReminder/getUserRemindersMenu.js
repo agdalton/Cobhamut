@@ -30,6 +30,7 @@ module.exports = async (userId, customId) => {
 				.setCustomId(customId)
 				.setPlaceholder('Nothing selected')
 				.addOptions(reminderChoices)
+				.setMaxValues(20)
 		)
 	}
 

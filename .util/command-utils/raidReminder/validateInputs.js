@@ -200,9 +200,9 @@ module.exports = async (
 
 	// Validate Role and Channel
 	try {
-		obj.role = roleChannelHours.split(',')[1]
-		obj.channel = roleChannelHours.split(',')[2]
-		obj.reminderHours = roleChannelHours.split(',')[3]
+		obj.role = roleChannelHours.split(',')[0]
+		obj.channel = roleChannelHours.split(',')[1]
+		obj.reminderHours = roleChannelHours.split(',')[2]
 
 		// Validate role and channel are resolvable from the client
 		const guild = await client.guilds.fetch(interaction.guildId)

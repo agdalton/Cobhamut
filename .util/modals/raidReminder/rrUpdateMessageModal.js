@@ -61,6 +61,7 @@ module.exports = {
 					}
 				)
 			} catch (e) {
+				console.log(e.message)
 				err.push(updatedReminders[updatedReminders.length - 1])
 			}
 		}

@@ -62,7 +62,7 @@ module.exports = {
 				const embed = new MessageEmbed()
 					.setColor(purple)
 					.setTitle(`Raid begins in ${embedTitle}`)
-					.setDescription(`**${title}**\n\n${message}`)
+					.setDescription(`**${title}**\n\n>>> ${message}`)
 					.setThumbnail(
 						'https://xivapi.com/i/060000/060855_hr1.png'
 					)
@@ -130,14 +130,6 @@ module.exports = {
 				.setName('create')
 				.setDescription(
 					'Create a new raid reminder for your static'
-				)
-				.addStringOption((option) =>
-					option
-						.setName('title')
-						.setDescription(
-							'Title of this reminder (will be referred to when using other commands)'
-						)
-						.setRequired(true)
 				)
 				.addRoleOption((option) =>
 					option

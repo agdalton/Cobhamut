@@ -4,8 +4,7 @@ module.exports = async (
 	client,
 	interaction,
 	days,
-	time,
-	timezone,
+	timeTZ,
 	titleRoleChannelHours
 ) => {
 	// Setup an object to return with all the info we might need later
@@ -13,6 +12,7 @@ module.exports = async (
 		isValid: true,
 		days: [],
 		friendlyDays: [],
+		time: '',
 		timezone: '',
 		role: '',
 		channel: '',
@@ -143,6 +143,21 @@ module.exports = async (
 		})
 	}
 
+	// Validate timeTZ
+	const timeTZRgx = /^(1[0-2]|0?[1-9]):([0-5][0-9])([AP]M) ([A-Z]{2,3})$/g
+	if (!timeTZRgx.test(timeTZ)) {
+		obj.isValid = false
+		obj.err.push({
+			field: 'Time and timezone',
+			message: 'Invalid time and timezone submitted. Use HH:mmAM/PM TZ. For example, if your raid start time is 8:30 PM Eastern, use 8:30PM EST.',
+		})
+
+		return obj // if we can't split timeTZ on the whitespace, we have to return as none of it can be validated
+	}
+
+	const time = timeTZ.split(' ')[0].trim()
+	const timezone = timeTZ.split(' ')[1].trim()
+
 	// Validate time
 	const timeRgx = /^(1[0-2]|0?[1-9]):([0-5][0-9])([AP]M)$/g
 	if (!timeRgx.test(time)) {
@@ -152,6 +167,8 @@ module.exports = async (
 			message: 'Invalid time submitted. Use HH:mmAM/PM. For example, if your static starts raid at 8:30 PM, use 8:30PM.',
 		})
 	}
+
+	obj.time = time
 
 	// Validate timezone
 	let longTz = '' // Required for Luxon
@@ -183,10 +200,9 @@ module.exports = async (
 
 	// Validate Role and Channel
 	try {
-		obj.title = titleRoleChannelHours.split(',')[0]
-		obj.role = titleRoleChannelHours.split(',')[1]
-		obj.channel = titleRoleChannelHours.split(',')[2]
-		obj.reminderHours = titleRoleChannelHours.split(',')[3]
+		obj.role = roleChannelHours.split(',')[1]
+		obj.channel = roleChannelHours.split(',')[2]
+		obj.reminderHours = roleChannelHours.split(',')[3]
 
 		// Validate role and channel are resolvable from the client
 		const guild = await client.guilds.fetch(interaction.guildId)

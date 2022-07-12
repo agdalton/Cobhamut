@@ -55,15 +55,15 @@ module.exports = {
 
 		// Get modal inputs
 		const { fields } = interaction
+		const title = fields.getTextInputValue('rrTitle').trim()
 		const message = fields.getTextInputValue('rrMessage').trim()
 		const days = fields.getTextInputValue('rrDays').trim()
-		const time = fields.getTextInputValue('rrTime').trim().toUpperCase()
-		const timezone = fields
-			.getTextInputValue('rrTimezone')
+		const timeTZ = fields
+			.getTextInputValue('rrTimeTZ')
 			.trim()
 			.toUpperCase()
-		const titleRoleChannelHours = fields
-			.getTextInputValue('rrTitleRoleChannelHours')
+		const roleChannelHours = fields
+			.getTextInputValue('rrRoleChannelHours')
 			.trim()
 
 		// Validate time and timezone
@@ -71,9 +71,8 @@ module.exports = {
 			client,
 			interaction,
 			days,
-			time,
-			timezone,
-			titleRoleChannelHours
+			timeTZ,
+			roleChannelHours
 		)
 
 		if (!inputs.isValid) {
@@ -106,7 +105,7 @@ module.exports = {
 		// Get the date of the next reminder to be sent
 		const nextReminder = getNextReminder(
 			inputs.days,
-			time,
+			inputs.time,
 			inputs.timezone,
 			inputs.reminderHours
 		)
@@ -122,7 +121,7 @@ module.exports = {
 				message: message,
 				days: inputs.friendlyDays,
 				daysOfWeek: inputs.days,
-				time: time,
+				time: inputs.time,
 				friendlyTZ: nextReminder.offsetNameShort,
 				timezone: inputs.timezone,
 				role: inputs.role,
@@ -147,7 +146,7 @@ module.exports = {
 			.addField('Static', inputs.role)
 			.addField(
 				'Raid start time',
-				`${time} ${nextReminder.offsetNameShort} | ${inputs.reminderHours} hour reminder`,
+				`${inputs.time} ${nextReminder.offsetNameShort} | ${inputs.reminderHours} hour reminder`,
 				true
 			)
 			.addField('Raid days', inputs.friendlyDays.join(', '), true)

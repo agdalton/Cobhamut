@@ -52,7 +52,7 @@ module.exports = {
 
 			// Delete the reminder from mongoDB
 			try {
-				await raidReminderSchema.UpdateOne(
+				await raidReminderSchema.updateOne(
 					{
 						_id: reminder._id,
 					},

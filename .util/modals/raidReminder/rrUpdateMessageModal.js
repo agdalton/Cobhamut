@@ -54,7 +54,7 @@ module.exports = {
 			try {
 				await raidReminderSchema.UpdateOne(
 					{
-						_id: mongoId,
+						_id: reminder._id,
 					},
 					{
 						dataSubmission: JSON.stringify(reminderData),

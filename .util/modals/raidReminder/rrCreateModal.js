@@ -144,7 +144,7 @@ module.exports = {
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 			.setColor(purple)
 			.addField('Title', inputs.title)
-			.addField('Message', message)
+			.addField('Message', `>>> ${message}`)
 			.addField('Static', inputs.role)
 			.addField(
 				'Raid start time',

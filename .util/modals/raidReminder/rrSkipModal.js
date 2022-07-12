@@ -80,10 +80,8 @@ module.exports = {
 				reminderHours
 			)
 
-			if (daysOfWeek.length === 1) {
-				console.log('Add 7!')
-				//newNextReminder.plus({ days: 7 })
-			}
+			if (daysOfWeek.length === 1)
+				newNextReminder = newNextReminder.plus({ days: 7 })
 
 			await raidReminderSchema.updateOne(
 				{

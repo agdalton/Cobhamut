@@ -62,7 +62,7 @@ module.exports = {
 				const embed = new MessageEmbed()
 					.setColor(purple)
 					.setTitle(`Raid begins in ${embedTitle}`)
-					.setDescription(`**${title}**\n>>> ${message}`)
+					.setDescription(`>>> **${title}**\n${message}`)
 					.setThumbnail(
 						'https://xivapi.com/i/060000/060855_hr1.png'
 					)

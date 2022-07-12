@@ -58,10 +58,7 @@ module.exports = async (interaction, data, globals) => {
 
 	// Add the rows to the modal
 	modal.addComponents(modalRow1, modalRow2, modalRow3, modalRow4, modalRow5)
-	modal['options'] = interaction.options
 	// Send the modal
-	const submit = await interaction.showModal(modal)
-
-	console.log(submit)
+	await interaction.showModal(modal)
 	return
 }

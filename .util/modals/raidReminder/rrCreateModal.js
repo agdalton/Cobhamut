@@ -54,7 +54,7 @@ module.exports = {
 		}
 
 		// Get modal inputs
-		const reply = await interaction.fetchReply()
+		const reply = await interaction.isFromMessage()
 		console.log(reply)
 		const { fields } = interaction
 		const message = fields.getTextInputValue('rrMessage').trim()

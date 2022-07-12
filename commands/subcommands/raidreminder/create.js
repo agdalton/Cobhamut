@@ -15,7 +15,7 @@ module.exports = async (interaction, data, globals) => {
 		.setLabel('Message')
 		.setPlaceholder("Don't forget we raid today!")
 		.setRequired(true)
-		.setStyle('LONG')
+		.setStyle('PARAGRAPH')
 	const days = new TextInputComponent()
 		.setCustomId('rrDays')
 		.setLabel('Raid days')

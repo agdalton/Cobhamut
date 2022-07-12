@@ -29,16 +29,11 @@ module.exports = async (interaction, data, globals) => {
 		.setPlaceholder('8:30PM')
 		.setStyle('SHORT')
 		.setRequired(true)
-	const timezone = new MessageSelectMenu()
+	const timezone = new TextInputComponent()
 		.setCustomId('rrTimezone')
 		.setLabel('Timezone')
-		//.setPlaceholder('EST')
-		//.setStyle('SHORT')
-		.addOptions([{
-			label: 'Eastern',
-			value: 'America/New_York',
-			description: ''
-		}])
+		.setPlaceholder('EST')
+		.setStyle('SHORT')
 		.setRequired(true)
 	const titleRoleChannelHours = new TextInputComponent()
 		.setCustomId('rrTitleRoleChannelHours')

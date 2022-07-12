@@ -18,6 +18,7 @@ module.exports = {
 			.setLabel('Message')
 			.setStyle('PARAGRAPH')
 			.setMaxLength(1024)
+			.setRequired(true)
 
 		// Modal setup
 		const modal = new Modal()

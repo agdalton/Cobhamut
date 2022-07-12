@@ -4,7 +4,7 @@ const raidReminderSchema = require('../../mongo-utils/raidReminder/raidReminderS
 module.exports = {
 	name: 'rrUpdateMessageSelectMenu',
 	callback: async (client, interaction, globals) => {
-		const selectedValue = interaction.values[0]
+		const selectedValue = interaction.values.join()
 
 		// Get reminder data
 		const reminder = await raidReminderSchema.findOne({
@@ -16,7 +16,7 @@ module.exports = {
 		// Input components for the Modal
 		const mongoId = new TextInputComponent()
 			.setCustomId('rrMongoId')
-			.setLabel('Reminder ID')
+			.setLabel('Reminder IDs')
 			.setValue(selectedValue)
 			.setRequired(true)
 			.setStyle('SHORT')

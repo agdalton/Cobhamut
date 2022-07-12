@@ -101,7 +101,10 @@ module.exports = {
 				'This raid reminder has been updated successfully.'
 			)
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
-			.addField('Updated Reminders', updatedReminders.join('\n\n'))
+			.addField(
+				'Updated Reminders',
+				`>>> ${updatedReminders.join('\n\n')}`
+			)
 			.addField('Message', `>>> ${message}`)
 			.setFooter({
 				text: `${

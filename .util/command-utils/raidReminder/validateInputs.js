@@ -5,7 +5,7 @@ module.exports = async (
 	interaction,
 	days,
 	timeTZ,
-	titleRoleChannelHours
+	roleChannelHours
 ) => {
 	// Setup an object to return with all the info we might need later
 	const obj = {

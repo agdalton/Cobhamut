@@ -36,10 +36,19 @@ module.exports = {
 		const reminders = await raidReminderSchema.find(query)
 
 		const err = []
+		const updatedReminders = []
 		for (const reminder of reminders) {
 			const reminderData = JSON.parse(reminder.dataSubmission)
 			// Update the message
 			reminderData.message = message
+
+			updatedReminders.push(
+				`**${reminderData.title}\n${reminderData.days.join(
+					', '
+				)} @ ${reminderData.time} ${reminderData.friendlyTZ} | ${
+					reminderData.reminderHours
+				} hour reminder`
+			)
 
 			// Delete the reminder from mongoDB
 			try {
@@ -52,17 +61,11 @@ module.exports = {
 					}
 				)
 			} catch (e) {
-				err.push(
-					`**${reminderData.title}\n${reminderData.days.join(
-						', '
-					)} @ ${reminderData.time} ${
-						reminderData.friendlyTZ
-					} | ${reminderData.reminderHours} hour reminder`
-				)
+				err.push(updatedReminders[updatedReminders.length - 1])
 			}
 		}
 
-        // If any errors occurred
+		// If any errors occurred
 		if (err.length > 0) {
 			embed.setColor(orange)
 				.setTitle('An error occurred')
@@ -95,19 +98,8 @@ module.exports = {
 				'This raid reminder has been updated successfully.'
 			)
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
-			.addField('Title', title)
+			.addField('Updated Reminders', updatedReminders.join('\n\n'))
 			.addField('Message', `>>> ${message}`)
-			.addField('Static', role)
-			.addField(
-				'Raid start time',
-				`${time} ${friendlyTZ} | ${reminderHours} hour reminder`,
-				true
-			)
-			.addField('Raid days', days.join(', '), true)
-			.addField('\u200b', '\u200b', true)
-			.addField('Next reminder', '-', true)
-			.addField('Channel', `<#${channel}>`, true)
-			.addField('\u200b', '\u200b', true)
 			.setFooter({
 				text: `${
 					memberData.memberNick

@@ -10,7 +10,7 @@ module.exports = {
 
 		// Get modal inputs
 		const { fields } = interaction
-		const mongoId = fields.getTextInputValue('rrMongoId').trim()
+		const mongoIds = fields.getTextInputValue('rrMongoId').split(',')
 		const message = fields.getTextInputValue('rrMessage').trim()
 
 		// Get data about the user who submitted the command
@@ -24,34 +24,55 @@ module.exports = {
 		// Create embed reply
 		const embed = new MessageEmbed()
 
+		// Build a query for mongo with all the IDs
+		const query = { $or: [] }
+		for (let i = 0; i < mongoIds.length; i++) {
+			query.$or.push({
+				_id: mongoIds[i],
+			})
+		}
+
 		// Find the reminder to get the data
-		const reminder = await raidReminderSchema.findOne({
-			_id: mongoId,
-		})
+		const reminders = await raidReminderSchema.find(query)
 
-		const reminderData = JSON.parse(reminder.dataSubmission)
-		// Update the message
-		reminderData.message = message
+		const err = []
+		for (const reminder of reminders) {
+			const reminderData = JSON.parse(reminder.dataSubmission)
+			// Update the message
+			reminderData.message = message
 
-		// Delete the reminder from mongoDB
-		try {
-			await raidReminderSchema.UpdateOne(
-				{
-					dataSubmission: JSON.stringify(reminderData),
-				},
-				{
-					_id: mongoId,
-				}
-			)
-		} catch (e) {
+			// Delete the reminder from mongoDB
+			try {
+				await raidReminderSchema.UpdateOne(
+					{
+						dataSubmission: JSON.stringify(reminderData),
+					},
+					{
+						_id: mongoId,
+					}
+				)
+			} catch (e) {
+				err.push(
+					`**${reminderData.title}\n${reminderData.days.join(
+						', '
+					)} @ ${reminderData.time} ${
+						reminderData.friendlyTZ
+					} | ${reminderData.reminderHours} hour reminder`
+				)
+			}
+		}
+
+        // If any errors occurred
+		if (err.length > 0) {
 			embed.setColor(orange)
 				.setTitle('An error occurred')
 				.setDescription(
-					'An error occurred while trying to update this reminder. It has **NOT** been updated.\n\nWhen interacting with the update message dialog, **DO NOT change the Reminder ID field**.'
+					'An error occurred while trying to update the below reminder(s). They have **NOT** been updated.\n\nWhen interacting with the update message dialog, **DO NOT change the Reminder IDs field**.'
 				)
 				.setThumbnail(
 					'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/htc/37/warning-sign_26a0.png'
 				)
+				.addField('Reminders NOT updated', err.join('\n\n'))
 				.setFooter({
 					text: `${
 						memberData.memberNick
@@ -61,10 +82,12 @@ module.exports = {
 					iconURL: `${baseImageURL}/avatars/${memberData.memberID}/${memberData.memberAvatar}.png`,
 				})
 			// Update the original message (the one with the select menu) so the menu disappears and is updated with the error
-			await interaction.update({ embeds: [embed], components: [] })
+			await interaction.update({
+				embeds: [embed],
+				components: [],
+			})
 			return
 		}
-
 		// Respond with delete confirmation
 		embed.setTitle("Update a raid reminder's message")
 			.setColor(purple)

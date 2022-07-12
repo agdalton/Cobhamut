@@ -1,5 +1,5 @@
 // Create subcommand for raidreminder
-const { MessageActionRow, Modal, TextInputComponent } = require('discord.js')
+const { MessageActionRow, Modal, TextInputComponent, MessageSelectMenu } = require('discord.js')
 
 module.exports = async (interaction, data, globals) => {
 	// Get modal fields from the interaction
@@ -29,11 +29,16 @@ module.exports = async (interaction, data, globals) => {
 		.setPlaceholder('8:30PM')
 		.setStyle('SHORT')
 		.setRequired(true)
-	const timezone = new TextInputComponent()
+	const timezone = new MessageSelectMenu()
 		.setCustomId('rrTimezone')
 		.setLabel('Timezone')
-		.setPlaceholder('EST')
-		.setStyle('SHORT')
+		//.setPlaceholder('EST')
+		//.setStyle('SHORT')
+		.addOptions([{
+			label: 'Eastern',
+			value: 'America/New_York',
+			description: ''
+		}])
 		.setRequired(true)
 	const titleRoleChannelHours = new TextInputComponent()
 		.setCustomId('rrTitleRoleChannelHours')

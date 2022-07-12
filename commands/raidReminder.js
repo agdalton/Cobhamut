@@ -25,6 +25,7 @@ module.exports = {
 				const dataCreator = JSON.parse(reminder.dataCreator)
 				const {
 					title,
+					message,
 					daysOfWeek,
 					time,
 					timezone,
@@ -54,14 +55,14 @@ module.exports = {
 					DateTime.DATE_MED_WITH_WEEKDAY
 				)
 
-				const embedDescription =
+				const embedTitle =
 					reminderHours > 1
 						? `${reminderHours} hours!`
 						: `${reminderHours} hour!`
 				const embed = new MessageEmbed()
 					.setColor(purple)
-					.setTitle(title)
-					.setDescription(`Raid begins in ${embedDescription}`)
+					.setTitle(`Raid begins in ${embedTitle}`)
+					.setDescription(`**${title}**\n\n${message}`)
 					.setThumbnail(
 						'https://xivapi.com/i/060000/060855_hr1.png'
 					)
@@ -129,6 +130,14 @@ module.exports = {
 				.setName('create')
 				.setDescription(
 					'Create a new raid reminder for your static'
+				)
+				.addStringOption((option) =>
+					option
+						.setName('title')
+						.setDescription(
+							'Title of this reminder (will be referred to when using other commands)'
+						)
+						.setRequired(true)
 				)
 				.addRoleOption((option) =>
 					option

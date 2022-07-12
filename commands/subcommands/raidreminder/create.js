@@ -4,17 +4,18 @@ const { MessageActionRow, Modal, TextInputComponent } = require('discord.js')
 module.exports = async (interaction, data, globals) => {
 	// Get modal fields from the interaction
 	const inputs = []
+	inputs.push(interaction.options.getString('title')).trim()
 	inputs.push(interaction.options.getRole('role'))
 	inputs.push(interaction.options.getChannel('channel').id)
 	inputs.push(interaction.options.getInteger('reminder'))
 
 	// Input components for the Modal
-	const title = new TextInputComponent()
-		.setCustomId('rrTitle')
-		.setLabel('Title')
+	const message = new TextInputComponent()
+		.setCustomId('rrMessage')
+		.setLabel('Message')
 		.setPlaceholder("Don't forget we raid today!")
 		.setRequired(true)
-		.setStyle('SHORT')
+		.setStyle('LONG')
 	const days = new TextInputComponent()
 		.setCustomId('rrDays')
 		.setLabel('Raid days')
@@ -33,9 +34,9 @@ module.exports = async (interaction, data, globals) => {
 		.setPlaceholder('EST')
 		.setStyle('SHORT')
 		.setRequired(true)
-	const roleChannelHours = new TextInputComponent()
-		.setCustomId('rrRoleChannelHours')
-		.setLabel('Role, Channel, Hours')
+	const titleRoleChannelHours = new TextInputComponent()
+		.setCustomId('rrTitleRoleChannelHours')
+		.setLabel('Title, Role, Channel, Hours')
 		.setValue(inputs.join())
 		.setStyle('SHORT')
 		.setRequired(true)
@@ -46,11 +47,11 @@ module.exports = async (interaction, data, globals) => {
 		.setTitle('New Raid Reminder')
 
 	// Add all the components to rows <-- one component per row, maximum 5 rows
-	const modalRow1 = new MessageActionRow().addComponents(title)
+	const modalRow1 = new MessageActionRow().addComponents(message)
 	const modalRow2 = new MessageActionRow().addComponents(days)
 	const modalRow3 = new MessageActionRow().addComponents(time)
 	const modalRow4 = new MessageActionRow().addComponents(timezone)
-	const modalRow5 = new MessageActionRow().addComponents(roleChannelHours)
+	const modalRow5 = new MessageActionRow().addComponents(titleRoleChannelHours)
 
 	// Add the rows to the modal
 	modal.addComponents(modalRow1, modalRow2, modalRow3, modalRow4, modalRow5)

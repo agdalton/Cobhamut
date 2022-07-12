@@ -54,16 +54,18 @@ module.exports = {
 		}
 
 		// Get modal inputs
+		const test = interaction.options.getString('title').trim()
+		console.log(test)
 		const { fields } = interaction
-		const title = fields.getTextInputValue('rrTitle').trim()
+		const message = fields.getTextInputValue('rrMessage').trim()
 		const days = fields.getTextInputValue('rrDays').trim()
 		const time = fields.getTextInputValue('rrTime').trim().toUpperCase()
 		const timezone = fields
 			.getTextInputValue('rrTimezone')
 			.trim()
 			.toUpperCase()
-		const roleChannelHours = fields
-			.getTextInputValue('rrRoleChannelHours')
+		const titleRoleChannelHours = fields
+			.getTextInputValue('rrTitleRoleChannelHours')
 			.trim()
 
 		// Validate time and timezone
@@ -73,7 +75,7 @@ module.exports = {
 			days,
 			time,
 			timezone,
-			roleChannelHours
+			titleRoleChannelHours
 		)
 
 		if (!inputs.isValid) {
@@ -118,7 +120,8 @@ module.exports = {
 			mentionRole: inputs.role,
 			dataCreator: JSON.stringify(memberData), // JSON.stringify() object containing data about the user who ran the command creating the raidReminder
 			dataSubmission: JSON.stringify({
-				title: title,
+				title: inputs.title,
+				message: message,
 				days: inputs.friendlyDays,
 				daysOfWeek: inputs.days,
 				time: time,
@@ -141,7 +144,8 @@ module.exports = {
 			.setDescription('Raid reminder created successfully!')
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 			.setColor(purple)
-			.addField('Title', title)
+			.addField('Title', inputs.title)
+			.addField('Message', message)
 			.addField('Static', inputs.role)
 			.addField(
 				'Raid start time',

@@ -54,10 +54,8 @@ module.exports = {
 		}
 
 		// Get modal inputs
-		console.log(interaction.fields)
+		console.log(interaction.options)
 		const { fields } = interaction
-		console.log(fields.getString('title').trim())
-
 		const message = fields.getTextInputValue('rrMessage').trim()
 		const days = fields.getTextInputValue('rrDays').trim()
 		const time = fields.getTextInputValue('rrTime').trim().toUpperCase()

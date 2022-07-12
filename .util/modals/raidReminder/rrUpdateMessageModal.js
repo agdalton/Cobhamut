@@ -54,10 +54,10 @@ module.exports = {
 			try {
 				await raidReminderSchema.UpdateOne(
 					{
-						dataSubmission: JSON.stringify(reminderData),
+						_id: mongoId,
 					},
 					{
-						_id: mongoId,
+						dataSubmission: JSON.stringify(reminderData),
 					}
 				)
 			} catch (e) {
@@ -75,7 +75,10 @@ module.exports = {
 				.setThumbnail(
 					'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/htc/37/warning-sign_26a0.png'
 				)
-				.addField('Reminders NOT updated', `>>> ${err.join('\n\n')}`)
+				.addField(
+					'Reminders NOT updated',
+					`>>> ${err.join('\n\n')}`
+				)
 				.setFooter({
 					text: `${
 						memberData.memberNick

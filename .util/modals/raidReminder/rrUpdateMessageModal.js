@@ -113,7 +113,7 @@ module.exports = {
 			})
 
 		// Update the original message (the one with the select menu) so the menu disappears
-		await interaction.update({ embeds: [], components: [] })
+		await interaction.update({ embeds: [embed], components: [] })
 		// Follow up with the cancel confirmation
 		await interaction.followUp({ embeds: [embed], ephemeral: false })
 		return

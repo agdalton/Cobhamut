@@ -29,7 +29,7 @@ module.exports = {
 		const modalRow2 = new MessageActionRow().addComponents(mongoId)
 
 		// Add the rows to the modal
-		modal.addComponents(modalRow1, modalRow2, modalRow3, modalRow4)
+		modal.addComponents(modalRow1, modalRow2)
 
 		// Send the modal
 		await interaction.showModal(modal)

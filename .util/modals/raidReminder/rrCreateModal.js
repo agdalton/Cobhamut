@@ -141,7 +141,7 @@ module.exports = {
 			.setDescription('Raid reminder created successfully!')
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 			.setColor(purple)
-			.addField('Title', inputs.title)
+			.addField('Title', title)
 			.addField('Message', `>>> ${message}`)
 			.addField('Static', inputs.role)
 			.addField(

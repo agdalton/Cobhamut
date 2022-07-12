@@ -4,7 +4,7 @@ const { MessageActionRow, Modal, TextInputComponent } = require('discord.js')
 module.exports = async (interaction, data, globals) => {
 	// Get modal fields from the interaction
 	const inputs = []
-	inputs.push(interaction.options.getString('title')).trim()
+	inputs.push(interaction.options.getString('title').trim())
 	inputs.push(interaction.options.getRole('role'))
 	inputs.push(interaction.options.getChannel('channel').id)
 	inputs.push(interaction.options.getInteger('reminder'))
@@ -51,7 +51,9 @@ module.exports = async (interaction, data, globals) => {
 	const modalRow2 = new MessageActionRow().addComponents(days)
 	const modalRow3 = new MessageActionRow().addComponents(time)
 	const modalRow4 = new MessageActionRow().addComponents(timezone)
-	const modalRow5 = new MessageActionRow().addComponents(titleRoleChannelHours)
+	const modalRow5 = new MessageActionRow().addComponents(
+		titleRoleChannelHours
+	)
 
 	// Add the rows to the modal
 	modal.addComponents(modalRow1, modalRow2, modalRow3, modalRow4, modalRow5)

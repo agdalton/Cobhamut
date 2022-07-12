@@ -45,7 +45,6 @@ module.exports = async (interaction, data, globals) => {
 		)
 	}
 
-	console.log(remindersMenu)
 	interactionReply(
 		interaction,
 		null,

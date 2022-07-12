@@ -52,6 +52,7 @@ module.exports = {
 		const nextReminder = reminder.nextReminder.toISOString()
 		const {
 			title,
+			message,
 			days,
 			time,
 			timezone,
@@ -75,6 +76,7 @@ module.exports = {
 			)
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 			.addField('Title', title)
+			.addField('Message', `>>> ${message}`)
 			.addField('Static', role)
 			.addField(
 				'Raid start time',

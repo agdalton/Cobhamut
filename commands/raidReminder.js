@@ -185,9 +185,17 @@ module.exports = {
 
 		data.addSubcommand((subcommand) =>
 			subcommand
-				.setName('cancel')
+				.setName('info')
 				.setDescription(
-					'Cancel an existing raid reminder you created'
+					'Get details about one of your raid reminders'
+				)
+		)
+
+		data.addSubcommand((subcommand) =>
+			subcommand
+				.setName('update-message')
+				.setDescription(
+					'Update the message included on one of your existing raid reminders.'
 				)
 		)
 
@@ -201,17 +209,9 @@ module.exports = {
 
 		data.addSubcommand((subcommand) =>
 			subcommand
-				.setName('info')
+				.setName('cancel')
 				.setDescription(
-					'Get details about one of your raid reminders'
-				)
-		)
-
-		data.addSubcommand((subcommand) =>
-			subcommand
-				.setName('purge')
-				.setDescription(
-					'Moderator command. Purge all reminders by users no longer in this server.'
+					'Cancel an existing raid reminder you created'
 				)
 		)
 
@@ -228,6 +228,14 @@ module.exports = {
 							'Select a user to cancel one of their raid reminders'
 						)
 						.setRequired(true)
+				)
+		)
+
+		data.addSubcommand((subcommand) =>
+			subcommand
+				.setName('mod-purge')
+				.setDescription(
+					'Moderator command. Purge all reminders by users no longer in this server.'
 				)
 		)
 

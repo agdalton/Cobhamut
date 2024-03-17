@@ -7,7 +7,7 @@ module.exports = async (interaction, data, globals) => {
 	const { last8BallQuestion, baseImageURL } = globals
 	const { gold } = globals.colors
 	const { memberID, memberUsername, memberNick, memberAvatar } = data
-	const intervene = Math.floor(Math.random() * 100) >= 90 ? true : false // 90% of the time
+	const intervene = Math.floor(Math.random() * 100) >= 90 ? true : false // True 10% of the time
 	const interventionType = interaction.options.getString('type')
 	let lastInteraction = last8BallQuestion.interaction
 	let lastQuestion = last8BallQuestion.question

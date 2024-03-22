@@ -4,6 +4,7 @@ Does stuff
 */
 
 // requirements
+require('dotenv').config()
 const { Client, Intents } = require('discord.js')
 const { default: mongoose, Connection, mongo } = require('mongoose')
 const path = require('path')

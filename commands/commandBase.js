@@ -13,7 +13,7 @@ module.exports = async (client, command, globals) => {
 	let { name, guildId, callback, data } = command
 
 	// add the GuildId to the application if it's a Guild Command
-	postCommands(client.api.applications(client.user.id), guildId, data)
+	//postCommands(client.api.applications(client.user.id), guildId, data)
 
 	// wait for an interaction
 	client.on('interactionCreate', (interaction) => {

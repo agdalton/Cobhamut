@@ -16,7 +16,7 @@ module.exports = async (interaction, data, globals) => {
 		.setThumbnail('https://i.imgur.com/cmRBCbp.png')
 		.addFields(
 			{ name: 'Question', value: question },
-			{ name: 'Answer', answer }
+			{ name: 'Answer', value: answer }
 		)
 		.setFooter({
 			text:

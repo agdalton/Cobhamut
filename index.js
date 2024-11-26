@@ -5,7 +5,7 @@ Does stuff
 
 // requirements
 require('dotenv').config()
-const { Client, Intents } = require('discord.js')
+const { Client, GatewayIntentBits, Partials } = require('discord.js')
 const { default: mongoose, Connection, mongo } = require('mongoose')
 const path = require('path')
 const fs = require('fs')
@@ -13,12 +13,12 @@ const fs = require('fs')
 // globals
 const client = new Client({
 	intents: [
-		Intents.FLAGS.GUILDS,
-		Intents.FLAGS.GUILD_MESSAGES,
-		Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-		Intents.FLAGS.GUILD_MEMBERS
+		GatewayIntentBits.GUILDS,
+		GatewayIntentBits.GUILD_MESSAGES,
+		GatewayIntentBits.GUILD_MESSAGE_REACTIONS,
+		GatewayIntentBits.GUILD_MEMBERS
 	],
-	partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
+	partials: [Partials.Message, Partials.Channel, Partials.Reaction],
 })
 const globals = {}
 globals['baseImageURL'] = 'https://cdn.discordapp.com'

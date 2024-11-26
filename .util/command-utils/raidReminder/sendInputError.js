@@ -1,13 +1,13 @@
 // Send an error for raidReminder command
 const reply = require('../interactionReply.js')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = (interaction, memberData, globals, inputs) => {
 	const { memberID, memberUsername, memberNick, memberAvatar } = memberData
 	const { baseImageURL } = globals
 	const { orange } = globals.colors
 
-	const errEmbed = new MessageEmbed()
+	const errEmbed = new EmbedBuilder()
 		.setTitle('An error ocurred')
 		.setDescription(
 			'Cobhamut encountered an error while processing /raidReminder. See below for details.'

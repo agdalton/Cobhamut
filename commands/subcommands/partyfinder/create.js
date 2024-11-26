@@ -1,5 +1,5 @@
 // Create subcommand for partyfinder
-const { MessageActionRow, Modal, TextInputComponent } = require('discord.js')
+const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require('discord.js')
 
 module.exports = async (interaction, data, globals) => {
 	// Get size, ping from the interaction
@@ -10,46 +10,46 @@ module.exports = async (interaction, data, globals) => {
 	if (pingRole !== '') pingRole = pingRole.toString()
 
 	// Input components for the Modal
-	const description = new TextInputComponent()
+	const description = new TextInputBuilder()
 		.setCustomId('pfDescription')
 		.setLabel('Description')
 		.setPlaceholder("Eden's Verse: Furor with friends!")
 		.setRequired(true)
-		.setStyle('SHORT')
-	const size = new TextInputComponent()
+		.setStyle(TextInputStyle.Short)
+	const size = new TextInputBuilder()
 		.setCustomId('pfSize')
 		.setLabel('Party size')
 		.setValue(partySize)
 		.setPlaceholder('8')
-		.setStyle('SHORT')
+		.setStyle(TextInputStyle.Short)
 		.setRequired(true)
-	const date = new TextInputComponent()
+	const date = new TextInputBuilder()
 		.setCustomId('pfDate')
 		.setLabel('Date')
 		.setPlaceholder('5/9')
-		.setStyle('SHORT')
-	const timeTZ = new TextInputComponent()
+		.setStyle(TextInputStyle.Short)
+	const timeTZ = new TextInputBuilder()
 		.setCustomId('pfTimeTimezone')
 		.setLabel('Time and Timezone')
 		.setPlaceholder('8:30PM EST')
-		.setStyle('SHORT')
-	const mentionRole = new TextInputComponent()
+		.setStyle(TextInputStyle.Short)
+	const mentionRole = new TextInputBuilder()
 		.setCustomId('pfMentionRole')
 		.setLabel('Ping role')
 		.setValue(pingRole)
-		.setStyle('SHORT')
+		.setStyle(TextInputStyle.Short)
 
 	// Modal setup
-	const modal = new Modal()
+	const modal = new ModalBuilder()
 		.setCustomId('pfNewModal') // ../.././.util/modals/partyfinder/pfNewModal.js
 		.setTitle('New Partyfinder')
 
 	// Add all the components to rows <-- one component per row, maximum 5 rows
-	const modalRow1 = new MessageActionRow().addComponents(description)
-	const modalRow2 = new MessageActionRow().addComponents(size)
-	const modalRow3 = new MessageActionRow().addComponents(date)
-	const modalRow4 = new MessageActionRow().addComponents(timeTZ)
-	const modalRow5 = new MessageActionRow().addComponents(mentionRole)
+	const modalRow1 = new ActionRowBuilder().addComponents(description)
+	const modalRow2 = new ActionRowBuilder().addComponents(size)
+	const modalRow3 = new ActionRowBuilder().addComponents(date)
+	const modalRow4 = new ActionRowBuilder().addComponents(timeTZ)
+	const modalRow5 = new ActionRowBuilder().addComponents(mentionRole)
 
 	// Add the rows to the modal
 	modal.addComponents(modalRow1, modalRow2, modalRow3, modalRow4, modalRow5)

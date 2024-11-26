@@ -1,4 +1,8 @@
-const { MessageActionRow, MessageSelectMenu } = require('discord.js')
+const {
+	ActionRowBuilder,
+	StringSelectMenuBuilder,
+	StringSelectMenuOptionBuilder,
+} = require('discord.js')
 const raidReminderSchema = require('../../mongo-utils/raidReminder/raidReminderSchema.js')
 
 module.exports = async (userId, customId, multiSelect) => {
@@ -14,25 +18,29 @@ module.exports = async (userId, customId, multiSelect) => {
 		for (const reminder of raidReminders) {
 			const reminderData = JSON.parse(reminder.dataSubmission)
 
-			reminderChoices.push({
-				label: reminderData.title,
-				description: `${reminderData.days.join(', ')} @ ${
-					reminderData.time
-				} ${reminderData.friendlyTZ} | ${
-					reminderData.reminderHours
-				} hour reminder`,
-				value: reminder._id.toString(),
-			})
+			// Build select menu options
+			reminderChoices.push(
+				new StringSelectMenuOptionBuilder()
+					.setLabel(reminderData.title)
+					.setDescription(
+						`${reminderData.days.join(', ')} @ ${
+							reminderData.time
+						} ${reminderData.friendlyTZ} | ${
+							reminderData.reminderHours
+						} hour reminder`
+					)
+					.setValue(reminder._id.toString())
+			)
 		}
 
-		const selectMenu = new MessageSelectMenu()
+		const selectMenu = new StringSelectMenuBuilder()
 			.setCustomId(customId)
 			.setPlaceholder('Nothing selected')
 			.addOptions(reminderChoices)
 
 		if (multiSelect) selectMenu.setMaxValues(reminderChoices.length)
-		
-		return new MessageActionRow().addComponents(selectMenu)
+
+		return new ActionRowBuilder().addComponents(selectMenu)
 	}
 
 	return

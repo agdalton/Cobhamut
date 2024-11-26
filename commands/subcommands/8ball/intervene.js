@@ -1,5 +1,5 @@
 // Don't like what the Magic 8 ball answered? Try and get a more favorable answer!
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 const reply = require('../../../.util/command-utils/interactionReply.js')
 const getAnswer = require('../../../.util/command-utils/8ball/getAnswer.js')
 
@@ -44,11 +44,13 @@ module.exports = async (interaction, data, globals) => {
 		interventionType == 'good' ? getAnswer(rand) : getAnswer(rand + 10)
 
 	// Setup intervention embed
-	const embed = new MessageEmbed()
+	const embed = new EmbedBuilder()
 		.setColor(gold)
 		.setThumbnail('https://i.imgur.com/cmRBCbp.png')
-		.addField('Question', lastQuestion)
-		.addField('Answer', answer)
+		.addFields(
+			{ name: 'Question', value: lastQuestion },
+			{ name: 'Answer', value: answer }
+		)
 		.setFooter({
 			text:
 				(memberNick ? memberNick : memberUsername) +

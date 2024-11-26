@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 const { DateTime } = require('luxon')
 const raidReminderSchema = require('../../mongo-utils/raidReminder/raidReminderSchema.js')
 const getNextReminder = require('../../command-utils/raidReminder/getNextReminder.js')
@@ -24,7 +24,7 @@ module.exports = {
 		}
 
 		// Create embed reply
-		const embed = new MessageEmbed()
+		const embed = new EmbedBuilder()
 
 		// Return if the user didn't correctly type SKIP
 		if (confirmation !== 'SKIP') {
@@ -137,28 +137,30 @@ module.exports = {
 				'This raid reminder has been skipped successfully. The next reminder is listed below.'
 			)
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
-			.addField('Title', title)
-			.addField('Message', `>>> ${message}`)
-			.addField('Static', role)
-			.addField(
-				'Raid start time',
-				`${time} ${friendlyTZ} | ${reminderHours} hour reminder`,
-				true
+			.addFields(
+				{ name: 'Title', value: title },
+				{ name: 'Message', value: `>>> ${message}` },
+				{ name: 'Static', value: role },
+				{
+					name: 'Raid start time',
+					value: `${time} ${friendlyTZ} | ${reminderHours} hour reminder`,
+					inline: true,
+				},
+				{ name: 'Raid days', value: days.join(', '), inline: true },
+				{ name: '\u200b', value: '\u200b', inline: true },
+				{
+					name: 'Next reminder',
+					value: `${nextReminderDate.substring(
+						0,
+						nextReminderDate.length - 6
+					)} ${newNextReminder.toLocaleString(
+						DateTime.TIME_SIMPLE
+					)} ${newNextReminder.offsetNameShort}`,
+					inline: true,
+				},
+				{ name: 'Channel', value: `<#${channel}>`, inline: true },
+				{ name: '\u200b', value: '\u200b', inline: true }
 			)
-			.addField('Raid days', days.join(', '), true)
-			.addField('\u200b', '\u200b', true)
-			.addField(
-				'Next reminder',
-				`${nextReminderDate.substring(
-					0,
-					nextReminderDate.length - 6
-				)} ${newNextReminder.toLocaleString(
-					DateTime.TIME_SIMPLE
-				)} ${newNextReminder.offsetNameShort}`,
-				true
-			)
-			.addField('Channel', `<#${channel}>`, true)
-			.addField('\u200b', '\u200b', true)
 			.setFooter({
 				text: `${
 					memberData.memberNick

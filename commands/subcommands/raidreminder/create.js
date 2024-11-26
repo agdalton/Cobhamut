@@ -1,9 +1,9 @@
 // Create subcommand for raidreminder
 const {
-	MessageActionRow,
-	Modal,
-	TextInputComponent,
-	MessageSelectMenu,
+	ActionRowBuilder,
+	ModalBuilder,
+	TextInputBuilder,
+	TextInputStyle,
 } = require('discord.js')
 
 module.exports = async (interaction, data, globals) => {
@@ -14,49 +14,49 @@ module.exports = async (interaction, data, globals) => {
 	inputs.push(interaction.options.getInteger('reminder'))
 
 	// Input components for the Modal
-	const title = new TextInputComponent()
+	const title = new TextInputBuilder()
 		.setCustomId('rrTitle')
 		.setLabel('Title')
 		.setPlaceholder('Weekly raid with friends!')
-		.setStyle('SHORT')
+		.setStyle(TextInputStyle.Short)
 		.setRequired(true)
-	const message = new TextInputComponent()
+	const message = new TextInputBuilder()
 		.setCustomId('rrMessage')
 		.setLabel('Message')
 		.setPlaceholder("Don't forget we raid today!")
 		.setRequired(true)
-		.setStyle('PARAGRAPH')
+		.setStyle(TextInputStyle.Paragraph)
 		.setMaxLength(1024)
-	const days = new TextInputComponent()
+	const days = new TextInputBuilder()
 		.setCustomId('rrDays')
 		.setLabel('Raid days')
 		.setPlaceholder('Tues,Wed,Thurs')
-		.setStyle('SHORT')
+		.setStyle(TextInputStyle.Short)
 		.setRequired(true)
-	const timeTZ = new TextInputComponent()
+	const timeTZ = new TextInputBuilder()
 		.setCustomId('rrTimeTZ')
 		.setLabel('Raid Start Time')
 		.setPlaceholder('8:30PM EST')
-		.setStyle('SHORT')
+		.setStyle(TextInputStyle.Short)
 		.setRequired(true)
-	const roleChannelHours = new TextInputComponent()
+	const roleChannelHours = new TextInputBuilder()
 		.setCustomId('rrRoleChannelHours')
 		.setLabel('Role, Channel, Hours')
 		.setValue(inputs.join())
-		.setStyle('SHORT')
+		.setStyle(TextInputStyle.Short)
 		.setRequired(true)
 
 	// Modal setup
-	const modal = new Modal()
+	const modal = new ModalBuilder()
 		.setCustomId('rrCreateModal') // ../.././.util/modals/raidReminder/rrCreateModal.js
 		.setTitle('New Raid Reminder')
 
 	// Add all the components to rows <-- one component per row, maximum 5 rows
-	const modalRow1 = new MessageActionRow().addComponents(title)
-	const modalRow2 = new MessageActionRow().addComponents(message)
-	const modalRow3 = new MessageActionRow().addComponents(days)
-	const modalRow4 = new MessageActionRow().addComponents(timeTZ)
-	const modalRow5 = new MessageActionRow().addComponents(roleChannelHours)
+	const modalRow1 = new ActionRowBuilder().addComponents(title)
+	const modalRow2 = new ActionRowBuilder().addComponents(message)
+	const modalRow3 = new ActionRowBuilder().addComponents(days)
+	const modalRow4 = new ActionRowBuilder().addComponents(timeTZ)
+	const modalRow5 = new ActionRowBuilder().addComponents(roleChannelHours)
 
 	// Add the rows to the modal
 	modal.addComponents(modalRow1, modalRow2, modalRow3, modalRow4, modalRow5)

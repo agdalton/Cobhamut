@@ -1,4 +1,9 @@
-const { MessageActionRow, Modal, TextInputComponent } = require('discord.js')
+const {
+	ActionRowBuilder,
+	ModalBuilder,
+	TextInputBuilder,
+	TextInputStyle,
+} = require('discord.js')
 const raidReminderSchema = require('../../mongo-utils/raidReminder/raidReminderSchema.js')
 
 module.exports = {
@@ -14,41 +19,41 @@ module.exports = {
 		const reminderData = JSON.parse(reminder.dataSubmission)
 
 		// Input components for the Modal
-		const mongoId = new TextInputComponent()
+		const mongoId = new TextInputBuilder()
 			.setCustomId('rrMongoId')
 			.setLabel('Reminder ID')
 			.setValue(selectedValue)
 			.setRequired(true)
-			.setStyle('SHORT')
-		const title = new TextInputComponent()
+			.setStyle(TextInputStyle.Short)
+		const title = new TextInputBuilder()
 			.setCustomId('rrTitle')
 			.setLabel('Title')
 			.setValue(reminderData.title)
-			.setStyle('SHORT')
-		const description = new TextInputComponent()
+			.setStyle(TextInputStyle.Short)
+		const description = new TextInputBuilder()
 			.setCustomId('rrDays')
 			.setLabel('Raid Schedule')
 			.setValue(
 				`${reminderData.days} @ ${reminderData.time} ${reminderData.friendlyTZ} | ${reminderData.reminderHours} hour reminder`
 			)
-			.setStyle('SHORT')
-		const confirm = new TextInputComponent()
+			.setStyle(TextInputStyle.Short)
+		const confirm = new TextInputBuilder()
 			.setCustomId('rrConfirm')
 			.setLabel('To proceed type CANCEL')
 			.setPlaceholder('CANCEL')
-			.setStyle('SHORT')
+			.setStyle(TextInputStyle.Short)
 			.setRequired(true)
 
 		// Modal setup
-		const modal = new Modal()
+		const modal = new ModalBuilder()
 			.setCustomId('rrCancelModal') // ../.././.util/modals/raidReminder/rrCancelModal.js
 			.setTitle('Cancel Raid Reminder')
 
 		// Add all the components to rows <-- one component per row, maximum 5 rows
-		const modalRow1 = new MessageActionRow().addComponents(title)
-		const modalRow2 = new MessageActionRow().addComponents(description)
-		const modalRow3 = new MessageActionRow().addComponents(mongoId)
-		const modalRow4 = new MessageActionRow().addComponents(confirm)
+		const modalRow1 = new ActionRowBuilder().addComponents(title)
+		const modalRow2 = new ActionRowBuilder().addComponents(description)
+		const modalRow3 = new ActionRowBuilder().addComponents(mongoId)
+		const modalRow4 = new ActionRowBuilder().addComponents(confirm)
 
 		// Add the rows to the modal
 		modal.addComponents(modalRow1, modalRow2, modalRow3, modalRow4)

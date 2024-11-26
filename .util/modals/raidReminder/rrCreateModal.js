@@ -1,6 +1,6 @@
 const { data } = require('../../../commands/raidReminder')
 const { DateTime } = require('luxon')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 const interactionReply = require('../../command-utils/interactionReply')
 const getNextReminder = require('../../command-utils/raidReminder/getNextReminder')
 const sendInputError = require('../../command-utils/raidReminder/sendInputError')
@@ -31,7 +31,7 @@ module.exports = {
 		})
 
 		if (raidReminders.length === 20) {
-			const embed = new MessageEmbed()
+			const embed = new EmbedBuilder()
 				.setColor(red)
 				.setTitle('Failed to create raid reminder')
 				.setDescription(
@@ -136,33 +136,43 @@ module.exports = {
 		const nextReminderDate = nextReminder.toLocaleString(
 			DateTime.DATE_MED_WITH_WEEKDAY
 		)
-		const embed = new MessageEmbed()
+		const embed = new EmbedBuilder()
 			.setTitle('Create a raid reminder')
 			.setDescription('Raid reminder created successfully!')
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 			.setColor(purple)
-			.addField('Title', title)
-			.addField('Message', `>>> ${message}`)
-			.addField('Static', inputs.role)
-			.addField(
-				'Raid start time',
-				`${inputs.time} ${nextReminder.offsetNameShort} | ${inputs.reminderHours} hour reminder`,
-				true
+			.addFields(
+				{ name: 'Title', value: title },
+				{ name: 'Message', value: `>>> ${message}` },
+				{ name: 'Static', value: inputs.role },
+				{
+					name: 'Raid start time',
+					value: `${inputs.time} ${nextReminder.offsetNameShort} | ${inputs.reminderHours} hour reminder`,
+					inline: true,
+				},
+				{
+					name: 'Raid days',
+					value: inputs.friendlyDays.join(', '),
+					inline: true,
+				},
+				{ name: '\u200b', value: '\u200b', inline: true },
+				{
+					name: 'Next reminder',
+					value: `${nextReminderDate.substring(
+						0,
+						nextReminderDate.length - 6
+					)} ${nextReminder.toLocaleString(
+						DateTime.TIME_SIMPLE
+					)} ${nextReminder.offsetNameShort}`,
+					inline: true,
+				},
+				{
+					name: 'Channel',
+					value: `<#${inputs.channel}>`,
+					inline: true,
+				},
+				{ name: '\u200b', value: '\u200b', inline: true }
 			)
-			.addField('Raid days', inputs.friendlyDays.join(', '), true)
-			.addField('\u200b', '\u200b', true)
-			.addField(
-				'Next reminder',
-				`${nextReminderDate.substring(
-					0,
-					nextReminderDate.length - 6
-				)} ${nextReminder.toLocaleString(DateTime.TIME_SIMPLE)} ${
-					nextReminder.offsetNameShort
-				}`,
-				true
-			)
-			.addField('Channel', `<#${inputs.channel}>`, true)
-			.addField('\u200b', '\u200b', true)
 			.setFooter({
 				text: `${
 					memberData.memberNick

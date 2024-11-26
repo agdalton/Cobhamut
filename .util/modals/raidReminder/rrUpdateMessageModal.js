@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 const raidReminderSchema = require('../../mongo-utils/raidReminder/raidReminderSchema.js')
 
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
 		}
 
 		// Create embed reply
-		const embed = new MessageEmbed()
+		const embed = new EmbedBuilder()
 
 		// Build a query for mongo with all the IDs
 		const query = { $or: [] }
@@ -75,10 +75,10 @@ module.exports = {
 				.setThumbnail(
 					'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/htc/37/warning-sign_26a0.png'
 				)
-				.addField(
-					'Reminders NOT updated',
-					`>>> ${err.join('\n\n')}`
-				)
+				.addFields({
+					name: 'Reminders NOT updated',
+					value: `>>> ${err.join('\n\n')}`,
+				})
 				.setFooter({
 					text: `${
 						memberData.memberNick
@@ -101,11 +101,13 @@ module.exports = {
 				'This raid reminder has been updated successfully.'
 			)
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
-			.addField(
-				'Updated Reminders',
-				`>>> ${updatedReminders.join('\n\n')}`
+			.addFields(
+				{
+					name: 'Updated Reminders',
+					value: `>>> ${updatedReminders.join('\n\n')}`,
+				},
+				{ name: 'Message', value: `>>> ${message}` }
 			)
-			.addField('Message', `>>> ${message}`)
 			.setFooter({
 				text: `${
 					memberData.memberNick

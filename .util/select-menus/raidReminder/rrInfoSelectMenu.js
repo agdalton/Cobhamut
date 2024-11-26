@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 const { DateTime } = require('luxon')
 const raidReminderSchema = require('../../mongo-utils/raidReminder/raidReminderSchema.js')
 const interactionReply = require('../../command-utils/interactionReply')
@@ -23,7 +23,7 @@ module.exports = {
 		}
 
 		// Create embed reply
-		const embed = new MessageEmbed().setTitle('Raid reminder info')
+		const embed = new EmbedBuilder().setTitle('Raid reminder info')
 
 		// Get the reminder
 		const reminder = await raidReminderSchema.findOne({
@@ -75,28 +75,42 @@ module.exports = {
 				'Retrieved the below information about this raid reminder.'
 			)
 			.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
-			.addField('Title', title)
-			.addField('Message', `>>> ${message}`)
-			.addField('Static', role)
-			.addField(
-				'Raid start time',
-				`${time} ${friendlyTZ} | ${reminderHours} hour reminder`,
-				true
+			.addFields(
+				{ name: 'Title', value: title },
+				{ name: 'Message', value: `>>> ${message}` },
+				{ name: 'Static', value: role },
+				{
+					name: 'Raid start time',
+					value: `${time} ${friendlyTZ} | ${reminderHours} hour reminder`,
+					inline: true,
+				},
+				{
+					name: 'Raid days',
+					value: days.join(', '),
+					inline: true,
+				},
+				{
+					name: '\u200b',
+					value: '\u200b',
+					inline: true,
+				},
+				{
+					name: 'Next reminder',
+					value: `${nextReminderDate.substring(
+						0,
+						nextReminderDate.length - 6
+					)} ${dtNextReminder.toLocaleString(
+						DateTime.TIME_SIMPLE
+					)} ${friendlyTZ}`,
+					inline: true,
+				},
+				{ name: 'Channel', value: `<#${channel}>`, inline: true },
+				{
+					name: '\u200b',
+					value: '\u200b',
+					inline: true,
+				}
 			)
-			.addField('Raid days', days.join(', '), true)
-			.addField('\u200b', '\u200b', true)
-			.addField(
-				'Next reminder',
-				`${nextReminderDate.substring(
-					0,
-					nextReminderDate.length - 6
-				)} ${dtNextReminder.toLocaleString(
-					DateTime.TIME_SIMPLE
-				)} ${friendlyTZ}`,
-				true
-			)
-			.addField('Channel', `<#${channel}>`, true)
-			.addField('\u200b', '\u200b', true)
 			.setFooter({
 				text: `${
 					memberData.memberNick

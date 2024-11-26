@@ -1,5 +1,5 @@
 // Retrieve a list of raid reminders created by the user and present an option to delete a selection
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 const interactionReply = require('../../../.util/command-utils/interactionReply.js')
 const getUserRemindersMenu = require('../../../.util/command-utils/raidReminder/getUserRemindersMenu.js')
 
@@ -17,7 +17,7 @@ module.exports = async (interaction, data, globals) => {
 	}
 
 	// Cancel embed to allow user selection
-	const embed = new MessageEmbed()
+	const embed = new EmbedBuilder()
 		.setColor(purple)
 		.setTitle('Cancel a raid reminder')
 		.setDescription(

@@ -1,5 +1,5 @@
 // Retrieve a list of raid reminders created by the user and present an option to delete a selection
-const { MessageEmbed, Permissions } = require('discord.js')
+const { EmbedBuilder, PermissionsBitField } = require('discord.js')
 const interactionReply = require('../../../.util/command-utils/interactionReply.js')
 const raidReminderSchema = require('../../../.util/mongo-utils/raidReminder/raidReminderSchema.js')
 
@@ -20,7 +20,7 @@ module.exports = async (interaction, data, globals) => {
 	}
 
 	// Setup reply embed
-	const embed = new MessageEmbed()
+	const embed = new EmbedBuilder()
 		.setTitle('Purge raid reminders')
 		.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 		.setFooter({
@@ -33,7 +33,11 @@ module.exports = async (interaction, data, globals) => {
 		})
 
 	// Return if the user does NOT have the manage server permission
-	if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_GUILD)) {
+	if (
+		!interaction.member.permissions.has(
+			PermissionsBitField.Flags.ManageGuild
+		)
+	) {
 		embed.setColor(red).setDescription(
 			'You must have the Manage Server permission to run this command.'
 		)
@@ -73,7 +77,10 @@ module.exports = async (interaction, data, globals) => {
 		.setDescription(
 			'Raid reminders created by users who are no longer in the server have been purged.'
 		)
-		.addField('Purge count', reminders.deletedCount.toString())
+		.addFields({
+			name: 'Purge count',
+			value: reminders.deletedCount.toString(),
+		})
 
 	interactionReply(interaction, null, [embed], null, false, false)
 	return

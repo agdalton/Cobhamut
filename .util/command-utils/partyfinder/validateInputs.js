@@ -1,6 +1,6 @@
 // validate inputs for partyfinder command
 const reply = require('../interactionReply.js')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 
 module.exports = (interaction, memberData, globals, partyComp, dataDTTZ) => {
 	const { memberID, memberUsername, memberNick, memberAvatar } = memberData
@@ -9,7 +9,7 @@ module.exports = (interaction, memberData, globals, partyComp, dataDTTZ) => {
 
 	// If the partyComp has an error or the date, time, timezone inputs return invalid
 	if (partyComp.hasOwnProperty('err') || !dataDTTZ.isValid) {
-		const errEmbed = new MessageEmbed()
+		const errEmbed = new EmbedBuilder()
 			.setTitle('An error ocurred')
 			.setDescription(
 				'Cobhamut encountered an error while processing /partyfinder. See below for details.'

@@ -1,5 +1,5 @@
 // Retrieve a list of raid reminders created by the input user and present an option to delete a selection
-const { MessageEmbed, Permissions } = require('discord.js')
+const { EmbedBuilder, PermissionsBitField } = require('discord.js')
 const interactionReply = require('../../../.util/command-utils/interactionReply.js')
 const getUserRemindersMenu = require('../../../.util/command-utils/raidReminder/getUserRemindersMenu.js')
 
@@ -20,7 +20,7 @@ module.exports = async (interaction, data, globals) => {
 	const user = interaction.options.getUser('user')
 
 	// Setup reply embed
-	const embed = new MessageEmbed()
+	const embed = new EmbedBuilder()
 		.setTitle('Cancel a raid reminder (moderator)')
 		.setThumbnail('https://xivapi.com/i/060000/060855_hr1.png')
 		.setFooter({
@@ -33,7 +33,7 @@ module.exports = async (interaction, data, globals) => {
 		})
 
 	// Return if the user does NOT have the manage server permission
-	if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_GUILD)) {
+	if (!interaction.member.permissions.has(PermissionsBitField.Flags.ManageGuild)) {
 		embed.setColor(red).setDescription(
 			'You must have the Manage Server permission to run this command.'
 		)

@@ -7,7 +7,7 @@ module.exports = async (client, selectMenu, globals) => {
 	// wait for an interaction
 	client.on('interactionCreate', (interaction) => {
 		// process command callback
-		if (interaction.isSelectMenu() && name === interaction.customId)
+		if (interaction.isStringSelectMenu() && name === interaction.customId)
 			callback(client, interaction, globals)
 
 		return

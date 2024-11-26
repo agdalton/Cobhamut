@@ -13,10 +13,10 @@ const fs = require('fs')
 // globals
 const client = new Client({
 	intents: [
-		GatewayIntentBits.GUILDS,
-		GatewayIntentBits.GUILD_MESSAGES,
-		GatewayIntentBits.GUILD_MESSAGE_REACTIONS,
-		GatewayIntentBits.GUILD_MEMBERS
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.GuildMessageReactions,
+		GatewayIntentBits.GuildMembers
 	],
 	partials: [Partials.Message, Partials.Channel, Partials.Reaction],
 })

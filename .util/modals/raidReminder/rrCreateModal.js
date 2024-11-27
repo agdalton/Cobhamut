@@ -87,6 +87,8 @@ module.exports = {
 			if (!guild) throw new Error() // Skip if the guild can't be fetched
 
 			// Fetch the channel of the guild the partyfinder was scheduled in
+			console.log(inputs.channel)
+			console.log(`Client: ${await client.channels.fetch(inputs.channel)}`)
 			const channel = await client.channels.fetch(inputs.channel)
 			if (!channel) throw new Error() // Skip if the channel can't be fetched (i.e deleted)
 

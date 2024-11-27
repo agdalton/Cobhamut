@@ -27,15 +27,15 @@ module.exports = (interaction, memberData, globals, inputs) => {
 	if (!inputs.isValid) {
 		// Add the errors to the embed
 		for (let iErr = 0; iErr < inputs.err.length; iErr++) {
-			errEmbed.addField(
-				inputs.err[iErr].field,
-				inputs.err[iErr].message
-			)
+			errEmbed.addFields({
+				name: inputs.err[iErr].field,
+				value: inputs.err[iErr].message,
+			})
 		}
 	}
 
 	// Send the errors back to the user ephemerally
 	reply(interaction, null, [errEmbed], null, true, false)
 
-    return
+	return
 }

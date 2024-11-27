@@ -95,7 +95,7 @@ module.exports = {
 			inputs.isValid = false
 			inputs.err.push({
 				field: 'Channel',
-				message: "Cobhamut could not validate the channel you selected.\n\nPlease ensure you're selecting a **text channel** from the pop-up list in Discord and that the selection is NOT a channel category (folder icon)",
+				message: `Cobhamut could not validate the channel you selected.\n\nPlease ensure you're selecting a **text channel** from the pop-up list in Discord and that the selection is NOT a channel category (folder icon)\n\nError${e}`,
 			})
 
 			sendInputError(interaction, memberData, globals, inputs)

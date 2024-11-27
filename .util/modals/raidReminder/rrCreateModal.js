@@ -1,6 +1,6 @@
 const { data } = require('../../../commands/raidReminder')
 const { DateTime } = require('luxon')
-const { EmbedBuilder } = require('discord.js')
+const { EmbedBuilder, ChannelType } = require('discord.js')
 const interactionReply = require('../../command-utils/interactionReply')
 const getNextReminder = require('../../command-utils/raidReminder/getNextReminder')
 const sendInputError = require('../../command-utils/raidReminder/sendInputError')
@@ -88,9 +88,9 @@ module.exports = {
 
 			// Fetch the channel of the guild the partyfinder was scheduled in
 			const channel = await guild.channels.fetch(inputs.channel)
-			if (!channel) throw new Error("Error: Couldn't fetch the channel from the client.") // Skip if the channel can't be fetched (i.e deleted)
+			if (!channel) throw new Error("Couldn't fetch the channel from the client.") // Skip if the channel can't be fetched (i.e deleted)
 
-			if (channel.type !== 'GUILD_TEXT') throw new Error("Error: Invalid channel type selected.") // If the selected channel is not a text channel, throw an error
+			if (channel.type !== ChannelType.GuildText) throw new Error("Invalid channel type selected.") // If the selected channel is not a text channel, throw an error
 		} catch (e) {
 			inputs.isValid = false
 			inputs.err.push({

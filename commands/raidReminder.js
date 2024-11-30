@@ -1,6 +1,6 @@
 // Raid reminder command for configuring scheduled reminders for FF14 statics
 const { SlashCommandBuilder } = require('@discordjs/builders')
-const { MessageEmbed } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 const { DateTime } = require('luxon')
 const raidReminderSchema = require('../.util/mongo-utils/raidReminder/raidReminderSchema.js')
 const getNextReminder = require('../.util/command-utils/raidReminder/getNextReminder.js')
@@ -59,15 +59,23 @@ module.exports = {
 					reminderHours > 1
 						? `${reminderHours} hours!`
 						: `${reminderHours} hour!`
-				const embed = new MessageEmbed()
+				const embed = new EmbedBuilder()
 					.setColor(purple)
 					.setTitle(`Raid begins in ${embedTitle}`)
 					.setDescription(`>>> **${title}**\n${message}`)
 					.setThumbnail(
 						'https://xivapi.com/i/060000/060855_hr1.png'
 					)
-					.addField('Static', `${role}`)
-					.addField('Raid start time', `${time} ${friendlyTZ}`)
+					.addFields(
+						{
+							name: 'Static',
+							value: `${role}`,
+						},
+						{
+							name: 'Raid start time',
+							value: `${time} ${friendlyTZ}`,
+						}
+					)
 					.setFooter({
 						text: `${
 							dataCreator.memberNick

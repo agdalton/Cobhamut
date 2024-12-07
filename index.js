@@ -16,7 +16,7 @@ const client = new Client({
 		GatewayIntentBits.Guilds,
 		GatewayIntentBits.GuildMessages,
 		GatewayIntentBits.GuildMessageReactions,
-		GatewayIntentBits.GuildMembers
+		GatewayIntentBits.GuildMembers,
 	],
 	partials: [Partials.Message, Partials.Channel, Partials.Reaction],
 })
@@ -43,6 +43,7 @@ const getApp = (guildId) => {
 }
 
 // when the bot is ready
+client.setMaxListeners(15)
 client.on('ready', async () => {
 	console.log('Cobhamut is online!')
 	client.user.setActivity('Akh Corn')
@@ -171,7 +172,11 @@ client.on('ready', async () => {
 					dir,
 					file
 				))
-				deletedMessagesListenerBase(client, deletedMessagesListener, globals)
+				deletedMessagesListenerBase(
+					client,
+					deletedMessagesListener,
+					globals
+				)
 			}
 		}
 	}

@@ -23,7 +23,6 @@ module.exports = {
 		// Get modal inputs
 		const { fields } = interaction
 		const description = fields.getTextInputValue('pfDescription').trim()
-		console.log(description)
 		const size = fields.getTextInputValue('pfSize').trim()
 		const mentionRole =
 			fields.getTextInputValue('pfMentionRole').trim() || ''
@@ -54,7 +53,7 @@ module.exports = {
 			purple,
 			dataDTTZ,
 			description, // Embed title
-			'', // Embed description
+			null, // Embed description
 			partyComp,
 			[], // Array[] list of tanks
 			[], // Array[] list of healers

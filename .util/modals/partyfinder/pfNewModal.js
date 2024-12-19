@@ -23,6 +23,7 @@ module.exports = {
 		// Get modal inputs
 		const { fields } = interaction
 		const description = fields.getTextInputValue('pfDescription').trim()
+		console.log(description)
 		const size = fields.getTextInputValue('pfSize').trim()
 		const mentionRole =
 			fields.getTextInputValue('pfMentionRole').trim() || ''

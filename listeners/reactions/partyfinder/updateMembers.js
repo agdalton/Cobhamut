@@ -32,7 +32,6 @@ module.exports = {
 		}
 	},
 	callback: async (client, reaction, user, remove, globals) => {
-		console.log('ARE WE HERE?')
 		// Check incoming message was created by the partyfinder command
 		if (
 			reaction.message.interaction.hasOwnProperty('commandName') &&
@@ -83,6 +82,8 @@ module.exports = {
 		let role = ''
 		switch (emoji) {
 			case '977771775960174652':
+				console.log('ARE WE HERE?')
+
 				role = 'tanks'
 				break
 			case '977771776253775932':

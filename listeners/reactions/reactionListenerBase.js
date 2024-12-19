@@ -16,6 +16,8 @@ module.exports = async (client, reactionListener, globals) => {
 		)
 			callback(client, fullReaction, user, false, globals)
 		console.log(JSON.stringify(applicableEmoji))
+		console.log(reaction._emoji.id + ' ' + typeof reaction._emoji.id);
+		console.log(reaction._emoji.name + ' ' + typeof reaction._emoji.name);
 		return
 	})
 

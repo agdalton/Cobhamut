@@ -8,11 +8,7 @@ module.exports = {
 		'977771775960174652',
 		'977771776253775932',
 		'977771775859494942',
-		'977774943154618368',
-		'',
-		'healer',
-		'dps',
-		'fill',
+		'977774943154618368',,
 		'❌',
 	],
 	init: async (client, globals) => {
@@ -36,6 +32,7 @@ module.exports = {
 		}
 	},
 	callback: async (client, reaction, user, remove, globals) => {
+		console.log('ARE WE HERE?')
 		// Check incoming message was created by the partyfinder command
 		if (
 			reaction.message.interaction.hasOwnProperty('commandName') &&

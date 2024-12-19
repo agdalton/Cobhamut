@@ -15,7 +15,7 @@ module.exports = async (client, reactionListener, globals) => {
 			applicableEmoji.includes(reaction._emoji.name)
 		)
 			callback(client, fullReaction, user, false, globals)
-		console.log(applicableEmoji.includes(reaction._emoji.id) ||
+		console.log(applicableEmoji.includes(reaction._emoji.id) + ' ' +
 		applicableEmoji.includes(reaction._emoji.name))
 		return
 	})

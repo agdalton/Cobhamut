@@ -32,6 +32,9 @@ module.exports = {
 		}
 	},
 	callback: async (client, reaction, user, remove, globals) => {
+		console.log(reaction.message.interaction.hasOwnProperty('commandName'))
+		console.log(reaction.message.interaction.commandName !== 'partyfinder')
+		console.log(reaction.message.interaction.commandName)
 		// Check incoming message was created by the partyfinder command
 		if (
 			reaction.message.interaction.hasOwnProperty('commandName') &&

@@ -79,10 +79,12 @@ module.exports = {
 		if (party.pfFull) return
 
 		// Determine what role the user selected
+		console.log('ARE WE HERE?')
+		console.log(typeof emoji)
+
 		let role = ''
 		switch (emoji) {
 			case '977771775960174652':
-				console.log('ARE WE HERE?')
 
 				role = 'tanks'
 				break

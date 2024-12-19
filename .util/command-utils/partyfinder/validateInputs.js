@@ -27,16 +27,19 @@ module.exports = (interaction, memberData, globals, partyComp, dataDTTZ) => {
 		// If invalid Party size
 		if (partyComp.hasOwnProperty('err')) {
 			const compErr = partyComp.err
-			errEmbed.addField(compErr.field, compErr.message)
+			errEmbed.addFields({
+				name: compErr.field,
+				value: compErr.message,
+			})
 		}
 		// If date, time, timezone submitted is invalid
 		if (!dataDTTZ.isValid) {
 			// Add the errors to the embed
 			for (let iErr = 0; iErr < dataDTTZ.err.length; iErr++) {
-				errEmbed.addField(
-					dataDTTZ.err[iErr].field,
-					dataDTTZ.err[iErr].message
-				)
+				errEmbed.addFields({
+					name: dataDTTZ.err[iErr].field,
+					value: dataDTTZ.err[iErr].message,
+				})
 			}
 		}
 

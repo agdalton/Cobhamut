@@ -9,6 +9,10 @@ module.exports = {
 		'977771776253775932',
 		'977771775859494942',
 		'977774943154618368',
+		'tank',
+		'healer',
+		'dps',
+		'fill',
 		'❌',
 	],
 	init: async (client, globals) => {

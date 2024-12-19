@@ -38,13 +38,9 @@ module.exports = {
 			reaction.message.interaction.commandName !== 'partyfinder create'
 		)
 			return
-		console.log('1')
 
 		// return when the first reactions are auto added by Cobhamut
 		if (reaction.count === 1 && remove === false) return
-		console.log('2')
-		console.log('reaction.count' + reaction.count)
-
 
 		// Find the party in MongoDB that we'll need to edit
 		const party = await partyfinderSchema.findOne({
@@ -53,7 +49,6 @@ module.exports = {
 
 		// If the party can't be found in MongoDB, return
 		if (!party) return
-		console.log('3')
 
 		// Grab globals
 		const { green, purple } = globals.colors
@@ -79,15 +74,11 @@ module.exports = {
 			await message.delete()
 			return
 		}
-		console.log('4')
-
 
 		// If the party is full, return
 		if (party.pfFull) return
 
 		// Determine what role the user selected
-		console.log(typeof emoji)
-
 		let role = ''
 		switch (emoji) {
 			case '977771775960174652':

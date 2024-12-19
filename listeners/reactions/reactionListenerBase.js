@@ -19,7 +19,9 @@ module.exports = async (client, reactionListener, globals) => {
 		console.log(JSON.stringify(applicableEmoji))
 		console.log(reaction._emoji.id + ' ' + typeof reaction._emoji.id);
 		console.log(reaction._emoji.name + ' ' + typeof reaction._emoji.name);
-		console.log(applicableEmoji[0] === reaction._emoji.id);
+		console.log(`${applicableEmoji[0]} = ${reaction._emoji.id}? ${applicableEmoji[0] === reaction._emoji.id}`);
+		console.log(`${applicableEmoji[0]} includes ${reaction._emoji.id}? ${applicableEmoji.includes(reaction._emoji.id)}`);
+
 		return
 	})
 

@@ -89,7 +89,6 @@ module.exports = {
 		const role = Object.keys(roleMap).find(
 			(key) => roleMap[key] === emoji
 		)
-		console.log(role)
 		// switch (emoji) {
 		// 	case '977771775960174652':
 		// 		role = 'tanks'
@@ -132,7 +131,7 @@ module.exports = {
 						const roleReaction = message.reactions.cache.get(
 							roleMap[keyRole]
 						)
-
+						console.log(roleReaction.users.cache)
 						try {
 							if (roleReaction.users.cache.has(user.toString()))
 								await roleReaction.users.remove(user.toString())

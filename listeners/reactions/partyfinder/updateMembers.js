@@ -134,8 +134,8 @@ module.exports = {
 						)
 
 						try {
-							if (roleReaction.users.cache.has(user))
-								await roleReaction.users.remove(user)
+							if (roleReaction.users.cache.has(user.toString()))
+								await roleReaction.users.remove(user.toString())
 						} catch (error) {
 							console.error('Failed to remove reactions.')
 							console.error(error)

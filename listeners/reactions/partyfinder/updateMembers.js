@@ -79,7 +79,17 @@ module.exports = {
 		if (party.pfFull) return
 
 		// Determine what role the user selected
-		let role = ''
+		const roleMap = {
+			tanks: '977771775960174652',
+			healers: '977771776253775932',
+			damage: '977771775859494942',
+			fill: '977774943154618368',
+		}
+
+		const role = Object.keys(roleMap).find(
+			(key) => roleMap[key] === emoji
+		)
+
 		switch (emoji) {
 			case '977771775960174652':
 				role = 'tanks'
@@ -118,6 +128,20 @@ module.exports = {
 					if (dataUserRSVP[keyRole][iRole] === user.toString()) {
 						dataUserRSVP[keyRole].splice(iRole, 1)
 						dataTotalRSVP -= 1
+
+						const userReactions = message.reactions.cache
+							.get(roleMap[keyRole])
+							.users.filter((reaction) =>
+								reaction.users.cache.has(user)
+							)
+
+						try {
+							for (const reaction of userReactions.values()) {
+								await reaction.users.remove(user)
+							}
+						} catch (error) {
+							console.error('Failed to remove reactions.')
+						}
 					}
 				}
 			}

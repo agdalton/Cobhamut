@@ -73,7 +73,7 @@ module.exports = {
 						},
 						{
 							name: 'Raid start time',
-							value: `${time} ${friendlyTZ}`,
+							value: `<t:${nextReminder.toUnixInteger()}:t>`,
 						}
 					)
 					.setFooter({
@@ -81,12 +81,10 @@ module.exports = {
 							dataCreator.memberNick
 								? dataCreator.memberNick
 								: dataCreator.memberUsername
-						} used /raidreminder\nNext reminder @ ${nextReminderDate.substring(
+						} used /raidreminder\nNext reminder: ${nextReminderDate.substring(
 							0,
 							nextReminderDate.length - 6
-						)} ${nextReminder.toLocaleString(
-							DateTime.TIME_SIMPLE
-						)} ${nextReminder.offsetNameShort}`,
+						)} @ <t:${nextReminder.toUnixInteger()}:t>`,
 						iconURL: `${baseImageURL}/avatars/${dataCreator.memberID}/${dataCreator.memberAvatar}.png`,
 					})
 

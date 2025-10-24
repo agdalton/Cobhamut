@@ -128,9 +128,10 @@ module.exports = {
 						dataUserRSVP[keyRole].splice(iRole, 1)
 						dataTotalRSVP -= 1
 
-						const roleReaction = message.reactions.cache.get(
+						const roleReaction = await message.reactions.cache.get(
 							roleMap[keyRole]
-						)
+						).fetch()
+
 						console.log(roleReaction.users.cache)
 						try {
 							if (roleReaction.users.cache.has(user.toString()))

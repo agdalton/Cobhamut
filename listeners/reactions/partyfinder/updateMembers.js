@@ -131,7 +131,7 @@ module.exports = {
 
 						const userReactions = message.reactions.cache
 							.get(roleMap[keyRole])
-							.users.filter((reaction) =>
+							.filter((reaction) =>
 								reaction.users.cache.has(user)
 							)
 

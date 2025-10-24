@@ -90,20 +90,20 @@ module.exports = {
 			(key) => roleMap[key] === emoji
 		)
 		console.log(role)
-		switch (emoji) {
-			case '977771775960174652':
-				role = 'tanks'
-				break
-			case '977771776253775932':
-				role = 'healers'
-				break
-			case '977771775859494942':
-				role = 'damage'
-				break
-			case '977774943154618368':
-				role = 'fill'
-				break
-		}
+		// switch (emoji) {
+		// 	case '977771775960174652':
+		// 		role = 'tanks'
+		// 		break
+		// 	case '977771776253775932':
+		// 		role = 'healers'
+		// 		break
+		// 	case '977771775859494942':
+		// 		role = 'damage'
+		// 		break
+		// 	case '977774943154618368':
+		// 		role = 'fill'
+		// 		break
+		// }
 
 		// Return if the selected role is full and it's not a remove
 		if (!remove) {

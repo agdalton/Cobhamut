@@ -89,7 +89,7 @@ module.exports = {
 		const role = Object.keys(roleMap).find(
 			(key) => roleMap[key] === emoji
 		)
-
+		console.log(role)
 		switch (emoji) {
 			case '977771775960174652':
 				role = 'tanks'

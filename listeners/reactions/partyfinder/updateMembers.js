@@ -132,7 +132,7 @@ module.exports = {
 							roleMap[keyRole]
 						).fetch()
 
-						console.log(roleReaction.users.cache)
+						console.log(roleReaction.users)
 						try {
 							if (roleReaction.users.cache.has(user.toString()))
 								await roleReaction.users.remove(user.toString())

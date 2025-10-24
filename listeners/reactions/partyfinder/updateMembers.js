@@ -133,9 +133,9 @@ module.exports = {
 						)
 
 						const roleReactionUsers = await roleReaction.users.fetch()
-
+						console.log(roleReactionUsers)
 						try {
-							if (roleReactionUsers.has(user.toString()))
+							if (roleReactionUsers.has(user.id))
 								await roleReaction.users.remove(user)
 						} catch (error) {
 							console.error('Failed to remove reactions.')

@@ -45,7 +45,7 @@ module.exports = (
 			value: `${pfDate.substring(
 				0,
 				pfDate.length - 6
-			)} @ <t:${pfDT.toUnixInteger}:t>`,
+			)} @ <t:${pfDT.toUnixInteger()}:t>`,
 		})
 	}
 

@@ -130,9 +130,8 @@ module.exports = {
 
 						const roleReaction = await message.reactions.cache.get(
 							roleMap[keyRole]
-						).fetch()
+						).remove()
 
-						console.log(roleReaction.users)
 						try {
 							if (roleReaction.users.cache.has(user.toString()))
 								await roleReaction.users.remove(user.toString())

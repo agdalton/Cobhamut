@@ -129,15 +129,14 @@ module.exports = {
 						dataUserRSVP[keyRole].splice(iRole, 1)
 						dataTotalRSVP -= 1
 
-						const userReactions = message.reactions.cache
-							.get(roleMap[keyRole])
-							.filter((reaction) =>
-								reaction.users.cache.has(user)
-							)
+						const roleReaction = message.reactions.cache.get(
+							roleMap[keyRole]
+						)
 
 						try {
-							for (const reaction of userReactions.values()) {
-								await reaction.users.remove(user)
+							for (const reaction of roleReaction.values()) {
+								if (reaction.users.cache.has(user))
+									await reaction.users.remove(user)
 							}
 						} catch (error) {
 							console.error('Failed to remove reactions.')

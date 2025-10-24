@@ -68,7 +68,10 @@ module.exports = {
 		// If the reaction was ❌ then delete the partyfinder <-- above the return for party full to allow cancelations
 		if (reaction._emoji.name === '❌') {
 			// return if the person who reacted ❌ did not create the partyfinder
-			if (user.id !== dataCreator.memberID) return
+			if (user.id !== dataCreator.memberID) {
+				reaction.remove()
+				return
+			}
 
 			// Delete the partyfinder via deleting the original message <-- the deletedMessages listener will remove it from MongoDB
 			await message.delete()
@@ -131,9 +134,9 @@ module.exports = {
 						const roleReaction = message.reactions.cache.get(
 							roleMap[keyRole]
 						)
+						const roleReactionUsers =
+							await roleReaction.users.fetch()
 
-						const roleReactionUsers = await roleReaction.users.fetch()
-						console.log(roleReactionUsers)
 						try {
 							if (roleReactionUsers.has(user.id))
 								await roleReaction.users.remove(user)

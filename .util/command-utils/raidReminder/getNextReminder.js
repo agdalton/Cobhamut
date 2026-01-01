@@ -44,7 +44,7 @@ module.exports = (days, time, timezone, reminderHours) => {
 
 	// If there's only 1 day per week on the schedule and no reminder should be scheduled for today,
 	// add 7 days - the number of hours for the reminder
-	if (days.length === 1)
+	if (days.length === 1 && days[0] === today)
 		return nextReminder.plus({ days: 7 }).minus({ hours: reminderHours })
 
 	// Otherwise find the next day a reminder should be sent

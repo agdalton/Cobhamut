@@ -1,3 +1,7 @@
+# Secrets
+secrets/*
+!/secrets/.gitkeep
+
 # Logs
 logs
 *.log

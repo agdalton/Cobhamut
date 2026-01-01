@@ -33,19 +33,22 @@ module.exports = (days, time, timezone, reminderHours) => {
 		{ zone: timezone }
 	)
 
-	// Check if a reminder should be scheduled for today
+	// If today is in the schedule
 	if (days.includes(today)) {
+		// Check if a reminder should be scheduled for today
 		if (
 			dtNow.toUnixInteger() + 1 <
 			nextReminder.minus({ hours: reminderHours }).toUnixInteger()
 		)
 			return nextReminder.minus({ hours: reminderHours })
-	}
 
-	// If there's only 1 day per week on the schedule and no reminder should be scheduled for today,
-	// add 7 days - the number of hours for the reminder
-	if (days.length === 1 && days[0] === today)
-		return nextReminder.plus({ days: 7 }).minus({ hours: reminderHours })
+		// If there's only 1 day per week on the schedule and no reminder should be scheduled for today,
+		// add 7 days - the number of hours for the reminder
+		if (days.length === 1)
+			return nextReminder
+				.plus({ days: 7 })
+				.minus({ hours: reminderHours })
+	}
 
 	// Otherwise find the next day a reminder should be sent
 	for (let i = 0; i < days.length; i++) {
